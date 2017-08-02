@@ -124,9 +124,13 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 - (instancetype)initWithConfiguration:(AWSServiceConfiguration *)configuration {
     if (self = [super init]) {
         _configuration = [configuration copy];
-        _configuration.endpoint = [[AWSEndpoint alloc] initWithRegion:_configuration.regionType
-                                                              service:AWSServiceS3
-                                                         useUnsafeURL:NO];
+			// _configuration.endpoint = [[AWSEndpoint alloc] initWithRegion:_configuration.regionType
+			//                                                  service:AWSServiceS3
+			//                                             useUnsafeURL:NO];
+		
+		_configuration.endpoint = [[AWSEndpoint alloc] initWithRegion:_configuration.regionType
+															  service:AWSServiceS3
+														 URL:configuration.endpoint.URL];
     }
 
     return self;
