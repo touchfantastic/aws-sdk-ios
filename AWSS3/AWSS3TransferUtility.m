@@ -677,6 +677,32 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
     }
 }
 
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler
+{
+	
+	NSURLSessionAuthChallengeDisposition disposition;
+	NSURLCredential *credential = nil;
+	
+	if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+		disposition = NSURLSessionAuthChallengeUseCredential;
+		credential = [NSURLCredential credentialForTrust: challenge.protectionSpace.serverTrust];
+	} else {
+			//if challenge
+		if ([challenge previousFailureCount] > 0) {
+			disposition = NSURLSessionAuthChallengeCancelAuthenticationChallenge;
+		} else {
+			credential = [NSURLCredential credentialForTrust: challenge.protectionSpace.serverTrust];
+			if (credential != nil) {
+				disposition = NSURLSessionAuthChallengeUseCredential;
+			} else {
+				disposition = NSURLSessionAuthChallengeCancelAuthenticationChallenge;
+			}
+		}
+	}
+	
+	completionHandler(disposition, credential);
+}
+
 - (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error {
     [[NSNotificationCenter defaultCenter] postNotificationName:AWSS3TransferUtilityURLSessionDidBecomeInvalidNotification object:self];
     
