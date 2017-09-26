@@ -148,8 +148,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                                                                     URL:configuration.endpoint.URL];
        }else{
           [_configuration.endpoint setRegion:_configuration.regionType
-                                     service:AWSServiceS3
-                                         URL:configuration.endpoint.URL];
+                                     service:AWSServiceS3];
        }
 
     }
