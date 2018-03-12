@@ -1,12 +1,176 @@
 # AWS Mobile SDK for iOS CHANGELOG
 
+## 2.6.13
+
+### New Features
+
+* **Amazon S3**
+  * Added support for MultiPart uploads in Transfer Utility
+  * Included error retry logic for Transfer Utility 
+
+## 2.6.12
+
+### New Features
+
+* **Amazon Cognito Identity Provider**
+  * Support for user migration over lambda trigger in Cognito User Pools.
+
+## 2.6.11
+
+### New Features
+
+* **AWS IoT**
+  * Starting from this release, AWS IoT SDK by default sends metrics indicating which language and version of the SDK is being used. However, user may disable this by calling `enableMetricsCollection(false)` before calling `connect` method, if they do not want metrics to be sent.
+
+### Bug Fixes
+
+* **AWS S3**
+  * Assert instead of raising exception when reponse is not of type `NSHTTPURLResponse` in `AWSS3TransferUtility`. See [pr #799](https://github.com/aws/aws-sdk-ios/pull/799).
+
+### Misc. Updates
+
+* **General**
+  * Update README for formatting, code indentation and highlighting. [PR #790](https://github.com/aws/aws-sdk-ios/pull/790)
+  * Update README to point to the new documentation. [PR #804](https://github.com/aws/aws-sdk-ios/pull/804)
+
+## 2.6.10
+
+### New Features
+
+* **AWS Core**
+  * Added support for `eu-west-3`(EU - Paris) region.
+
+## 2.6.9
+
+### New Features
+
+* **AWS Core**
+  * Added support for `cn-northwest-1`(China - Ningxia) region.
+
+### Misc. Updates
+	
+* **Amazon Pinpoint**
+  * Improved the comment in `generateSessionIdWithContext` method in `AWSPinpointSessionClient`. [PR #777](https://github.com/aws/aws-sdk-ios/pull/777)
+
+## 2.6.8
+
+### New Features
+
+* **Amazon Rekognition**
+  * **Breaking API Change** The `AWSRekognitionLandmarkType` enum entries have changed lowercase `b` to capital `B`. For instance `AWSRekognitionLandmarkTypeLeftEyeBrowLeft`.
+  * Update the enum value of LandmarkType and GenderType to be consistent with service response. [Github Issue #650](https://github.com/aws/aws-sdk-ios/issues/650)
+  * Update to add face and text detection. [Github Issue #771](https://github.com/aws/aws-sdk-ios/issues/771)
+  * Update to Amazon Rekognition in general to latest API specifications.
+
+### Bug fixes
+
+* **Amazon Cognito Identity Provider**
+  * Fix broken Cocoapods due to duplicate library being found. [Github Issue #770](https://github.com/aws/aws-sdk-ios/issues/770)
+
+* **Amazon Cognito Auth**
+  * Fix broken Cocoapods due to duplicate library being found. [Github Issue #770](https://github.com/aws/aws-sdk-ios/issues/770)
+
+## 2.6.7
+
+### New Features
+
+* **Amazon Cognito Auth**
+  * Add support for the adaptive authentication feature of Amazon Cognito advanced security features (Beta).
+
+* **Amazon Cognito Identity Provider**
+  * Add support for Time-based One-time Passcode multi-factor authentication.
+  * Add support for the adaptive authentication feature of Amazon Cognito advanced security features (Beta).
+
+## 2.6.6
+
+### Enhancements
+
+* **Amazon Polly**
+    * Added support for new voices - `Aditi` and `Seoyeon`.
+    * Added support for new language code - `ko-KR`.
+
+### New Features
+
+* **AWS MobileClient**
+    * Added `AWSMobileClient` to initialize the SDK and create instances of other SDK clients. Currently support is limited to `AWS Auth SDK`. AWSMobileClient creates the `AWSConfiguration` based on `awsconfiguration.json`, fetches the Cognito Identity and registers the SignIn providers with the permissions based on the `AWSConfiguration`.
+
+### Bug fixes
+
+* **Amazon Pinpoint**
+    * Fixed a bug which didn't allow APNs Sandbox endpoints to be registered.
+
+* **AWS IoT**
+    * Change default keep alive timer to 300 seconds.
+
+## 2.6.5
+
+### Bug fixes
+
+* **All Services**
+    * Fix Xcode 9 strict prototype warnings. [Github PR #747](https://github.com/aws/aws-sdk-ios/pull/747)
+
+* **Amazon Kinesis**
+    *  Ensure `submitAllRecords` returns an error on failure to submit.  [Github PR #698](https://github.com/aws/aws-sdk-ios/pull/698)
+
+* **Amazon Pinpoint**
+    * Made submission of events thread safe.
+
+## 2.6.4
+
+### Enhancements
+
+* **Amazon Polly**
+    * Added support for new voices - `Matthew` and `Takumi`.
+    * Polly is now available in `ap-northeast-1` region.
+
+## 2.6.3
+
+### Bug fixes
+
+* **Amazon Pinpoint**
+    * Removed unused variable causing intermittent crashes.
+    * Fix deadlock bug in submission of events.
+
+* **Amazon Mobile Analytics**
+    * Fixed bug where an empty string causes app to crash when writing it to file. 
+
+## 2.6.2
+
+### New features
+
+* **Amazon Pinpoint**
+    * Added a debug configuration to be used for push notifications with a Sandbox certificate.
+
+* **Amazon Cognito Identity Provider**
+    * Add support for Pinpoint Analytics integration in Cognito User Pools.
+
+### Enhancements
+
+* **Amazon Kinesis**
+    * Add overloaded method `saveRecord:streamName:partitionKey` to allow control of `partitionKey`. [Github PR #696](https://github.com/aws/aws-sdk-ios/pull/696)
+
+* **Amazon Cognito Identity Provider**
+    * Return user sub in signup.  [Github Issue: #732](https://github.com/aws/aws-sdk-ios/issues/732)
+
+### Bug fixes
+
+* **Amazon Pinpoint**
+    * Fixed bug causing events to be sent without sessionId.
+    * Fixed issue where calling UIApplication API from background thread displays a warning. Github Issues: [#734](https://github.com/aws/aws-sdk-ios/issues/734)
+    * Added possible fix for issue where ending session got an EXC_BAD_ACCESS. Github Issues: [#630](https://github.com/aws/aws-sdk-ios/issues/630)
+
+* **Amazon Cognito Identity Provider**
+    * Fix crash when username is only set in authParameters and appClientSecret is used.  [Github Issue: #724](https://github.com/aws/aws-sdk-ios/issues/724)
+    
+* **Amazon S3**
+    * Remove `Transfer-Encoding` from streaming signature.  [Github  PR #638](https://github.com/aws/aws-sdk-ios/pull/638)
+
 ## 2.6.1
 
 ### New features
 
 * **AWS Auth SDK**
-	* Added new SDK for configurable User SignIn Screen with Amazon Cognito UserPools, Facebook SignIn and Google SignIn.
-
+	* Add new Auth SDK which provides login integration with Cognito User Pools, Facebook and Google.
 
 * **Core**
 	* Add support for client configuration through `awsconfiguration.json`.
@@ -32,51 +196,51 @@
 ### Bug fixes
 
 * **Core**
-  * Fixed issue where compilation would fail with Xcode 9. Github Issues: [#704](https://github.com/aws/aws-sdk-ios/issues/704), [#705](https://github.com/aws/aws-sdk-ios/issues/705), [#719](https://github.com/aws/aws-sdk-ios/issues/719), [#721](https://github.com/aws/aws-sdk-ios/issues/721)
+	* Fixed issue where compilation would fail with Xcode 9. Github Issues: [#704](https://github.com/aws/aws-sdk-ios/issues/704), [#705](https://github.com/aws/aws-sdk-ios/issues/705), [#719](https://github.com/aws/aws-sdk-ios/issues/719), [#721](https://github.com/aws/aws-sdk-ios/issues/721)
 
 * **Amazon API Gateway**
-  * Fixed bug where `rawResponse` field is always `nil` and inaccessible. [Github Issue: #631](https://github.com/aws/aws-sdk-ios/issues/631)
+	* Fixed bug where `rawResponse` field is always `nil` and inaccessible. [Github Issue: #631](https://github.com/aws/aws-sdk-ios/issues/631)
 
 * **Amazon Lex**
-  * Fixed [issue](https://forums.aws.amazon.com/thread.jspa?threadID=260137&tstart=0) where session attributes passed in to the `AWSLexInteractionKit` methods `textInTextOut` and `textInAudioOut` would be ignored in certain cases
-  * Fixed similar issue in `AWSLexInteractionKit` `startStreaming` method where attributes set in `sessionAttributesForSpeechInput` would be ignored in certain cases
+	* Fixed [issue](https://forums.aws.amazon.com/thread.jspa?threadID=260137&tstart=0) where session attributes passed in to the `AWSLexInteractionKit` methods `textInTextOut` and `textInAudioOut` would be ignored in certain cases
+	* Fixed similar issue in `AWSLexInteractionKit` `startStreaming` method where attributes set in `sessionAttributesForSpeechInput` would be ignored in certain cases
 
 ## 2.5.10
 
 ### Enhancements
 
 * **Amazon Pinpoint**
- * Introduce 'didReceiveRemoteNotification:fetchCompletionHandler:shouldHandleNotificationDeepLink:' to 'AWSPinpointNotificationManager'. Introduces new parameter 'handleDeepLink', to optionally specify whether or not notification manager should attempt to open the remote notification deeplink, if present.
+	* Introduce 'didReceiveRemoteNotification:fetchCompletionHandler:shouldHandleNotificationDeepLink:' to 'AWSPinpointNotificationManager'. Introduces new parameter 'handleDeepLink', to optionally specify whether or not notification manager should attempt to open the remote notification deeplink, if present.
 
 * **Amazon Cognito Auth**
- * Amazon Cognito Auth is now Generally Available.
+	* Amazon Cognito Auth is now Generally Available.
  
 ### Bug fixes
 
 * **Amazon Cognito Auth**
- * Fix bug causing error messages not to be surfaced
- * Fix bug causing refresh tokens not to work in all scenarios
+	* Fix bug causing error messages not to be surfaced
+	* Fix bug causing refresh tokens not to work in all scenarios
 
 * **AWS IoT**
- * Fixed bug to improve stability of encoding and decoding MQTT packet thread.
- * Add mutex to synchronize the buffer used for encoding messages.
+	* Fixed bug to improve stability of encoding and decoding MQTT packet thread.
+	* Add mutex to synchronize the buffer used for encoding messages.
  
 ## 2.5.9
 
 ### Bug fixes
 
 * **Amazon Lex**
-  * Fixed bug where an application consuming `Lex` cannot be signed and distributed [Github Issue #704](https://github.com/aws/aws-sdk-ios/issues/704)
+	* Fixed bug where an application consuming `Lex` cannot be signed and distributed [Github Issue #704](https://github.com/aws/aws-sdk-ios/issues/704)
 
 * **Amazon Pinpoint**
-  * Fixed bug where saving a session cause a crash. [Github Issue #580] (https://github.com/aws/aws-sdk-ios/issues/580)
-  * Removed all calls that blocked the main thread [Github Issue #614] (https://github.com/aws/aws-sdk-ios/issues/614)
+	* Fixed bug where saving a session cause a crash. [Github Issue #580] (https://github.com/aws/aws-sdk-ios/issues/580)
+	* Removed all calls that blocked the main thread [Github Issue #614] (https://github.com/aws/aws-sdk-ios/issues/614)
 
 * **AWS IoT**
-  * Moved encoding and decoding MQTT packet into background thread
-  * Moved websocket delegate methods (webSocketDidOpen:, webSocket:didFailWithError:, webSocket:didReceiveMessage:, webSocket:didCloseWithCode: ) into background thread
-  * Fixed bug where app receives duplicate "Disconnected" callback when previously connected to AWS IoT via websocket
-  * Fixed bug where reconnect timer incorrectly triggered after user disconnects
+	* Moved encoding and decoding MQTT packet into background thread
+	* Moved websocket delegate methods (webSocketDidOpen:, webSocket:didFailWithError:, webSocket:didReceiveMessage:, webSocket:didCloseWithCode: ) into background thread
+	* Fixed bug where app receives duplicate "Disconnected" callback when previously connected to AWS IoT via websocket
+	* Fixed bug where reconnect timer incorrectly triggered after user disconnects
 
 ## 2.5.8
 

@@ -77,6 +77,10 @@ typedef void(^voidBlock)(void);
 
 @end
 
+@interface AWSPinpointConfiguration()
+@property (nonnull, strong) NSUserDefaults *userDefaults;
+@end
+
 #pragma mark - AWSPinpointSessionClient -
 @implementation AWSPinpointSessionClient
 
@@ -90,7 +94,7 @@ typedef void(^voidBlock)(void);
     NSAssert(context != nil, @"context should not have been nil");
     if (self = [super init]) {
         _context = context;
-        NSData *sessionData = [[NSUserDefaults standardUserDefaults] dataForKey:AWSPinpointSessionKey];
+        NSData *sessionData = [context.configuration.userDefaults dataForKey:AWSPinpointSessionKey];
         _session = [NSKeyedUnarchiver unarchiveObjectWithData:sessionData];
         
         //Only add observers if auto session recording is enabled
@@ -105,6 +109,12 @@ typedef void(^voidBlock)(void);
                                                      selector: @selector(applicationDidEnterForeground:)
                                                          name: UIApplicationWillEnterForegroundNotification
                                                        object: nil];
+            
+            // register for when application is terminated
+            [[NSNotificationCenter defaultCenter] addObserver: self
+                                                     selector: @selector(applicationWillTerminate:)
+                                                         name: UIApplicationWillTerminateNotification
+                                                       object: nil];
         }
     }
     
@@ -116,9 +126,8 @@ typedef void(^voidBlock)(void);
         @synchronized (_session) {
             AWSPinpointSession *session = [_session copy];
             NSData *sessionData = [NSKeyedArchiver archivedDataWithRootObject:session];
-            [[NSUserDefaults standardUserDefaults] setObject:sessionData forKey:AWSPinpointSessionKey];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-
+            [self.context.configuration.userDefaults setObject:sessionData forKey:AWSPinpointSessionKey];
+            [self.context.configuration.userDefaults synchronize];
         }
     }
     @catch (NSException *e) {
@@ -135,6 +144,10 @@ typedef void(^voidBlock)(void);
     [self resumeSession];
 }
 
+- (void)applicationWillTerminate:(NSNotification*)notification {
+    [self endCurrentSession];
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver: self
                                                     name: UIApplicationDidEnterBackgroundNotification
@@ -142,6 +155,10 @@ typedef void(^voidBlock)(void);
     
     [[NSNotificationCenter defaultCenter] removeObserver: self
                                                     name: UIApplicationWillEnterForegroundNotification
+                                                  object: nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: UIApplicationWillTerminateNotification
                                                   object: nil];
 }
 
@@ -262,11 +279,6 @@ typedef void(^voidBlock)(void);
     //Kill current session object
     @synchronized(_session) {
         _session = nil;
-        
-        //Remove current session
-        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:AWSPinpointSessionKey];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:AWSPinpointSessionKey];
-        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
     //Remove campaign global attributes
@@ -467,7 +479,7 @@ typedef void(^voidBlock)(void);
     [dateFormatter setDateFormat:AWSPinpointSessionIDTimeFormat];
     NSString *timestamp_time = [dateFormatter stringFromDate:tDate];
     
-    //<AppKey> - <UniqueID> - <Day> - <Time>
+    //Session ID as String, formmatted as <AppKey> - <UniqueID> - <Day> - <Time>
     return [NSString stringWithFormat:@"%@%c%@%c%@%c%@", appKey, AWSPinpointSessionIDDelimiter, uniqID, AWSPinpointSessionIDDelimiter, timestamp_day, AWSPinpointSessionIDDelimiter, timestamp_time];
 };
 

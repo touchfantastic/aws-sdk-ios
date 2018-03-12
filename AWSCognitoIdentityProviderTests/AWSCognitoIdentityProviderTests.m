@@ -34,10 +34,13 @@ static NSString * username = nil;
 static NSString * password = nil;
 
 static NSString * CIP_POOL_KEY = @"createUserPool";
+static NSString * PP_APP_ID = @"pinpointAppId";
+
 static AWSCognitoIdentityUserPool *pool;
+static AWSCognitoIdentityUserPool *migrationPool;
 static BOOL passwordAuthError = NO;
 
-static int testsInFlight = 7; //for knowing when to tear down the user pool
+static int testsInFlight = 8; //for knowing when to tear down the user pool
 
 #pragma mark interactive auth delegate
 -(id<AWSCognitoIdentityPasswordAuthentication>) startPasswordAuthentication {
@@ -160,13 +163,29 @@ static int testsInFlight = 7; //for knowing when to tear down the user pool
             return nil;
         }] waitUntilFinished];
         AWSServiceConfiguration *serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1 credentialsProvider:nil];
-        AWSCognitoIdentityUserPoolConfiguration *iDPConfiguration = [[AWSCognitoIdentityUserPoolConfiguration alloc] initWithClientId:clientId  clientSecret:clientSecret poolId:poolId];
+        AWSCognitoIdentityUserPoolConfiguration *iDPConfiguration = [[AWSCognitoIdentityUserPoolConfiguration alloc] initWithClientId:clientId
+                                                                                                                         clientSecret:clientSecret
+                                                                                                                               poolId:poolId
+                                                                                                   shouldProvideCognitoValidationData:YES
+                                                                                                                        pinpointAppId:PP_APP_ID];
+        AWSCognitoIdentityUserPoolConfiguration *migrationConfiguration = [[AWSCognitoIdentityUserPoolConfiguration alloc] initWithClientId:clientId
+                                                                                                                         clientSecret:clientSecret
+                                                                                                                               poolId:poolId
+                                                                                                   shouldProvideCognitoValidationData:YES
+                                                                                                                        pinpointAppId:PP_APP_ID
+                                                                                                                     migrationEnabled:YES];
         
         [AWSCognitoIdentityUserPool registerCognitoIdentityUserPoolWithConfiguration:serviceConfiguration userPoolConfiguration:iDPConfiguration forKey:@"UserPool"];
+        
+        [AWSCognitoIdentityUserPool registerCognitoIdentityUserPoolWithConfiguration:serviceConfiguration userPoolConfiguration:migrationConfiguration forKey:@"MigrationUserPool"];
         
         pool = [AWSCognitoIdentityUserPool CognitoIdentityUserPoolForKey:@"UserPool"];
         
         pool.delegate = self;
+        
+        migrationPool = [AWSCognitoIdentityUserPool CognitoIdentityUserPoolForKey:@"MigrationUserPool"];
+        
+        migrationPool.delegate = self;
     });
     passwordAuthError = NO;
 }
@@ -185,10 +204,13 @@ static int testsInFlight = 7; //for knowing when to tear down the user pool
     XCTestExpectation *expectation =
     [self expectationWithDescription:@"testSignInUser"];
     AWSCognitoIdentityUser* user = [pool getUser];
+    XCTAssertEqualObjects(PP_APP_ID, pool.userPoolConfiguration.pinpointAppId);
     [[user getSession] continueWithBlock:^id _Nullable(AWSTask<AWSCognitoIdentityUserSession *> * _Nonnull task) {
         if(task.error || task.isCancelled){
             XCTFail(@"Unable to sign in user: %@", task.error);
         }
+        XCTAssertNotNil(task.result.accessToken);
+        XCTAssertTrue(user.isSignedIn);
         [expectation fulfill];
         return task;
     }];
@@ -199,6 +221,29 @@ static int testsInFlight = 7; //for knowing when to tear down the user pool
         }
     }];
 
+}
+
+- (void)testUserMigrationFlowInvoked {
+    XCTestExpectation *expectation =
+    [self expectationWithDescription:@"testMigrationSignInUser"];
+    AWSCognitoIdentityUser* user = [migrationPool getUser:@"unknown"];
+    XCTAssertEqual(YES, migrationPool.userPoolConfiguration.migrationEnabled);
+    [[user getSession:@"unknown" password:@"willfail" validationData:nil] continueWithBlock:^id _Nullable(AWSTask<AWSCognitoIdentityUserSession *> * _Nonnull task) {
+        if(task.error || task.isCancelled){
+            XCTAssertEqualObjects(@"USER_PASSWORD_AUTH flow not enabled for this client",task.error.userInfo[@"message"]);
+            [expectation fulfill];
+        }else {
+            XCTFail(@"Pool doesn't have migration enabled. %@", task.error);
+        }
+        return task;
+    }];
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout Error: %@", error);
+        }
+    }];
+    
 }
 
 - (void)testSignOutUser {
