@@ -25,6 +25,12 @@
 
 @end
 
+@interface AWSIoTDataManager()
+
+@property (nonatomic, strong) AWSIoTMQTTClient *mqttClient;
+
+@end
+
 NSString *testShadowStringValid =@"{\"state\": { \"desired\": { \"value\":12345 }, \"reported\": { \"value\":6789 } } }";
 NSString *testShadowStringValidNoDelta =@"{\"state\": { \"desired\": { \"value\":6789 }, \"reported\": { \"value\":6789 } } }";
 NSString *testShadowStringInvalid =@"{\"state\": { \"desired\": { \"value\":12345 }, \"reported\": { \"value\":6789 } }";
@@ -506,8 +512,8 @@ NSString *publishMessageTestString=@"this-is-test-message-data";
                 //
                 // Check that the reconnection interval is correct +/- 4 seconds
                 //
-                XCTAssertEqualWithAccuracy(deltaTime, currentExpected, 2.0);
-                NSLog(@"%f seconds elapsed since last connect...",deltaTime);
+                XCTAssertEqualWithAccuracy(deltaTime, currentExpected, 4.0);
+                NSLog(@"Expected Time: [%f] seconds, Delta Time [%f]",currentExpected, deltaTime);
                 currentExpected *= 2;
                 
                 if (currentExpected > maxExpected) {
@@ -976,6 +982,30 @@ NSString *publishMessageTestString=@"this-is-test-message-data";
     XCTAssertEqual(numberDeltas,   expectedDeltas);
     XCTAssertEqual(numberTimeouts, expectedTimeouts);
     XCTAssertTrue( [rejectedClientToken isEqualToString:@"custom-client-token-4"] && acceptedClientToken == nil );
+}
+
+- (void)testUsernameMetaData {
+    NSString *const key = @"testUsernameMetaData";
+    AWSServiceConfiguration *serviceConfig = [AWSServiceManager defaultServiceManager].defaultServiceConfiguration;
+    [AWSIoTDataManager registerIoTDataManagerWithConfiguration:serviceConfig forKey:key];
+    __block AWSIoTDataManager *iotDataManager = [AWSIoTDataManager IoTDataManagerForKey:key];
+    
+    // Check default state of metadata
+    [[[iotDataManager mqttClient] userMetaData] isEqualToString:[NSString stringWithFormat:@"?SDK=iOS&Version=%@", AWSIoTSDKVersion]];
+    
+    // Check state after adding additional fields
+    NSDictionary<NSString *,NSString *> * metaData = @{@"foo": @"bar", @"clazz": @"2"};
+    [iotDataManager addUserMetaData: metaData];
+    NSString *expectedUserMetaData = [NSString stringWithFormat:@"?SDK=iOS&Version=%@&foo=bar&clazz=2", AWSIoTSDKVersion];
+    NSString *actualUserMetaData = [[iotDataManager mqttClient] userMetaData];
+    XCTAssertTrue([actualUserMetaData isEqualToString:expectedUserMetaData]);
+    
+    // Check state after adding additional fields twice
+    NSDictionary<NSString *,NSString *> * metaData2 = @{@"foo2": @"bar2"};
+    [iotDataManager addUserMetaData: metaData2];
+    NSString *expectedUserMetaData2 = [NSString stringWithFormat:@"?SDK=iOS&Version=%@&foo=bar&clazz=2&foo2=bar2", AWSIoTSDKVersion];
+    NSString *actualUserMetaData2 = [[iotDataManager mqttClient] userMetaData];
+    XCTAssertTrue([actualUserMetaData2 isEqualToString:expectedUserMetaData2]);
 }
 
 @end
