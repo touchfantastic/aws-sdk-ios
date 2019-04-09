@@ -26,13 +26,12 @@ NSString *const AWSLexVoiceButtonErrorDomain = @"com.amazonaws.AWSLexVoiceButton
 NSString *const AWSLexVoiceButtonKey = @"AWSLexVoiceButton";
 
 static NSString *ProgressAnimationKey = @"progressanimation.rotation";
-static NSString *ResourceBundle = @"AWSResources";
-static NSString *BundleExtension = @"bundle";
 static NSString *MicrophoneImageKey = @"Microphone";
 static NSString *LexSpeakImageKey = @"LexSpeak";
 static NSString *VoiceButtonUserAgent = @"LexVoiceButton";
 static NSString *ImageButtonTintColorUserInfoKey = @"imageButton.imageView.tintColor";
 static NSString *BackgroundLayerStrokeColorUserInfoKey = @"backgroundLayer.strokeColor";
+static NSString *RESOURCES_BUNDLE = @"AWSLex.bundle";
 
 
 @implementation UIColor (AWSLexVoiceButton)
@@ -81,6 +80,8 @@ static NSString *BackgroundLayerStrokeColorUserInfoKey = @"backgroundLayer.strok
 
 @property (nonatomic, strong, readwrite) NSString * _Nullable audioContentType;
 
+@property (nonatomic, strong, readwrite) NSString * _Nullable inputTranscript;
+
 - (instancetype) initWithOutputText:(NSString *)outputText
                              intent:(NSString * _Nullable)intent
                   sessionAttributes:(NSDictionary * _Nullable)sessionAttributes
@@ -88,7 +89,8 @@ static NSString *BackgroundLayerStrokeColorUserInfoKey = @"backgroundLayer.strok
                               slots:(NSDictionary * _Nullable)slots
                         dialogState:(AWSLexDialogState)dialogState
                         audioStream:(NSData * _Nullable)audioStream
-                   audioContentType:(NSString * _Nullable)audioContentType;
+                   audioContentType:(NSString * _Nullable)audioContentType
+                    inputTranscript:(NSString * _Nullable)inputTranscript;
 
 @end
 
@@ -101,7 +103,8 @@ static NSString *BackgroundLayerStrokeColorUserInfoKey = @"backgroundLayer.strok
                               slots:(NSDictionary * _Nullable)slots
                         dialogState:(AWSLexDialogState)dialogState
                         audioStream:(NSData * _Nullable)audioStream
-                   audioContentType:(NSString * _Nullable)audioContentType{
+                   audioContentType:(NSString * _Nullable)audioContentType
+                    inputTranscript:(NSString * _Nullable)inputTranscript{
     self = [super init];
     if(self) {
         _intent = intent;
@@ -112,6 +115,7 @@ static NSString *BackgroundLayerStrokeColorUserInfoKey = @"backgroundLayer.strok
         _dialogState = dialogState;
         _audioStream = [audioStream copy];
         _audioContentType = audioContentType;
+        _inputTranscript = inputTranscript;
     }
     return self;
 }
@@ -196,13 +200,9 @@ static NSString *BackgroundLayerStrokeColorUserInfoKey = @"backgroundLayer.strok
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     if(self = [super initWithCoder:aDecoder]) {
         imageButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, SIZE, SIZE)];
-        NSBundle *currentBundle = [NSBundle bundleForClass:[self class]];
-        NSURL *bundleUrl = [currentBundle URLForResource:ResourceBundle withExtension:BundleExtension];
-        
-        NSBundle *imageBundle = [NSBundle bundleWithURL:bundleUrl];
         
         // Use microphone image when the user speaks.
-        UIImage *temp = [UIImage imageNamed:MicrophoneImageKey inBundle:imageBundle compatibleWithTraitCollection:nil];
+        UIImage *temp = [self getImageFromBundle:MicrophoneImageKey];
         self.microphoneImage =  [temp imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [self setButtonImage:self.microphoneImage imageTintColor:self.microphoneImageColor animated:NO];
         [imageButton addTarget:self action:@selector(startMonitoring:) forControlEvents:UIControlEventTouchDown];
@@ -210,7 +210,7 @@ static NSString *BackgroundLayerStrokeColorUserInfoKey = @"backgroundLayer.strok
         imageButton.imageView.tintColor = self.microphoneImageColor;
         
         // Use listen image when Lex speaks.
-        temp = [UIImage imageNamed:LexSpeakImageKey inBundle:imageBundle compatibleWithTraitCollection:nil];
+        temp = [self getImageFromBundle:LexSpeakImageKey];
         self.listenImage =  [temp imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         
         lightGrey = [UIColor colorWithWhite:0 alpha:0.2];
@@ -222,6 +222,17 @@ static NSString *BackgroundLayerStrokeColorUserInfoKey = @"backgroundLayer.strok
         self.errorColor = [UIColor redColor];
     }
     return self;
+}
+
+- (UIImage *)getImageFromBundle:(NSString *)imageName {
+    NSBundle *currentBundle = [NSBundle bundleForClass:[self class]];
+    UIImage *imageFromBundle = [UIImage imageNamed:imageName inBundle:currentBundle compatibleWithTraitCollection:nil];
+    if (imageFromBundle) {
+        return  imageFromBundle;
+    }
+    NSURL *url = [[currentBundle resourceURL] URLByAppendingPathComponent:RESOURCES_BUNDLE];
+    NSBundle *assetsBundle = [NSBundle bundleWithURL:url];
+    return [UIImage imageNamed:imageName inBundle:assetsBundle compatibleWithTraitCollection:nil];
 }
 
 //if the view is removed (view will disappear),
@@ -281,7 +292,7 @@ static NSString *BackgroundLayerStrokeColorUserInfoKey = @"backgroundLayer.strok
     }
     
     [session requestRecordPermission:^(BOOL granted) {
-        canListen = granted;
+        self->canListen = granted;
         if(granted) {
             [self startListening];
         } else {
@@ -442,8 +453,8 @@ static NSString *BackgroundLayerStrokeColorUserInfoKey = @"backgroundLayer.strok
 
 - (void)interactionKit:(AWSLexInteractionKit *)interactionKit onError:(NSError *)error{
     dispatch_async(dispatch_get_main_queue(), ^{
-        isAnimating = YES;//fake animation so that next step succeeds
-        isListening = NO;
+        self->isAnimating = YES;//fake animation so that next step succeeds
+        self->isListening = NO;
         [self stopProgress];
         
         NSDictionary *userInfo;
@@ -452,18 +463,18 @@ static NSString *BackgroundLayerStrokeColorUserInfoKey = @"backgroundLayer.strok
         if ([error.domain isEqualToString:AWSLexInteractionKitErrorDomain]
             && error.code == AWSLexInteractionKitErrorCodeDialogFailed) {
             userInfo = @{
-                ImageButtonTintColorUserInfoKey: imageButton.imageView.tintColor,
+                         ImageButtonTintColorUserInfoKey: self->imageButton.imageView.tintColor,
                 BackgroundLayerStrokeColorUserInfoKey: [UIColor colorWithCGColor:self.backgroundLayer.strokeColor]
             };
         } else {
             userInfo = @{
                 ImageButtonTintColorUserInfoKey: self.microphoneImageColor,
-                BackgroundLayerStrokeColorUserInfoKey: lightGrey
+                BackgroundLayerStrokeColorUserInfoKey: self->lightGrey
             };
         }
         
         self.backgroundLayer.strokeColor = [self.errorColor CGColor];
-        imageButton.imageView.tintColor = self.errorColor;
+        self->imageButton.imageView.tintColor = self.errorColor;
         //start a timer for a few secs to display error code to reset the error mode.
         [NSTimer scheduledTimerWithTimeInterval:1.5f
                                          target:self
@@ -498,7 +509,8 @@ static NSString *BackgroundLayerStrokeColorUserInfoKey = @"backgroundLayer.strok
                                                                                                   slots:switchModeInput.slots
                                                                                             dialogState:switchModeInput.dialogState
                                                                                             audioStream:switchModeInput.audioStream
-                                                                                       audioContentType:switchModeInput.audioContentType];
+                                                                                       audioContentType:switchModeInput.audioContentType
+                                                                                        inputTranscript:switchModeInput.inputTranscript];
             [self.delegate voiceButton:self onResponse:response];
         }
     });

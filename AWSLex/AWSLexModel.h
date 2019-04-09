@@ -1,5 +1,5 @@
 //
-// Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License").
 // You may not use this file except in compliance with the License.
@@ -51,6 +51,14 @@ typedef NS_ENUM(NSInteger, AWSLexDialogState) {
     AWSLexDialogStateFailed,
 };
 
+typedef NS_ENUM(NSInteger, AWSLexMessageFormatType) {
+    AWSLexMessageFormatTypeUnknown,
+    AWSLexMessageFormatTypePlainText,
+    AWSLexMessageFormatTypeCustomPayload,
+    AWSLexMessageFormatTypeSsml,
+    AWSLexMessageFormatTypeComposite,
+};
+
 @class AWSLexButton;
 @class AWSLexGenericAttachment;
 @class AWSLexPostContentRequest;
@@ -67,12 +75,12 @@ typedef NS_ENUM(NSInteger, AWSLexDialogState) {
 
 
 /**
- <p>Text visible to the user on the button.</p>
+ <p>Text that is visible to the user on the button.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable text;
 
 /**
- <p>Value sent to Amazon Lex when user clicks the button. For exmaple, consider button text "NYC". When user clicks the button, the value sent can be "New York City".</p>
+ <p>The value sent to Amazon Lex when a user chooses the button. For example, consider button text "NYC." When the user chooses the button, the value sent can be "New York City."</p>
  */
 @property (nonatomic, strong) NSString * _Nullable value;
 
@@ -85,27 +93,27 @@ typedef NS_ENUM(NSInteger, AWSLexDialogState) {
 
 
 /**
- 
+ <p>The URL of an attachment to the response card.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable attachmentLinkUrl;
 
 /**
- <p>List of options to show to the user.</p>
+ <p>The list of options to show to the user.</p>
  */
 @property (nonatomic, strong) NSArray<AWSLexButton *> * _Nullable buttons;
 
 /**
- <p>URL of an image that is displayed to the user.</p>
+ <p>The URL of an image that is displayed to the user.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable imageUrl;
 
 /**
- <p>Sub title shown below the title.</p>
+ <p>The subtitle shown below the title.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable subTitle;
 
 /**
- <p>Title of the option.</p>
+ <p>The title of the option.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable title;
 
@@ -118,37 +126,42 @@ typedef NS_ENUM(NSInteger, AWSLexDialogState) {
 
 
 /**
- <p> You pass this value as the <code>Accept</code> HTTP header. </p><p> The message Lex returns in the response can be either text or speech based on the <code>Accept</code> HTTP header value in the request. </p><ul><li><p> If the value is <code>text/plain; charset=utf-8</code>, Lex returns text in the response. </p></li><li><p> If the value begins with <code>audio/</code>, the Lex returns a speech in the response. Lex uses Amazon Polly to generate the speech (using the configuration you specified in the <code>Accept</code> header). For example, if you specify <code>audio/mpeg</code> as the value, Lex returns speech in the MPEG format.</p><p>The following are the accepted values:</p><ul><li><p>audio/mpeg</p></li><li><p>audio/ogg</p></li><li><p>audio/pcm</p></li><li><p>text/plain; charset=utf-8</p></li><li><p>audio (defaults to mpeg)</p></li></ul></li></ul>
+ <p> You pass this value as the <code>Accept</code> HTTP header. </p><p> The message Amazon Lex returns in the response can be either text or speech based on the <code>Accept</code> HTTP header value in the request. </p><ul><li><p> If the value is <code>text/plain; charset=utf-8</code>, Amazon Lex returns text in the response. </p></li><li><p> If the value begins with <code>audio/</code>, Amazon Lex returns speech in the response. Amazon Lex uses Amazon Polly to generate the speech (using the configuration you specified in the <code>Accept</code> header). For example, if you specify <code>audio/mpeg</code> as the value, Amazon Lex returns speech in the MPEG format.</p><p>The following are the accepted values:</p><ul><li><p>audio/mpeg</p></li><li><p>audio/ogg</p></li><li><p>audio/pcm</p></li><li><p>text/plain; charset=utf-8</p></li><li><p>audio/* (defaults to mpeg)</p></li></ul></li></ul>
  */
 @property (nonatomic, strong) NSString * _Nullable accept;
 
 /**
- <p>Alias of the Lex bot.</p>
+ <p>Alias of the Amazon Lex bot.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable botAlias;
 
 /**
- <p>Name of the Lex bot.</p>
+ <p>Name of the Amazon Lex bot.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable botName;
 
 /**
- <p> You pass this values as the <code>Content-Type</code> HTTP header. </p><p> Indicates the audio format. The header value must start with one of the following prefixes: </p><ul><li><p>audio/l16; rate=16000; channels=1</p></li><li><p>audio/x-l16; sample-rate=16000; channel-count=1</p></li><li><p>text/plain; charset=utf-8</p></li><li><p>audio/x-cbr-opus-with-preamble; preamble-size=0; bit-rate=1; frame-size-milliseconds=1.1</p></li></ul>
+ <p> You pass this value as the <code>Content-Type</code> HTTP header. </p><p> Indicates the audio format or text. The header value must start with one of the following prefixes: </p><ul><li><p>PCM format, audio data must be in little-endian byte order.</p><ul><li><p>audio/l16; rate=16000; channels=1</p></li><li><p>audio/x-l16; sample-rate=16000; channel-count=1</p></li><li><p>audio/lpcm; sample-rate=8000; sample-size-bits=16; channel-count=1; is-big-endian=false </p></li></ul></li><li><p>Opus format</p><ul><li><p>audio/x-cbr-opus-with-preamble; preamble-size=0; bit-rate=256000; frame-size-milliseconds=4</p></li></ul></li><li><p>Text format</p><ul><li><p>text/plain; charset=utf-8</p></li></ul></li></ul>
  */
 @property (nonatomic, strong) NSString * _Nullable contentType;
 
 /**
- <p> User input, in the format as described in the <code>Content-Type</code> HTTP header. </p>
+ <p> User input in PCM or Opus audio format or text format as described in the <code>Content-Type</code> HTTP header. </p><p>You can stream audio data to Amazon Lex or you can create a local buffer that captures all of the audio data before sending. In general, you get better performance if you stream audio data rather than buffering the data locally.</p>
  */
 @property (nonatomic, strong) NSInputStream * _Nullable inputStream;
 
 /**
- <p>You pass this value in the <code>x-amz-deep-sense-session-attributes</code> HTTP header. The value must be map (keys and values must be string) that is JSON serialized and then base64-encoded.</p><p> A session represents dialog between a user and Amazon Lex. At runtime, a client application can pass contextual information (session attributes), in the request. For example, <code>"FirstName" : "Joe"</code>. </p><p> Lex passes these session attributes to the Lambda functions configured for the intent (see <code>dialogCodeHook</code> and <code>fulfillmentActivity.codeHook</code> in ). In the Lambda function code, you can use the session attributes for customization. For example, </p><ul><li><p> In a pizza ordering application, if you pass user location (for example, <code>"Location" : "some location"</code>) as a session attribute, your Lambda function might use this information to determine the closest pizzeria to place the order. </p></li><li><p> You might use session attribute information to personalize prompts. For example, suppose you pass in user name as a session attribute (<code>"FirstName" : "Joe"</code>). You might configure subsequent prompts to refer to this attribute, as <code>$session.FirstName"</code>. At runtime, Lex substitutes a real value in generating a prompt - "Hello Joe, what would you like to order?". </p></li></ul><note><p> Amazon Lex does not persist session attributes. </p><p> If you have not configured a Lambda function to process an intent (that is, you want processing done on on the client), then Lex simply returns the session attributes back to the client application. </p><p> If you configured a Lambda function to process the intent, Lex passes the incoming session attributes to the Lambda function. The Lambda function must return these session attributes if you want Lex to return them back to client. </p></note>
+ <p>You pass this value as the <code>x-amz-lex-request-attributes</code> HTTP header.</p><p>Request-specific information passed between Amazon Lex and a client application. The value must be a JSON serialized and base64 encoded map with string keys and values. The total size of the <code>requestAttributes</code> and <code>sessionAttributes</code> headers is limited to 12 KB.</p><p>The namespace <code>x-amz-lex:</code> is reserved for special attributes. Don't create any request attributes with the prefix <code>x-amz-lex:</code>.</p><p>For more information, see <a href="http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs">Setting Request Attributes</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable requestAttributes;
+
+/**
+ <p>You pass this value as the <code>x-amz-lex-session-attributes</code> HTTP header.</p><p>Application-specific information passed between Amazon Lex and a client application. The value must be a JSON serialized and base64 encoded map with string keys and values. The total size of the <code>sessionAttributes</code> and <code>requestAttributes</code> headers is limited to 12 KB.</p><p>For more information, see <a href="http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs">Setting Session Attributes</a>.</p>
  */
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable sessionAttributes;
 
 /**
- <p>User ID of your client application. Typically you want each of your application users to have a unique ID. Note the following considerations: </p><ul><li><p> If you want a user to start conversation on one mobile device and continue the conversation on another device, you might choose user-specific identifier, such as login, or Cognito user ID (assuming your application is using Amazon Cognito). </p></li><li><p> If you want the same user to be able to have two independent conversations on two different devices, you might choose device-specific identifier, such as device ID, or some globally unique identifier. </p></li></ul>
+ <p>The ID of the client application user. Amazon Lex uses this to identify a user's conversation with your bot. At runtime, each request must contain the <code>userID</code> field.</p><p>To decide the user ID to use for your application, consider the following factors.</p><ul><li><p>The <code>userID</code> field must not contain any personally identifiable information of the user, for example, name, personal identification numbers, or other end user personal information.</p></li><li><p>If you want a user to start a conversation on one device and continue on another device, use a user-specific identifier.</p></li><li><p>If you want the same user to be able to have two independent conversations on two different devices, choose a device-specific identifier.</p></li><li><p>A user can't have two independent conversations with two different versions of the same bot. For example, a user can't have a conversation with the PROD and BETA versions of the same bot. If you anticipate that a user will need to have conversation with two different versions, for example, while testing, include the bot alias in the user ID to separate the two conversations.</p></li></ul>
  */
 @property (nonatomic, strong) NSString * _Nullable userId;
 
@@ -161,7 +174,7 @@ typedef NS_ENUM(NSInteger, AWSLexDialogState) {
 
 
 /**
- <p>Prompt (or statement) to convey to the user. This is based on the application configuration and context. For example, if Lex did not understand the user intent, it will send the clarificationPrompt configured for the application. If the intent requires confirmation before taking the fulfillment action, it will send the confirmationPrompt. Here is another example, suppose Lambda function successfully fulfilled the intent, and sent a message to convery to the user. Then Lex will send that message in the response. </p>
+ <p>The prompt (or statement) to convey to the user. This is based on the bot configuration and context. For example, if Amazon Lex did not understand the user intent, it sends the <code>clarificationPrompt</code> configured for the bot. If the intent requires confirmation before taking the fulfillment action, it sends the <code>confirmationPrompt</code>. Another example: Suppose that the Lambda function successfully fulfilled the intent, and sent a message to convey to the user. Then Amazon Lex sends that message in the response. </p>
  */
 @property (nonatomic, strong) NSData * _Nullable audioStream;
 
@@ -171,32 +184,42 @@ typedef NS_ENUM(NSInteger, AWSLexDialogState) {
 @property (nonatomic, strong) NSString * _Nullable contentType;
 
 /**
- <p>Represents the message type to be conveyed to the user. For example, </p><ul><li><p><code>ElicitIntent</code> - Lex wants to elicit user intent. Consider the following examples: </p><ul><li><p>Suppose Lex did not understand the first utterances. For example "I want to order pizza" (indicating OrderPizza intent). But, if Lex did not understand the user's input to determine the intent, the service returns this dialog state. </p></li><li><p> Suppose the intent is configured with a follow up prompt. For example, after the OrderPizza intent is fulfilled, the intent might have a follow up prompt -" Do you want to order a drink or desert?". In this case, Lex returns this dialog state. </p></li></ul></li><li><p><code>ConfirmIntent</code> - Lex is expecting a yes/no response from the user as to whether go ahead and fulfill the intent (for example, ok to go ahead and order the pizza). </p><note><p> In addition to yes/no reply, user might provide respond with additional slot information. It can be a new slot information or change in existing slot value. For example, user might reply - "Yes, but change the crust to thick crust". Amazon Lex can understand the additional information and update the intent slots accordingly. </p><p> Consider another example. Before fulfilling an order, your application might prompt for confirmation - "Ok to place this pizza order?". User might reply - "No, I want to order a drink". In this case, Lex recognizes the new "OrderDrink" intent. </p></note></li><li><p><code>ElicitSlot</code> - Lex is expecting a value of a slot for the current intent. Suppose Lex asks, "What size pizza would you like?". A user might reply - "Medium", or "Medium pepperoni pizza". Lex will recognize the size and the topping as the two separate slot values. </p></li><li><p><code>Fulfilled</code> - Conveys that the Lambda function has successfully fulfilled the intent. If Lambda function returns a statement/message to convey the fulfillment result, Lex will pass this string to the client. If not, Lex looks for <code>conclusionStatement</code> that you configured for the intent. </p><p> If both the Lambda function statement and the <code>conclusionStatement</code> are missing, Lex throws a bad request exception. </p></li><li><p><code>ReadyForFulfillment</code> - Conveys that the client has to do the fulfillment work for the intent (this is the case when the current intent has the <code>fulfillmentActivity </code> configured as <code>ReturnIntent</code>). </p></li><li><p><code>Failed</code> - Conversation with the user failed. Some of the reasons for this dialog state are: After the preconfigured number of attempts user did not provide appropriate response, or Lambda function failed to fulfill an intent. </p></li></ul>
+ <p>Identifies the current state of the user interaction. Amazon Lex returns one of the following values as <code>dialogState</code>. The client can optionally use this information to customize the user interface. </p><ul><li><p><code>ElicitIntent</code> - Amazon Lex wants to elicit the user's intent. Consider the following examples: </p><p> For example, a user might utter an intent ("I want to order a pizza"). If Amazon Lex cannot infer the user intent from this utterance, it will return this dialog state. </p></li><li><p><code>ConfirmIntent</code> - Amazon Lex is expecting a "yes" or "no" response. </p><p>For example, Amazon Lex wants user confirmation before fulfilling an intent. Instead of a simple "yes" or "no" response, a user might respond with additional information. For example, "yes, but make it a thick crust pizza" or "no, I want to order a drink." Amazon Lex can process such additional information (in these examples, update the crust type slot or change the intent from OrderPizza to OrderDrink). </p></li><li><p><code>ElicitSlot</code> - Amazon Lex is expecting the value of a slot for the current intent. </p><p> For example, suppose that in the response Amazon Lex sends this message: "What size pizza would you like?". A user might reply with the slot value (e.g., "medium"). The user might also provide additional information in the response (e.g., "medium thick crust pizza"). Amazon Lex can process such additional information appropriately. </p></li><li><p><code>Fulfilled</code> - Conveys that the Lambda function has successfully fulfilled the intent. </p></li><li><p><code>ReadyForFulfillment</code> - Conveys that the client has to fulfill the request. </p></li><li><p><code>Failed</code> - Conveys that the conversation with the user failed. </p><p> This can happen for various reasons, including that the user does not provide an appropriate response to prompts from the service (you can configure how many times Amazon Lex can prompt a user for specific information), or if the Lambda function fails to fulfill the intent. </p></li></ul>
  */
 @property (nonatomic, assign) AWSLexDialogState dialogState;
 
 /**
- <p>Name of the intent.</p>
+ <p>The text used to process the request.</p><p>If the input was an audio stream, the <code>inputTranscript</code> field contains the text extracted from the audio stream. This is the text that is actually processed to recognize intents and slot values. You can use this information to determine if Amazon Lex is correctly processing the audio that you send.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable inputTranscript;
+
+/**
+ <p>Current user intent that Amazon Lex is aware of.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable intentName;
 
 /**
- <p> Based on the build-time application configuration, Amazon Lex determines the prompt (or statement) to convey to the user. If your application uses a Lambda function, then it can determine what prompt (or statement) to convey to the user. </p>
+ <p>The message to convey to the user. The message can come from the bot's configuration or from a Lambda function.</p><p>If the intent is not configured with a Lambda function, or if the Lambda function returned <code>Delegate</code> as the <code>dialogAction.type</code> its response, Amazon Lex decides on the next course of action and selects an appropriate message from the bot's configuration based on the current interaction context. For example, if Amazon Lex isn't able to understand user input, it uses a clarification prompt message.</p><p>When you create an intent you can assign messages to groups. When messages are assigned to groups Amazon Lex returns one message from each group in the response. The message field is an escaped JSON string containing the messages. For more information about the structure of the JSON string returned, see <a>msg-prompts-formats</a>.</p><p>If the Lambda function returns a message, Amazon Lex passes it to the client in its response.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable message;
 
 /**
- <p>JSON serialized and then base64-encoded map of key value pairs representing the session specific context information. </p>
+ <p>The format of the response message. One of the following values:</p><ul><li><p><code>PlainText</code> - The message contains plain UTF-8 text.</p></li><li><p><code>CustomPayload</code> - The message is a custom format for the client.</p></li><li><p><code>SSML</code> - The message contains text formatted for voice output.</p></li><li><p><code>Composite</code> - The message contains an escaped JSON object containing one or more messages from the groups that messages were assigned to when the intent was created.</p></li></ul>
+ */
+@property (nonatomic, assign) AWSLexMessageFormatType messageFormat;
+
+/**
+ <p> Map of key/value pairs representing the session-specific context information. </p>
  */
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable sessionAttributes;
 
 /**
- <p>If <code>dialogState</code> value is <code>ElicitSlot</code>, then this returns the name of the slot for which Lex is eliciting a value. </p>
+ <p> If the <code>dialogState</code> value is <code>ElicitSlot</code>, returns the name of the slot for which Amazon Lex is eliciting a value. </p>
  */
 @property (nonatomic, strong) NSString * _Nullable slotToElicit;
 
 /**
- <p>Map of zero or more intent slots (name/value pairs) Amazon Lex detected from the user input during the conversation.</p>
+ <p>Map of zero or more intent slots (name/value pairs) Amazon Lex detected from the user input during the conversation.</p><p>Amazon Lex creates a resolution list containing likely values for a slot. The value that it returns is determined by the <code>valueSelectionStrategy</code> selected when the slot type was created or updated. If <code>valueSelectionStrategy</code> is set to <code>ORIGINAL_VALUE</code>, the value provided by the user is returned, if the user value is similar to the slot values. If <code>valueSelectionStrategy</code> is set to <code>TOP_RESOLUTION</code> Amazon Lex returns the first value in the resolution list or, if there is no resolution list, null. If you don't specify a <code>valueSelectionStrategy</code>, the default is <code>ORIGINAL_VALUE</code>.</p>
  */
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable slots;
 
@@ -209,27 +232,32 @@ typedef NS_ENUM(NSInteger, AWSLexDialogState) {
 
 
 /**
- <p>Alias of the Lex bot.</p>
+ <p>The alias of the Amazon Lex bot.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable botAlias;
 
 /**
- <p>Name of the Lex bot.</p>
+ <p>The name of the Amazon Lex bot.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable botName;
 
 /**
- <p>Text user entered (Lex interprets this text).</p>
+ <p>The text that the user entered (Amazon Lex interprets this text).</p>
  */
 @property (nonatomic, strong) NSString * _Nullable inputText;
 
 /**
- <p> A session represents dialog between a user and Amazon Lex. At runtime, a client application can pass contextual information (session attributes), in the request. For example, <code>"FirstName" : "Joe"</code>. Lex passes these session attributes to the Lambda function(s) configured for the intent (see <code>dialogCodeHook</code> and <code>fulfillmentActivity.codeHook</code> in ). </p><p>In your Lambda function, you can use the session attributes for customization. Some examples are:</p><ul><li><p> In a pizza ordering application, if you can pass user location as a session attribute (for example, <code>"Location" : "111 Maple street"</code>), your Lambda function might use this information to determine the closest pizzeria to place the order. </p></li><li><p> Use session attributes to personalize prompts. For example, you pass in user name as a session attribute (<code>"FirstName" : "Joe"</code>), you might configure subsequent prompts to refer to this attribute, as <code>$session.FirstName"</code>. At runtime, Lex will then substitute a real value in generating a prompt - "Hello Joe, what would you like to order?". </p></li></ul><note><p> Amazon Lex does not persist session attributes. </p><p> If the intent is configured without a Lambda function to process the intent (that is, the client application to process the intent), Lex simply returns the session attributes back to the client application. </p><p> If the intent is configured with a Lambda function to process the intent, Lex passes the incoming session attributes to the Lambda function. The Lambda function must return these session attributes if you want Lex to return them back to the client. </p></note>
+ <p>Request-specific information passed between Amazon Lex and a client application.</p><p>The namespace <code>x-amz-lex:</code> is reserved for special attributes. Don't create any request attributes with the prefix <code>x-amz-lex:</code>.</p><p>For more information, see <a href="http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs">Setting Request Attributes</a>.</p>
+ */
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable requestAttributes;
+
+/**
+ <p>Application-specific information passed between Amazon Lex and a client application.</p><p>For more information, see <a href="http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs">Setting Session Attributes</a>.</p>
  */
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable sessionAttributes;
 
 /**
- <p>User ID of your client application. Typically you want each of your application users to have a unique ID. Note the following considerations: </p><ul><li><p> If you want a user to start conversation on one mobile device and continue the conversation on another device, you might choose user-specific identifier, such as login, or Cognito user ID (assuming your application is using Amazon Cognito). </p></li><li><p> If you want the same user to be able to have two independent conversations on two different devices, you might choose device-specific identifier, such as device ID, or some globally unique identifier. </p></li></ul>
+ <p>The ID of the client application user. Amazon Lex uses this to identify a user's conversation with your bot. At runtime, each request must contain the <code>userID</code> field.</p><p>To decide the user ID to use for your application, consider the following factors.</p><ul><li><p>The <code>userID</code> field must not contain any personally identifiable information of the user, for example, name, personal identification numbers, or other end user personal information.</p></li><li><p>If you want a user to start a conversation on one device and continue on another device, use a user-specific identifier.</p></li><li><p>If you want the same user to be able to have two independent conversations on two different devices, choose a device-specific identifier.</p></li><li><p>A user can't have two independent conversations with two different versions of the same bot. For example, a user can't have a conversation with the PROD and BETA versions of the same bot. If you anticipate that a user will need to have conversation with two different versions, for example, while testing, include the bot alias in the user ID to separate the two conversations.</p></li></ul>
  */
 @property (nonatomic, strong) NSString * _Nullable userId;
 
@@ -242,50 +270,55 @@ typedef NS_ENUM(NSInteger, AWSLexDialogState) {
 
 
 /**
- <p>Represents the message type to be conveyed to the user. For example, </p><ul><li><p><code>ElicitIntent</code> - Lex wants to elicit user intent. For example, Lex did not understand the first utterances such as "I want to order pizza", which indicates the OrderPizza intent. But, if Lex did not understand the intent, it returns this <code>dialogState</code>. Another example is when your intent is configured with a follow up prompt. For example, after OrderPizza intent is fulfilled, the intent might have a follow up prompt -" Do you want to order a drink or desert". In this case, Lex returns this <code>dialogState</code>. </p></li><li><p><code>ConfirmIntent</code> - Lex is expecting a yes/no response from the user as to whether go ahead and fulfill the intent (for example, ok to go ahead and order the pizza). In addition to yes/no reply, user might provide respond with additional slot information (either new slot information or change existing slot values). For example, "Yes, but change to thick crust". Amazon Lex will understand the additional information and update the intent slots accordingly. </p><p> Consider another example. Before fulfilling an order, your application might prompt for confirmation - "Do you want to place this pizza order?". Instead, use might reply - "No, I want to order a drink". Lex recognizes the new intent "OrderDrink" intent. </p></li><li><p><code>ElicitSlot</code> - Lex is expecting a value of a slot for the current intent. For example, suppose Lex asks, "What size pizza would you like?". A user might reply - "Medium pepperoni pizza". Lex will recognize the size and the topping as the two separate slot values. </p></li><li><p><code>Fulfilled</code> - Conveys that the Lambda function has successfully fulfilled the intent. If Lambda function returns a statement/message to convey the fulfillment result, Lex passes this string to the client. If not, Lex looks for <code>conclusionStatement</code> that you configured for the intent. </p><p> If both the Lambda function statement and the <code>conclusionStatement</code> are missing, Lex throws a bad request exception. </p></li><li><p><code>ReadyForFulfillment</code> - conveys that the client has to do the fulfillment work for the intent. This is the case when the current intent is configured with <code>ReturnIntent</code> as the <code>fulfillmentActivity </code>, then Lex returns this state to client. </p></li><li><p><code>Failed</code> - Conversation with the user failed. Some of the reasons for this <code>dialogState</code> are: after the configured number of attempts the user didn't provide an appropriate response, or the Lambda function failed to fulfill an intent. </p></li></ul>
+ <p> Identifies the current state of the user interaction. Amazon Lex returns one of the following values as <code>dialogState</code>. The client can optionally use this information to customize the user interface. </p><ul><li><p><code>ElicitIntent</code> - Amazon Lex wants to elicit user intent. </p><p>For example, a user might utter an intent ("I want to order a pizza"). If Amazon Lex cannot infer the user intent from this utterance, it will return this dialogState.</p></li><li><p><code>ConfirmIntent</code> - Amazon Lex is expecting a "yes" or "no" response. </p><p> For example, Amazon Lex wants user confirmation before fulfilling an intent. </p><p>Instead of a simple "yes" or "no," a user might respond with additional information. For example, "yes, but make it thick crust pizza" or "no, I want to order a drink". Amazon Lex can process such additional information (in these examples, update the crust type slot value, or change intent from OrderPizza to OrderDrink).</p></li><li><p><code>ElicitSlot</code> - Amazon Lex is expecting a slot value for the current intent. </p><p>For example, suppose that in the response Amazon Lex sends this message: "What size pizza would you like?". A user might reply with the slot value (e.g., "medium"). The user might also provide additional information in the response (e.g., "medium thick crust pizza"). Amazon Lex can process such additional information appropriately. </p></li><li><p><code>Fulfilled</code> - Conveys that the Lambda function configured for the intent has successfully fulfilled the intent. </p></li><li><p><code>ReadyForFulfillment</code> - Conveys that the client has to fulfill the intent. </p></li><li><p><code>Failed</code> - Conveys that the conversation with the user failed. </p><p> This can happen for various reasons including that the user did not provide an appropriate response to prompts from the service (you can configure how many times Amazon Lex can prompt a user for specific information), or the Lambda function failed to fulfill the intent. </p></li></ul>
  */
 @property (nonatomic, assign) AWSLexDialogState dialogState;
 
 /**
- <p>Intent Lex inferred from the user input text. This is one of the intents configured for the bot. </p>
+ <p>The current user intent that Amazon Lex is aware of.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable intentName;
 
 /**
- <p> Prompt (or statement) to convey to the user. This is based on the application configuration and context. For example, if Lex did not understand the user intent, it sends the <code>clarificationPrompt</code> configured for the application. In another example, if the intent requires confirmation before taking the fulfillment action, it sends the <code>confirmationPrompt</code>. Suppose the Lambda function successfully fulfilled the intent, and sent a message to convey to the user. In that situation, Lex sends that message in the response. </p>
+ <p>The message to convey to the user. The message can come from the bot's configuration or from a Lambda function.</p><p>If the intent is not configured with a Lambda function, or if the Lambda function returned <code>Delegate</code> as the <code>dialogAction.type</code> its response, Amazon Lex decides on the next course of action and selects an appropriate message from the bot's configuration based on the current interaction context. For example, if Amazon Lex isn't able to understand user input, it uses a clarification prompt message.</p><p>When you create an intent you can assign messages to groups. When messages are assigned to groups Amazon Lex returns one message from each group in the response. The message field is an escaped JSON string containing the messages. For more information about the structure of the JSON string returned, see <a>msg-prompts-formats</a>.</p><p>If the Lambda function returns a message, Amazon Lex passes it to the client in its response.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable message;
 
 /**
- <p>Represents the options the user has to respond to the current prompt. Lex sends this in the response only if the <code>dialogState</code> value indicates that user response is expected. </p>
+ <p>The format of the response message. One of the following values:</p><ul><li><p><code>PlainText</code> - The message contains plain UTF-8 text.</p></li><li><p><code>CustomPayload</code> - The message is a custom format defined by the Lambda function.</p></li><li><p><code>SSML</code> - The message contains text formatted for voice output.</p></li><li><p><code>Composite</code> - The message contains an escaped JSON object containing one or more messages from the groups that messages were assigned to when the intent was created.</p></li></ul>
+ */
+@property (nonatomic, assign) AWSLexMessageFormatType messageFormat;
+
+/**
+ <p>Represents the options that the user has to respond to the current prompt. Response Card can come from the bot configuration (in the Amazon Lex console, choose the settings button next to a slot) or from a code hook (Lambda function). </p>
  */
 @property (nonatomic, strong) AWSLexResponseCard * _Nullable responseCard;
 
 /**
- <p>Map of key value pairs representing the session specific context information.</p>
+ <p>A map of key-value pairs representing the session-specific context information.</p>
  */
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable sessionAttributes;
 
 /**
- <p>If <code>dialogState</code> value is <code>ElicitSlot</code>, then this returns the name of the slot for which Lex is eliciting a value. </p>
+ <p>If the <code>dialogState</code> value is <code>ElicitSlot</code>, returns the name of the slot for which Amazon Lex is eliciting a value. </p>
  */
 @property (nonatomic, strong) NSString * _Nullable slotToElicit;
 
 /**
- <p> Intent slots (name/value pairs) Amazon Lex detected so far from the user input in the conversation. </p>
+ <p> The intent slots that Amazon Lex detected from the user input in the conversation. </p><p>Amazon Lex creates a resolution list containing likely values for a slot. The value that it returns is determined by the <code>valueSelectionStrategy</code> selected when the slot type was created or updated. If <code>valueSelectionStrategy</code> is set to <code>ORIGINAL_VALUE</code>, the value provided by the user is returned, if the user value is similar to the slot values. If <code>valueSelectionStrategy</code> is set to <code>TOP_RESOLUTION</code> Amazon Lex returns the first value in the resolution list or, if there is no resolution list, null. If you don't specify a <code>valueSelectionStrategy</code>, the default is <code>ORIGINAL_VALUE</code>.</p>
  */
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable slots;
 
 @end
 
 /**
- <p>If you configure response card at build time, Lex substitutes the session attributes and slot values available, and returns it. The response card can also come from a Lambda function ( <code>dialogCodeHook</code> and <code>fulfillmentActivity</code> on an intent).</p>
+ <p>If you configure a response card when creating your bots, Amazon Lex substitutes the session attributes and slot values that are available, and then returns it. The response card can also come from a Lambda function ( <code>dialogCodeHook</code> and <code>fulfillmentActivity</code> on an intent).</p>
  */
 @interface AWSLexResponseCard : AWSModel
 
 
 /**
- <p>Content type of the response.</p>
+ <p>The content type of the response.</p>
  */
 @property (nonatomic, assign) AWSLexContentType contentType;
 
@@ -295,7 +328,7 @@ typedef NS_ENUM(NSInteger, AWSLexDialogState) {
 @property (nonatomic, strong) NSArray<AWSLexGenericAttachment *> * _Nullable genericAttachments;
 
 /**
- <p>Version of response card format.</p>
+ <p>The version of the response card format.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable version;
 
