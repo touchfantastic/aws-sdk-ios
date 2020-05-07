@@ -2,17 +2,7 @@
 // Copyright 2014-2018 Amazon.com,
 // Inc. or its affiliates. All Rights Reserved.
 //
-// Licensed under the Amazon Software License (the "License").
-// You may not use this file except in compliance with the
-// License. A copy of the License is located at
-//
-//     http://aws.amazon.com/asl/
-//
-// or in the "license" file accompanying this file. This file is
-// distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-// CONDITIONS OF ANY KIND, express or implied. See the License
-// for the specific language governing permissions and
-// limitations under the License.
+// SPDX-License-Identifier: Apache-2.0
 //
 
 #import <Foundation/Foundation.h>
@@ -94,8 +84,15 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Confirm a users' sign up with the confirmation code.  If forceAliasCreation is set, if another user is aliased to the same email/phone this code was sent to, reassign alias to this user.
  */
--(AWSTask<AWSCognitoIdentityUserConfirmSignUpResponse *> *) confirmSignUp:(NSString *) confirmationCode forceAliasCreation:(BOOL)forceAliasCreation;
+-(AWSTask<AWSCognitoIdentityUserConfirmSignUpResponse *> *) confirmSignUp:(NSString *) confirmationCode
+                                                       forceAliasCreation:(BOOL)forceAliasCreation;
 
+-(AWSTask<AWSCognitoIdentityUserConfirmSignUpResponse *> *) confirmSignUp:(NSString *) confirmationCode
+                                                           clientMetaData:(nullable NSDictionary<NSString *, NSString*> *) clientMetaData;
+
+-(AWSTask<AWSCognitoIdentityUserConfirmSignUpResponse *> *) confirmSignUp:(NSString *) confirmationCode
+                                                       forceAliasCreation:(BOOL)forceAliasCreation
+                                                           clientMetaData:(nullable NSDictionary<NSString *, NSString*> *) clientMetaData;
 /**
  Resend the confirmation code sent during sign up
  */
@@ -113,6 +110,11 @@ NS_ASSUME_NONNULL_BEGIN
                                                 password:(NSString *)password
                                           validationData:(nullable NSArray<AWSCognitoIdentityUserAttributeType *> *)validationData;
 
+- (AWSTask<AWSCognitoIdentityUserSession *> *)getSession:(NSString *)username
+                                                password:(NSString *)password
+                                          validationData:(nullable NSArray<AWSCognitoIdentityUserAttributeType *> *)validationData
+                                isInitialCustomChallenge:(BOOL)isInitialCustomChallenge;
+
 /**
  Get details about this user, including user attributes
  */
@@ -121,13 +123,22 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Send a code to this user to initiate the forgot password flow
  */
+- (AWSTask<AWSCognitoIdentityUserForgotPasswordResponse *> *)forgotPassword:(nullable NSDictionary<NSString *, NSString*> *) clientMetaData;
+
 - (AWSTask<AWSCognitoIdentityUserForgotPasswordResponse *> *)forgotPassword;
+
 
 /**
  Conclude the forgot password flow by providing the forgot password code and new password.
  */
 - (AWSTask<AWSCognitoIdentityUserConfirmForgotPasswordResponse *> *)confirmForgotPassword:(NSString *)confirmationCode
+                                                                                 password:(NSString *)password
+                                                                           clientMetaData:(nullable NSDictionary<NSString *, NSString*> *) clientMetaData;
+
+
+- (AWSTask<AWSCognitoIdentityUserConfirmForgotPasswordResponse *> *)confirmForgotPassword:(NSString *)confirmationCode
                                                                                  password:(NSString *)password;
+
 
 /**
  Change this user's password

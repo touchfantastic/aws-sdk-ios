@@ -2,17 +2,7 @@
 // Copyright 2014-2017 Amazon.com,
 // Inc. or its affiliates. All Rights Reserved.
 //
-// Licensed under the Amazon Software License (the "License").
-// You may not use this file except in compliance with the
-// License. A copy of the License is located at
-//
-//     http://aws.amazon.com/asl/
-//
-// or in the "license" file accompanying this file. This file is
-// distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-// CONDITIONS OF ANY KIND, express or implied. See the License
-// for the specific language governing permissions and
-// limitations under the License.
+// SPDX-License-Identifier: Apache-2.0
 //
 
 #import <Foundation/Foundation.h>
@@ -76,7 +66,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (AWSTask<AWSCognitoIdentityUserPoolSignUpResponse *> *)signUp:(NSString *)username
                                                        password:(NSString *)password
                                                  userAttributes:(nullable NSArray<AWSCognitoIdentityUserAttributeType *> *)userAttributes
+                                                 validationData:(nullable NSArray<AWSCognitoIdentityUserAttributeType *> *)validationData
+                                                 clientMetaData:(nullable NSDictionary<NSString *, NSString*> *) clientMetaData;
+
+
+- (AWSTask<AWSCognitoIdentityUserPoolSignUpResponse *> *)signUp:(NSString *)username
+                                                       password:(NSString *)password
+                                                 userAttributes:(nullable NSArray<AWSCognitoIdentityUserAttributeType *> *)userAttributes
                                                  validationData:(nullable NSArray<AWSCognitoIdentityUserAttributeType *> *)validationData;
+
 
 /**
  Return the user who last authenticated.  Username may be nil if current user is unknown.
@@ -194,6 +192,11 @@ shouldProvideCognitoValidationData:(BOOL)shouldProvideCognitoValidationData
  */
 @property(nonatomic, strong) NSDictionary<NSString*,NSString*>* challengeResponses;
 
+/**
+ A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers.
+ */
+@property(nonatomic, copy, nullable) NSDictionary<NSString*, NSString*> *clientMetaData;
+
 -(instancetype) initWithChallengeResponses: (NSDictionary<NSString*,NSString*> *) challengeResponses;
 
 @end
@@ -212,6 +215,11 @@ shouldProvideCognitoValidationData:(BOOL)shouldProvideCognitoValidationData
  required attributes.  Any other attributes are optional.
  */
 @property(nonatomic, strong, nullable) NSArray<AWSCognitoIdentityUserAttributeType*> *userAttributes;
+
+/**
+ A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers.
+ */
+@property(nonatomic, copy, nullable) NSDictionary<NSString*, NSString*> *clientMetaData;
 
 /**
  Initializer given a new password and map of user attributes to set 

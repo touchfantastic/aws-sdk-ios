@@ -1,5 +1,5 @@
 //
-// Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License").
 // You may not use this file except in compliance with the License.
@@ -157,7 +157,7 @@ typedef NS_ENUM(NSInteger, AWSLogsQueryStatus) {
 
 
 /**
- <p>The Amazon Resource Name (ARN) of the CMK to use when encrypting log data. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms">Amazon Resource Names - AWS Key Management Service (AWS KMS)</a>.</p>
+ <p>The Amazon Resource Name (ARN) of the CMK to use when encrypting log data. This must be a symmetric CMK. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms">Amazon Resource Names - AWS Key Management Service (AWS KMS)</a> and <a href="https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html">Using Symmetric and Asymmetric Keys</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable kmsKeyId;
 
@@ -909,7 +909,7 @@ typedef NS_ENUM(NSInteger, AWSLogsQueryStatus) {
 @property (nonatomic, strong) NSString * _Nullable filterPattern;
 
 /**
- <p>If the value is true, the operation makes a best effort to provide responses that contain events from multiple log streams within the log group, interleaved in a single response. If the value is false, all the matched log events in the first log stream are searched first, then those in the next log stream, and so on. The default is false.</p>
+ <p>If the value is true, the operation makes a best effort to provide responses that contain events from multiple log streams within the log group, interleaved in a single response. If the value is false, all the matched log events in the first log stream are searched first, then those in the next log stream, and so on. The default is false.</p><p><b>IMPORTANT:</b> Starting on June 17, 2019, this parameter will be ignored and the value will be assumed to be true. The response from this operation will always interleave events from multiple log streams within a log group.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable interleaved;
 
@@ -1028,12 +1028,12 @@ typedef NS_ENUM(NSInteger, AWSLogsQueryStatus) {
 @property (nonatomic, strong) NSString * _Nullable logStreamName;
 
 /**
- <p>The token for the next set of items to return. (You received this token from a previous call.)</p>
+ <p>The token for the next set of items to return. (You received this token from a previous call.)</p><p>Using this token works only when you specify <code>true</code> for <code>startFromHead</code>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
- <p>If the value is true, the earliest log events are returned first. If the value is false, the latest log events are returned first. The default value is false.</p>
+ <p>If the value is true, the earliest log events are returned first. If the value is false, the latest log events are returned first. The default value is false.</p><p>If you are using <code>nextToken</code> in this operation, you must specify <code>true</code> for <code>startFromHead</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable startFromHead;
 
@@ -1154,7 +1154,7 @@ typedef NS_ENUM(NSInteger, AWSLogsQueryStatus) {
 @property (nonatomic, strong) AWSLogsQueryStatistics * _Nullable statistics;
 
 /**
- <p>The status of the most recent running of the query. Possible values are <code>Cancelled</code>, <code>Complete</code>, <code>Failed</code>, <code>Running</code>, <code>Scheduled</code>, and <code>Unknown</code>.</p>
+ <p>The status of the most recent running of the query. Possible values are <code>Cancelled</code>, <code>Complete</code>, <code>Failed</code>, <code>Running</code>, <code>Scheduled</code>, <code>Timeout</code>, and <code>Unknown</code>.</p><p>Queries time out after 15 minutes of execution. To avoid having your queries time out, reduce the time range being searched, or partition your query into a number of queries.</p>
  */
 @property (nonatomic, assign) AWSLogsQueryStatus status;
 
@@ -1303,7 +1303,7 @@ typedef NS_ENUM(NSInteger, AWSLogsQueryStatus) {
 @property (nonatomic, strong) NSString * _Nullable logStreamName;
 
 /**
- <p>The number of bytes stored.</p>
+ <p>The number of bytes stored.</p><p><b>IMPORTANT:</b>On June 17, 2019, this parameter was deprecated for log streams, and is always reported as zero. This change applies only to log streams. The <code>storedBytes</code> parameter for log groups is not affected.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable storedBytes;
 
@@ -1371,7 +1371,7 @@ typedef NS_ENUM(NSInteger, AWSLogsQueryStatus) {
 @end
 
 /**
- <p>Indicates how to transform ingested log eventsto metric data in a CloudWatch metric.</p>
+ <p>Indicates how to transform ingested log events to metric data in a CloudWatch metric.</p>
  Required parameters: [metricName, metricNamespace, metricValue]
  */
 @interface AWSLogsMetricTransformation : AWSModel
@@ -1557,7 +1557,7 @@ typedef NS_ENUM(NSInteger, AWSLogsQueryStatus) {
 
 
 /**
- <p>Details of the new policy, including the identity of the principal that is enabled to put logs to this account. This is formatted as a JSON string.</p><p>The following example creates a resource policy enabling the Route 53 service to put DNS query logs in to the specified log group. Replace "logArn" with the ARN of your CloudWatch Logs resource, such as a log group or log stream.</p><p><code>{ "Version": "2012-10-17", "Statement": [ { "Sid": "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": { "Service": [ "route53.amazonaws.com" ] }, "Action":"logs:PutLogEvents", "Resource": "logArn" } ] } </code></p>
+ <p>Details of the new policy, including the identity of the principal that is enabled to put logs to this account. This is formatted as a JSON string. This parameter is required.</p><p>The following example creates a resource policy enabling the Route 53 service to put DNS query logs in to the specified log group. Replace "logArn" with the ARN of your CloudWatch Logs resource, such as a log group or log stream.</p><p><code>{ "Version": "2012-10-17", "Statement": [ { "Sid": "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": { "Service": [ "route53.amazonaws.com" ] }, "Action":"logs:PutLogEvents", "Resource": "logArn" } ] } </code></p>
  */
 @property (nonatomic, strong) NSString * _Nullable policyDocument;
 
@@ -1823,14 +1823,19 @@ typedef NS_ENUM(NSInteger, AWSLogsQueryStatus) {
 @property (nonatomic, strong) NSNumber * _Nullable endTime;
 
 /**
- <p>The maximum number of log events to return in the query. If the query string uses the <code>fields</code> command, only the specified fields and their values are returned.</p>
+ <p>The maximum number of log events to return in the query. If the query string uses the <code>fields</code> command, only the specified fields and their values are returned. The default is 1000.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable limit;
 
 /**
- <p>The log group on which to perform the query.</p>
+ <p>The log group on which to perform the query.</p><p>A <code>StartQuery</code> operation must include a <code>logGroupNames</code> or a <code>logGroupName</code> parameter, but not both.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable logGroupName;
+
+/**
+ <p>The list of log groups to be queried. You can include up to 20 log groups.</p><p>A <code>StartQuery</code> operation must include a <code>logGroupNames</code> or a <code>logGroupName</code> parameter, but not both.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable logGroupNames;
 
 /**
  <p>The query string to use. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html">CloudWatch Logs Insights Query Syntax</a>.</p>
