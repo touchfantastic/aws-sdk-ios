@@ -22,12 +22,20 @@ FOUNDATION_EXPORT NSString *const AWSTestUtilityCognitoIdentityServiceKey;
 
 @interface AWSTestUtility : NSObject
 
-+ (void)setupCrdentialsViaFile;
++ (void)setupCredentialsViaFile;
 + (void)setupFakeCognitoCredentialsProvider;
 + (void)setupCognitoCredentialsProvider;
++ (void)setupCognitoCredentialsProviderForRegion:(AWSRegionType)region;
 + (void)setupSTS;
 + (void)setupCognitoIdentityService;
+
 + (NSDictionary<NSString *, NSString *> *)getCredentialsJsonAsDictionary;
++ (AWSRegionType)getDefaultRegionType;
++ (AWSCognitoCredentialsProvider *)getCognitoCredentialsProviderFromFileForRegion:(AWSRegionType)region;
++ (AWSStaticCredentialsProvider *)getStaticCredentialsProviderFromFile;
+
++ (BOOL)isCognitoSupportedInDefaultRegion;
++ (BOOL)isCognitoSupportedInRegion:(AWSRegionType)region;
 
 - (NSDate *)mockDateSwizzle;
 + (void)setMockDate:(NSDate *)aMockDate;

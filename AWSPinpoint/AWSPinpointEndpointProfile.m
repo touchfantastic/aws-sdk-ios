@@ -63,8 +63,8 @@ NSString *DEBUG_CHANNEL_TYPE = @"APNS_SANDBOX";
                                  debug:(BOOL) debug
                           userDefaults:(NSUserDefaults*) userDefaults {
     if (self = [super init]) {
-        //Remove spaces and brackets from token
-        NSString *deviceTokenString = [[[[userDefaults objectForKey:AWSDeviceTokenKey] description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]] stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSData *tokenData = [userDefaults objectForKey:AWSDeviceTokenKey];
+        NSString *deviceTokenString = [AWSPinpointEndpointProfile hexStringFromData:tokenData];
         
         _applicationId = applicationId;
         _endpointId = endpointId;
@@ -99,7 +99,8 @@ NSString *DEBUG_CHANNEL_TYPE = @"APNS_SANDBOX";
     if (userDefaults == nil) {
         userDefaults = [NSUserDefaults standardUserDefaults];
     }
-    NSString *deviceTokenString = [[[[userDefaults objectForKey:AWSDeviceTokenKey] description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSData *tokenData = [userDefaults objectForKey:AWSDeviceTokenKey];
+    NSString *deviceTokenString = [AWSPinpointEndpointProfile hexStringFromData:tokenData];
     @synchronized (self) {
         _channelType = context.configuration.debug ? DEBUG_CHANNEL_TYPE : CHANNEL_TYPE;
         _applicationId = context.configuration.appId;
@@ -108,7 +109,7 @@ NSString *DEBUG_CHANNEL_TYPE = @"APNS_SANDBOX";
         
         //this updates demograhpic information.
         _location = [AWSPinpointEndpointProfileLocation new];
-        _demographic = [AWSPinpointEndpointProfileDemographic defaultAWSPinpointEndpointProfileDemographic];
+        _demographic = self.customDemographic ?: [AWSPinpointEndpointProfileDemographic defaultAWSPinpointEndpointProfileDemographic];
         _effectiveDate = [AWSPinpointDateUtils utcTimeMillisNow];
     }
 }
@@ -121,9 +122,11 @@ NSString *DEBUG_CHANNEL_TYPE = @"APNS_SANDBOX";
 }
 
 - (void) setEndpointOptOut:(BOOL) applicationLevelOptOut {
-    BOOL isOptedOutForRemoteNotifications = ![AWSPinpointNotificationManager isNotificationEnabled];
+    BOOL isUsingPinpointForNotifications = [AWSPinpointNotificationManager isNotificationEnabled] && [self.address length];
+    BOOL isOptedOutForNotifications = !isUsingPinpointForNotifications;
+
     @synchronized (self) {
-        self->_optOut = (applicationLevelOptOut || isOptedOutForRemoteNotifications)? @"ALL": @"NONE";
+        self->_optOut = (applicationLevelOptOut || isOptedOutForNotifications)? @"ALL": @"NONE";
     }
 }
 
@@ -342,6 +345,22 @@ NSString *DEBUG_CHANNEL_TYPE = @"APNS_SANDBOX";
     [encoder encodeInt64:_effectiveDate forKey:@"effectiveDate"];
     [encoder encodeObject:_optOut forKey:@"optOut"];
 
+}
+
++ (nullable NSString *)hexStringFromData:(NSData *)data {
+    if (!data || data.length == 0) {
+        return NULL;
+    }
+
+    const unsigned char *bytes = [data bytes];
+
+    NSMutableString *hexString = [[NSMutableString alloc] init];
+    for (int i = 0; i < data.length; i++) {
+        unsigned char byte = bytes[i];
+        [hexString appendFormat:@"%02x", byte];
+    }
+
+    return hexString;
 }
 
 @end

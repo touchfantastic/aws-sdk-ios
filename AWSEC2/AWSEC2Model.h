@@ -1,5 +1,5 @@
 //
-// Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License").
 // You may not use this file except in compliance with the License.
@@ -52,12 +52,27 @@ typedef NS_ENUM(NSInteger, AWSEC2AllocationState) {
     AWSEC2AllocationStatePermanentFailure,
     AWSEC2AllocationStateReleased,
     AWSEC2AllocationStateReleasedPermanentFailure,
+    AWSEC2AllocationStatePending,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2AllocationStrategy) {
     AWSEC2AllocationStrategyUnknown,
     AWSEC2AllocationStrategyLowestPrice,
     AWSEC2AllocationStrategyDiversified,
+    AWSEC2AllocationStrategyCapacityOptimized,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2AllowsMultipleInstanceTypes) {
+    AWSEC2AllowsMultipleInstanceTypesUnknown,
+    AWSEC2AllowsMultipleInstanceTypesOn,
+    AWSEC2AllowsMultipleInstanceTypesOff,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2ArchitectureType) {
+    AWSEC2ArchitectureTypeUnknown,
+    AWSEC2ArchitectureTypeI386,
+    AWSEC2ArchitectureTypeX86_64,
+    AWSEC2ArchitectureTypeArm64,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2ArchitectureValues) {
@@ -101,6 +116,13 @@ typedef NS_ENUM(NSInteger, AWSEC2AutoPlacement) {
     AWSEC2AutoPlacementOff,
 };
 
+typedef NS_ENUM(NSInteger, AWSEC2AvailabilityZoneOptInStatus) {
+    AWSEC2AvailabilityZoneOptInStatusUnknown,
+    AWSEC2AvailabilityZoneOptInStatusOptInNotRequired,
+    AWSEC2AvailabilityZoneOptInStatusOptedIn,
+    AWSEC2AvailabilityZoneOptInStatusNotOptedIn,
+};
+
 typedef NS_ENUM(NSInteger, AWSEC2AvailabilityZoneState) {
     AWSEC2AvailabilityZoneStateUnknown,
     AWSEC2AvailabilityZoneStateAvailable,
@@ -140,6 +162,7 @@ typedef NS_ENUM(NSInteger, AWSEC2ByoipCidrState) {
     AWSEC2ByoipCidrStatePendingDeprovision,
     AWSEC2ByoipCidrStatePendingProvision,
     AWSEC2ByoipCidrStateProvisioned,
+    AWSEC2ByoipCidrStateProvisionedNotPubliclyAdvertisable,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2CancelBatchErrorCode) {
@@ -263,6 +286,11 @@ typedef NS_ENUM(NSInteger, AWSEC2ConversionTaskState) {
     AWSEC2ConversionTaskStateCompleted,
 };
 
+typedef NS_ENUM(NSInteger, AWSEC2ReplicateTagsFromSource) {
+    AWSEC2ReplicateTagsFromSourceUnknown,
+    AWSEC2ReplicateTagsFromSourceVolume,
+};
+
 typedef NS_ENUM(NSInteger, AWSEC2CurrencyCodeValues) {
     AWSEC2CurrencyCodeValuesUnknown,
     AWSEC2CurrencyCodeValuesUSD,
@@ -300,6 +328,13 @@ typedef NS_ENUM(NSInteger, AWSEC2DeleteFleetErrorCode) {
     AWSEC2DeleteFleetErrorCodeUnexpectedError,
 };
 
+typedef NS_ENUM(NSInteger, AWSEC2DeleteQueuedReservedInstancesErrorCode) {
+    AWSEC2DeleteQueuedReservedInstancesErrorCodeUnknown,
+    AWSEC2DeleteQueuedReservedInstancesErrorCodeReservedInstancesIdInvalid,
+    AWSEC2DeleteQueuedReservedInstancesErrorCodeReservedInstancesNotInQueuedState,
+    AWSEC2DeleteQueuedReservedInstancesErrorCodeUnexpectedError,
+};
+
 typedef NS_ENUM(NSInteger, AWSEC2DeviceType) {
     AWSEC2DeviceTypeUnknown,
     AWSEC2DeviceTypeEBS,
@@ -311,6 +346,19 @@ typedef NS_ENUM(NSInteger, AWSEC2DiskImageFormat) {
     AWSEC2DiskImageFormatVMDK,
     AWSEC2DiskImageFormatRAW,
     AWSEC2DiskImageFormatVHD,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2DiskType) {
+    AWSEC2DiskTypeUnknown,
+    AWSEC2DiskTypeHdd,
+    AWSEC2DiskTypeSsd,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2DnsNameState) {
+    AWSEC2DnsNameStateUnknown,
+    AWSEC2DnsNameStatePendingVerification,
+    AWSEC2DnsNameStateVerified,
+    AWSEC2DnsNameStateFailed,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2DnsSupportValue) {
@@ -325,6 +373,19 @@ typedef NS_ENUM(NSInteger, AWSEC2DomainType) {
     AWSEC2DomainTypeStandard,
 };
 
+typedef NS_ENUM(NSInteger, AWSEC2EbsEncryptionSupport) {
+    AWSEC2EbsEncryptionSupportUnknown,
+    AWSEC2EbsEncryptionSupportUnsupported,
+    AWSEC2EbsEncryptionSupportSupported,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2EbsOptimizedSupport) {
+    AWSEC2EbsOptimizedSupportUnknown,
+    AWSEC2EbsOptimizedSupportUnsupported,
+    AWSEC2EbsOptimizedSupportSupported,
+    AWSEC2EbsOptimizedSupportDefault,
+};
+
 typedef NS_ENUM(NSInteger, AWSEC2ElasticGpuState) {
     AWSEC2ElasticGpuStateUnknown,
     AWSEC2ElasticGpuStateAttached,
@@ -334,6 +395,13 @@ typedef NS_ENUM(NSInteger, AWSEC2ElasticGpuStatus) {
     AWSEC2ElasticGpuStatusUnknown,
     AWSEC2ElasticGpuStatusOK,
     AWSEC2ElasticGpuStatusImpaired,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2EnaSupport) {
+    AWSEC2EnaSupportUnknown,
+    AWSEC2EnaSupportUnsupported,
+    AWSEC2EnaSupportSupported,
+    AWSEC2EnaSupportRequired,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2EndDateType) {
@@ -356,6 +424,7 @@ typedef NS_ENUM(NSInteger, AWSEC2EventType) {
     AWSEC2EventTypeInstanceChange,
     AWSEC2EventTypeFleetRequestChange,
     AWSEC2EventTypeError,
+    AWSEC2EventTypeInformation,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2ExcessCapacityTerminationPolicy) {
@@ -379,12 +448,26 @@ typedef NS_ENUM(NSInteger, AWSEC2ExportTaskState) {
     AWSEC2ExportTaskStateCompleted,
 };
 
+typedef NS_ENUM(NSInteger, AWSEC2FastSnapshotRestoreStateCode) {
+    AWSEC2FastSnapshotRestoreStateCodeUnknown,
+    AWSEC2FastSnapshotRestoreStateCodeEnabling,
+    AWSEC2FastSnapshotRestoreStateCodeOptimizing,
+    AWSEC2FastSnapshotRestoreStateCodeEnabled,
+    AWSEC2FastSnapshotRestoreStateCodeDisabling,
+    AWSEC2FastSnapshotRestoreStateCodeDisabled,
+};
+
 typedef NS_ENUM(NSInteger, AWSEC2FleetActivityStatus) {
     AWSEC2FleetActivityStatusUnknown,
     AWSEC2FleetActivityStatusError,
     AWSEC2FleetActivityStatusPendingFulfillment,
     AWSEC2FleetActivityStatusPendingTermination,
     AWSEC2FleetActivityStatusFulfilled,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2FleetCapacityReservationUsageStrategy) {
+    AWSEC2FleetCapacityReservationUsageStrategyUnknown,
+    AWSEC2FleetCapacityReservationUsageStrategyUseCapacityReservationsFirst,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2FleetEventType) {
@@ -452,10 +535,22 @@ typedef NS_ENUM(NSInteger, AWSEC2GatewayType) {
     AWSEC2GatewayTypeIpsec1,
 };
 
+typedef NS_ENUM(NSInteger, AWSEC2HostRecovery) {
+    AWSEC2HostRecoveryUnknown,
+    AWSEC2HostRecoveryOn,
+    AWSEC2HostRecoveryOff,
+};
+
 typedef NS_ENUM(NSInteger, AWSEC2HostTenancy) {
     AWSEC2HostTenancyUnknown,
     AWSEC2HostTenancyDedicated,
     AWSEC2HostTenancyHost,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2HttpTokensState) {
+    AWSEC2HttpTokensStateUnknown,
+    AWSEC2HttpTokensStateOptional,
+    AWSEC2HttpTokensStateRequired,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2HypervisorType) {
@@ -550,6 +645,18 @@ typedef NS_ENUM(NSInteger, AWSEC2InstanceMatchCriteria) {
     AWSEC2InstanceMatchCriteriaTargeted,
 };
 
+typedef NS_ENUM(NSInteger, AWSEC2InstanceMetadataEndpointState) {
+    AWSEC2InstanceMetadataEndpointStateUnknown,
+    AWSEC2InstanceMetadataEndpointStateDisabled,
+    AWSEC2InstanceMetadataEndpointStateEnabled,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2InstanceMetadataOptionsState) {
+    AWSEC2InstanceMetadataOptionsStateUnknown,
+    AWSEC2InstanceMetadataOptionsStatePending,
+    AWSEC2InstanceMetadataOptionsStateApplied,
+};
+
 typedef NS_ENUM(NSInteger, AWSEC2InstanceStateName) {
     AWSEC2InstanceStateNameUnknown,
     AWSEC2InstanceStateNamePending,
@@ -577,6 +684,13 @@ typedef NS_ENUM(NSInteger, AWSEC2InstanceType) {
     AWSEC2InstanceTypeT3_large,
     AWSEC2InstanceTypeT3_xlarge,
     AWSEC2InstanceTypeT3_2xlarge,
+    AWSEC2InstanceTypeT3A_nano,
+    AWSEC2InstanceTypeT3A_micro,
+    AWSEC2InstanceTypeT3A_small,
+    AWSEC2InstanceTypeT3A_medium,
+    AWSEC2InstanceTypeT3A_large,
+    AWSEC2InstanceTypeT3A_xlarge,
+    AWSEC2InstanceTypeT3A_2xlarge,
     AWSEC2InstanceTypeM1_small,
     AWSEC2InstanceTypeM1_medium,
     AWSEC2InstanceTypeM1_large,
@@ -610,20 +724,26 @@ typedef NS_ENUM(NSInteger, AWSEC2InstanceType) {
     AWSEC2InstanceTypeR5_xlarge,
     AWSEC2InstanceTypeR5_2xlarge,
     AWSEC2InstanceTypeR5_4xlarge,
+    AWSEC2InstanceTypeR5_8xlarge,
     AWSEC2InstanceTypeR5_12xlarge,
+    AWSEC2InstanceTypeR5_16xlarge,
     AWSEC2InstanceTypeR5_24xlarge,
     AWSEC2InstanceTypeR5_metal,
     AWSEC2InstanceTypeR5A_large,
     AWSEC2InstanceTypeR5A_xlarge,
     AWSEC2InstanceTypeR5A_2xlarge,
     AWSEC2InstanceTypeR5A_4xlarge,
+    AWSEC2InstanceTypeR5A_8xlarge,
     AWSEC2InstanceTypeR5A_12xlarge,
+    AWSEC2InstanceTypeR5A_16xlarge,
     AWSEC2InstanceTypeR5A_24xlarge,
     AWSEC2InstanceTypeR5D_large,
     AWSEC2InstanceTypeR5D_xlarge,
     AWSEC2InstanceTypeR5D_2xlarge,
     AWSEC2InstanceTypeR5D_4xlarge,
+    AWSEC2InstanceTypeR5D_8xlarge,
     AWSEC2InstanceTypeR5D_12xlarge,
+    AWSEC2InstanceTypeR5D_16xlarge,
     AWSEC2InstanceTypeR5D_24xlarge,
     AWSEC2InstanceTypeR5D_metal,
     AWSEC2InstanceTypeR5Ad_large,
@@ -653,6 +773,14 @@ typedef NS_ENUM(NSInteger, AWSEC2InstanceType) {
     AWSEC2InstanceTypeI3_8xlarge,
     AWSEC2InstanceTypeI3_16xlarge,
     AWSEC2InstanceTypeI3_metal,
+    AWSEC2InstanceTypeI3En_large,
+    AWSEC2InstanceTypeI3En_xlarge,
+    AWSEC2InstanceTypeI3En_2xlarge,
+    AWSEC2InstanceTypeI3En_3xlarge,
+    AWSEC2InstanceTypeI3En_6xlarge,
+    AWSEC2InstanceTypeI3En_12xlarge,
+    AWSEC2InstanceTypeI3En_24xlarge,
+    AWSEC2InstanceTypeI3En_metal,
     AWSEC2InstanceTypeHI1_4xlarge,
     AWSEC2InstanceTypeHS1_8xlarge,
     AWSEC2InstanceTypeC1_medium,
@@ -672,13 +800,19 @@ typedef NS_ENUM(NSInteger, AWSEC2InstanceType) {
     AWSEC2InstanceTypeC5_2xlarge,
     AWSEC2InstanceTypeC5_4xlarge,
     AWSEC2InstanceTypeC5_9xlarge,
+    AWSEC2InstanceTypeC5_12xlarge,
     AWSEC2InstanceTypeC5_18xlarge,
+    AWSEC2InstanceTypeC5_24xlarge,
+    AWSEC2InstanceTypeC5_metal,
     AWSEC2InstanceTypeC5D_large,
     AWSEC2InstanceTypeC5D_xlarge,
     AWSEC2InstanceTypeC5D_2xlarge,
     AWSEC2InstanceTypeC5D_4xlarge,
     AWSEC2InstanceTypeC5D_9xlarge,
+    AWSEC2InstanceTypeC5D_12xlarge,
     AWSEC2InstanceTypeC5D_18xlarge,
+    AWSEC2InstanceTypeC5D_24xlarge,
+    AWSEC2InstanceTypeC5D_metal,
     AWSEC2InstanceTypeC5N_large,
     AWSEC2InstanceTypeC5N_xlarge,
     AWSEC2InstanceTypeC5N_2xlarge,
@@ -693,6 +827,12 @@ typedef NS_ENUM(NSInteger, AWSEC2InstanceType) {
     AWSEC2InstanceTypeG3_8xlarge,
     AWSEC2InstanceTypeG3_16xlarge,
     AWSEC2InstanceTypeG3S_xlarge,
+    AWSEC2InstanceTypeG4Dn_xlarge,
+    AWSEC2InstanceTypeG4Dn_2xlarge,
+    AWSEC2InstanceTypeG4Dn_4xlarge,
+    AWSEC2InstanceTypeG4Dn_8xlarge,
+    AWSEC2InstanceTypeG4Dn_12xlarge,
+    AWSEC2InstanceTypeG4Dn_16xlarge,
     AWSEC2InstanceTypeCG1_4xlarge,
     AWSEC2InstanceTypeP2_xlarge,
     AWSEC2InstanceTypeP2_8xlarge,
@@ -712,20 +852,26 @@ typedef NS_ENUM(NSInteger, AWSEC2InstanceType) {
     AWSEC2InstanceTypeM5_xlarge,
     AWSEC2InstanceTypeM5_2xlarge,
     AWSEC2InstanceTypeM5_4xlarge,
+    AWSEC2InstanceTypeM5_8xlarge,
     AWSEC2InstanceTypeM5_12xlarge,
+    AWSEC2InstanceTypeM5_16xlarge,
     AWSEC2InstanceTypeM5_24xlarge,
     AWSEC2InstanceTypeM5_metal,
     AWSEC2InstanceTypeM5A_large,
     AWSEC2InstanceTypeM5A_xlarge,
     AWSEC2InstanceTypeM5A_2xlarge,
     AWSEC2InstanceTypeM5A_4xlarge,
+    AWSEC2InstanceTypeM5A_8xlarge,
     AWSEC2InstanceTypeM5A_12xlarge,
+    AWSEC2InstanceTypeM5A_16xlarge,
     AWSEC2InstanceTypeM5A_24xlarge,
     AWSEC2InstanceTypeM5D_large,
     AWSEC2InstanceTypeM5D_xlarge,
     AWSEC2InstanceTypeM5D_2xlarge,
     AWSEC2InstanceTypeM5D_4xlarge,
+    AWSEC2InstanceTypeM5D_8xlarge,
     AWSEC2InstanceTypeM5D_12xlarge,
+    AWSEC2InstanceTypeM5D_16xlarge,
     AWSEC2InstanceTypeM5D_24xlarge,
     AWSEC2InstanceTypeM5D_metal,
     AWSEC2InstanceTypeM5Ad_large,
@@ -750,11 +896,56 @@ typedef NS_ENUM(NSInteger, AWSEC2InstanceType) {
     AWSEC2InstanceTypeU_6tb1_metal,
     AWSEC2InstanceTypeU_9tb1_metal,
     AWSEC2InstanceTypeU_12tb1_metal,
+    AWSEC2InstanceTypeU_18tb1_metal,
+    AWSEC2InstanceTypeU_24tb1_metal,
     AWSEC2InstanceTypeA1_medium,
     AWSEC2InstanceTypeA1_large,
     AWSEC2InstanceTypeA1_xlarge,
     AWSEC2InstanceTypeA1_2xlarge,
     AWSEC2InstanceTypeA1_4xlarge,
+    AWSEC2InstanceTypeA1_metal,
+    AWSEC2InstanceTypeM5Dn_large,
+    AWSEC2InstanceTypeM5Dn_xlarge,
+    AWSEC2InstanceTypeM5Dn_2xlarge,
+    AWSEC2InstanceTypeM5Dn_4xlarge,
+    AWSEC2InstanceTypeM5Dn_8xlarge,
+    AWSEC2InstanceTypeM5Dn_12xlarge,
+    AWSEC2InstanceTypeM5Dn_16xlarge,
+    AWSEC2InstanceTypeM5Dn_24xlarge,
+    AWSEC2InstanceTypeM5N_large,
+    AWSEC2InstanceTypeM5N_xlarge,
+    AWSEC2InstanceTypeM5N_2xlarge,
+    AWSEC2InstanceTypeM5N_4xlarge,
+    AWSEC2InstanceTypeM5N_8xlarge,
+    AWSEC2InstanceTypeM5N_12xlarge,
+    AWSEC2InstanceTypeM5N_16xlarge,
+    AWSEC2InstanceTypeM5N_24xlarge,
+    AWSEC2InstanceTypeR5Dn_large,
+    AWSEC2InstanceTypeR5Dn_xlarge,
+    AWSEC2InstanceTypeR5Dn_2xlarge,
+    AWSEC2InstanceTypeR5Dn_4xlarge,
+    AWSEC2InstanceTypeR5Dn_8xlarge,
+    AWSEC2InstanceTypeR5Dn_12xlarge,
+    AWSEC2InstanceTypeR5Dn_16xlarge,
+    AWSEC2InstanceTypeR5Dn_24xlarge,
+    AWSEC2InstanceTypeR5N_large,
+    AWSEC2InstanceTypeR5N_xlarge,
+    AWSEC2InstanceTypeR5N_2xlarge,
+    AWSEC2InstanceTypeR5N_4xlarge,
+    AWSEC2InstanceTypeR5N_8xlarge,
+    AWSEC2InstanceTypeR5N_12xlarge,
+    AWSEC2InstanceTypeR5N_16xlarge,
+    AWSEC2InstanceTypeR5N_24xlarge,
+    AWSEC2InstanceTypeINF1_xlarge,
+    AWSEC2InstanceTypeINF1_2xlarge,
+    AWSEC2InstanceTypeINF1_6xlarge,
+    AWSEC2InstanceTypeINF1_24xlarge,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2InstanceTypeHypervisor) {
+    AWSEC2InstanceTypeHypervisorUnknown,
+    AWSEC2InstanceTypeHypervisorNitro,
+    AWSEC2InstanceTypeHypervisorXen,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2InterfacePermissionType) {
@@ -779,6 +970,24 @@ typedef NS_ENUM(NSInteger, AWSEC2LaunchTemplateErrorCode) {
     AWSEC2LaunchTemplateErrorCodeUnexpectedError,
 };
 
+typedef NS_ENUM(NSInteger, AWSEC2LaunchTemplateHttpTokensState) {
+    AWSEC2LaunchTemplateHttpTokensStateUnknown,
+    AWSEC2LaunchTemplateHttpTokensStateOptional,
+    AWSEC2LaunchTemplateHttpTokensStateRequired,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2LaunchTemplateInstanceMetadataEndpointState) {
+    AWSEC2LaunchTemplateInstanceMetadataEndpointStateUnknown,
+    AWSEC2LaunchTemplateInstanceMetadataEndpointStateDisabled,
+    AWSEC2LaunchTemplateInstanceMetadataEndpointStateEnabled,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2LaunchTemplateInstanceMetadataOptionsState) {
+    AWSEC2LaunchTemplateInstanceMetadataOptionsStateUnknown,
+    AWSEC2LaunchTemplateInstanceMetadataOptionsStatePending,
+    AWSEC2LaunchTemplateInstanceMetadataOptionsStateApplied,
+};
+
 typedef NS_ENUM(NSInteger, AWSEC2ListingState) {
     AWSEC2ListingStateUnknown,
     AWSEC2ListingStateAvailable,
@@ -795,6 +1004,28 @@ typedef NS_ENUM(NSInteger, AWSEC2ListingStatus) {
     AWSEC2ListingStatusClosed,
 };
 
+typedef NS_ENUM(NSInteger, AWSEC2LocalGatewayRouteState) {
+    AWSEC2LocalGatewayRouteStateUnknown,
+    AWSEC2LocalGatewayRouteStatePending,
+    AWSEC2LocalGatewayRouteStateActive,
+    AWSEC2LocalGatewayRouteStateBlackhole,
+    AWSEC2LocalGatewayRouteStateDeleting,
+    AWSEC2LocalGatewayRouteStateDeleted,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2LocalGatewayRouteType) {
+    AWSEC2LocalGatewayRouteTypeUnknown,
+    AWSEC2LocalGatewayRouteTypeStatic,
+    AWSEC2LocalGatewayRouteTypePropagated,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2LocationType) {
+    AWSEC2LocationTypeUnknown,
+    AWSEC2LocationTypeRegion,
+    AWSEC2LocationTypeAvailabilityZone,
+    AWSEC2LocationTypeAvailabilityZoneId,
+};
+
 typedef NS_ENUM(NSInteger, AWSEC2LogDestinationType) {
     AWSEC2LogDestinationTypeUnknown,
     AWSEC2LogDestinationTypeCloudWatchLogs,
@@ -804,6 +1035,18 @@ typedef NS_ENUM(NSInteger, AWSEC2LogDestinationType) {
 typedef NS_ENUM(NSInteger, AWSEC2MarketType) {
     AWSEC2MarketTypeUnknown,
     AWSEC2MarketTypeSpot,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2MembershipType) {
+    AWSEC2MembershipTypeUnknown,
+    AWSEC2MembershipTypeStatic,
+    AWSEC2MembershipTypeIgmp,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2ModifyAvailabilityZoneOptInStatus) {
+    AWSEC2ModifyAvailabilityZoneOptInStatusUnknown,
+    AWSEC2ModifyAvailabilityZoneOptInStatusOptedIn,
+    AWSEC2ModifyAvailabilityZoneOptInStatusNotOptedIn,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2MonitoringState) {
@@ -818,6 +1061,12 @@ typedef NS_ENUM(NSInteger, AWSEC2MoveStatus) {
     AWSEC2MoveStatusUnknown,
     AWSEC2MoveStatusMovingToVpc,
     AWSEC2MoveStatusRestoringToClassic,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2MulticastSupportValue) {
+    AWSEC2MulticastSupportValueUnknown,
+    AWSEC2MulticastSupportValueEnable,
+    AWSEC2MulticastSupportValueDisable,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2NatGatewayState) {
@@ -835,6 +1084,11 @@ typedef NS_ENUM(NSInteger, AWSEC2NetworkInterfaceAttribute) {
     AWSEC2NetworkInterfaceAttributeGroupSet,
     AWSEC2NetworkInterfaceAttributeSourceDestCheck,
     AWSEC2NetworkInterfaceAttributeAttachment,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2NetworkInterfaceCreationType) {
+    AWSEC2NetworkInterfaceCreationTypeUnknown,
+    AWSEC2NetworkInterfaceCreationTypeEfa,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2NetworkInterfacePermissionStateCode) {
@@ -858,6 +1112,7 @@ typedef NS_ENUM(NSInteger, AWSEC2NetworkInterfaceType) {
     AWSEC2NetworkInterfaceTypeUnknown,
     AWSEC2NetworkInterfaceTypeInterface,
     AWSEC2NetworkInterfaceTypeNatGateway,
+    AWSEC2NetworkInterfaceTypeEfa,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2OfferingClassType) {
@@ -906,6 +1161,13 @@ typedef NS_ENUM(NSInteger, AWSEC2PlacementGroupState) {
     AWSEC2PlacementGroupStateAvailable,
     AWSEC2PlacementGroupStateDeleting,
     AWSEC2PlacementGroupStateDeleted,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2PlacementGroupStrategy) {
+    AWSEC2PlacementGroupStrategyUnknown,
+    AWSEC2PlacementGroupStrategyCluster,
+    AWSEC2PlacementGroupStrategyPartition,
+    AWSEC2PlacementGroupStrategySpread,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2PlacementStrategy) {
@@ -982,6 +1244,8 @@ typedef NS_ENUM(NSInteger, AWSEC2ReservedInstanceState) {
     AWSEC2ReservedInstanceStateActive,
     AWSEC2ReservedInstanceStatePaymentFailed,
     AWSEC2ReservedInstanceStateRetired,
+    AWSEC2ReservedInstanceStateQueued,
+    AWSEC2ReservedInstanceStateQueuedDeleted,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2ResetFpgaImageAttributeName) {
@@ -1007,24 +1271,38 @@ typedef NS_ENUM(NSInteger, AWSEC2ResourceType) {
     AWSEC2ResourceTypeImage,
     AWSEC2ResourceTypeInstance,
     AWSEC2ResourceTypeInternetGateway,
+    AWSEC2ResourceTypeKeyPair,
     AWSEC2ResourceTypeLaunchTemplate,
     AWSEC2ResourceTypeNatgateway,
     AWSEC2ResourceTypeNetworkACL,
     AWSEC2ResourceTypeNetworkInterface,
+    AWSEC2ResourceTypePlacementGroup,
     AWSEC2ResourceTypeReservedInstances,
     AWSEC2ResourceTypeRouteTable,
     AWSEC2ResourceTypeSecurityGroup,
     AWSEC2ResourceTypeSnapshot,
+    AWSEC2ResourceTypeSpotFleetRequest,
     AWSEC2ResourceTypeSpotInstancesRequest,
     AWSEC2ResourceTypeSubnet,
+    AWSEC2ResourceTypeTrafficMirrorFilter,
+    AWSEC2ResourceTypeTrafficMirrorSession,
+    AWSEC2ResourceTypeTrafficMirrorTarget,
     AWSEC2ResourceTypeTransitGateway,
     AWSEC2ResourceTypeTransitGatewayAttachment,
+    AWSEC2ResourceTypeTransitGatewayMulticastDomain,
     AWSEC2ResourceTypeTransitGatewayRouteTable,
     AWSEC2ResourceTypeVolume,
     AWSEC2ResourceTypeVPC,
     AWSEC2ResourceTypeVpcPeeringConnection,
     AWSEC2ResourceTypeVpnConnection,
     AWSEC2ResourceTypeVpnGateway,
+    AWSEC2ResourceTypeVpcFlowLog,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2RootDeviceType) {
+    AWSEC2RootDeviceTypeUnknown,
+    AWSEC2RootDeviceTypeEBS,
+    AWSEC2RootDeviceTypeInstanceStore,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2RouteOrigin) {
@@ -1038,6 +1316,15 @@ typedef NS_ENUM(NSInteger, AWSEC2RouteState) {
     AWSEC2RouteStateUnknown,
     AWSEC2RouteStateActive,
     AWSEC2RouteStateBlackhole,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2RouteTableAssociationStateCode) {
+    AWSEC2RouteTableAssociationStateCodeUnknown,
+    AWSEC2RouteTableAssociationStateCodeAssociating,
+    AWSEC2RouteTableAssociationStateCodeAssociated,
+    AWSEC2RouteTableAssociationStateCodeDisassociating,
+    AWSEC2RouteTableAssociationStateCodeDisassociated,
+    AWSEC2RouteTableAssociationStateCodeFailed,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2RuleAction) {
@@ -1084,6 +1371,7 @@ typedef NS_ENUM(NSInteger, AWSEC2SpotAllocationStrategy) {
     AWSEC2SpotAllocationStrategyUnknown,
     AWSEC2SpotAllocationStrategyLowestPrice,
     AWSEC2SpotAllocationStrategyDiversified,
+    AWSEC2SpotAllocationStrategyCapacityOptimized,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2SpotInstanceInterruptionBehavior) {
@@ -1178,6 +1466,44 @@ typedef NS_ENUM(NSInteger, AWSEC2Tenancy) {
     AWSEC2TenancyHost,
 };
 
+typedef NS_ENUM(NSInteger, AWSEC2TrafficDirection) {
+    AWSEC2TrafficDirectionUnknown,
+    AWSEC2TrafficDirectionIngress,
+    AWSEC2TrafficDirectionEgress,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2TrafficMirrorFilterRuleField) {
+    AWSEC2TrafficMirrorFilterRuleFieldUnknown,
+    AWSEC2TrafficMirrorFilterRuleFieldDestinationPortRange,
+    AWSEC2TrafficMirrorFilterRuleFieldSourcePortRange,
+    AWSEC2TrafficMirrorFilterRuleFieldProtocol,
+    AWSEC2TrafficMirrorFilterRuleFieldDescription,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2TrafficMirrorNetworkService) {
+    AWSEC2TrafficMirrorNetworkServiceUnknown,
+    AWSEC2TrafficMirrorNetworkServiceAmazonDns,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2TrafficMirrorRuleAction) {
+    AWSEC2TrafficMirrorRuleActionUnknown,
+    AWSEC2TrafficMirrorRuleActionAccept,
+    AWSEC2TrafficMirrorRuleActionReject,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2TrafficMirrorSessionField) {
+    AWSEC2TrafficMirrorSessionFieldUnknown,
+    AWSEC2TrafficMirrorSessionFieldPacketLength,
+    AWSEC2TrafficMirrorSessionFieldDescription,
+    AWSEC2TrafficMirrorSessionFieldVirtualNetworkId,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2TrafficMirrorTargetType) {
+    AWSEC2TrafficMirrorTargetTypeUnknown,
+    AWSEC2TrafficMirrorTargetTypeNetworkInterface,
+    AWSEC2TrafficMirrorTargetTypeNetworkLoadBalancer,
+};
+
 typedef NS_ENUM(NSInteger, AWSEC2TrafficType) {
     AWSEC2TrafficTypeUnknown,
     AWSEC2TrafficTypeAccept,
@@ -1197,10 +1523,13 @@ typedef NS_ENUM(NSInteger, AWSEC2TransitGatewayAttachmentResourceType) {
     AWSEC2TransitGatewayAttachmentResourceTypeUnknown,
     AWSEC2TransitGatewayAttachmentResourceTypeVPC,
     AWSEC2TransitGatewayAttachmentResourceTypeVpn,
+    AWSEC2TransitGatewayAttachmentResourceTypeDirectConnectGateway,
+    AWSEC2TransitGatewayAttachmentResourceTypeTgwPeering,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2TransitGatewayAttachmentState) {
     AWSEC2TransitGatewayAttachmentStateUnknown,
+    AWSEC2TransitGatewayAttachmentStateInitiating,
     AWSEC2TransitGatewayAttachmentStatePendingAcceptance,
     AWSEC2TransitGatewayAttachmentStateRollingBack,
     AWSEC2TransitGatewayAttachmentStatePending,
@@ -1212,6 +1541,22 @@ typedef NS_ENUM(NSInteger, AWSEC2TransitGatewayAttachmentState) {
     AWSEC2TransitGatewayAttachmentStateRejected,
     AWSEC2TransitGatewayAttachmentStateRejecting,
     AWSEC2TransitGatewayAttachmentStateFailing,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2TransitGatewayMulitcastDomainAssociationState) {
+    AWSEC2TransitGatewayMulitcastDomainAssociationStateUnknown,
+    AWSEC2TransitGatewayMulitcastDomainAssociationStateAssociating,
+    AWSEC2TransitGatewayMulitcastDomainAssociationStateAssociated,
+    AWSEC2TransitGatewayMulitcastDomainAssociationStateDisassociating,
+    AWSEC2TransitGatewayMulitcastDomainAssociationStateDisassociated,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2TransitGatewayMulticastDomainState) {
+    AWSEC2TransitGatewayMulticastDomainStateUnknown,
+    AWSEC2TransitGatewayMulticastDomainStatePending,
+    AWSEC2TransitGatewayMulticastDomainStateAvailable,
+    AWSEC2TransitGatewayMulticastDomainStateDeleting,
+    AWSEC2TransitGatewayMulticastDomainStateDeleted,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2TransitGatewayPropagationState) {
@@ -1260,12 +1605,25 @@ typedef NS_ENUM(NSInteger, AWSEC2TransportProtocol) {
     AWSEC2TransportProtocolUdp,
 };
 
+typedef NS_ENUM(NSInteger, AWSEC2UnlimitedSupportedInstanceFamily) {
+    AWSEC2UnlimitedSupportedInstanceFamilyUnknown,
+    AWSEC2UnlimitedSupportedInstanceFamilyT2,
+    AWSEC2UnlimitedSupportedInstanceFamilyT3,
+    AWSEC2UnlimitedSupportedInstanceFamilyT3a,
+};
+
 typedef NS_ENUM(NSInteger, AWSEC2UnsuccessfulInstanceCreditSpecificationErrorCode) {
     AWSEC2UnsuccessfulInstanceCreditSpecificationErrorCodeUnknown,
     AWSEC2UnsuccessfulInstanceCreditSpecificationErrorCodeInvalidInstanceIDMalformed,
     AWSEC2UnsuccessfulInstanceCreditSpecificationErrorCodeInvalidInstanceIDNotFound,
     AWSEC2UnsuccessfulInstanceCreditSpecificationErrorCodeIncorrectInstanceState,
     AWSEC2UnsuccessfulInstanceCreditSpecificationErrorCodeInstanceCreditSpecificationNotSupported,
+};
+
+typedef NS_ENUM(NSInteger, AWSEC2UsageClassType) {
+    AWSEC2UsageClassTypeUnknown,
+    AWSEC2UsageClassTypeSpot,
+    AWSEC2UsageClassTypeOnDemand,
 };
 
 typedef NS_ENUM(NSInteger, AWSEC2VirtualizationType) {
@@ -1407,6 +1765,8 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 @class AWSEC2AcceptReservedInstancesExchangeQuoteRequest;
 @class AWSEC2AcceptReservedInstancesExchangeQuoteResult;
+@class AWSEC2AcceptTransitGatewayPeeringAttachmentRequest;
+@class AWSEC2AcceptTransitGatewayPeeringAttachmentResult;
 @class AWSEC2AcceptTransitGatewayVpcAttachmentRequest;
 @class AWSEC2AcceptTransitGatewayVpcAttachmentResult;
 @class AWSEC2AcceptVpcEndpointConnectionsRequest;
@@ -1429,6 +1789,8 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2AssignIpv6AddressesRequest;
 @class AWSEC2AssignIpv6AddressesResult;
 @class AWSEC2AssignPrivateIpAddressesRequest;
+@class AWSEC2AssignPrivateIpAddressesResult;
+@class AWSEC2AssignedPrivateIpAddress;
 @class AWSEC2AssociateAddressRequest;
 @class AWSEC2AssociateAddressResult;
 @class AWSEC2AssociateClientVpnTargetNetworkRequest;
@@ -1440,6 +1802,8 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2AssociateRouteTableResult;
 @class AWSEC2AssociateSubnetCidrBlockRequest;
 @class AWSEC2AssociateSubnetCidrBlockResult;
+@class AWSEC2AssociateTransitGatewayMulticastDomainRequest;
+@class AWSEC2AssociateTransitGatewayMulticastDomainResult;
 @class AWSEC2AssociateTransitGatewayRouteTableRequest;
 @class AWSEC2AssociateTransitGatewayRouteTableResult;
 @class AWSEC2AssociateVpcCidrBlockRequest;
@@ -1490,6 +1854,8 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2CancelSpotInstanceRequestsResult;
 @class AWSEC2CancelledSpotInstanceRequest;
 @class AWSEC2CapacityReservation;
+@class AWSEC2CapacityReservationOptions;
+@class AWSEC2CapacityReservationOptionsRequest;
 @class AWSEC2CapacityReservationSpecification;
 @class AWSEC2CapacityReservationSpecificationResponse;
 @class AWSEC2CapacityReservationTarget;
@@ -1513,6 +1879,8 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2ClientVpnEndpointStatus;
 @class AWSEC2ClientVpnRoute;
 @class AWSEC2ClientVpnRouteStatus;
+@class AWSEC2CoipAddressUsage;
+@class AWSEC2CoipPool;
 @class AWSEC2ConfirmProductInstanceRequest;
 @class AWSEC2ConfirmProductInstanceResult;
 @class AWSEC2ConnectionLogOptions;
@@ -1562,6 +1930,10 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2CreateLaunchTemplateResult;
 @class AWSEC2CreateLaunchTemplateVersionRequest;
 @class AWSEC2CreateLaunchTemplateVersionResult;
+@class AWSEC2CreateLocalGatewayRouteRequest;
+@class AWSEC2CreateLocalGatewayRouteResult;
+@class AWSEC2CreateLocalGatewayRouteTableVpcAssociationRequest;
+@class AWSEC2CreateLocalGatewayRouteTableVpcAssociationResult;
 @class AWSEC2CreateNatGatewayRequest;
 @class AWSEC2CreateNatGatewayResult;
 @class AWSEC2CreateNetworkAclEntryRequest;
@@ -1572,6 +1944,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2CreateNetworkInterfaceRequest;
 @class AWSEC2CreateNetworkInterfaceResult;
 @class AWSEC2CreatePlacementGroupRequest;
+@class AWSEC2CreatePlacementGroupResult;
 @class AWSEC2CreateReservedInstancesListingRequest;
 @class AWSEC2CreateReservedInstancesListingResult;
 @class AWSEC2CreateRouteRequest;
@@ -1581,11 +1954,25 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2CreateSecurityGroupRequest;
 @class AWSEC2CreateSecurityGroupResult;
 @class AWSEC2CreateSnapshotRequest;
+@class AWSEC2CreateSnapshotsRequest;
+@class AWSEC2CreateSnapshotsResult;
 @class AWSEC2CreateSpotDatafeedSubscriptionRequest;
 @class AWSEC2CreateSpotDatafeedSubscriptionResult;
 @class AWSEC2CreateSubnetRequest;
 @class AWSEC2CreateSubnetResult;
 @class AWSEC2CreateTagsRequest;
+@class AWSEC2CreateTrafficMirrorFilterRequest;
+@class AWSEC2CreateTrafficMirrorFilterResult;
+@class AWSEC2CreateTrafficMirrorFilterRuleRequest;
+@class AWSEC2CreateTrafficMirrorFilterRuleResult;
+@class AWSEC2CreateTrafficMirrorSessionRequest;
+@class AWSEC2CreateTrafficMirrorSessionResult;
+@class AWSEC2CreateTrafficMirrorTargetRequest;
+@class AWSEC2CreateTrafficMirrorTargetResult;
+@class AWSEC2CreateTransitGatewayMulticastDomainRequest;
+@class AWSEC2CreateTransitGatewayMulticastDomainResult;
+@class AWSEC2CreateTransitGatewayPeeringAttachmentRequest;
+@class AWSEC2CreateTransitGatewayPeeringAttachmentResult;
 @class AWSEC2CreateTransitGatewayRequest;
 @class AWSEC2CreateTransitGatewayResult;
 @class AWSEC2CreateTransitGatewayRouteRequest;
@@ -1641,6 +2028,10 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2DeleteLaunchTemplateVersionsResponseErrorItem;
 @class AWSEC2DeleteLaunchTemplateVersionsResponseSuccessItem;
 @class AWSEC2DeleteLaunchTemplateVersionsResult;
+@class AWSEC2DeleteLocalGatewayRouteRequest;
+@class AWSEC2DeleteLocalGatewayRouteResult;
+@class AWSEC2DeleteLocalGatewayRouteTableVpcAssociationRequest;
+@class AWSEC2DeleteLocalGatewayRouteTableVpcAssociationResult;
 @class AWSEC2DeleteNatGatewayRequest;
 @class AWSEC2DeleteNatGatewayResult;
 @class AWSEC2DeleteNetworkAclEntryRequest;
@@ -1649,6 +2040,9 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2DeleteNetworkInterfacePermissionResult;
 @class AWSEC2DeleteNetworkInterfaceRequest;
 @class AWSEC2DeletePlacementGroupRequest;
+@class AWSEC2DeleteQueuedReservedInstancesError;
+@class AWSEC2DeleteQueuedReservedInstancesRequest;
+@class AWSEC2DeleteQueuedReservedInstancesResult;
 @class AWSEC2DeleteRouteRequest;
 @class AWSEC2DeleteRouteTableRequest;
 @class AWSEC2DeleteSecurityGroupRequest;
@@ -1656,6 +2050,18 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2DeleteSpotDatafeedSubscriptionRequest;
 @class AWSEC2DeleteSubnetRequest;
 @class AWSEC2DeleteTagsRequest;
+@class AWSEC2DeleteTrafficMirrorFilterRequest;
+@class AWSEC2DeleteTrafficMirrorFilterResult;
+@class AWSEC2DeleteTrafficMirrorFilterRuleRequest;
+@class AWSEC2DeleteTrafficMirrorFilterRuleResult;
+@class AWSEC2DeleteTrafficMirrorSessionRequest;
+@class AWSEC2DeleteTrafficMirrorSessionResult;
+@class AWSEC2DeleteTrafficMirrorTargetRequest;
+@class AWSEC2DeleteTrafficMirrorTargetResult;
+@class AWSEC2DeleteTransitGatewayMulticastDomainRequest;
+@class AWSEC2DeleteTransitGatewayMulticastDomainResult;
+@class AWSEC2DeleteTransitGatewayPeeringAttachmentRequest;
+@class AWSEC2DeleteTransitGatewayPeeringAttachmentResult;
 @class AWSEC2DeleteTransitGatewayRequest;
 @class AWSEC2DeleteTransitGatewayResult;
 @class AWSEC2DeleteTransitGatewayRouteRequest;
@@ -1680,6 +2086,13 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2DeprovisionByoipCidrRequest;
 @class AWSEC2DeprovisionByoipCidrResult;
 @class AWSEC2DeregisterImageRequest;
+@class AWSEC2DeregisterInstanceEventNotificationAttributesRequest;
+@class AWSEC2DeregisterInstanceEventNotificationAttributesResult;
+@class AWSEC2DeregisterInstanceTagAttributeRequest;
+@class AWSEC2DeregisterTransitGatewayMulticastGroupMembersRequest;
+@class AWSEC2DeregisterTransitGatewayMulticastGroupMembersResult;
+@class AWSEC2DeregisterTransitGatewayMulticastGroupSourcesRequest;
+@class AWSEC2DeregisterTransitGatewayMulticastGroupSourcesResult;
 @class AWSEC2DescribeAccountAttributesRequest;
 @class AWSEC2DescribeAccountAttributesResult;
 @class AWSEC2DescribeAddressesRequest;
@@ -1706,6 +2119,8 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2DescribeClientVpnRoutesResult;
 @class AWSEC2DescribeClientVpnTargetNetworksRequest;
 @class AWSEC2DescribeClientVpnTargetNetworksResult;
+@class AWSEC2DescribeCoipPoolsRequest;
+@class AWSEC2DescribeCoipPoolsResult;
 @class AWSEC2DescribeConversionTasksRequest;
 @class AWSEC2DescribeConversionTasksResult;
 @class AWSEC2DescribeCustomerGatewaysRequest;
@@ -1716,8 +2131,13 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2DescribeEgressOnlyInternetGatewaysResult;
 @class AWSEC2DescribeElasticGpusRequest;
 @class AWSEC2DescribeElasticGpusResult;
+@class AWSEC2DescribeExportImageTasksRequest;
+@class AWSEC2DescribeExportImageTasksResult;
 @class AWSEC2DescribeExportTasksRequest;
 @class AWSEC2DescribeExportTasksResult;
+@class AWSEC2DescribeFastSnapshotRestoreSuccessItem;
+@class AWSEC2DescribeFastSnapshotRestoresRequest;
+@class AWSEC2DescribeFastSnapshotRestoresResult;
 @class AWSEC2DescribeFleetError;
 @class AWSEC2DescribeFleetHistoryRequest;
 @class AWSEC2DescribeFleetHistoryResult;
@@ -1754,18 +2174,38 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2DescribeInstanceAttributeRequest;
 @class AWSEC2DescribeInstanceCreditSpecificationsRequest;
 @class AWSEC2DescribeInstanceCreditSpecificationsResult;
+@class AWSEC2DescribeInstanceEventNotificationAttributesRequest;
+@class AWSEC2DescribeInstanceEventNotificationAttributesResult;
 @class AWSEC2DescribeInstanceStatusRequest;
 @class AWSEC2DescribeInstanceStatusResult;
+@class AWSEC2DescribeInstanceTypeOfferingsRequest;
+@class AWSEC2DescribeInstanceTypeOfferingsResult;
+@class AWSEC2DescribeInstanceTypesRequest;
+@class AWSEC2DescribeInstanceTypesResult;
 @class AWSEC2DescribeInstancesRequest;
 @class AWSEC2DescribeInstancesResult;
 @class AWSEC2DescribeInternetGatewaysRequest;
 @class AWSEC2DescribeInternetGatewaysResult;
+@class AWSEC2DescribeIpv6PoolsRequest;
+@class AWSEC2DescribeIpv6PoolsResult;
 @class AWSEC2DescribeKeyPairsRequest;
 @class AWSEC2DescribeKeyPairsResult;
 @class AWSEC2DescribeLaunchTemplateVersionsRequest;
 @class AWSEC2DescribeLaunchTemplateVersionsResult;
 @class AWSEC2DescribeLaunchTemplatesRequest;
 @class AWSEC2DescribeLaunchTemplatesResult;
+@class AWSEC2DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsRequest;
+@class AWSEC2DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsResult;
+@class AWSEC2DescribeLocalGatewayRouteTableVpcAssociationsRequest;
+@class AWSEC2DescribeLocalGatewayRouteTableVpcAssociationsResult;
+@class AWSEC2DescribeLocalGatewayRouteTablesRequest;
+@class AWSEC2DescribeLocalGatewayRouteTablesResult;
+@class AWSEC2DescribeLocalGatewayVirtualInterfaceGroupsRequest;
+@class AWSEC2DescribeLocalGatewayVirtualInterfaceGroupsResult;
+@class AWSEC2DescribeLocalGatewayVirtualInterfacesRequest;
+@class AWSEC2DescribeLocalGatewayVirtualInterfacesResult;
+@class AWSEC2DescribeLocalGatewaysRequest;
+@class AWSEC2DescribeLocalGatewaysResult;
 @class AWSEC2DescribeMovingAddressesRequest;
 @class AWSEC2DescribeMovingAddressesResult;
 @class AWSEC2DescribeNatGatewaysRequest;
@@ -1828,8 +2268,18 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2DescribeSubnetsResult;
 @class AWSEC2DescribeTagsRequest;
 @class AWSEC2DescribeTagsResult;
+@class AWSEC2DescribeTrafficMirrorFiltersRequest;
+@class AWSEC2DescribeTrafficMirrorFiltersResult;
+@class AWSEC2DescribeTrafficMirrorSessionsRequest;
+@class AWSEC2DescribeTrafficMirrorSessionsResult;
+@class AWSEC2DescribeTrafficMirrorTargetsRequest;
+@class AWSEC2DescribeTrafficMirrorTargetsResult;
 @class AWSEC2DescribeTransitGatewayAttachmentsRequest;
 @class AWSEC2DescribeTransitGatewayAttachmentsResult;
+@class AWSEC2DescribeTransitGatewayMulticastDomainsRequest;
+@class AWSEC2DescribeTransitGatewayMulticastDomainsResult;
+@class AWSEC2DescribeTransitGatewayPeeringAttachmentsRequest;
+@class AWSEC2DescribeTransitGatewayPeeringAttachmentsResult;
 @class AWSEC2DescribeTransitGatewayRouteTablesRequest;
 @class AWSEC2DescribeTransitGatewayRouteTablesResult;
 @class AWSEC2DescribeTransitGatewayVpcAttachmentsRequest;
@@ -1880,6 +2330,14 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2DhcpOptions;
 @class AWSEC2DirectoryServiceAuthentication;
 @class AWSEC2DirectoryServiceAuthenticationRequest;
+@class AWSEC2DisableEbsEncryptionByDefaultRequest;
+@class AWSEC2DisableEbsEncryptionByDefaultResult;
+@class AWSEC2DisableFastSnapshotRestoreErrorItem;
+@class AWSEC2DisableFastSnapshotRestoreStateError;
+@class AWSEC2DisableFastSnapshotRestoreStateErrorItem;
+@class AWSEC2DisableFastSnapshotRestoreSuccessItem;
+@class AWSEC2DisableFastSnapshotRestoresRequest;
+@class AWSEC2DisableFastSnapshotRestoresResult;
 @class AWSEC2DisableTransitGatewayRouteTablePropagationRequest;
 @class AWSEC2DisableTransitGatewayRouteTablePropagationResult;
 @class AWSEC2DisableVgwRoutePropagationRequest;
@@ -1895,6 +2353,8 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2DisassociateRouteTableRequest;
 @class AWSEC2DisassociateSubnetCidrBlockRequest;
 @class AWSEC2DisassociateSubnetCidrBlockResult;
+@class AWSEC2DisassociateTransitGatewayMulticastDomainRequest;
+@class AWSEC2DisassociateTransitGatewayMulticastDomainResult;
 @class AWSEC2DisassociateTransitGatewayRouteTableRequest;
 @class AWSEC2DisassociateTransitGatewayRouteTableResult;
 @class AWSEC2DisassociateVpcCidrBlockRequest;
@@ -1903,9 +2363,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2DiskImageDescription;
 @class AWSEC2DiskImageDetail;
 @class AWSEC2DiskImageVolumeDescription;
+@class AWSEC2DiskInfo;
 @class AWSEC2DnsEntry;
 @class AWSEC2DnsServersOptionsModifyStructure;
 @class AWSEC2EbsBlockDevice;
+@class AWSEC2EbsInfo;
 @class AWSEC2EbsInstanceBlockDevice;
 @class AWSEC2EbsInstanceBlockDeviceSpecification;
 @class AWSEC2EgressOnlyInternetGateway;
@@ -1916,6 +2378,14 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2ElasticGpus;
 @class AWSEC2ElasticInferenceAccelerator;
 @class AWSEC2ElasticInferenceAcceleratorAssociation;
+@class AWSEC2EnableEbsEncryptionByDefaultRequest;
+@class AWSEC2EnableEbsEncryptionByDefaultResult;
+@class AWSEC2EnableFastSnapshotRestoreErrorItem;
+@class AWSEC2EnableFastSnapshotRestoreStateError;
+@class AWSEC2EnableFastSnapshotRestoreStateErrorItem;
+@class AWSEC2EnableFastSnapshotRestoreSuccessItem;
+@class AWSEC2EnableFastSnapshotRestoresRequest;
+@class AWSEC2EnableFastSnapshotRestoresResult;
 @class AWSEC2EnableTransitGatewayRouteTablePropagationRequest;
 @class AWSEC2EnableTransitGatewayRouteTablePropagationResult;
 @class AWSEC2EnableVgwRoutePropagationRequest;
@@ -1929,11 +2399,17 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2ExportClientVpnClientCertificateRevocationListResult;
 @class AWSEC2ExportClientVpnClientConfigurationRequest;
 @class AWSEC2ExportClientVpnClientConfigurationResult;
+@class AWSEC2ExportImageRequest;
+@class AWSEC2ExportImageResult;
+@class AWSEC2ExportImageTask;
 @class AWSEC2ExportTask;
+@class AWSEC2ExportTaskS3Location;
+@class AWSEC2ExportTaskS3LocationRequest;
 @class AWSEC2ExportToS3Task;
 @class AWSEC2ExportToS3TaskSpecification;
 @class AWSEC2ExportTransitGatewayRoutesRequest;
 @class AWSEC2ExportTransitGatewayRoutesResult;
+@class AWSEC2FailedQueuedPurchaseDeletion;
 @class AWSEC2Filter;
 @class AWSEC2FleetData;
 @class AWSEC2FleetLaunchTemplateConfig;
@@ -1943,13 +2419,28 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2FleetLaunchTemplateSpecification;
 @class AWSEC2FleetLaunchTemplateSpecificationRequest;
 @class AWSEC2FlowLog;
+@class AWSEC2FpgaDeviceInfo;
+@class AWSEC2FpgaDeviceMemoryInfo;
 @class AWSEC2FpgaImage;
 @class AWSEC2FpgaImageAttribute;
 @class AWSEC2FpgaImageState;
+@class AWSEC2FpgaInfo;
+@class AWSEC2GetAssociatedIpv6PoolCidrsRequest;
+@class AWSEC2GetAssociatedIpv6PoolCidrsResult;
+@class AWSEC2GetCapacityReservationUsageRequest;
+@class AWSEC2GetCapacityReservationUsageResult;
+@class AWSEC2GetCoipPoolUsageRequest;
+@class AWSEC2GetCoipPoolUsageResult;
 @class AWSEC2GetConsoleOutputRequest;
 @class AWSEC2GetConsoleOutputResult;
 @class AWSEC2GetConsoleScreenshotRequest;
 @class AWSEC2GetConsoleScreenshotResult;
+@class AWSEC2GetDefaultCreditSpecificationRequest;
+@class AWSEC2GetDefaultCreditSpecificationResult;
+@class AWSEC2GetEbsDefaultKmsKeyIdRequest;
+@class AWSEC2GetEbsDefaultKmsKeyIdResult;
+@class AWSEC2GetEbsEncryptionByDefaultRequest;
+@class AWSEC2GetEbsEncryptionByDefaultResult;
 @class AWSEC2GetHostReservationPurchasePreviewRequest;
 @class AWSEC2GetHostReservationPurchasePreviewResult;
 @class AWSEC2GetLaunchTemplateDataRequest;
@@ -1960,10 +2451,15 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2GetReservedInstancesExchangeQuoteResult;
 @class AWSEC2GetTransitGatewayAttachmentPropagationsRequest;
 @class AWSEC2GetTransitGatewayAttachmentPropagationsResult;
+@class AWSEC2GetTransitGatewayMulticastDomainAssociationsRequest;
+@class AWSEC2GetTransitGatewayMulticastDomainAssociationsResult;
 @class AWSEC2GetTransitGatewayRouteTableAssociationsRequest;
 @class AWSEC2GetTransitGatewayRouteTableAssociationsResult;
 @class AWSEC2GetTransitGatewayRouteTablePropagationsRequest;
 @class AWSEC2GetTransitGatewayRouteTablePropagationsResult;
+@class AWSEC2GpuDeviceInfo;
+@class AWSEC2GpuDeviceMemoryInfo;
+@class AWSEC2GpuInfo;
 @class AWSEC2GroupIdentifier;
 @class AWSEC2HibernationOptions;
 @class AWSEC2HibernationOptionsRequest;
@@ -1974,6 +2470,8 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2HostOffering;
 @class AWSEC2HostProperties;
 @class AWSEC2HostReservation;
+@class AWSEC2IKEVersionsListValue;
+@class AWSEC2IKEVersionsRequestListValue;
 @class AWSEC2IamInstanceProfile;
 @class AWSEC2IamInstanceProfileAssociation;
 @class AWSEC2IamInstanceProfileSpecification;
@@ -1984,6 +2482,8 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2ImageDiskContainer;
 @class AWSEC2ImportClientVpnClientCertificateRevocationListRequest;
 @class AWSEC2ImportClientVpnClientCertificateRevocationListResult;
+@class AWSEC2ImportImageLicenseConfigurationRequest;
+@class AWSEC2ImportImageLicenseConfigurationResponse;
 @class AWSEC2ImportImageRequest;
 @class AWSEC2ImportImageResult;
 @class AWSEC2ImportImageTask;
@@ -2000,6 +2500,8 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2ImportVolumeRequest;
 @class AWSEC2ImportVolumeResult;
 @class AWSEC2ImportVolumeTaskDetails;
+@class AWSEC2InferenceAcceleratorInfo;
+@class AWSEC2InferenceDeviceInfo;
 @class AWSEC2Instance;
 @class AWSEC2InstanceAttribute;
 @class AWSEC2InstanceBlockDeviceMapping;
@@ -2009,29 +2511,41 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2InstanceCreditSpecification;
 @class AWSEC2InstanceCreditSpecificationRequest;
 @class AWSEC2InstanceExportDetails;
+@class AWSEC2InstanceFamilyCreditSpecification;
 @class AWSEC2InstanceIpv6Address;
 @class AWSEC2InstanceIpv6AddressRequest;
 @class AWSEC2InstanceMarketOptionsRequest;
+@class AWSEC2InstanceMetadataOptionsRequest;
+@class AWSEC2InstanceMetadataOptionsResponse;
 @class AWSEC2InstanceMonitoring;
 @class AWSEC2InstanceNetworkInterface;
 @class AWSEC2InstanceNetworkInterfaceAssociation;
 @class AWSEC2InstanceNetworkInterfaceAttachment;
 @class AWSEC2InstanceNetworkInterfaceSpecification;
 @class AWSEC2InstancePrivateIpAddress;
+@class AWSEC2InstanceSpecification;
 @class AWSEC2InstanceState;
 @class AWSEC2InstanceStateChange;
 @class AWSEC2InstanceStatus;
 @class AWSEC2InstanceStatusDetails;
 @class AWSEC2InstanceStatusEvent;
 @class AWSEC2InstanceStatusSummary;
+@class AWSEC2InstanceStorageInfo;
+@class AWSEC2InstanceTagNotificationAttribute;
+@class AWSEC2InstanceTypeInfo;
+@class AWSEC2InstanceTypeOffering;
+@class AWSEC2InstanceUsage;
 @class AWSEC2InternetGateway;
 @class AWSEC2InternetGatewayAttachment;
 @class AWSEC2IpPermission;
 @class AWSEC2IpRange;
+@class AWSEC2Ipv6CidrAssociation;
 @class AWSEC2Ipv6CidrBlock;
+@class AWSEC2Ipv6Pool;
 @class AWSEC2Ipv6Range;
 @class AWSEC2KeyPair;
 @class AWSEC2KeyPairInfo;
+@class AWSEC2LastError;
 @class AWSEC2LaunchPermission;
 @class AWSEC2LaunchPermissionModifications;
 @class AWSEC2LaunchSpecification;
@@ -2054,6 +2568,8 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2LaunchTemplateIamInstanceProfileSpecificationRequest;
 @class AWSEC2LaunchTemplateInstanceMarketOptions;
 @class AWSEC2LaunchTemplateInstanceMarketOptionsRequest;
+@class AWSEC2LaunchTemplateInstanceMetadataOptions;
+@class AWSEC2LaunchTemplateInstanceMetadataOptionsRequest;
 @class AWSEC2LaunchTemplateInstanceNetworkInterfaceSpecification;
 @class AWSEC2LaunchTemplateInstanceNetworkInterfaceSpecificationRequest;
 @class AWSEC2LaunchTemplateLicenseConfiguration;
@@ -2075,10 +2591,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2LoadPermission;
 @class AWSEC2LoadPermissionModifications;
 @class AWSEC2LoadPermissionRequest;
+@class AWSEC2LocalGateway;
+@class AWSEC2LocalGatewayRoute;
+@class AWSEC2LocalGatewayRouteTable;
+@class AWSEC2LocalGatewayRouteTableVirtualInterfaceGroupAssociation;
+@class AWSEC2LocalGatewayRouteTableVpcAssociation;
+@class AWSEC2LocalGatewayVirtualInterface;
+@class AWSEC2LocalGatewayVirtualInterfaceGroup;
+@class AWSEC2MemoryInfo;
+@class AWSEC2ModifyAvailabilityZoneGroupRequest;
+@class AWSEC2ModifyAvailabilityZoneGroupResult;
 @class AWSEC2ModifyCapacityReservationRequest;
 @class AWSEC2ModifyCapacityReservationResult;
 @class AWSEC2ModifyClientVpnEndpointRequest;
 @class AWSEC2ModifyClientVpnEndpointResult;
+@class AWSEC2ModifyDefaultCreditSpecificationRequest;
+@class AWSEC2ModifyDefaultCreditSpecificationResult;
+@class AWSEC2ModifyEbsDefaultKmsKeyIdRequest;
+@class AWSEC2ModifyEbsDefaultKmsKeyIdResult;
 @class AWSEC2ModifyFleetRequest;
 @class AWSEC2ModifyFleetResult;
 @class AWSEC2ModifyFpgaImageAttributeRequest;
@@ -2095,6 +2625,8 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2ModifyInstanceCreditSpecificationResult;
 @class AWSEC2ModifyInstanceEventStartTimeRequest;
 @class AWSEC2ModifyInstanceEventStartTimeResult;
+@class AWSEC2ModifyInstanceMetadataOptionsRequest;
+@class AWSEC2ModifyInstanceMetadataOptionsResult;
 @class AWSEC2ModifyInstancePlacementRequest;
 @class AWSEC2ModifyInstancePlacementResult;
 @class AWSEC2ModifyLaunchTemplateRequest;
@@ -2106,6 +2638,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2ModifySpotFleetRequestRequest;
 @class AWSEC2ModifySpotFleetRequestResponse;
 @class AWSEC2ModifySubnetAttributeRequest;
+@class AWSEC2ModifyTrafficMirrorFilterNetworkServicesRequest;
+@class AWSEC2ModifyTrafficMirrorFilterNetworkServicesResult;
+@class AWSEC2ModifyTrafficMirrorFilterRuleRequest;
+@class AWSEC2ModifyTrafficMirrorFilterRuleResult;
+@class AWSEC2ModifyTrafficMirrorSessionRequest;
+@class AWSEC2ModifyTrafficMirrorSessionResult;
 @class AWSEC2ModifyTransitGatewayVpcAttachmentRequest;
 @class AWSEC2ModifyTransitGatewayVpcAttachmentRequestOptions;
 @class AWSEC2ModifyTransitGatewayVpcAttachmentResult;
@@ -2125,6 +2663,13 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2ModifyVpcPeeringConnectionOptionsResult;
 @class AWSEC2ModifyVpcTenancyRequest;
 @class AWSEC2ModifyVpcTenancyResult;
+@class AWSEC2ModifyVpnConnectionRequest;
+@class AWSEC2ModifyVpnConnectionResult;
+@class AWSEC2ModifyVpnTunnelCertificateRequest;
+@class AWSEC2ModifyVpnTunnelCertificateResult;
+@class AWSEC2ModifyVpnTunnelOptionsRequest;
+@class AWSEC2ModifyVpnTunnelOptionsResult;
+@class AWSEC2ModifyVpnTunnelOptionsSpecification;
 @class AWSEC2MonitorInstancesRequest;
 @class AWSEC2MonitorInstancesResult;
 @class AWSEC2Monitoring;
@@ -2136,6 +2681,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2NetworkAcl;
 @class AWSEC2NetworkAclAssociation;
 @class AWSEC2NetworkAclEntry;
+@class AWSEC2NetworkInfo;
 @class AWSEC2NetworkInterface;
 @class AWSEC2NetworkInterfaceAssociation;
 @class AWSEC2NetworkInterfaceAttachment;
@@ -2148,11 +2694,27 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2OnDemandOptions;
 @class AWSEC2OnDemandOptionsRequest;
 @class AWSEC2PciId;
+@class AWSEC2PeeringAttachmentStatus;
 @class AWSEC2PeeringConnectionOptions;
 @class AWSEC2PeeringConnectionOptionsRequest;
+@class AWSEC2PeeringTgwInfo;
+@class AWSEC2Phase1DHGroupNumbersListValue;
+@class AWSEC2Phase1DHGroupNumbersRequestListValue;
+@class AWSEC2Phase1EncryptionAlgorithmsListValue;
+@class AWSEC2Phase1EncryptionAlgorithmsRequestListValue;
+@class AWSEC2Phase1IntegrityAlgorithmsListValue;
+@class AWSEC2Phase1IntegrityAlgorithmsRequestListValue;
+@class AWSEC2Phase2DHGroupNumbersListValue;
+@class AWSEC2Phase2DHGroupNumbersRequestListValue;
+@class AWSEC2Phase2EncryptionAlgorithmsListValue;
+@class AWSEC2Phase2EncryptionAlgorithmsRequestListValue;
+@class AWSEC2Phase2IntegrityAlgorithmsListValue;
+@class AWSEC2Phase2IntegrityAlgorithmsRequestListValue;
 @class AWSEC2Placement;
 @class AWSEC2PlacementGroup;
+@class AWSEC2PlacementGroupInfo;
 @class AWSEC2PlacementResponse;
+@class AWSEC2PoolCidrBlock;
 @class AWSEC2PortRange;
 @class AWSEC2PrefixList;
 @class AWSEC2PrefixListId;
@@ -2160,7 +2722,9 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2PriceScheduleSpecification;
 @class AWSEC2PricingDetail;
 @class AWSEC2PrincipalIdFormat;
+@class AWSEC2PrivateDnsNameConfiguration;
 @class AWSEC2PrivateIpAddressSpecification;
+@class AWSEC2ProcessorInfo;
 @class AWSEC2ProductCode;
 @class AWSEC2PropagatingVgw;
 @class AWSEC2ProvisionByoipCidrRequest;
@@ -2181,6 +2745,15 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2Region;
 @class AWSEC2RegisterImageRequest;
 @class AWSEC2RegisterImageResult;
+@class AWSEC2RegisterInstanceEventNotificationAttributesRequest;
+@class AWSEC2RegisterInstanceEventNotificationAttributesResult;
+@class AWSEC2RegisterInstanceTagAttributeRequest;
+@class AWSEC2RegisterTransitGatewayMulticastGroupMembersRequest;
+@class AWSEC2RegisterTransitGatewayMulticastGroupMembersResult;
+@class AWSEC2RegisterTransitGatewayMulticastGroupSourcesRequest;
+@class AWSEC2RegisterTransitGatewayMulticastGroupSourcesResult;
+@class AWSEC2RejectTransitGatewayPeeringAttachmentRequest;
+@class AWSEC2RejectTransitGatewayPeeringAttachmentResult;
 @class AWSEC2RejectTransitGatewayVpcAttachmentRequest;
 @class AWSEC2RejectTransitGatewayVpcAttachmentResult;
 @class AWSEC2RejectVpcEndpointConnectionsRequest;
@@ -2218,6 +2791,8 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2ReservedInstancesModification;
 @class AWSEC2ReservedInstancesModificationResult;
 @class AWSEC2ReservedInstancesOffering;
+@class AWSEC2ResetEbsDefaultKmsKeyIdRequest;
+@class AWSEC2ResetEbsDefaultKmsKeyIdResult;
 @class AWSEC2ResetFpgaImageAttributeRequest;
 @class AWSEC2ResetFpgaImageAttributeResult;
 @class AWSEC2ResetImageAttributeRequest;
@@ -2235,6 +2810,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2Route;
 @class AWSEC2RouteTable;
 @class AWSEC2RouteTableAssociation;
+@class AWSEC2RouteTableAssociationState;
 @class AWSEC2RunInstancesMonitoringEnabled;
 @class AWSEC2RunInstancesRequest;
 @class AWSEC2RunScheduledInstancesRequest;
@@ -2253,11 +2829,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2ScheduledInstancesNetworkInterface;
 @class AWSEC2ScheduledInstancesPlacement;
 @class AWSEC2ScheduledInstancesPrivateIpAddressConfig;
+@class AWSEC2SearchLocalGatewayRoutesRequest;
+@class AWSEC2SearchLocalGatewayRoutesResult;
+@class AWSEC2SearchTransitGatewayMulticastGroupsRequest;
+@class AWSEC2SearchTransitGatewayMulticastGroupsResult;
 @class AWSEC2SearchTransitGatewayRoutesRequest;
 @class AWSEC2SearchTransitGatewayRoutesResult;
 @class AWSEC2SecurityGroup;
 @class AWSEC2SecurityGroupIdentifier;
 @class AWSEC2SecurityGroupReference;
+@class AWSEC2SendDiagnosticInterruptRequest;
 @class AWSEC2ServiceConfiguration;
 @class AWSEC2ServiceDetail;
 @class AWSEC2ServiceTypeDetail;
@@ -2266,6 +2847,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2Snapshot;
 @class AWSEC2SnapshotDetail;
 @class AWSEC2SnapshotDiskContainer;
+@class AWSEC2SnapshotInfo;
 @class AWSEC2SnapshotTaskDetail;
 @class AWSEC2SpotDatafeedSubscription;
 @class AWSEC2SpotFleetLaunchSpecification;
@@ -2285,15 +2867,19 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2StaleSecurityGroup;
 @class AWSEC2StartInstancesRequest;
 @class AWSEC2StartInstancesResult;
+@class AWSEC2StartVpcEndpointServicePrivateDnsVerificationRequest;
+@class AWSEC2StartVpcEndpointServicePrivateDnsVerificationResult;
 @class AWSEC2StateReason;
 @class AWSEC2StopInstancesRequest;
 @class AWSEC2StopInstancesResult;
 @class AWSEC2Storage;
 @class AWSEC2StorageLocation;
 @class AWSEC2Subnet;
+@class AWSEC2SubnetAssociation;
 @class AWSEC2SubnetCidrBlockState;
 @class AWSEC2SubnetIpv6CidrBlockAssociation;
 @class AWSEC2SuccessfulInstanceCreditSpecificationItem;
+@class AWSEC2SuccessfulQueuedPurchaseDeletion;
 @class AWSEC2Tag;
 @class AWSEC2TagDescription;
 @class AWSEC2TagSpecification;
@@ -2310,12 +2896,27 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2TerminateConnectionStatus;
 @class AWSEC2TerminateInstancesRequest;
 @class AWSEC2TerminateInstancesResult;
+@class AWSEC2TrafficMirrorFilter;
+@class AWSEC2TrafficMirrorFilterRule;
+@class AWSEC2TrafficMirrorPortRange;
+@class AWSEC2TrafficMirrorPortRangeRequest;
+@class AWSEC2TrafficMirrorSession;
+@class AWSEC2TrafficMirrorTarget;
 @class AWSEC2TransitGateway;
 @class AWSEC2TransitGatewayAssociation;
 @class AWSEC2TransitGatewayAttachment;
 @class AWSEC2TransitGatewayAttachmentAssociation;
 @class AWSEC2TransitGatewayAttachmentPropagation;
+@class AWSEC2TransitGatewayMulticastDeregisteredGroupMembers;
+@class AWSEC2TransitGatewayMulticastDeregisteredGroupSources;
+@class AWSEC2TransitGatewayMulticastDomain;
+@class AWSEC2TransitGatewayMulticastDomainAssociation;
+@class AWSEC2TransitGatewayMulticastDomainAssociations;
+@class AWSEC2TransitGatewayMulticastGroup;
+@class AWSEC2TransitGatewayMulticastRegisteredGroupMembers;
+@class AWSEC2TransitGatewayMulticastRegisteredGroupSources;
 @class AWSEC2TransitGatewayOptions;
+@class AWSEC2TransitGatewayPeeringAttachment;
 @class AWSEC2TransitGatewayPropagation;
 @class AWSEC2TransitGatewayRequestOptions;
 @class AWSEC2TransitGatewayRoute;
@@ -2325,6 +2926,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2TransitGatewayRouteTablePropagation;
 @class AWSEC2TransitGatewayVpcAttachment;
 @class AWSEC2TransitGatewayVpcAttachmentOptions;
+@class AWSEC2TunnelOption;
 @class AWSEC2UnassignIpv6AddressesRequest;
 @class AWSEC2UnassignIpv6AddressesResult;
 @class AWSEC2UnassignPrivateIpAddressesRequest;
@@ -2342,12 +2944,14 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @class AWSEC2UserBucketDetails;
 @class AWSEC2UserData;
 @class AWSEC2UserIdGroupPair;
+@class AWSEC2VCpuInfo;
 @class AWSEC2VgwTelemetry;
 @class AWSEC2Volume;
 @class AWSEC2VolumeAttachment;
 @class AWSEC2VolumeDetail;
 @class AWSEC2VolumeModification;
 @class AWSEC2VolumeStatusAction;
+@class AWSEC2VolumeStatusAttachmentStatus;
 @class AWSEC2VolumeStatusDetails;
 @class AWSEC2VolumeStatusEvent;
 @class AWSEC2VolumeStatusInfo;
@@ -2413,6 +3017,37 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 /**
  
  */
+@interface AWSEC2AcceptTransitGatewayPeeringAttachmentRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the transit gateway attachment.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayAttachmentId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2AcceptTransitGatewayPeeringAttachmentResult : AWSModel
+
+
+/**
+ <p>The transit gateway peering attachment.</p>
+ */
+@property (nonatomic, strong) AWSEC2TransitGatewayPeeringAttachment * _Nullable transitGatewayPeeringAttachment;
+
+@end
+
+/**
+ 
+ */
 @interface AWSEC2AcceptTransitGatewayVpcAttachmentRequest : AWSRequest
 
 
@@ -2453,7 +3088,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>The ID of the endpoint service.</p>
+ <p>The ID of the VPC endpoint service.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable serviceId;
 
@@ -2520,7 +3155,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable attributeName;
 
 /**
- <p>One or more values for the account attribute.</p>
+ <p>The values for the account attribute.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2AccountAttributeValue *> * _Nullable attributeValues;
 
@@ -2584,6 +3219,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable associationId;
 
 /**
+ <p>The customer-owned IP address.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable customerOwnedIp;
+
+/**
+ <p>The ID of the customer-owned address pool.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable customerOwnedIpv4Pool;
+
+/**
  <p>Indicates whether this Elastic IP address is for use with instances in EC2-Classic (<code>standard</code>) or instances in a VPC (<code>vpc</code>).</p>
  */
 @property (nonatomic, assign) AWSEC2DomainType domain;
@@ -2592,6 +3237,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of the instance that the address is associated with (if any).</p>
  */
 @property (nonatomic, strong) NSString * _Nullable instanceId;
+
+/**
+ <p>The name of the location from which the IP address is advertised.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkBorderGroup;
 
 /**
  <p>The ID of the network interface.</p>
@@ -2632,7 +3282,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The IPv4 address range, in CIDR notation. This must be the exact range that you provisioned. You can't advertise only a portion of the provisioned range.</p>
+ <p>The address range, in CIDR notation. This must be the exact range that you provisioned. You can't advertise only a portion of the provisioned range.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable cidr;
 
@@ -2668,6 +3318,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable address;
 
 /**
+ <p>The ID of a customer-owned address pool. Use this parameter to let Amazon EC2 select an address from the address pool. Alternatively, specify a specific address from the address pool.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable customerOwnedIpv4Pool;
+
+/**
  <p>Set to <code>vpc</code> to allocate the address for use with instances in a VPC.</p><p>Default: The address is for use with instances in EC2-Classic.</p>
  */
 @property (nonatomic, assign) AWSEC2DomainType domain;
@@ -2676,6 +3331,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The location from which the IP address is advertised. Use this parameter to limit the address to this location.</p><p>A network border group is a unique set of Availability Zones or Local Zones from where AWS advertises IP addresses and limits the addresses to the group. IP addresses cannot move between network border groups.</p><p>Use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html">DescribeAvailabilityZones</a> to view the network border groups.</p><note><p>You cannot use a network border group with EC2 Classic. If you attempt this operation on EC2 classic, you will receive an <code>InvalidParameterCombination</code> error. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html">Error Codes</a>.</p></note>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkBorderGroup;
 
 /**
  <p>The ID of an address pool that you own. Use this parameter to let Amazon EC2 select an address from the address pool. To specify a specific address from the address pool, use the <code>Address</code> parameter instead.</p>
@@ -2696,9 +3356,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable allocationId;
 
 /**
+ <p>The customer-owned IP address.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable customerOwnedIp;
+
+/**
+ <p>The ID of the customer-owned address pool.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable customerOwnedIpv4Pool;
+
+/**
  <p>Indicates whether this Elastic IP address is for use with instances in EC2-Classic (<code>standard</code>) or instances in a VPC (<code>vpc</code>).</p>
  */
 @property (nonatomic, assign) AWSEC2DomainType domain;
+
+/**
+ <p>The location from which the IP address is advertised.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkBorderGroup;
 
 /**
  <p>The Elastic IP address.</p>
@@ -2719,22 +3394,32 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>This is enabled by default. This property allows instances to be automatically placed onto available Dedicated Hosts, when you are launching instances without specifying a host ID.</p><p>Default: Enabled</p>
+ <p>Indicates whether the host accepts any untargeted instance launches that match its instance type configuration, or if it only accepts Host tenancy instance launches that specify its unique host ID. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/how-dedicated-hosts-work.html#dedicated-hosts-understanding"> Understanding Instance Placement and Host Affinity</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p><p>Default: <code>on</code></p>
  */
 @property (nonatomic, assign) AWSEC2AutoPlacement autoPlacement;
 
 /**
- <p>The Availability Zone for the Dedicated Hosts.</p>
+ <p>The Availability Zone in which to allocate the Dedicated Host.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable availabilityZone;
 
 /**
- <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. </p>
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
 /**
- <p>Specify the instance type for which to configure your Dedicated Hosts. When you specify the instance type, that is the only instance type that you can launch onto that host.</p>
+ <p>Indicates whether to enable or disable host recovery for the Dedicated Host. Host recovery is disabled by default. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-recovery.html"> Host Recovery</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>Default: <code>off</code></p>
+ */
+@property (nonatomic, assign) AWSEC2HostRecovery hostRecovery;
+
+/**
+ <p>Specifies the instance family to be supported by the Dedicated Hosts. If you specify an instance family, the Dedicated Hosts support multiple instance types within that instance family.</p><p>If you want the Dedicated Hosts to support a specific instance type only, omit this parameter and specify <b>InstanceType</b> instead. You cannot specify <b>InstanceFamily</b> and <b>InstanceType</b> in the same request.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable instanceFamily;
+
+/**
+ <p>Specifies the instance type to be supported by the Dedicated Hosts. If you specify an instance type, the Dedicated Hosts support instances of the specified instance type only.</p><p>If you want the Dedicated Hosts to support multiple instance types in a specific instance family, omit this parameter and specify <b>InstanceFamily</b> instead. You cannot specify <b>InstanceType</b> and <b>InstanceFamily</b> in the same request.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable instanceType;
 
@@ -2895,6 +3580,37 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 /**
  
  */
+@interface AWSEC2AssignPrivateIpAddressesResult : AWSModel
+
+
+/**
+ <p>The private IP addresses assigned to the network interface.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2AssignedPrivateIpAddress *> * _Nullable assignedPrivateIpAddresses;
+
+/**
+ <p>The ID of the network interface.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkInterfaceId;
+
+@end
+
+/**
+ <p>Describes the private IP addresses assigned to a network interface.</p>
+ */
+@interface AWSEC2AssignedPrivateIpAddress : AWSModel
+
+
+/**
+ <p>The private IP address assigned to the network interface.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable privateIpAddress;
+
+@end
+
+/**
+ 
+ */
 @interface AWSEC2AssociateAddressRequest : AWSRequest
 
 
@@ -2919,7 +3635,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable instanceId;
 
 /**
- <p>[EC2-VPC] The ID of the network interface. If the instance has more than one network interface, you must specify a network interface ID.</p>
+ <p>[EC2-VPC] The ID of the network interface. If the instance has more than one network interface, you must specify a network interface ID.</p><p>For EC2-VPC, you can specify either the instance ID or the network interface ID, but not both. </p>
  */
 @property (nonatomic, strong) NSString * _Nullable networkInterfaceId;
 
@@ -2929,7 +3645,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable privateIpAddress;
 
 /**
- <p>The Elastic IP address. This is required for EC2-Classic.</p>
+ <p>The Elastic IP address to associate with the instance. This is required for EC2-Classic.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable publicIp;
 
@@ -2953,6 +3669,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @interface AWSEC2AssociateClientVpnTargetNetworkRequest : AWSRequest
 
+
+/**
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable clientToken;
 
 /**
  <p>The ID of the Client VPN endpoint.</p>
@@ -3055,6 +3776,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
+ <p>The ID of the internet gateway or virtual private gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable gatewayId;
+
+/**
  <p>The ID of the route table.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable routeTableId;
@@ -3076,6 +3802,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The route table association ID. This ID is required for disassociating the route table.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable associationId;
+
+/**
+ <p>The state of the association.</p>
+ */
+@property (nonatomic, strong) AWSEC2RouteTableAssociationState * _Nullable associationState;
 
 @end
 
@@ -3112,6 +3843,47 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of the subnet.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable subnetId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2AssociateTransitGatewayMulticastDomainRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The IDs of the subnets to associate with the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable subnetIds;
+
+/**
+ <p>The ID of the transit gateway attachment to associate with the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayAttachmentId;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2AssociateTransitGatewayMulticastDomainResult : AWSModel
+
+
+/**
+ <p>Information about the transit gateway multicast domain associations.</p>
+ */
+@property (nonatomic, strong) AWSEC2TransitGatewayMulticastDomainAssociations * _Nullable associations;
 
 @end
 
@@ -3166,6 +3938,21 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>An IPv4 CIDR block to associate with the VPC.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable cidrBlock;
+
+/**
+ <p>An IPv6 CIDR block from the IPv6 address pool. You must also specify <code>Ipv6Pool</code> in the request.</p><p>To let Amazon choose the IPv6 CIDR block for you, omit this parameter.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ipv6CidrBlock;
+
+/**
+ <p>The name of the location from which we advertise the IPV6 CIDR block. Use this parameter to limit the CiDR block to this location.</p><p> You must set <code>AmazonProvidedIpv6CidrBlock</code> to <code>true</code> to use this parameter.</p><p> You can have one IPv6 CIDR block association per network border group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ipv6CidrBlockNetworkBorderGroup;
+
+/**
+ <p>The ID of an IPv6 address pool from which to allocate the IPv6 CIDR block.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ipv6Pool;
 
 /**
  <p>The ID of the VPC.</p>
@@ -3340,8 +4127,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for AttachVolume.</p>
- Required parameters: [Device, InstanceId, VolumeId]
+ 
  */
 @interface AWSEC2AttachVolumeRequest : AWSRequest
 
@@ -3486,6 +4272,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable authorizeAllGroups;
 
 /**
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable clientToken;
+
+/**
  <p>The ID of the Client VPN endpoint.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientVpnEndpointId;
@@ -3547,7 +4338,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable groupId;
 
 /**
- <p>One or more sets of IP permissions. You can't specify a destination security group and a CIDR IP address range in the same set of permissions.</p>
+ <p>The sets of IP permissions. You can't specify a destination security group and a CIDR IP address range in the same set of permissions.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2IpPermission *> * _Nullable ipPermissions;
 
@@ -3580,7 +4371,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The CIDR IPv4 address range. You can't specify this parameter when specifying a source security group.</p>
+ <p>The IPv4 address range, in CIDR format. You can't specify this parameter when specifying a source security group. To specify an IPv6 address range, use a set of IP permissions.</p><p>Alternatively, use a set of IP permissions to specify multiple rules and a description for the rule.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable cidrIp;
 
@@ -3590,7 +4381,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>The start of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number. For the ICMP/ICMPv6 type number, use <code>-1</code> to specify all types. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>
+ <p>The start of port range for the TCP and UDP protocols, or an ICMP type number. For the ICMP type number, use <code>-1</code> to specify all types. If you specify all ICMP types, you must specify all codes.</p><p>Alternatively, use a set of IP permissions to specify multiple rules and a description for the rule.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable fromPort;
 
@@ -3605,12 +4396,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable groupName;
 
 /**
- <p>One or more sets of IP permissions. Can be used to specify multiple rules in a single command.</p>
+ <p>The sets of IP permissions.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2IpPermission *> * _Nullable ipPermissions;
 
 /**
- <p>The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>) or number (see <a href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol Numbers</a>). (VPC only) Use <code>-1</code> to specify all protocols. If you specify <code>-1</code>, or a protocol number other than <code>tcp</code>, <code>udp</code>, <code>icmp</code>, or <code>58</code> (ICMPv6), traffic on all ports is allowed, regardless of any ports you specify. For <code>tcp</code>, <code>udp</code>, and <code>icmp</code>, you must specify a port range. For protocol <code>58</code> (ICMPv6), you can optionally specify a port range; if you don't, traffic for all types and codes is allowed.</p>
+ <p>The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>) or number (see <a href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol Numbers</a>). To specify <code>icmpv6</code>, use a set of IP permissions.</p><p>[VPC only] Use <code>-1</code> to specify all protocols. If you specify <code>-1</code> or a protocol other than <code>tcp</code>, <code>udp</code>, or <code>icmp</code>, traffic on all ports is allowed, regardless of any ports you specify.</p><p>Alternatively, use a set of IP permissions to specify multiple rules and a description for the rule.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable ipProtocol;
 
@@ -3625,71 +4416,86 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable sourceSecurityGroupOwnerId;
 
 /**
- <p>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code number. For the ICMP/ICMPv6 code number, use <code>-1</code> to specify all codes. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>
+ <p>The end of port range for the TCP and UDP protocols, or an ICMP code number. For the ICMP code number, use <code>-1</code> to specify all codes. If you specify all ICMP types, you must specify all codes.</p><p>Alternatively, use a set of IP permissions to specify multiple rules and a description for the rule.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable toPort;
 
 @end
 
 /**
- <p>Describes an Availability Zone.</p>
+ <p>Describes an Availability Zone or Local Zone.</p>
  */
 @interface AWSEC2AvailabilityZone : AWSModel
 
 
 /**
- <p>Any messages about the Availability Zone.</p>
+ <p> For Availability Zones, this parameter has the same value as the Region name.</p><p>For Local Zones, the name of the associated group, for example <code>us-west-2-lax-1</code>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable groupName;
+
+/**
+ <p>Any messages about the Availability Zone or Local Zone.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2AvailabilityZoneMessage *> * _Nullable messages;
 
 /**
- <p>The name of the region.</p>
+ <p>The name of the location from which the address is advertised.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkBorderGroup;
+
+/**
+ <p> For Availability Zones, this parameter always has the value of <code>opt-in-not-required</code>.</p><p>For Local Zones, this parameter is the opt in status. The possible values are <code>opted-in</code>, and <code>not-opted-in</code>.</p>
+ */
+@property (nonatomic, assign) AWSEC2AvailabilityZoneOptInStatus optInStatus;
+
+/**
+ <p>The name of the Region.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable regionName;
 
 /**
- <p>The state of the Availability Zone.</p>
+ <p>The state of the Availability Zone or Local Zone.</p>
  */
 @property (nonatomic, assign) AWSEC2AvailabilityZoneState state;
 
 /**
- <p>The ID of the Availability Zone.</p>
+ <p>The ID of the Availability Zone or Local Zone.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable zoneId;
 
 /**
- <p>The name of the Availability Zone.</p>
+ <p>The name of the Availability Zone or Local Zone.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable zoneName;
 
 @end
 
 /**
- <p>Describes a message about an Availability Zone.</p>
+ <p>Describes a message about an Availability Zone or Local Zone.</p>
  */
 @interface AWSEC2AvailabilityZoneMessage : AWSModel
 
 
 /**
- <p>The message about the Availability Zone.</p>
+ <p>The message about the Availability Zone or Local Zone.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable message;
 
 @end
 
 /**
- <p>The capacity information for instances launched onto the Dedicated Host.</p>
+ <p>The capacity information for instances that can be launched onto the Dedicated Host. </p>
  */
 @interface AWSEC2AvailableCapacity : AWSModel
 
 
 /**
- <p>The total number of instances supported by the Dedicated Host.</p>
+ <p>The number of instances that can be launched onto the Dedicated Host depending on the host's available capacity. For Dedicated Hosts that support multiple instance types, this parameter represents the number of instances for each instance size that is supported on the host.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2InstanceCapacity *> * _Nullable availableInstanceCapacity;
 
 /**
- <p>The number of vCPUs available on the Dedicated Host.</p>
+ <p>The number of vCPUs available for launching instances onto the Dedicated Host.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable availableVCpus;
 
@@ -3846,7 +4652,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The public IPv4 address range, in CIDR notation.</p>
+ <p>The address range, in CIDR notation.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable cidr;
 
@@ -3931,8 +4737,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for CancelConversionTask.</p>
- Required parameters: [ConversionTaskId]
+ 
  */
 @interface AWSEC2CancelConversionRequest : AWSRequest
 
@@ -3955,8 +4760,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for CancelExportTask.</p>
- Required parameters: [ExportTaskId]
+ 
  */
 @interface AWSEC2CancelExportTaskRequest : AWSRequest
 
@@ -3969,7 +4773,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for CancelImportTask.</p>
+ 
  */
 @interface AWSEC2CancelImportTaskRequest : AWSRequest
 
@@ -3992,7 +4796,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the output for CancelImportTask.</p>
+ 
  */
 @interface AWSEC2CancelImportTaskResult : AWSModel
 
@@ -4204,9 +5008,19 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable availabilityZone;
 
 /**
+ <p>The Availability Zone ID of the Capacity Reservation.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable availabilityZoneId;
+
+/**
  <p>The remaining capacity. Indicates the number of instances that can be launched in the Capacity Reservation.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable availableInstanceCount;
+
+/**
+ <p>The Amazon Resource Name (ARN) of the Capacity Reservation.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable capacityReservationArn;
 
 /**
  <p>The ID of the Capacity Reservation.</p>
@@ -4254,7 +5068,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable instanceType;
 
 /**
- <p>The current state of the Capacity Reservation. A Capacity Reservation can be in one of the following states:</p><ul><li><p><code>active</code> - The Capacity Reservation is active and the capacity is available for your use.</p></li><li><p><code>cancelled</code> - The Capacity Reservation expired automatically at the date and time specified in your request. The reserved capacity is no longer available for your use.</p></li><li><p><code>expired</code> - The Capacity Reservation was manually cancelled. The reserved capacity is no longer available for your use.</p></li><li><p><code>pending</code> - The Capacity Reservation request was successful but the capacity provisioning is still pending.</p></li><li><p><code>failed</code> - The Capacity Reservation request has failed. A request might fail due to invalid request parameters, capacity constraints, or instance limit constraints. Failed requests are retained for 60 minutes.</p></li></ul>
+ <p>The ID of the AWS account that owns the Capacity Reservation.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerId;
+
+/**
+ <p>The current state of the Capacity Reservation. A Capacity Reservation can be in one of the following states:</p><ul><li><p><code>active</code> - The Capacity Reservation is active and the capacity is available for your use.</p></li><li><p><code>expired</code> - The Capacity Reservation expired automatically at the date and time specified in your request. The reserved capacity is no longer available for your use.</p></li><li><p><code>cancelled</code> - The Capacity Reservation was manually cancelled. The reserved capacity is no longer available for your use.</p></li><li><p><code>pending</code> - The Capacity Reservation request was successful but the capacity provisioning is still pending.</p></li><li><p><code>failed</code> - The Capacity Reservation request has failed. A request might fail due to invalid request parameters, capacity constraints, or instance limit constraints. Failed requests are retained for 60 minutes.</p></li></ul>
  */
 @property (nonatomic, assign) AWSEC2CapacityReservationState state;
 
@@ -4269,9 +5088,35 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2CapacityReservationTenancy tenancy;
 
 /**
- <p>The number of instances for which the Capacity Reservation reserves capacity.</p>
+ <p>The total number of instances for which the Capacity Reservation reserves capacity.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable totalInstanceCount;
+
+@end
+
+/**
+ <p>Describes the strategy for using unused Capacity Reservations for fulfilling On-Demand capacity.</p><note><p>This strategy can only be used if the EC2 Fleet is of type <code>instant</code>.</p></note><p>For more information about Capacity Reservations, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-capacity-reservations.html">On-Demand Capacity Reservations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For examples of using Capacity Reservations in an EC2 Fleet, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-examples.html">EC2 Fleet Example Configurations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@interface AWSEC2CapacityReservationOptions : AWSModel
+
+
+/**
+ <p>Indicates whether to use unused Capacity Reservations for fulfilling On-Demand capacity.</p><p>If you specify <code>use-capacity-reservations-first</code>, the fleet uses unused Capacity Reservations to fulfill On-Demand capacity up to the target On-Demand capacity. If multiple instance pools have unused Capacity Reservations, the On-Demand allocation strategy (<code>lowest-price</code> or <code>prioritized</code>) is applied. If the number of unused Capacity Reservations is less than the On-Demand target capacity, the remaining On-Demand target capacity is launched according to the On-Demand allocation strategy (<code>lowest-price</code> or <code>prioritized</code>).</p><p>If you do not specify a value, the fleet fulfils the On-Demand capacity according to the chosen On-Demand allocation strategy.</p>
+ */
+@property (nonatomic, assign) AWSEC2FleetCapacityReservationUsageStrategy usageStrategy;
+
+@end
+
+/**
+ <p>Describes the strategy for using unused Capacity Reservations for fulfilling On-Demand capacity.</p><note><p>This strategy can only be used if the EC2 Fleet is of type <code>instant</code>.</p></note><p>For more information about Capacity Reservations, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-capacity-reservations.html">On-Demand Capacity Reservations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For examples of using Capacity Reservations in an EC2 Fleet, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-examples.html">EC2 Fleet Example Configurations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@interface AWSEC2CapacityReservationOptionsRequest : AWSModel
+
+
+/**
+ <p>Indicates whether to use unused Capacity Reservations for fulfilling On-Demand capacity.</p><p>If you specify <code>use-capacity-reservations-first</code>, the fleet uses unused Capacity Reservations to fulfill On-Demand capacity up to the target On-Demand capacity. If multiple instance pools have unused Capacity Reservations, the On-Demand allocation strategy (<code>lowest-price</code> or <code>prioritized</code>) is applied. If the number of unused Capacity Reservations is less than the On-Demand target capacity, the remaining On-Demand target capacity is launched according to the On-Demand allocation strategy (<code>lowest-price</code> or <code>prioritized</code>).</p><p>If you do not specify a value, the fleet fulfils the On-Demand capacity according to the chosen On-Demand allocation strategy.</p>
+ */
+@property (nonatomic, assign) AWSEC2FleetCapacityReservationUsageStrategy usageStrategy;
 
 @end
 
@@ -4725,12 +5570,17 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable dnsServers;
 
 /**
+ <p>The IDs of the security groups for the target network.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable securityGroupIds;
+
+/**
  <p>The ARN of the server certificate.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable serverCertificateArn;
 
 /**
- <p>Indicates whether VPN split tunneling is supported.</p>
+ <p>Indicates whether split-tunnel is enabled in the AWS Client VPN endpoint.</p><p>For information about split-tunnel VPN endpoints, see <a href="https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/split-tunnel-vpn.html">Split-Tunnel AWS Client VPN Endpoint</a> in the <i>AWS Client VPN Administrator Guide</i>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable splitTunnel;
 
@@ -4748,6 +5598,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The transport protocol used by the Client VPN endpoint.</p>
  */
 @property (nonatomic, assign) AWSEC2TransportProtocol transportProtocol;
+
+/**
+ <p>The ID of the VPC.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable vpcId;
+
+/**
+ <p>The port number for the Client VPN endpoint.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable vpnPort;
 
 /**
  <p>The protocol used by the VPN session.</p>
@@ -4832,6 +5692,62 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>A message about the status of the Client VPN endpoint route, if applicable.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable message;
+
+@end
+
+/**
+ <p>Describes address usage for a customer-owned address pool.</p>
+ */
+@interface AWSEC2CoipAddressUsage : AWSModel
+
+
+/**
+ <p>The allocation ID of the address.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable allocationId;
+
+/**
+ <p>The AWS account ID.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable awsAccountId;
+
+/**
+ <p>The AWS service.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable awsService;
+
+/**
+ <p>The customer-owned IP address.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable coIp;
+
+@end
+
+/**
+ <p>Describes a customer-owned address pool.</p>
+ */
+@interface AWSEC2CoipPool : AWSModel
+
+
+/**
+ <p>The ID of the local gateway route table.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayRouteTableId;
+
+/**
+ <p>The address ranges of the address pool.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable poolCidrs;
+
+/**
+ <p>The ID of the address pool.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable poolId;
+
+/**
+ <p>The tags.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
 
 @end
 
@@ -5040,7 +5956,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable sourceFpgaImageId;
 
 /**
- <p>The region that contains the source AFI.</p>
+ <p>The Region that contains the source AFI.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable sourceRegion;
 
@@ -5072,7 +5988,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
 /**
- <p>A description for the new AMI in the destination region.</p>
+ <p>A description for the new AMI in the destination Region.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable detail;
 
@@ -5087,12 +6003,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable encrypted;
 
 /**
- <p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p><p>The CMK identifier may be provided in any of the following formats: </p><ul><li><p>Key ID</p></li><li><p>Key alias, in the form <code>alias/<i>ExampleAlias</i></code></p></li><li><p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>. </p></li><li><p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p></li></ul><p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p><p>The specified CMK must exist in the region that the snapshot is being copied to. </p>
+ <p>An identifier for the symmetric AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p><p>To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name, or alias ARN. When using an alias name, prefix it with "alias/". For example:</p><ul><li><p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code></p></li><li><p>Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code></p></li><li><p>Alias name: <code>alias/ExampleAlias</code></p></li><li><p>Alias ARN: <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code></p></li></ul><p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p><p>The specified CMK must exist in the Region that the snapshot is being copied to. </p><p>Amazon EBS does not support asymmetric CMKs.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable kmsKeyId;
 
 /**
- <p>The name of the new AMI in the destination region.</p>
+ <p>The name of the new AMI in the destination Region.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable name;
 
@@ -5102,7 +6018,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable sourceImageId;
 
 /**
- <p>The name of the region that contains the AMI to copy.</p>
+ <p>The name of the Region that contains the AMI to copy.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable sourceRegion;
 
@@ -5122,8 +6038,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for CopySnapshot.</p>
- Required parameters: [SourceRegion, SourceSnapshotId]
+ 
  */
 @interface AWSEC2ReplicateSnapshotRequest : AWSRequest
 
@@ -5144,12 +6059,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>Specifies whether the destination snapshot should be encrypted. You can encrypt a copy of an unencrypted snapshot, but you cannot use it to create an unencrypted copy of an encrypted snapshot. Your default CMK for EBS is used unless you specify a non-default AWS Key Management Service (AWS KMS) CMK using <code>KmsKeyId</code>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ <p>To encrypt a copy of an unencrypted snapshot if encryption by default is not enabled, enable encryption using this parameter. Otherwise, omit this parameter. Encrypted snapshots are encrypted, even if you omit this parameter and encryption by default is not enabled. You cannot set this parameter to false. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable encrypted;
 
 /**
- <p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p><p>The CMK identifier may be provided in any of the following formats: </p><ul><li><p>Key ID</p></li><li><p>Key alias</p></li><li><p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>. </p></li><li><p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p></li></ul><p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. The action will eventually fail. </p>
+ <p>The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used. If <code>KmsKeyId</code> is specified, the encrypted state must be <code>true</code>.</p><p>You can specify the CMK using any of the following:</p><ul><li><p>Key ID. For example, key/1234abcd-12ab-34cd-56ef-1234567890ab.</p></li><li><p>Key alias. For example, alias/ExampleAlias.</p></li><li><p>Key ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p></li><li><p>Alias ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p></li></ul><p>AWS authenticates the CMK asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid, the action can appear to complete, but eventually fails.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable kmsKeyId;
 
@@ -5168,10 +6083,15 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, strong) NSString * _Nullable sourceSnapshotId;
 
+/**
+ <p>The tags to apply to the new snapshot.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
 @end
 
 /**
- <p>Contains the output of CopySnapshot.</p>
+ 
  */
 @interface AWSEC2ReplicateSnapshotResult : AWSModel
 
@@ -5180,6 +6100,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of the new snapshot.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable snapshotId;
+
+/**
+ <p>Any tags applied to the new snapshot.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
 
 @end
 
@@ -5213,7 +6138,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable coreCount;
 
 /**
- <p>The number of threads per CPU core. To disable Intel Hyper-Threading Technology for the instance, specify a value of <code>1</code>. Otherwise, specify the default value of <code>2</code>.</p>
+ <p>The number of threads per CPU core. To disable multithreading for the instance, specify a value of <code>1</code>. Otherwise, specify the default value of <code>2</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable threadsPerCore;
 
@@ -5229,6 +6154,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The Availability Zone in which to create the Capacity Reservation.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable availabilityZone;
+
+/**
+ <p>The ID of the Availability Zone in which to create the Capacity Reservation.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable availabilityZoneId;
 
 /**
  <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p><p>Constraint: Maximum 64 ASCII characters.</p>
@@ -5322,7 +6252,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable clientCidrBlock;
 
 /**
- <p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html"> How to Ensure Idempotency</a>.</p>
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
@@ -5337,7 +6267,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable detail;
 
 /**
- <p>Information about the DNS servers to be used for DNS resolution. A Client VPN endpoint can have up to two DNS servers. If no DNS server is specified, the DNS address of the VPC that is to be associated with Client VPN endpoint is used as the DNS server.</p>
+ <p>Information about the DNS servers to be used for DNS resolution. A Client VPN endpoint can have up to two DNS servers. If no DNS server is specified, the DNS address configured on the device is used for the DNS server.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable dnsServers;
 
@@ -5347,9 +6277,19 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
+ <p>The IDs of one or more security groups to apply to the target network. You must also specify the ID of the VPC that contains the security groups.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable securityGroupIds;
+
+/**
  <p>The ARN of the server certificate. For more information, see the <a href="https://docs.aws.amazon.com/acm/latest/userguide/">AWS Certificate Manager User Guide</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable serverCertificateArn;
+
+/**
+ <p>Indicates whether split-tunnel is enabled on the AWS Client VPN endpoint.</p><p>By default, split-tunnel on a VPN endpoint is disabled.</p><p>For information about split-tunnel VPN endpoints, see <a href="https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/split-tunnel-vpn.html">Split-Tunnel AWS Client VPN Endpoint</a> in the <i>AWS Client VPN Administrator Guide</i>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable splitTunnel;
 
 /**
  <p>The tags to apply to the Client VPN endpoint during creation.</p>
@@ -5360,6 +6300,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The transport protocol to be used by the VPN session.</p><p>Default value: <code>udp</code></p>
  */
 @property (nonatomic, assign) AWSEC2TransportProtocol transportProtocol;
+
+/**
+ <p>The ID of the VPC to associate with the Client VPN endpoint. If no security group IDs are specified in the request, the default security group for the VPC is applied.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable vpcId;
+
+/**
+ <p>The port number to assign to the Client VPN endpoint for TCP and UDP traffic.</p><p>Valid Values: <code>443</code> | <code>1194</code></p><p>Default Value: <code>443</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable vpnPort;
 
 @end
 
@@ -5391,6 +6341,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @interface AWSEC2CreateClientVpnRouteRequest : AWSRequest
 
+
+/**
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable clientToken;
 
 /**
  <p>The ID of the Client VPN endpoint to which to add the route.</p>
@@ -5434,7 +6389,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 /**
  <p>Contains the parameters for CreateCustomerGateway.</p>
- Required parameters: [BgpAsn, PublicIp, Type]
+ Required parameters: [BgpAsn, Type]
  */
 @interface AWSEC2CreateCustomerGatewayRequest : AWSRequest
 
@@ -5443,6 +6398,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>For devices that support BGP, the customer gateway's BGP ASN.</p><p>Default: 65000</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable bgpAsn;
+
+/**
+ <p>The Amazon Resource Name (ARN) for the customer gateway certificate.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable certificateArn;
+
+/**
+ <p>A name for the customer gateway device.</p><p>Length Constraints: Up to 255 characters.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable deviceName;
 
 /**
  <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
@@ -5615,12 +6580,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable errorCode;
 
 /**
- <p>The error message that describes why the instance could not be launched. For more information about error messages, see ee <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html">Error Codes</a>.</p>
+ <p>The error message that describes why the instance could not be launched. For more information about error messages, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html">Error Codes</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable errorMessage;
 
 /**
- <p>The launch templates and overrides that were used for launching the instances. Any parameters that you specify in the Overrides override the same parameters in the launch template.</p>
+ <p>The launch templates and overrides that were used for launching the instances. The values that you specify in the Overrides replace the values in the launch template.</p>
  */
 @property (nonatomic, strong) AWSEC2LaunchTemplateAndOverridesResponse * _Nullable launchTemplateAndOverrides;
 
@@ -5648,7 +6613,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2InstanceType instanceType;
 
 /**
- <p>The launch templates and overrides that were used for launching the instances. Any parameters that you specify in the Overrides override the same parameters in the launch template.</p>
+ <p>The launch templates and overrides that were used for launching the instances. The values that you specify in the Overrides replace the values in the launch template.</p>
  */
 @property (nonatomic, strong) AWSEC2LaunchTemplateAndOverridesResponse * _Nullable launchTemplateAndOverrides;
 
@@ -5658,7 +6623,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2InstanceLifecycle lifecycle;
 
 /**
- <p>The value is <code>Windows</code> for Windows instances; otherwise blank.</p>
+ <p>The value is <code>Windows</code> for Windows instances. Otherwise, the value is blank.</p>
  */
 @property (nonatomic, assign) AWSEC2PlatformValues platform;
 
@@ -5671,7 +6636,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring Idempotency</a>.</p>
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring Idempotency</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
@@ -5691,7 +6656,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2FleetLaunchTemplateConfigRequest *> * _Nullable launchTemplateConfigs;
 
 /**
- <p>The allocation strategy of On-Demand Instances in an EC2 Fleet.</p>
+ <p>Describes the configuration of On-Demand Instances in an EC2 Fleet.</p>
  */
 @property (nonatomic, strong) AWSEC2OnDemandOptionsRequest * _Nullable onDemandOptions;
 
@@ -5711,7 +6676,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
 
 /**
- <p>The <code>TotalTargetCapacity</code>, <code>OnDemandTargetCapacity</code>, <code>SpotTargetCapacity</code>, and <code>DefaultCapacityType</code> structure.</p>
+ <p>The number of units to request.</p>
  */
 @property (nonatomic, strong) AWSEC2TargetCapacitySpecificationRequest * _Nullable targetCapacitySpecification;
 
@@ -5772,7 +6737,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
 /**
- <p>The ARN for the IAM role that's used to post flow logs to a log group.</p>
+ <p>The ARN for the IAM role that permits Amazon EC2 to publish flow logs to a CloudWatch Logs log group in your account.</p><p>If you specify <code>LogDestinationType</code> as <code>s3</code>, do not specify <code>DeliverLogsPermissionArn</code> or <code>LogGroupName</code>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable deliverLogsPermissionArn;
 
@@ -5782,32 +6747,47 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>Specifies the destination to which the flow log data is to be published. Flow log data can be published to an CloudWatch Logs log group or an Amazon S3 bucket. The value specified for this parameter depends on the value specified for LogDestinationType.</p><p>If LogDestinationType is not specified or <code>cloud-watch-logs</code>, specify the Amazon Resource Name (ARN) of the CloudWatch Logs log group.</p><p>If LogDestinationType is <code>s3</code>, specify the ARN of the Amazon S3 bucket. You can also specify a subfolder in the bucket. To specify a subfolder in the bucket, use the following ARN format: <code>bucket_ARN/subfolder_name/</code>. For example, to specify a subfolder named <code>my-logs</code> in a bucket named <code>my-bucket</code>, use the following ARN: <code>arn:aws:s3:::my-bucket/my-logs/</code>. You cannot use <code>AWSLogs</code> as a subfolder name. This is a reserved term.</p>
+ <p>Specifies the destination to which the flow log data is to be published. Flow log data can be published to a CloudWatch Logs log group or an Amazon S3 bucket. The value specified for this parameter depends on the value specified for <code>LogDestinationType</code>.</p><p>If <code>LogDestinationType</code> is not specified or <code>cloud-watch-logs</code>, specify the Amazon Resource Name (ARN) of the CloudWatch Logs log group. For example, to publish to a log group called <code>my-logs</code>, specify <code>arn:aws:logs:us-east-1:123456789012:log-group:my-logs</code>. Alternatively, use <code>LogGroupName</code> instead.</p><p>If LogDestinationType is <code>s3</code>, specify the ARN of the Amazon S3 bucket. You can also specify a subfolder in the bucket. To specify a subfolder in the bucket, use the following ARN format: <code>bucket_ARN/subfolder_name/</code>. For example, to specify a subfolder named <code>my-logs</code> in a bucket named <code>my-bucket</code>, use the following ARN: <code>arn:aws:s3:::my-bucket/my-logs/</code>. You cannot use <code>AWSLogs</code> as a subfolder name. This is a reserved term.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable logDestination;
 
 /**
- <p>Specifies the type of destination to which the flow log data is to be published. Flow log data can be published to CloudWatch Logs or Amazon S3. To publish flow log data to CloudWatch Logs, specify <code>cloud-watch-logs</code>. To publish flow log data to Amazon S3, specify <code>s3</code>.</p><p>Default: <code>cloud-watch-logs</code></p>
+ <p>Specifies the type of destination to which the flow log data is to be published. Flow log data can be published to CloudWatch Logs or Amazon S3. To publish flow log data to CloudWatch Logs, specify <code>cloud-watch-logs</code>. To publish flow log data to Amazon S3, specify <code>s3</code>.</p><p>If you specify <code>LogDestinationType</code> as <code>s3</code>, do not specify <code>DeliverLogsPermissionArn</code> or <code>LogGroupName</code>.</p><p>Default: <code>cloud-watch-logs</code></p>
  */
 @property (nonatomic, assign) AWSEC2LogDestinationType logDestinationType;
 
 /**
- <p>The name of the log group.</p>
+ <p>The fields to include in the flow log record, in the order in which they should appear. For a list of available fields, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records">Flow Log Records</a>. If you omit this parameter, the flow log is created using the default format. If you specify this parameter, you must specify at least one field.</p><p>Specify the fields using the <code>${field-id}</code> format, separated by spaces. For the AWS CLI, use single quotation marks (' ') to surround the parameter value.</p><p>Only applicable to flow logs that are published to an Amazon S3 bucket.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable logFormat;
+
+/**
+ <p>The name of a new or existing CloudWatch Logs log group where Amazon EC2 publishes your flow logs.</p><p>If you specify <code>LogDestinationType</code> as <code>s3</code>, do not specify <code>DeliverLogsPermissionArn</code> or <code>LogGroupName</code>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable logGroupName;
 
 /**
- <p>One or more subnet, network interface, or VPC IDs.</p><p>Constraints: Maximum of 1000 resources</p>
+ <p>The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record. You can specify 60 seconds (1 minute) or 600 seconds (10 minutes).</p><p>When a network interface is attached to a <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances">Nitro-based instance</a>, the aggregation interval is always 60 seconds or less, regardless of the value that you specify.</p><p>Default: 600</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxAggregationInterval;
+
+/**
+ <p>The ID of the subnet, network interface, or VPC for which you want to create a flow log.</p><p>Constraints: Maximum of 1000 resources</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable resourceIds;
 
 /**
- <p>The type of resource on which to create the flow log.</p>
+ <p>The type of resource for which to create the flow log. For example, if you specified a VPC ID for the <code>ResourceId</code> property, specify <code>VPC</code> for this property.</p>
  */
 @property (nonatomic, assign) AWSEC2FlowLogsResourceType resourceType;
 
 /**
- <p>The type of traffic to log.</p>
+ <p>The tags to apply to the flow logs.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
+/**
+ <p>The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic.</p>
  */
 @property (nonatomic, assign) AWSEC2TrafficType trafficType;
 
@@ -5872,6 +6852,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, strong) NSString * _Nullable name;
 
+/**
+ <p>The tags to apply to the FPGA image during creation.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
 @end
 
 /**
@@ -5893,14 +6878,13 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for CreateImage.</p>
- Required parameters: [InstanceId, Name]
+ 
  */
 @interface AWSEC2CreateImageRequest : AWSRequest
 
 
 /**
- <p>Information about one or more block device mappings. This parameter cannot be used to modify the encryption status of existing volumes or snapshots. To create an AMI with encrypted snapshots, use the <a>CopyImage</a> action.</p>
+ <p>The block device mappings. This parameter cannot be used to modify the encryption status of existing volumes or snapshots. To create an AMI with encrypted snapshots, use the <a>CopyImage</a> action.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2BlockDeviceMapping *> * _Nullable blockDeviceMappings;
 
@@ -5932,7 +6916,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the output of CreateImage.</p>
+ 
  */
 @interface AWSEC2CreateImageResult : AWSModel
 
@@ -5945,8 +6929,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for CreateInstanceExportTask.</p>
- Required parameters: [InstanceId]
+ 
  */
 @interface AWSEC2CreateInstanceExportTaskRequest : AWSRequest
 
@@ -5974,7 +6957,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the output for CreateInstanceExportTask.</p>
+ 
  */
 @interface AWSEC2CreateInstanceExportTaskResult : AWSModel
 
@@ -6028,6 +7011,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, strong) NSString * _Nullable keyName;
 
+/**
+ <p>The tags to apply to the new key pair.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
 @end
 
 /**
@@ -6055,6 +7043,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>A name for the launch template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable launchTemplateName;
+
+/**
+ <p>The tags to apply to the launch template during creation.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
 
 /**
  <p>A description for the first version of the launch template.</p>
@@ -6108,7 +7101,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable launchTemplateName;
 
 /**
- <p>The version number of the launch template version on which to base the new version. The new version inherits the same launch parameters as the source version, except for parameters that you specify in LaunchTemplateData.</p>
+ <p>The version number of the launch template version on which to base the new version. The new version inherits the same launch parameters as the source version, except for parameters that you specify in <code>LaunchTemplateData</code>. Snapshots applied to the block device mapping are ignored when creating a new version unless they are explicitly included.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable sourceVersion;
 
@@ -6135,6 +7128,83 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 /**
  
  */
+@interface AWSEC2CreateLocalGatewayRouteRequest : AWSRequest
+
+
+/**
+ <p>The CIDR range used for destination matches. Routing decisions are based on the most specific match.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable destinationCidrBlock;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the local gateway route table.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayRouteTableId;
+
+/**
+ <p>The ID of the virtual interface group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayVirtualInterfaceGroupId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateLocalGatewayRouteResult : AWSModel
+
+
+/**
+ <p>Information about the route.</p>
+ */
+@property (nonatomic, strong) AWSEC2LocalGatewayRoute * _Nullable route;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateLocalGatewayRouteTableVpcAssociationRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the local gateway route table.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayRouteTableId;
+
+/**
+ <p>The ID of the VPC.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable vpcId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateLocalGatewayRouteTableVpcAssociationResult : AWSModel
+
+
+/**
+ <p>Information about the association.</p>
+ */
+@property (nonatomic, strong) AWSEC2LocalGatewayRouteTableVpcAssociation * _Nullable localGatewayRouteTableVpcAssociation;
+
+@end
+
+/**
+ 
+ */
 @interface AWSEC2CreateNatGatewayRequest : AWSRequest
 
 
@@ -6149,9 +7219,19 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
 /**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
  <p>The subnet in which to create the NAT gateway.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable subnetId;
+
+/**
+ <p>The tags to assign to the NAT gateway.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
 
 @end
 
@@ -6332,6 +7412,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable groups;
 
 /**
+ <p>Indicates the type of network interface. To create an Elastic Fabric Adapter (EFA), specify <code>efa</code>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html"> Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@property (nonatomic, assign) AWSEC2NetworkInterfaceCreationType interfaceType;
+
+/**
  <p>The number of IPv6 addresses to assign to a network interface. Amazon EC2 automatically selects the IPv6 addresses from the subnet range. You can't use this option if specifying specific IPv6 addresses. If your subnet has the <code>AssignIpv6AddressOnCreation</code> attribute set to <code>true</code>, you can specify <code>0</code> to override this setting.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable ipv6AddressCount;
@@ -6401,6 +7486,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The placement strategy.</p>
  */
 @property (nonatomic, assign) AWSEC2PlacementStrategy strategy;
+
+/**
+ <p>The tags to apply to the new placement group.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreatePlacementGroupResult : AWSModel
+
+
+/**
+ <p>Describes a placement group.</p>
+ */
+@property (nonatomic, strong) AWSEC2PlacementGroup * _Nullable placementGroup;
 
 @end
 
@@ -6481,6 +7584,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of a NAT instance in your VPC. The operation fails if you specify an instance ID unless exactly one network interface is attached.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable instanceId;
+
+/**
+ <p>The ID of the local gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayId;
 
 /**
  <p>[IPv4 traffic only] The ID of a NAT gateway.</p>
@@ -6595,8 +7703,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for CreateSnapshot.</p>
- Required parameters: [VolumeId]
+ 
  */
 @interface AWSEC2CreateSnapshotRequest : AWSRequest
 
@@ -6620,6 +7727,52 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of the EBS volume.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable volumeId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateSnapshotsRequest : AWSRequest
+
+
+/**
+ <p>Copies the tags from the specified volume to corresponding snapshot.</p>
+ */
+@property (nonatomic, assign) AWSEC2ReplicateTagsFromSource replicateTagsFromSource;
+
+/**
+ <p> A description propagated to every snapshot specified by the instance.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The instance to specify which volumes should be included in the snapshots.</p>
+ */
+@property (nonatomic, strong) AWSEC2InstanceSpecification * _Nullable instanceSpecification;
+
+/**
+ <p>Tags to apply to every snapshot specified by the instance.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateSnapshotsResult : AWSModel
+
+
+/**
+ <p>List of snapshots.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2SnapshotInfo *> * _Nullable snapshots;
 
 @end
 
@@ -6667,12 +7820,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The Availability Zone for the subnet.</p><p>Default: AWS selects one for you. If you create more than one subnet in your VPC, we may not necessarily select a different zone for each subnet.</p>
+ <p>The Availability Zone or Local Zone for the subnet.</p><p>Default: AWS selects one for you. If you create more than one subnet in your VPC, we do not necessarily select a different zone for each subnet.</p><p>To create a subnet in a Local Zone, set this value to the Local Zone ID, for example <code>us-west-2-lax-1a</code>. For information about the Regions that support Local Zones, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">Available Regions</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable availabilityZone;
 
 /**
- <p>The AZ ID of the subnet.</p>
+ <p>The AZ ID or the Local Zone ID of the subnet.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable availabilityZoneId;
 
@@ -6690,6 +7843,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The IPv6 network range for the subnet, in CIDR notation. The subnet size must use a /64 prefix length.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable ipv6CidrBlock;
+
+/**
+ <p>The Amazon Resource Name (ARN) of the Outpost.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable outpostArn;
 
 /**
  <p>The ID of the VPC.</p>
@@ -6723,14 +7881,365 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>The IDs of one or more resources, separated by spaces.</p><p>Constraints: Up to 1000 resource IDs. We recommend breaking up this request into smaller batches.</p>
+ <p>The IDs of the resources, separated by spaces.</p><p>Constraints: Up to 1000 resource IDs. We recommend breaking up this request into smaller batches.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable resources;
 
 /**
- <p>One or more tags. The <code>value</code> parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string. </p>
+ <p>The tags. The <code>value</code> parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateTrafficMirrorFilterRequest : AWSRequest
+
+
+/**
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable clientToken;
+
+/**
+ <p>The description of the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The tags to assign to a Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateTrafficMirrorFilterResult : AWSModel
+
+
+/**
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable clientToken;
+
+/**
+ <p>Information about the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) AWSEC2TrafficMirrorFilter * _Nullable trafficMirrorFilter;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateTrafficMirrorFilterRuleRequest : AWSRequest
+
+
+/**
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable clientToken;
+
+/**
+ <p>The description of the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>The destination CIDR block to assign to the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable destinationCidrBlock;
+
+/**
+ <p>The destination port range.</p>
+ */
+@property (nonatomic, strong) AWSEC2TrafficMirrorPortRangeRequest * _Nullable destinationPortRange;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The protocol, for example UDP, to assign to the Traffic Mirror rule.</p><p>For information about the protocol value, see <a href="https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol Numbers</a> on the Internet Assigned Numbers Authority (IANA) website.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable protocols;
+
+/**
+ <p>The action to take (<code>accept</code> | <code>reject</code>) on the filtered traffic.</p>
+ */
+@property (nonatomic, assign) AWSEC2TrafficMirrorRuleAction ruleAction;
+
+/**
+ <p>The number of the Traffic Mirror rule. This number must be unique for each Traffic Mirror rule in a given direction. The rules are processed in ascending order by rule number.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable ruleNumber;
+
+/**
+ <p>The source CIDR block to assign to the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable sourceCidrBlock;
+
+/**
+ <p>The source port range.</p>
+ */
+@property (nonatomic, strong) AWSEC2TrafficMirrorPortRangeRequest * _Nullable sourcePortRange;
+
+/**
+ <p>The type of traffic (<code>ingress</code> | <code>egress</code>).</p>
+ */
+@property (nonatomic, assign) AWSEC2TrafficDirection trafficDirection;
+
+/**
+ <p>The ID of the filter that this rule is associated with.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorFilterId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateTrafficMirrorFilterRuleResult : AWSModel
+
+
+/**
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable clientToken;
+
+/**
+ <p>The Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) AWSEC2TrafficMirrorFilterRule * _Nullable trafficMirrorFilterRule;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateTrafficMirrorSessionRequest : AWSRequest
+
+
+/**
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable clientToken;
+
+/**
+ <p>The description of the Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the source network interface.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkInterfaceId;
+
+/**
+ <p>The number of bytes in each packet to mirror. These are bytes after the VXLAN header. Do not specify this parameter when you want to mirror the entire packet. To mirror a subset of the packet, set this to the length (in bytes) that you want to mirror. For example, if you set this value to 100, then the first 100 bytes that meet the filter criteria are copied to the target.</p><p>If you do not want to mirror the entire packet, use the <code>PacketLength</code> parameter to specify the number of bytes in each packet to mirror.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable packetLength;
+
+/**
+ <p>The session number determines the order in which sessions are evaluated when an interface is used by multiple sessions. The first session with a matching filter is the one that mirrors the packets.</p><p>Valid values are 1-32766.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable sessionNumber;
+
+/**
+ <p>The tags to assign to a Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
+/**
+ <p>The ID of the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorFilterId;
+
+/**
+ <p>The ID of the Traffic Mirror target.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorTargetId;
+
+/**
+ <p>The VXLAN ID for the Traffic Mirror session. For more information about the VXLAN protocol, see <a href="https://tools.ietf.org/html/rfc7348">RFC 7348</a>. If you do not specify a <code>VirtualNetworkId</code>, an account-wide unique id is chosen at random.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable virtualNetworkId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateTrafficMirrorSessionResult : AWSModel
+
+
+/**
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable clientToken;
+
+/**
+ <p>Information about the Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) AWSEC2TrafficMirrorSession * _Nullable trafficMirrorSession;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateTrafficMirrorTargetRequest : AWSRequest
+
+
+/**
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable clientToken;
+
+/**
+ <p>The description of the Traffic Mirror target.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The network interface ID that is associated with the target.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkInterfaceId;
+
+/**
+ <p>The Amazon Resource Name (ARN) of the Network Load Balancer that is associated with the target.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkLoadBalancerArn;
+
+/**
+ <p>The tags to assign to the Traffic Mirror target.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateTrafficMirrorTargetResult : AWSModel
+
+
+/**
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable clientToken;
+
+/**
+ <p>Information about the Traffic Mirror target.</p>
+ */
+@property (nonatomic, strong) AWSEC2TrafficMirrorTarget * _Nullable trafficMirrorTarget;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateTransitGatewayMulticastDomainRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The tags for the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
+/**
+ <p>The ID of the transit gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateTransitGatewayMulticastDomainResult : AWSModel
+
+
+/**
+ <p>Information about the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) AWSEC2TransitGatewayMulticastDomain * _Nullable transitGatewayMulticastDomain;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateTransitGatewayPeeringAttachmentRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The AWS account ID of the owner of the peer transit gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable peerAccountId;
+
+/**
+ <p>The Region where the peer transit gateway is located.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable peerRegion;
+
+/**
+ <p>The ID of the peer transit gateway with which to create the peering attachment.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable peerTransitGatewayId;
+
+/**
+ <p>The tags to apply to the transit gateway peering attachment.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
+/**
+ <p>The ID of the transit gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2CreateTransitGatewayPeeringAttachmentResult : AWSModel
+
+
+/**
+ <p>The transit gateway peering attachment.</p>
+ */
+@property (nonatomic, strong) AWSEC2TransitGatewayPeeringAttachment * _Nullable transitGatewayPeeringAttachment;
 
 @end
 
@@ -6782,7 +8291,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Indicates whether traffic matching this route is to be dropped.</p>
+ <p>Indicates whether to drop traffic that matches this route.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable blackhole;
 
@@ -6963,14 +8472,13 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for CreateVolume.</p>
- Required parameters: [AvailabilityZone]
+ 
  */
 @interface AWSEC2CreateVolumeRequest : AWSRequest
 
 
 /**
- <p>The Availability Zone in which to create the volume. Use <a>DescribeAvailabilityZones</a> to list the Availability Zones that are currently available to you.</p>
+ <p>The Availability Zone in which to create the volume.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable availabilityZone;
 
@@ -6980,7 +8488,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>Specifies whether the volume should be encrypted. Encrypted Amazon EBS volumes may only be attached to instances that support Amazon EBS encryption. Volumes that are created from encrypted snapshots are automatically encrypted. There is no way to create an encrypted volume from an unencrypted snapshot or vice versa. If your AMI uses encrypted volumes, you can only launch it on supported instance types. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ <p>Specifies whether the volume should be encrypted. The effect of setting the encryption state to <code>true</code> depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default">Encryption by Default</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>Encrypted Amazon EBS volumes must be attached to instances that support Amazon EBS encryption. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances">Supported Instance Types</a>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable encrypted;
 
@@ -6990,17 +8498,27 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable iops;
 
 /**
- <p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p><p>The CMK identifier may be provided in any of the following formats: </p><ul><li><p>Key ID</p></li><li><p>Key alias</p></li><li><p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>. </p></li><li><p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p></li></ul><p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. The action will eventually fail. </p>
+ <p>The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used. If <code>KmsKeyId</code> is specified, the encrypted state must be <code>true</code>.</p><p>You can specify the CMK using any of the following:</p><ul><li><p>Key ID. For example, key/1234abcd-12ab-34cd-56ef-1234567890ab.</p></li><li><p>Key alias. For example, alias/ExampleAlias.</p></li><li><p>Key ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p></li><li><p>Alias ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p></li></ul><p>AWS authenticates the CMK asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid, the action can appear to complete, but eventually fails.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable kmsKeyId;
 
 /**
- <p>The size of the volume, in GiBs.</p><p>Constraints: 1-16,384 for <code>gp2</code>, 4-16,384 for <code>io1</code>, 500-16,384 for <code>st1</code>, 500-16,384 for <code>sc1</code>, and 1-1,024 for <code>standard</code>. If you specify a snapshot, the volume size must be equal to or larger than the snapshot size.</p><p>Default: If you're creating the volume from a snapshot and don't specify a volume size, the default is the snapshot size.</p><note><p>At least one of Size or SnapshotId are required.</p></note>
+ <p>Specifies whether to enable Amazon EBS Multi-Attach. If you enable Multi-Attach, you can attach the volume to up to 16 <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances">Nitro-based instances</a> in the same Availability Zone. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html"> Amazon EBS Multi-Attach</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable multiAttachEnabled;
+
+/**
+ <p>The Amazon Resource Name (ARN) of the Outpost.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable outpostArn;
+
+/**
+ <p>The size of the volume, in GiBs. You must specify either a snapshot ID or a volume size.</p><p>Constraints: 1-16,384 for <code>gp2</code>, 4-16,384 for <code>io1</code>, 500-16,384 for <code>st1</code>, 500-16,384 for <code>sc1</code>, and 1-1,024 for <code>standard</code>. If you specify a snapshot, the volume size must be equal to or larger than the snapshot size.</p><p>Default: If you're creating the volume from a snapshot and don't specify a volume size, the default is the snapshot size.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable size;
 
 /**
- <p>The snapshot from which to create the volume.</p><note><p>At least one of Size or SnapshotId are required.</p></note>
+ <p>The snapshot from which to create the volume. You must specify either a snapshot ID or a volume size.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable snapshotId;
 
@@ -7010,7 +8528,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
 
 /**
- <p>The volume type. This can be <code>gp2</code> for General Purpose SSD, <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or <code>standard</code> for Magnetic volumes.</p><p>Defaults: If no volume type is specified, the default is <code>standard</code> in us-east-1, eu-west-1, eu-central-1, us-west-2, us-west-1, sa-east-1, ap-northeast-1, ap-northeast-2, ap-southeast-1, ap-southeast-2, ap-south-1, us-gov-west-1, and cn-north-1. In all other Regions, EBS defaults to <code>gp2</code>.</p>
+ <p>The volume type. This can be <code>gp2</code> for General Purpose SSD, <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or <code>standard</code> for Magnetic volumes.</p><p>Default: <code>gp2</code></p>
  */
 @property (nonatomic, assign) AWSEC2VolumeType volumeType;
 
@@ -7023,7 +8541,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
@@ -7048,7 +8566,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable serviceId;
 
 /**
- <p>The ID of the endpoint. </p>
+ <p>The ID of the endpoint.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable vpcEndpointId;
 
@@ -7061,7 +8579,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request.</p>
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
@@ -7080,7 +8598,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
@@ -7095,7 +8613,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable policyDocument;
 
 /**
- <p>(Interface endpoint) Indicate whether to associate a private hosted zone with the specified VPC. The private hosted zone contains a record set for the default public DNS name for the service for the region (for example, <code>kinesis.us-east-1.amazonaws.com</code>) which resolves to the private IP addresses of the endpoint network interfaces in the VPC. This enables you to make requests to the default public DNS name for the service instead of the public DNS names that are automatically generated by the VPC endpoint service.</p><p>To use a private hosted zone, you must set the following VPC attributes to <code>true</code>: <code>enableDnsHostnames</code> and <code>enableDnsSupport</code>. Use <a>ModifyVpcAttribute</a> to set the VPC attributes.</p><p>Default: <code>false</code></p>
+ <p>(Interface endpoint) Indicates whether to associate a private hosted zone with the specified VPC. The private hosted zone contains a record set for the default public DNS name for the service for the Region (for example, <code>kinesis.us-east-1.amazonaws.com</code>), which resolves to the private IP addresses of the endpoint network interfaces in the VPC. This enables you to make requests to the default public DNS name for the service instead of the public DNS names that are automatically generated by the VPC endpoint service.</p><p>To use a private hosted zone, you must set the following VPC attributes to <code>true</code>: <code>enableDnsHostnames</code> and <code>enableDnsSupport</code>. Use <a>ModifyVpcAttribute</a> to set the VPC attributes.</p><p>Default: <code>true</code></p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable privateDnsEnabled;
 
@@ -7120,6 +8638,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable subnetIds;
 
 /**
+ <p>The tags to associate with the endpoint.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
+/**
  <p>The type of endpoint.</p><p>Default: Gateway</p>
  */
 @property (nonatomic, assign) AWSEC2VpcEndpointType vpcEndpointType;
@@ -7138,7 +8661,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request.</p>
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
@@ -7156,12 +8679,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Indicate whether requests from service consumers to create an endpoint to your service must be accepted. To accept a request, use <a>AcceptVpcEndpointConnections</a>.</p>
+ <p>Indicates whether requests from service consumers to create an endpoint to your service must be accepted. To accept a request, use <a>AcceptVpcEndpointConnections</a>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable acceptanceRequired;
 
 /**
- <p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
@@ -7175,6 +8698,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable networkLoadBalancerArns;
 
+/**
+ <p>The private DNS name to assign to the VPC endpoint service.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable privateDnsName;
+
+/**
+ <p>The tags to associate with the service.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
 @end
 
 /**
@@ -7184,7 +8717,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request.</p>
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
@@ -7212,7 +8745,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable peerOwnerId;
 
 /**
- <p>The region code for the accepter VPC, if the accepter VPC is located in a region other than the region in which you make the request.</p><p>Default: The region in which you make the request.</p>
+ <p>The Region code for the accepter VPC, if the accepter VPC is located in a Region other than the Region in which you make the request.</p><p>Default: The Region in which you make the request.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable peerRegion;
 
@@ -7266,6 +8799,21 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The tenancy options for instances launched into the VPC. For <code>default</code>, instances are launched with shared tenancy by default. You can launch instances with any tenancy into a shared tenancy VPC. For <code>dedicated</code>, instances are launched as dedicated tenancy instances by default. You can only launch instances with a tenancy of <code>dedicated</code> or <code>host</code> into a dedicated tenancy VPC. </p><p><b>Important:</b> The <code>host</code> value cannot be used with this parameter. Use the <code>default</code> or <code>dedicated</code> values only.</p><p>Default: <code>default</code></p>
  */
 @property (nonatomic, assign) AWSEC2Tenancy instanceTenancy;
+
+/**
+ <p>The IPv6 CIDR block from the IPv6 address pool. You must also specify <code>Ipv6Pool</code> in the request.</p><p>To let Amazon choose the IPv6 CIDR block for you, omit this parameter.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ipv6CidrBlock;
+
+/**
+ <p>The name of the location from which we advertise the IPV6 CIDR block. Use this parameter to limit the address to this location.</p><p> You must set <code>AmazonProvidedIpv6CidrBlock</code> to <code>true</code> to use this parameter.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ipv6CidrBlockNetworkBorderGroup;
+
+/**
+ <p>The ID of an IPv6 address pool from which to allocate the IPv6 CIDR block.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ipv6Pool;
 
 @end
 
@@ -7434,9 +8982,19 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable bgpAsn;
 
 /**
+ <p>The Amazon Resource Name (ARN) for the customer gateway certificate.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable certificateArn;
+
+/**
  <p>The ID of the customer gateway.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable customerGatewayId;
+
+/**
+ <p>The name of customer gateway device.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable deviceName;
 
 /**
  <p>The Internet-routable IP address of the customer gateway's outside interface.</p>
@@ -7712,7 +9270,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more flow log IDs.</p>
+ <p>One or more flow log IDs.</p><p>Constraint: Maximum of 1000 flow log IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable flowLogIds;
 
@@ -7795,6 +9353,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The name of the key pair.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable keyName;
+
+/**
+ <p>The ID of the key pair.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable keyPairId;
 
 @end
 
@@ -7934,8 +9497,80 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 /**
  
  */
+@interface AWSEC2DeleteLocalGatewayRouteRequest : AWSRequest
+
+
+/**
+ <p>The CIDR range for the route. This must match the CIDR for the route exactly.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable destinationCidrBlock;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the local gateway route table.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayRouteTableId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteLocalGatewayRouteResult : AWSModel
+
+
+/**
+ <p>Information about the route.</p>
+ */
+@property (nonatomic, strong) AWSEC2LocalGatewayRoute * _Nullable route;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteLocalGatewayRouteTableVpcAssociationRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the association.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayRouteTableVpcAssociationId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteLocalGatewayRouteTableVpcAssociationResult : AWSModel
+
+
+/**
+ <p>Information about the association.</p>
+ */
+@property (nonatomic, strong) AWSEC2LocalGatewayRouteTableVpcAssociation * _Nullable localGatewayRouteTableVpcAssociation;
+
+@end
+
+/**
+ 
+ */
 @interface AWSEC2DeleteNatGatewayRequest : AWSRequest
 
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
  <p>The ID of the NAT gateway.</p>
@@ -8078,6 +9713,60 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>Describes the error for a Reserved Instance whose queued purchase could not be deleted.</p>
+ */
+@interface AWSEC2DeleteQueuedReservedInstancesError : AWSModel
+
+
+/**
+ <p>The error code.</p>
+ */
+@property (nonatomic, assign) AWSEC2DeleteQueuedReservedInstancesErrorCode code;
+
+/**
+ <p>The error message.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable message;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteQueuedReservedInstancesRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The IDs of the Reserved Instances.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable reservedInstancesIds;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteQueuedReservedInstancesResult : AWSModel
+
+
+/**
+ <p>Information about the queued purchases that could not be deleted.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2FailedQueuedPurchaseDeletion *> * _Nullable failedQueuedPurchaseDeletions;
+
+/**
+ <p>Information about the queued purchases that were successfully deleted.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2SuccessfulQueuedPurchaseDeletion *> * _Nullable successfulQueuedPurchaseDeletions;
+
+@end
+
+/**
  
  */
 @interface AWSEC2DeleteRouteRequest : AWSRequest
@@ -8147,8 +9836,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for DeleteSnapshot.</p>
- Required parameters: [SnapshotId]
+ 
  */
 @interface AWSEC2DeleteSnapshotRequest : AWSRequest
 
@@ -8208,14 +9896,200 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>The IDs of one or more resources, separated by spaces.</p><p>Constraints: Up to 1000 resource IDs. We recommend breaking up this request into smaller batches.</p>
+ <p>The IDs of the resources, separated by spaces.</p><p>Constraints: Up to 1000 resource IDs. We recommend breaking up this request into smaller batches.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable resources;
 
 /**
- <p>One or more tags to delete. Specify a tag key and an optional tag value to delete specific tags. If you specify a tag key without a tag value, we delete any tag with this key regardless of its value. If you specify a tag key with an empty string as the tag value, we delete the tag only if its value is an empty string.</p><p>If you omit this parameter, we delete all user-defined tags for the specified resources. We do not delete AWS-generated tags (tags that have the <code>aws:</code> prefix).</p>
+ <p>The tags to delete. Specify a tag key and an optional tag value to delete specific tags. If you specify a tag key without a tag value, we delete any tag with this key regardless of its value. If you specify a tag key with an empty string as the tag value, we delete the tag only if its value is an empty string.</p><p>If you omit this parameter, we delete all user-defined tags for the specified resources. We do not delete AWS-generated tags (tags that have the <code>aws:</code> prefix).</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteTrafficMirrorFilterRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorFilterId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteTrafficMirrorFilterResult : AWSModel
+
+
+/**
+ <p>The ID of the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorFilterId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteTrafficMirrorFilterRuleRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorFilterRuleId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteTrafficMirrorFilterRuleResult : AWSModel
+
+
+/**
+ <p>The ID of the deleted Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorFilterRuleId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteTrafficMirrorSessionRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorSessionId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteTrafficMirrorSessionResult : AWSModel
+
+
+/**
+ <p>The ID of the deleted Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorSessionId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteTrafficMirrorTargetRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the Traffic Mirror target.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorTargetId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteTrafficMirrorTargetResult : AWSModel
+
+
+/**
+ <p>The ID of the deleted Traffic Mirror target.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorTargetId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteTransitGatewayMulticastDomainRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteTransitGatewayMulticastDomainResult : AWSModel
+
+
+/**
+ <p>Information about the deleted transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) AWSEC2TransitGatewayMulticastDomain * _Nullable transitGatewayMulticastDomain;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteTransitGatewayPeeringAttachmentRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the transit gateway peering attachment.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayAttachmentId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeleteTransitGatewayPeeringAttachmentResult : AWSModel
+
+
+/**
+ <p>The transit gateway peering attachment.</p>
+ */
+@property (nonatomic, strong) AWSEC2TransitGatewayPeeringAttachment * _Nullable transitGatewayPeeringAttachment;
 
 @end
 
@@ -8349,8 +10223,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for DeleteVolume.</p>
- Required parameters: [VolumeId]
+ 
  */
 @interface AWSEC2DeleteVolumeRequest : AWSRequest
 
@@ -8574,7 +10447,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The public IPv4 address range, in CIDR notation. The prefix must be the same prefix that you specified when you provisioned the address range.</p>
+ <p>The address range, in CIDR notation. The prefix must be the same prefix that you specified when you provisioned the address range.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable cidr;
 
@@ -8620,11 +10493,142 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 /**
  
  */
+@interface AWSEC2DeregisterInstanceEventNotificationAttributesRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>Information about the tag keys to deregister.</p>
+ */
+@property (nonatomic, strong) AWSEC2DeregisterInstanceTagAttributeRequest * _Nullable instanceTagAttribute;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeregisterInstanceEventNotificationAttributesResult : AWSModel
+
+
+/**
+ <p>The resulting set of tag keys.</p>
+ */
+@property (nonatomic, strong) AWSEC2InstanceTagNotificationAttribute * _Nullable instanceTagAttribute;
+
+@end
+
+/**
+ <p>Information about the tag keys to deregister for the current Region. You can either specify individual tag keys or deregister all tag keys in the current Region. You must specify either <code>IncludeAllTagsOfInstance</code> or <code>InstanceTagKeys</code> in the request</p>
+ */
+@interface AWSEC2DeregisterInstanceTagAttributeRequest : AWSModel
+
+
+/**
+ <p>Indicates whether to deregister all tag keys in the current Region. Specify <code>false</code> to deregister all tag keys.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable includeAllTagsOfInstance;
+
+/**
+ <p>Information about the tag keys to deregister.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable instanceTagKeys;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeregisterTransitGatewayMulticastGroupMembersRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The IP address assigned to the transit gateway multicast group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable groupIpAddress;
+
+/**
+ <p>The IDs of the group members' network interfaces.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable networkInterfaceIds;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeregisterTransitGatewayMulticastGroupMembersResult : AWSModel
+
+
+/**
+ <p>Information about the deregistered members.</p>
+ */
+@property (nonatomic, strong) AWSEC2TransitGatewayMulticastDeregisteredGroupMembers * _Nullable deregisteredMulticastGroupMembers;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeregisterTransitGatewayMulticastGroupSourcesRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The IP address assigned to the transit gateway multicast group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable groupIpAddress;
+
+/**
+ <p>The IDs of the group sources' network interfaces.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable networkInterfaceIds;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DeregisterTransitGatewayMulticastGroupSourcesResult : AWSModel
+
+
+/**
+ <p>Information about the deregistered group sources.</p>
+ */
+@property (nonatomic, strong) AWSEC2TransitGatewayMulticastDeregisteredGroupSources * _Nullable deregisteredMulticastGroupSources;
+
+@end
+
+/**
+ 
+ */
 @interface AWSEC2DescribeAccountAttributesRequest : AWSRequest
 
 
 /**
- <p>One or more account attribute names.</p>
+ <p>The account attribute names.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable attributeNames;
 
@@ -8642,7 +10646,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Information about one or more account attributes.</p>
+ <p>Information about the account attributes.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2AccountAttribute *> * _Nullable accountAttributes;
 
@@ -8655,7 +10659,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>[EC2-VPC] One or more allocation IDs.</p><p>Default: Describes all your Elastic IP addresses.</p>
+ <p>[EC2-VPC] Information about the allocation IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable allocationIds;
 
@@ -8665,7 +10669,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters. Filter names and values are case-sensitive.</p><ul><li><p><code>allocation-id</code> - [EC2-VPC] The allocation ID for the address.</p></li><li><p><code>association-id</code> - [EC2-VPC] The association ID for the address.</p></li><li><p><code>domain</code> - Indicates whether the address is for use in EC2-Classic (<code>standard</code>) or in a VPC (<code>vpc</code>).</p></li><li><p><code>instance-id</code> - The ID of the instance the address is associated with, if any.</p></li><li><p><code>network-interface-id</code> - [EC2-VPC] The ID of the network interface that the address is associated with, if any.</p></li><li><p><code>network-interface-owner-id</code> - The AWS account ID of the owner.</p></li><li><p><code>private-ip-address</code> - [EC2-VPC] The private IP address associated with the Elastic IP address.</p></li><li><p><code>public-ip</code> - The Elastic IP address.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li></ul>
+ <p>One or more filters. Filter names and values are case-sensitive.</p><ul><li><p><code>allocation-id</code> - [EC2-VPC] The allocation ID for the address.</p></li><li><p><code>association-id</code> - [EC2-VPC] The association ID for the address.</p></li><li><p><code>domain</code> - Indicates whether the address is for use in EC2-Classic (<code>standard</code>) or in a VPC (<code>vpc</code>).</p></li><li><p><code>instance-id</code> - The ID of the instance the address is associated with, if any.</p></li><li><p><code>network-border-group</code> - The location from where the IP address is advertised.</p></li><li><p><code>network-interface-id</code> - [EC2-VPC] The ID of the network interface that the address is associated with, if any.</p></li><li><p><code>network-interface-owner-id</code> - The AWS account ID of the owner.</p></li><li><p><code>private-ip-address</code> - [EC2-VPC] The private IP address associated with the Elastic IP address.</p></li><li><p><code>public-ip</code> - The Elastic IP address.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -8683,7 +10687,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Information about one or more Elastic IP addresses.</p>
+ <p>Information about the Elastic IP addresses.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Address *> * _Nullable addresses;
 
@@ -8714,7 +10718,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2IdFormat *> * _Nullable statuses;
 
 /**
- <p>Indicates whether all resource types in the region are configured to use longer IDs. This value is only <code>true</code> if all users are configured to use longer IDs for all resources types in the region.</p>
+ <p>Indicates whether all resource types in the Region are configured to use longer IDs. This value is only <code>true</code> if all users are configured to use longer IDs for all resources types in the Region.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable useLongIdsAggregated;
 
@@ -8727,22 +10731,27 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
+ <p>Include all Availability Zones and Local Zones regardless of your opt in status.</p><p>If you do not use this parameter, the results include only the zones for the Regions where you have chosen the option to opt in.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable allAvailabilityZones;
+
+/**
  <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>message</code> - Information about the Availability Zone.</p></li><li><p><code>region-name</code> - The name of the region for the Availability Zone (for example, <code>us-east-1</code>).</p></li><li><p><code>state</code> - The state of the Availability Zone (<code>available</code> | <code>information</code> | <code>impaired</code> | <code>unavailable</code>).</p></li><li><p><code>zone-id</code> - The ID of the Availability Zone (for example, <code>use1-az1</code>).</p></li><li><p><code>zone-name</code> - The name of the Availability Zone (for example, <code>us-east-1a</code>).</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>group-name</code> - For Availability Zones, use the Region name. For Local Zones, use the name of the group associated with the Local Zone (for example, <code>us-west-2-lax-1</code>).</p></li><li><p><code>message</code> - The Availability Zone or Local Zone message.</p></li><li><p><code>opt-in-status</code> - The opt in status (<code>opted-in</code>, and <code>not-opted-in</code> | <code>opt-in-not-required</code>).</p></li><li><p><code>region-name</code> - The name of the Region for the Availability Zone or Local Zone (for example, <code>us-east-1</code>).</p></li><li><p><code>state</code> - The state of the Availability Zone or Local Zone (<code>available</code> | <code>information</code> | <code>impaired</code> | <code>unavailable</code>).</p></li><li><p><code>zone-id</code> - The ID of the Availability Zone (for example, <code>use1-az1</code>) or the Local Zone (for example, use <code>usw2-lax1-az1</code>).</p></li><li><p><code>zone-name</code> - The name of the Availability Zone (for example, <code>us-east-1a</code>) or the Local Zone (for example, use <code>us-west-2-lax-1a</code>).</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>The IDs of one or more Availability Zones.</p>
+ <p>The IDs of the Availability Zones and Local Zones.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable zoneIds;
 
 /**
- <p>The names of one or more Availability Zones.</p>
+ <p>The names of the Availability Zones and Local Zones.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable zoneNames;
 
@@ -8755,20 +10764,20 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Information about one or more Availability Zones.</p>
+ <p>Information about the Availability Zones and Local Zones.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2AvailabilityZone *> * _Nullable availabilityZones;
 
 @end
 
 /**
- <p>Contains the parameters for DescribeBundleTasks.</p>
+ 
  */
 @interface AWSEC2DescribeBundleTasksRequest : AWSRequest
 
 
 /**
- <p>One or more bundle task IDs.</p><p>Default: Describes all your bundle tasks.</p>
+ <p>The bundle task IDs.</p><p>Default: Describes all your bundle tasks.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable bundleIds;
 
@@ -8778,20 +10787,20 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>bundle-id</code> - The ID of the bundle task.</p></li><li><p><code>error-code</code> - If the task failed, the error code returned.</p></li><li><p><code>error-message</code> - If the task failed, the error message returned.</p></li><li><p><code>instance-id</code> - The ID of the instance.</p></li><li><p><code>progress</code> - The level of task completion, as a percentage (for example, 20%).</p></li><li><p><code>s3-bucket</code> - The Amazon S3 bucket to store the AMI.</p></li><li><p><code>s3-prefix</code> - The beginning of the AMI name.</p></li><li><p><code>start-time</code> - The time the task started (for example, 2013-09-15T17:15:20.000Z).</p></li><li><p><code>state</code> - The state of the task (<code>pending</code> | <code>waiting-for-shutdown</code> | <code>bundling</code> | <code>storing</code> | <code>cancelling</code> | <code>complete</code> | <code>failed</code>).</p></li><li><p><code>update-time</code> - The time of the most recent update for the task.</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>bundle-id</code> - The ID of the bundle task.</p></li><li><p><code>error-code</code> - If the task failed, the error code returned.</p></li><li><p><code>error-message</code> - If the task failed, the error message returned.</p></li><li><p><code>instance-id</code> - The ID of the instance.</p></li><li><p><code>progress</code> - The level of task completion, as a percentage (for example, 20%).</p></li><li><p><code>s3-bucket</code> - The Amazon S3 bucket to store the AMI.</p></li><li><p><code>s3-prefix</code> - The beginning of the AMI name.</p></li><li><p><code>start-time</code> - The time the task started (for example, 2013-09-15T17:15:20.000Z).</p></li><li><p><code>state</code> - The state of the task (<code>pending</code> | <code>waiting-for-shutdown</code> | <code>bundling</code> | <code>storing</code> | <code>cancelling</code> | <code>complete</code> | <code>failed</code>).</p></li><li><p><code>update-time</code> - The time of the most recent update for the task.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 @end
 
 /**
- <p>Contains the output of DescribeBundleTasks.</p>
+ 
  */
 @interface AWSEC2DescribeBundleTasksResult : AWSModel
 
 
 /**
- <p>Information about one or more bundle tasks.</p>
+ <p>Information about the bundle tasks.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2BundleTask *> * _Nullable bundleTasks;
 
@@ -8855,7 +10864,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p>
+ <p>One or more filters.</p><ul><li><p><code>instance-type</code> - The type of instance for which the Capacity Reservation reserves capacity.</p></li><li><p><code>owner-id</code> - The ID of the AWS account that owns the Capacity Reservation.</p></li><li><p><code>availability-zone-id</code> - The Availability Zone ID of the Capacity Reservation.</p></li><li><p><code>instance-platform</code> - The type of operating system for which the Capacity Reservation reserves capacity.</p></li><li><p><code>availability-zone</code> - The Availability Zone ID of the Capacity Reservation.</p></li><li><p><code>tenancy</code> - Indicates the tenancy of the Capacity Reservation. A Capacity Reservation can have one of the following tenancy settings:</p><ul><li><p><code>default</code> - The Capacity Reservation is created on hardware that is shared with other AWS accounts.</p></li><li><p><code>dedicated</code> - The Capacity Reservation is created on single-tenant hardware that is dedicated to a single AWS account.</p></li></ul></li><li><p><code>state</code> - The current state of the Capacity Reservation. A Capacity Reservation can be in one of the following states:</p><ul><li><p><code>active</code>- The Capacity Reservation is active and the capacity is available for your use.</p></li><li><p><code>expired</code> - The Capacity Reservation expired automatically at the date and time specified in your request. The reserved capacity is no longer available for your use.</p></li><li><p><code>cancelled</code> - The Capacity Reservation was manually cancelled. The reserved capacity is no longer available for your use.</p></li><li><p><code>pending</code> - The Capacity Reservation request was successful but the capacity provisioning is still pending.</p></li><li><p><code>failed</code> - The Capacity Reservation request has failed. A request might fail due to invalid request parameters, capacity constraints, or instance limit constraints. Failed requests are retained for 60 minutes.</p></li></ul></li><li><p><code>end-date</code> - The date and time at which the Capacity Reservation expires. When a Capacity Reservation expires, the reserved capacity is released and you can no longer launch instances into it. The Capacity Reservation's state changes to expired when it reaches its end date and time.</p></li><li><p><code>end-date-type</code> - Indicates the way in which the Capacity Reservation ends. A Capacity Reservation can have one of the following end types:</p><ul><li><p><code>unlimited</code> - The Capacity Reservation remains active until you explicitly cancel it.</p></li><li><p><code>limited</code> - The Capacity Reservation expires automatically at a specified date and time.</p></li></ul></li><li><p><code>instance-match-criteria</code> - Indicates the type of instance launches that the Capacity Reservation accepts. The options include:</p><ul><li><p><code>open</code> - The Capacity Reservation accepts all instances that have matching attributes (instance type, platform, and Availability Zone). Instances that have matching attributes launch into the Capacity Reservation automatically without specifying any additional parameters.</p></li><li><p><code>targeted</code> - The Capacity Reservation only accepts instances that have matching attributes (instance type, platform, and Availability Zone), and explicitly target the Capacity Reservation. This ensures that only permitted instances can use the reserved capacity.</p></li></ul></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -8957,7 +10966,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters. Filter names and values are case-sensitive.</p>
+ <p>One or more filters. Filter names and values are case-sensitive.</p><ul><li><p><code>description</code> - The description of the authorization rule.</p></li><li><p><code>destination-cidr</code> - The CIDR of the network to which the authorization rule applies.</p></li><li><p><code>group-id</code> - The ID of the Active Directory group to which the authorization rule grants access.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -9008,7 +11017,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters. Filter names and values are case-sensitive.</p>
+ <p>One or more filters. Filter names and values are case-sensitive.</p><ul><li><p><code>connection-id</code> - The ID of the connection.</p></li><li><p><code>username</code> - For Active Directory client authentication, the user name of the client who established the client connection.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -9059,7 +11068,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters. Filter names and values are case-sensitive.</p>
+ <p>One or more filters. Filter names and values are case-sensitive.</p><ul><li><p><code>endpoint-id</code> - The ID of the Client VPN endpoint.</p></li><li><p><code>transport-protocol</code> - The transport protocol (<code>tcp</code> | <code>udp</code>).</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -9110,7 +11119,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters. Filter names and values are case-sensitive.</p>
+ <p>One or more filters. Filter names and values are case-sensitive.</p><ul><li><p><code>destination-cidr</code> - The CIDR of the route destination.</p></li><li><p><code>origin</code> - How the route was associated with the Client VPN endpoint (<code>associate</code> | <code>add-route</code>).</p></li><li><p><code>target-subnet</code> - The ID of the subnet through which traffic is routed.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -9166,7 +11175,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters. Filter names and values are case-sensitive.</p>
+ <p>One or more filters. Filter names and values are case-sensitive.</p><ul><li><p><code>association-id</code> - The ID of the association.</p></li><li><p><code>target-network-id</code> - The ID of the subnet specified as the target network.</p></li><li><p><code>vpc-id</code> - The ID of the VPC in which the target network is located.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -9201,13 +11210,64 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for DescribeConversionTasks.</p>
+ 
+ */
+@interface AWSEC2DescribeCoipPoolsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The filters. The following are the possible values:</p><ul><li><p><code>coip-pool.pool-id</code></p></li></ul><ul><li><p><code>coip-pool.local-gateway-route-table-id</code></p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>The IDs of the address pools.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable poolIds;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeCoipPoolsResult : AWSModel
+
+
+/**
+ <p>Information about the address pools.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2CoipPool *> * _Nullable coipPools;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
  */
 @interface AWSEC2DescribeConversionTasksRequest : AWSRequest
 
 
 /**
- <p>One or more conversion task IDs.</p>
+ <p>The conversion task IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable conversionTaskIds;
 
@@ -9219,7 +11279,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the output for DescribeConversionTasks.</p>
+ 
  */
 @interface AWSEC2DescribeConversionTasksResult : AWSModel
 
@@ -9288,6 +11348,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
 @end
 
 /**
@@ -9300,6 +11370,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>Information about one or more DHCP options sets.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2DhcpOptions *> * _Nullable dhcpOptions;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
 
 @end
 
@@ -9318,6 +11393,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>One or more egress-only internet gateway IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable egressOnlyInternetGatewayIds;
+
+/**
+ <p>One or more filters.</p><ul><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
  <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
@@ -9361,12 +11441,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more Elastic Graphics accelerator IDs.</p>
+ <p>The Elastic Graphics accelerator IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable elasticGpuIds;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>availability-zone</code> - The Availability Zone in which the Elastic Graphics accelerator resides.</p></li><li><p><code>elastic-gpu-health</code> - The status of the Elastic Graphics accelerator (<code>OK</code> | <code>IMPAIRED</code>).</p></li><li><p><code>elastic-gpu-state</code> - The state of the Elastic Graphics accelerator (<code>ATTACHED</code>).</p></li><li><p><code>elastic-gpu-type</code> - The type of Elastic Graphics accelerator; for example, <code>eg1.medium</code>.</p></li><li><p><code>instance-id</code> - The ID of the instance to which the Elastic Graphics accelerator is associated.</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>availability-zone</code> - The Availability Zone in which the Elastic Graphics accelerator resides.</p></li><li><p><code>elastic-gpu-health</code> - The status of the Elastic Graphics accelerator (<code>OK</code> | <code>IMPAIRED</code>).</p></li><li><p><code>elastic-gpu-state</code> - The state of the Elastic Graphics accelerator (<code>ATTACHED</code>).</p></li><li><p><code>elastic-gpu-type</code> - The type of Elastic Graphics accelerator; for example, <code>eg1.medium</code>.</p></li><li><p><code>instance-id</code> - The ID of the instance to which the Elastic Graphics accelerator is associated.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -9406,20 +11486,76 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for DescribeExportTasks.</p>
+ 
+ */
+@interface AWSEC2DescribeExportImageTasksRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The IDs of the export image tasks.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable exportImageTaskIds;
+
+/**
+ <p>Filter tasks using the <code>task-state</code> filter and one of the following values: <code>active</code>, <code>completed</code>, <code>deleting</code>, or <code>deleted</code>.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The maximum number of results to return in a single call.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>A token that indicates the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeExportImageTasksResult : AWSModel
+
+
+/**
+ <p>Information about the export image tasks.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2ExportImageTask *> * _Nullable exportImageTasks;
+
+/**
+ <p>The token to use to get the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
  */
 @interface AWSEC2DescribeExportTasksRequest : AWSRequest
 
 
 /**
- <p>One or more export task IDs.</p>
+ <p>The export task IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable exportTaskIds;
+
+/**
+ <p>the filters for the export tasks.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 @end
 
 /**
- <p>Contains the output for DescribeExportTasks.</p>
+ 
  */
 @interface AWSEC2DescribeExportTasksResult : AWSModel
 
@@ -9428,6 +11564,115 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>Information about the export tasks.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2ExportTask *> * _Nullable exportTasks;
+
+@end
+
+/**
+ <p>Describes fast snapshot restores for a snapshot.</p>
+ */
+@interface AWSEC2DescribeFastSnapshotRestoreSuccessItem : AWSModel
+
+
+/**
+ <p>The Availability Zone.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable availabilityZone;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>disabled</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable disabledTime;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>disabling</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable disablingTime;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>enabled</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable enabledTime;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>enabling</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable enablingTime;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>optimizing</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable optimizingTime;
+
+/**
+ <p>The alias of the snapshot owner.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerAlias;
+
+/**
+ <p>The ID of the AWS account that owns the snapshot.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerId;
+
+/**
+ <p>The ID of the snapshot.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable snapshotId;
+
+/**
+ <p>The state of fast snapshot restores.</p>
+ */
+@property (nonatomic, assign) AWSEC2FastSnapshotRestoreStateCode state;
+
+/**
+ <p>The reason for the state transition. The possible values are as follows:</p><ul><li><p><code>Client.UserInitiated</code> - The state successfully transitioned to <code>enabling</code> or <code>disabling</code>.</p></li><li><p><code>Client.UserInitiated - Lifecycle state transition</code> - The state successfully transitioned to <code>optimizing</code>, <code>enabled</code>, or <code>disabled</code>.</p></li></ul>
+ */
+@property (nonatomic, strong) NSString * _Nullable stateTransitionReason;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeFastSnapshotRestoresRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The filters. The possible values are:</p><ul><li><p><code>availability-zone</code>: The Availability Zone of the snapshot.</p></li><li><p><code>owner-id</code>: The ID of the AWS account that owns the snapshot.</p></li><li><p><code>snapshot-id</code>: The ID of the snapshot.</p></li><li><p><code>state</code>: The state of fast snapshot restores for the snapshot (<code>enabling</code> | <code>optimizing</code> | <code>enabled</code> | <code>disabling</code> | <code>disabled</code>).</p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeFastSnapshotRestoresResult : AWSModel
+
+
+/**
+ <p>Information about the state of fast snapshot restores.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2DescribeFastSnapshotRestoreSuccessItem *> * _Nullable fastSnapshotRestores;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
 
 @end
 
@@ -9443,12 +11688,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable errorCode;
 
 /**
- <p>The error message that describes why the instance could not be launched. For more information about error messages, see ee <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html">Error Codes</a>.</p>
+ <p>The error message that describes why the instance could not be launched. For more information about error messages, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html">Error Codes</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable errorMessage;
 
 /**
- <p>The launch templates and overrides that were used for launching the instances. Any parameters that you specify in the Overrides override the same parameters in the launch template.</p>
+ <p>The launch templates and overrides that were used for launching the instances. The values that you specify in the Overrides replace the values in the launch template.</p>
  */
 @property (nonatomic, strong) AWSEC2LaunchTemplateAndOverridesResponse * _Nullable launchTemplateAndOverrides;
 
@@ -9542,7 +11787,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>instance-type</code> - The instance type.</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>instance-type</code> - The instance type.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -9603,7 +11848,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2InstanceType instanceType;
 
 /**
- <p>The launch templates and overrides that were used for launching the instances. Any parameters that you specify in the Overrides override the same parameters in the launch template.</p>
+ <p>The launch templates and overrides that were used for launching the instances. The values that you specify in the Overrides replace the values in the launch template.</p>
  */
 @property (nonatomic, strong) AWSEC2LaunchTemplateAndOverridesResponse * _Nullable launchTemplateAndOverrides;
 
@@ -9613,7 +11858,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2InstanceLifecycle lifecycle;
 
 /**
- <p>The value is <code>Windows</code> for Windows instances; otherwise blank.</p>
+ <p>The value is <code>Windows</code> for Windows instances. Otherwise, the value is blank.</p>
  */
 @property (nonatomic, assign) AWSEC2PlatformValues platform;
 
@@ -9631,7 +11876,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>activity-status</code> - The progress of the EC2 Fleet ( <code>error</code> | <code>pending-fulfillment</code> | <code>pending-termination</code> | <code>fulfilled</code>).</p></li><li><p><code>excess-capacity-termination-policy</code> - Indicates whether to terminate running instances if the target capacity is decreased below the current EC2 Fleet size (<code>true</code> | <code>false</code>).</p></li><li><p><code>fleet-state</code> - The state of the EC2 Fleet (<code>submitted</code> | <code>active</code> | <code>deleted</code> | <code>failed</code> | <code>deleted-running</code> | <code>deleted-terminating</code> | <code>modifying</code>).</p></li><li><p><code>replace-unhealthy-instances</code> - Indicates whether EC2 Fleet should replace unhealthy instances (<code>true</code> | <code>false</code>).</p></li><li><p><code>type</code> - The type of request (<code>instant</code> | <code>request</code> | <code>maintain</code>).</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>activity-status</code> - The progress of the EC2 Fleet ( <code>error</code> | <code>pending-fulfillment</code> | <code>pending-termination</code> | <code>fulfilled</code>).</p></li><li><p><code>excess-capacity-termination-policy</code> - Indicates whether to terminate running instances if the target capacity is decreased below the current EC2 Fleet size (<code>true</code> | <code>false</code>).</p></li><li><p><code>fleet-state</code> - The state of the EC2 Fleet (<code>submitted</code> | <code>active</code> | <code>deleted</code> | <code>failed</code> | <code>deleted-running</code> | <code>deleted-terminating</code> | <code>modifying</code>).</p></li><li><p><code>replace-unhealthy-instances</code> - Indicates whether EC2 Fleet should replace unhealthy instances (<code>true</code> | <code>false</code>).</p></li><li><p><code>type</code> - The type of request (<code>instant</code> | <code>request</code> | <code>maintain</code>).</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -9682,12 +11927,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>deliver-log-status</code> - The status of the logs delivery (<code>SUCCESS</code> | <code>FAILED</code>).</p></li><li><p><code>log-destination-type</code> - The type of destination to which the flow log publishes data. Possible destination types include <code>cloud-watch-logs</code> and <code>S3</code>.</p></li><li><p><code>flow-log-id</code> - The ID of the flow log.</p></li><li><p><code>log-group-name</code> - The name of the log group.</p></li><li><p><code>resource-id</code> - The ID of the VPC, subnet, or network interface.</p></li><li><p><code>traffic-type</code> - The type of traffic (<code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>).</p></li></ul>
+ <p>One or more filters.</p><ul><li><p><code>deliver-log-status</code> - The status of the logs delivery (<code>SUCCESS</code> | <code>FAILED</code>).</p></li><li><p><code>log-destination-type</code> - The type of destination to which the flow log publishes data. Possible destination types include <code>cloud-watch-logs</code> and <code>S3</code>.</p></li><li><p><code>flow-log-id</code> - The ID of the flow log.</p></li><li><p><code>log-group-name</code> - The name of the log group.</p></li><li><p><code>resource-id</code> - The ID of the VPC, subnet, or network interface.</p></li><li><p><code>traffic-type</code> - The type of traffic (<code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filter;
 
 /**
- <p>One or more flow log IDs.</p>
+ <p>One or more flow log IDs.</p><p>Constraint: Maximum of 1000 flow log IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable flowLogIds;
 
@@ -9769,12 +12014,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>create-time</code> - The creation time of the AFI.</p></li><li><p><code>fpga-image-id</code> - The FPGA image identifier (AFI ID).</p></li><li><p><code>fpga-image-global-id</code> - The global FPGA image identifier (AGFI ID).</p></li><li><p><code>name</code> - The name of the AFI.</p></li><li><p><code>owner-id</code> - The AWS account ID of the AFI owner.</p></li><li><p><code>product-code</code> - The product code.</p></li><li><p><code>shell-version</code> - The version of the AWS Shell that was used to create the bitstream.</p></li><li><p><code>state</code> - The state of the AFI (<code>pending</code> | <code>failed</code> | <code>available</code> | <code>unavailable</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>update-time</code> - The time of the most recent update.</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>create-time</code> - The creation time of the AFI.</p></li><li><p><code>fpga-image-id</code> - The FPGA image identifier (AFI ID).</p></li><li><p><code>fpga-image-global-id</code> - The global FPGA image identifier (AGFI ID).</p></li><li><p><code>name</code> - The name of the AFI.</p></li><li><p><code>owner-id</code> - The AWS account ID of the AFI owner.</p></li><li><p><code>product-code</code> - The product code.</p></li><li><p><code>shell-version</code> - The version of the AWS Shell that was used to create the bitstream.</p></li><li><p><code>state</code> - The state of the AFI (<code>pending</code> | <code>failed</code> | <code>available</code> | <code>unavailable</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>update-time</code> - The time of the most recent update.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>One or more AFI IDs.</p>
+ <p>The AFI IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable fpgaImageIds;
 
@@ -9802,7 +12047,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Information about one or more FPGA images.</p>
+ <p>Information about the FPGA images.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2FpgaImage *> * _Nullable fpgaImages;
 
@@ -9820,7 +12065,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>One or more filters.</p><ul><li><p><code>instance-family</code> - The instance family of the offering (for example, <code>m4</code>).</p></li><li><p><code>payment-option</code> - The payment option (<code>NoUpfront</code> | <code>PartialUpfront</code> | <code>AllUpfront</code>).</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>instance-family</code> - The instance family of the offering (for example, <code>m4</code>).</p></li><li><p><code>payment-option</code> - The payment option (<code>NoUpfront</code> | <code>PartialUpfront</code> | <code>AllUpfront</code>).</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filter;
 
@@ -9876,12 +12121,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>One or more filters.</p><ul><li><p><code>instance-family</code> - The instance family (for example, <code>m4</code>).</p></li><li><p><code>payment-option</code> - The payment option (<code>NoUpfront</code> | <code>PartialUpfront</code> | <code>AllUpfront</code>).</p></li><li><p><code>state</code> - The state of the reservation (<code>payment-pending</code> | <code>payment-failed</code> | <code>active</code> | <code>retired</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>instance-family</code> - The instance family (for example, <code>m4</code>).</p></li><li><p><code>payment-option</code> - The payment option (<code>NoUpfront</code> | <code>PartialUpfront</code> | <code>AllUpfront</code>).</p></li><li><p><code>state</code> - The state of the reservation (<code>payment-pending</code> | <code>payment-failed</code> | <code>active</code> | <code>retired</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filter;
 
 /**
- <p>One or more host reservation IDs.</p>
+ <p>The host reservation IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable hostReservationIdSet;
 
@@ -9922,7 +12167,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>One or more filters.</p><ul><li><p><code>auto-placement</code> - Whether auto-placement is enabled or disabled (<code>on</code> | <code>off</code>).</p></li><li><p><code>availability-zone</code> - The Availability Zone of the host.</p></li><li><p><code>client-token</code> - The idempotency token that you provided when you allocated the host.</p></li><li><p><code>host-reservation-id</code> - The ID of the reservation assigned to this host.</p></li><li><p><code>instance-type</code> - The instance type size that the Dedicated Host is configured to support.</p></li><li><p><code>state</code> - The allocation state of the Dedicated Host (<code>available</code> | <code>under-assessment</code> | <code>permanent-failure</code> | <code>released</code> | <code>released-permanent-failure</code>).</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>auto-placement</code> - Whether auto-placement is enabled or disabled (<code>on</code> | <code>off</code>).</p></li><li><p><code>availability-zone</code> - The Availability Zone of the host.</p></li><li><p><code>client-token</code> - The idempotency token that you provided when you allocated the host.</p></li><li><p><code>host-reservation-id</code> - The ID of the reservation assigned to this host.</p></li><li><p><code>instance-type</code> - The instance type size that the Dedicated Host is configured to support.</p></li><li><p><code>state</code> - The allocation state of the Dedicated Host (<code>available</code> | <code>under-assessment</code> | <code>permanent-failure</code> | <code>released</code> | <code>released-permanent-failure</code>).</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filter;
 
@@ -9932,12 +12177,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable hostIds;
 
 /**
- <p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the returned <code>nextToken</code> value. This value can be between 5 and 500. If <code>maxResults</code> is given a larger value than 500, you receive an error. You cannot specify this parameter and the host IDs parameter in the same request.</p>
+ <p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the returned <code>nextToken</code> value. This value can be between 5 and 500. If <code>maxResults</code> is given a larger value than 500, you receive an error.</p><p>You cannot specify this parameter and the host IDs parameter in the same request.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable maxResults;
 
 /**
- <p>The token to retrieve the next page of results.</p>
+ <p>The token to use to retrieve the next page of results.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
@@ -9968,12 +12213,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>One or more IAM instance profile associations.</p>
+ <p>The IAM instance profile associations.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable associationIds;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>instance-id</code> - The ID of the instance.</p></li><li><p><code>state</code> - The state of the association (<code>associating</code> | <code>associated</code> | <code>disassociating</code> | <code>disassociated</code>).</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>instance-id</code> - The ID of the instance.</p></li><li><p><code>state</code> - The state of the association (<code>associating</code> | <code>associated</code> | <code>disassociating</code>).</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -9996,7 +12241,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Information about one or more IAM instance profile associations.</p>
+ <p>Information about the IAM instance profile associations.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2IamInstanceProfileAssociation *> * _Nullable iamInstanceProfileAssociations;
 
@@ -10089,7 +12334,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for DescribeImages.</p>
+ 
  */
 @interface AWSEC2DescribeImagesRequest : AWSRequest
 
@@ -10105,12 +12350,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable executableUsers;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>architecture</code> - The image architecture (<code>i386</code> | <code>x86_64</code>).</p></li><li><p><code>block-device-mapping.delete-on-termination</code> - A Boolean value that indicates whether the Amazon EBS volume is deleted on instance termination.</p></li><li><p><code>block-device-mapping.device-name</code> - The device name specified in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p></li><li><p><code>block-device-mapping.snapshot-id</code> - The ID of the snapshot used for the EBS volume.</p></li><li><p><code>block-device-mapping.volume-size</code> - The volume size of the EBS volume, in GiB.</p></li><li><p><code>block-device-mapping.volume-type</code> - The volume type of the EBS volume (<code>gp2</code> | <code>io1</code> | <code>st1 </code>| <code>sc1</code> | <code>standard</code>).</p></li><li><p><code>block-device-mapping.encrypted</code> - A Boolean that indicates whether the EBS volume is encrypted.</p></li><li><p><code>description</code> - The description of the image (provided during image creation).</p></li><li><p><code>ena-support</code> - A Boolean that indicates whether enhanced networking with ENA is enabled.</p></li><li><p><code>hypervisor</code> - The hypervisor type (<code>ovm</code> | <code>xen</code>).</p></li><li><p><code>image-id</code> - The ID of the image.</p></li><li><p><code>image-type</code> - The image type (<code>machine</code> | <code>kernel</code> | <code>ramdisk</code>).</p></li><li><p><code>is-public</code> - A Boolean that indicates whether the image is public.</p></li><li><p><code>kernel-id</code> - The kernel ID.</p></li><li><p><code>manifest-location</code> - The location of the image manifest.</p></li><li><p><code>name</code> - The name of the AMI (provided during image creation).</p></li><li><p><code>owner-alias</code> - String value from an Amazon-maintained list (<code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>) of snapshot owners. Not to be confused with the user-configured AWS account alias, which is set from the IAM console.</p></li><li><p><code>owner-id</code> - The AWS account ID of the image owner.</p></li><li><p><code>platform</code> - The platform. To only list Windows-based AMIs, use <code>windows</code>.</p></li><li><p><code>product-code</code> - The product code.</p></li><li><p><code>product-code.type</code> - The type of the product code (<code>devpay</code> | <code>marketplace</code>).</p></li><li><p><code>ramdisk-id</code> - The RAM disk ID.</p></li><li><p><code>root-device-name</code> - The device name of the root device volume (for example, <code>/dev/sda1</code>).</p></li><li><p><code>root-device-type</code> - The type of the root device volume (<code>ebs</code> | <code>instance-store</code>).</p></li><li><p><code>state</code> - The state of the image (<code>available</code> | <code>pending</code> | <code>failed</code>).</p></li><li><p><code>state-reason-code</code> - The reason code for the state change.</p></li><li><p><code>state-reason-message</code> - The message for the state change.</p></li><li><p><code>sriov-net-support</code> - A value of <code>simple</code> indicates that enhanced networking with the Intel 82599 VF interface is enabled.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>virtualization-type</code> - The virtualization type (<code>paravirtual</code> | <code>hvm</code>).</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>architecture</code> - The image architecture (<code>i386</code> | <code>x86_64</code> | <code>arm64</code>).</p></li><li><p><code>block-device-mapping.delete-on-termination</code> - A Boolean value that indicates whether the Amazon EBS volume is deleted on instance termination.</p></li><li><p><code>block-device-mapping.device-name</code> - The device name specified in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p></li><li><p><code>block-device-mapping.snapshot-id</code> - The ID of the snapshot used for the EBS volume.</p></li><li><p><code>block-device-mapping.volume-size</code> - The volume size of the EBS volume, in GiB.</p></li><li><p><code>block-device-mapping.volume-type</code> - The volume type of the EBS volume (<code>gp2</code> | <code>io1</code> | <code>st1 </code>| <code>sc1</code> | <code>standard</code>).</p></li><li><p><code>block-device-mapping.encrypted</code> - A Boolean that indicates whether the EBS volume is encrypted.</p></li><li><p><code>description</code> - The description of the image (provided during image creation).</p></li><li><p><code>ena-support</code> - A Boolean that indicates whether enhanced networking with ENA is enabled.</p></li><li><p><code>hypervisor</code> - The hypervisor type (<code>ovm</code> | <code>xen</code>).</p></li><li><p><code>image-id</code> - The ID of the image.</p></li><li><p><code>image-type</code> - The image type (<code>machine</code> | <code>kernel</code> | <code>ramdisk</code>).</p></li><li><p><code>is-public</code> - A Boolean that indicates whether the image is public.</p></li><li><p><code>kernel-id</code> - The kernel ID.</p></li><li><p><code>manifest-location</code> - The location of the image manifest.</p></li><li><p><code>name</code> - The name of the AMI (provided during image creation).</p></li><li><p><code>owner-alias</code> - String value from an Amazon-maintained list (<code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>) of snapshot owners. Not to be confused with the user-configured AWS account alias, which is set from the IAM console.</p></li><li><p><code>owner-id</code> - The AWS account ID of the image owner.</p></li><li><p><code>platform</code> - The platform. To only list Windows-based AMIs, use <code>windows</code>.</p></li><li><p><code>product-code</code> - The product code.</p></li><li><p><code>product-code.type</code> - The type of the product code (<code>devpay</code> | <code>marketplace</code>).</p></li><li><p><code>ramdisk-id</code> - The RAM disk ID.</p></li><li><p><code>root-device-name</code> - The device name of the root device volume (for example, <code>/dev/sda1</code>).</p></li><li><p><code>root-device-type</code> - The type of the root device volume (<code>ebs</code> | <code>instance-store</code>).</p></li><li><p><code>state</code> - The state of the image (<code>available</code> | <code>pending</code> | <code>failed</code>).</p></li><li><p><code>state-reason-code</code> - The reason code for the state change.</p></li><li><p><code>state-reason-message</code> - The message for the state change.</p></li><li><p><code>sriov-net-support</code> - A value of <code>simple</code> indicates that enhanced networking with the Intel 82599 VF interface is enabled.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>virtualization-type</code> - The virtualization type (<code>paravirtual</code> | <code>hvm</code>).</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>One or more image IDs.</p><p>Default: Describes all images available to you.</p>
+ <p>The image IDs.</p><p>Default: Describes all images available to you.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable imageIds;
 
@@ -10122,20 +12367,20 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the output of DescribeImages.</p>
+ 
  */
 @interface AWSEC2DescribeImagesResult : AWSModel
 
 
 /**
- <p>Information about one or more images.</p>
+ <p>Information about the images.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Image *> * _Nullable images;
 
 @end
 
 /**
- <p>Contains the parameters for DescribeImportImageTasks.</p>
+ 
  */
 @interface AWSEC2DescribeImportImageTasksRequest : AWSRequest
 
@@ -10146,17 +12391,17 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>Filter tasks using the <code>task-state</code> filter and one of the following values: active, completed, deleting, deleted.</p>
+ <p>Filter tasks using the <code>task-state</code> filter and one of the following values: <code>active</code>, <code>completed</code>, <code>deleting</code>, or <code>deleted</code>.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>A list of import image task IDs.</p>
+ <p>The IDs of the import image tasks.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable importTaskIds;
 
 /**
- <p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>
+ <p>The maximum number of results to return in a single call.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable maxResults;
 
@@ -10168,7 +12413,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the output for DescribeImportImageTasks.</p>
+ 
  */
 @interface AWSEC2DescribeImportImageTasksResult : AWSModel
 
@@ -10186,7 +12431,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for DescribeImportSnapshotTasks.</p>
+ 
  */
 @interface AWSEC2DescribeImportSnapshotTasksRequest : AWSRequest
 
@@ -10197,7 +12442,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p>
+ <p>The filters.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -10219,7 +12464,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the output for DescribeImportSnapshotTasks.</p>
+ 
  */
 @interface AWSEC2DescribeImportSnapshotTasksResult : AWSModel
 
@@ -10271,12 +12516,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>instance-id</code> - The ID of the instance.</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>instance-id</code> - The ID of the instance.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>One or more instance IDs.</p><p>Default: Describes all your instances.</p><p>Constraints: Maximum 1000 explicitly specified instance IDs.</p>
+ <p>The instance IDs.</p><p>Default: Describes all your instances.</p><p>Constraints: Maximum 1000 explicitly specified instance IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable instanceIds;
 
@@ -10313,6 +12558,32 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 /**
  
  */
+@interface AWSEC2DescribeInstanceEventNotificationAttributesRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeInstanceEventNotificationAttributesResult : AWSModel
+
+
+/**
+ <p>Information about the registered tag keys.</p>
+ */
+@property (nonatomic, strong) AWSEC2InstanceTagNotificationAttribute * _Nullable instanceTagAttribute;
+
+@end
+
+/**
+ 
+ */
 @interface AWSEC2DescribeInstanceStatusRequest : AWSRequest
 
 
@@ -10322,7 +12593,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>availability-zone</code> - The Availability Zone of the instance.</p></li><li><p><code>event.code</code> - The code for the scheduled event (<code>instance-reboot</code> | <code>system-reboot</code> | <code>system-maintenance</code> | <code>instance-retirement</code> | <code>instance-stop</code>).</p></li><li><p><code>event.description</code> - A description of the event.</p></li><li><p><code>event.instance-event-id</code> - The ID of the event whose date and time you are modifying.</p></li><li><p><code>event.not-after</code> - The latest end time for the scheduled event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p></li><li><p><code>event.not-before</code> - The earliest start time for the scheduled event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p></li><li><p><code>event.not-before-deadline</code> - The deadline for starting the event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p></li><li><p><code>instance-state-code</code> - The code for the instance state, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p></li><li><p><code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p></li><li><p><code>instance-status.reachability</code> - Filters on instance status where the name is <code>reachability</code> (<code>passed</code> | <code>failed</code> | <code>initializing</code> | <code>insufficient-data</code>).</p></li><li><p><code>instance-status.status</code> - The status of the instance (<code>ok</code> | <code>impaired</code> | <code>initializing</code> | <code>insufficient-data</code> | <code>not-applicable</code>).</p></li><li><p><code>system-status.reachability</code> - Filters on system status where the name is <code>reachability</code> (<code>passed</code> | <code>failed</code> | <code>initializing</code> | <code>insufficient-data</code>).</p></li><li><p><code>system-status.status</code> - The system status of the instance (<code>ok</code> | <code>impaired</code> | <code>initializing</code> | <code>insufficient-data</code> | <code>not-applicable</code>).</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>availability-zone</code> - The Availability Zone of the instance.</p></li><li><p><code>event.code</code> - The code for the scheduled event (<code>instance-reboot</code> | <code>system-reboot</code> | <code>system-maintenance</code> | <code>instance-retirement</code> | <code>instance-stop</code>).</p></li><li><p><code>event.description</code> - A description of the event.</p></li><li><p><code>event.instance-event-id</code> - The ID of the event whose date and time you are modifying.</p></li><li><p><code>event.not-after</code> - The latest end time for the scheduled event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p></li><li><p><code>event.not-before</code> - The earliest start time for the scheduled event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p></li><li><p><code>event.not-before-deadline</code> - The deadline for starting the event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p></li><li><p><code>instance-state-code</code> - The code for the instance state, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p></li><li><p><code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p></li><li><p><code>instance-status.reachability</code> - Filters on instance status where the name is <code>reachability</code> (<code>passed</code> | <code>failed</code> | <code>initializing</code> | <code>insufficient-data</code>).</p></li><li><p><code>instance-status.status</code> - The status of the instance (<code>ok</code> | <code>impaired</code> | <code>initializing</code> | <code>insufficient-data</code> | <code>not-applicable</code>).</p></li><li><p><code>system-status.reachability</code> - Filters on system status where the name is <code>reachability</code> (<code>passed</code> | <code>failed</code> | <code>initializing</code> | <code>insufficient-data</code>).</p></li><li><p><code>system-status.status</code> - The system status of the instance (<code>ok</code> | <code>impaired</code> | <code>initializing</code> | <code>insufficient-data</code> | <code>not-applicable</code>).</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -10332,7 +12603,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable includeAllInstances;
 
 /**
- <p>One or more instance IDs.</p><p>Default: Describes all your instances.</p><p>Constraints: Maximum 100 explicitly specified instance IDs.</p>
+ <p>The instance IDs.</p><p>Default: Describes all your instances.</p><p>Constraints: Maximum 100 explicitly specified instance IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable instanceIds;
 
@@ -10355,9 +12626,111 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>One or more instance status descriptions.</p>
+ <p>Information about the status of the instances.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2InstanceStatus *> * _Nullable instanceStatuses;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeInstanceTypeOfferingsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters. Filter names and values are case-sensitive.</p><ul><li><p><code>location</code> - This depends on the location type. For example, if the location type is <code>region</code> (default), the location is the Region code (for example, <code>us-east-2</code>.)</p></li><li><p><code>instance-type</code> - The instance type.</p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The location type.</p>
+ */
+@property (nonatomic, assign) AWSEC2LocationType locationType;
+
+/**
+ <p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the next token value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token to retrieve the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeInstanceTypeOfferingsResult : AWSModel
+
+
+/**
+ <p>The instance types offered.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2InstanceTypeOffering *> * _Nullable instanceTypeOfferings;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeInstanceTypesRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters. Filter names and values are case-sensitive.</p><ul><li><p><code>auto-recovery-supported</code> - Indicates whether auto recovery is supported. (<code>true</code> | <code>false</code>)</p></li><li><p><code>bare-metal</code> - Indicates whether it is a bare metal instance type. (<code>true</code> | <code>false</code>)</p></li><li><p><code>burstable-performance-supported</code> - Indicates whether it is a burstable performance instance type. (<code>true</code> | <code>false</code>)</p></li><li><p><code>current-generation</code> - Indicates whether this instance type is the latest generation instance type of an instance family. (<code>true</code> | <code>false</code>)</p></li><li><p><code>ebs-info.ebs-optimized-support</code> - Indicates whether the instance type is EBS-optimized. (<code>supported</code> | <code>unsupported</code> | <code>default</code>)</p></li><li><p><code>ebs-info.encryption-support</code> - Indicates whether EBS encryption is supported. (<code>supported</code> | <code>unsupported</code>)</p></li><li><p><code>free-tier-eligible</code> - Indicates whether the instance type is eligible to use in the free tier. (<code>true</code> | <code>false</code>)</p></li><li><p><code>hibernation-supported</code> - Indicates whether On-Demand hibernation is supported. (<code>true</code> | <code>false</code>)</p></li><li><p><code>hypervisor</code> - The hypervisor used. (<code>nitro</code> | <code>xen</code>)</p></li><li><p><code>instance-storage-info.disk.count</code> - The number of local disks.</p></li><li><p><code>instance-storage-info.disk.size-in-gb</code> - The storage size of each instance storage disk, in GB.</p></li><li><p><code>instance-storage-info.disk.type</code> - The storage technology for the local instance storage disks. (<code>hdd</code> | <code>ssd</code>)</p></li><li><p><code>instance-storage-info.total-size-in-gb</code> - The total amount of storage available from all local instance storage, in GB.</p></li><li><p><code>instance-storage-supported</code> - Indicates whether the instance type has local instance storage. (<code>true</code> | <code>false</code>)</p></li><li><p><code>memory-info.size-in-mib</code> - The memory size.</p></li><li><p><code>network-info.ena-support</code> - Indicates whether Elastic Network Adapter (ENA) is supported or required. (<code>required</code> | <code>supported</code> | <code>unsupported</code>)</p></li><li><p><code>network-info.ipv4-addresses-per-interface</code> - The maximum number of private IPv4 addresses per network interface.</p></li><li><p><code>network-info.ipv6-addresses-per-interface</code> - The maximum number of private IPv6 addresses per network interface.</p></li><li><p><code>network-info.ipv6-supported</code> - Indicates whether the instance type supports IPv6. (<code>true</code> | <code>false</code>)</p></li><li><p><code>network-info.maximum-network-interfaces</code> - The maximum number of network interfaces per instance.</p></li><li><p><code>network-info.network-performance</code> - Describes the network performance.</p></li><li><p><code>processor-info.sustained-clock-speed-in-ghz</code> - The CPU clock speed, in GHz.</p></li><li><p><code>vcpu-info.default-cores</code> - The default number of cores for the instance type.</p></li><li><p><code>vcpu-info.default-threads-per-core</code> - The default number of threads per core for the instance type.</p></li><li><p><code>vcpu-info.default-vcpus</code> - The default number of vCPUs for the instance type.</p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The instance types. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable instanceTypes;
+
+/**
+ <p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the next token value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token to retrieve the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeInstanceTypesResult : AWSModel
+
+
+/**
+ <p>The instance type. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2InstanceTypeInfo *> * _Nullable instanceTypes;
 
 /**
  <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
@@ -10378,12 +12751,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>affinity</code> - The affinity setting for an instance running on a Dedicated Host (<code>default</code> | <code>host</code>).</p></li><li><p><code>architecture</code> - The instance architecture (<code>i386</code> | <code>x86_64</code>).</p></li><li><p><code>availability-zone</code> - The Availability Zone of the instance.</p></li><li><p><code>block-device-mapping.attach-time</code> - The attach time for an EBS volume mapped to the instance, for example, <code>2010-09-15T17:15:20.000Z</code>.</p></li><li><p><code>block-device-mapping.delete-on-termination</code> - A Boolean that indicates whether the EBS volume is deleted on instance termination.</p></li><li><p><code>block-device-mapping.device-name</code> - The device name specified in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p></li><li><p><code>block-device-mapping.status</code> - The status for the EBS volume (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p></li><li><p><code>block-device-mapping.volume-id</code> - The volume ID of the EBS volume.</p></li><li><p><code>client-token</code> - The idempotency token you provided when you launched the instance.</p></li><li><p><code>dns-name</code> - The public DNS name of the instance.</p></li><li><p><code>group-id</code> - The ID of the security group for the instance. EC2-Classic only.</p></li><li><p><code>group-name</code> - The name of the security group for the instance. EC2-Classic only.</p></li><li><p><code>hibernation-options.configured</code> - A Boolean that indicates whether the instance is enabled for hibernation. A value of <code>true</code> means that the instance is enabled for hibernation. </p></li><li><p><code>host-id</code> - The ID of the Dedicated Host on which the instance is running, if applicable.</p></li><li><p><code>hypervisor</code> - The hypervisor type of the instance (<code>ovm</code> | <code>xen</code>).</p></li><li><p><code>iam-instance-profile.arn</code> - The instance profile associated with the instance. Specified as an ARN.</p></li><li><p><code>image-id</code> - The ID of the image used to launch the instance.</p></li><li><p><code>instance-id</code> - The ID of the instance.</p></li><li><p><code>instance-lifecycle</code> - Indicates whether this is a Spot Instance or a Scheduled Instance (<code>spot</code> | <code>scheduled</code>).</p></li><li><p><code>instance-state-code</code> - The state of the instance, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are: 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p></li><li><p><code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p></li><li><p><code>instance-type</code> - The type of instance (for example, <code>t2.micro</code>).</p></li><li><p><code>instance.group-id</code> - The ID of the security group for the instance. </p></li><li><p><code>instance.group-name</code> - The name of the security group for the instance. </p></li><li><p><code>ip-address</code> - The public IPv4 address of the instance.</p></li><li><p><code>kernel-id</code> - The kernel ID.</p></li><li><p><code>key-name</code> - The name of the key pair used when the instance was launched.</p></li><li><p><code>launch-index</code> - When launching multiple instances, this is the index for the instance in the launch group (for example, 0, 1, 2, and so on). </p></li><li><p><code>launch-time</code> - The time when the instance was launched.</p></li><li><p><code>monitoring-state</code> - Indicates whether detailed monitoring is enabled (<code>disabled</code> | <code>enabled</code>).</p></li><li><p><code>network-interface.addresses.private-ip-address</code> - The private IPv4 address associated with the network interface.</p></li><li><p><code>network-interface.addresses.primary</code> - Specifies whether the IPv4 address of the network interface is the primary private IPv4 address.</p></li><li><p><code>network-interface.addresses.association.public-ip</code> - The ID of the association of an Elastic IP address (IPv4) with a network interface.</p></li><li><p><code>network-interface.addresses.association.ip-owner-id</code> - The owner ID of the private IPv4 address associated with the network interface.</p></li><li><p><code>network-interface.association.public-ip</code> - The address of the Elastic IP address (IPv4) bound to the network interface.</p></li><li><p><code>network-interface.association.ip-owner-id</code> - The owner of the Elastic IP address (IPv4) associated with the network interface.</p></li><li><p><code>network-interface.association.allocation-id</code> - The allocation ID returned when you allocated the Elastic IP address (IPv4) for your network interface.</p></li><li><p><code>network-interface.association.association-id</code> - The association ID returned when the network interface was associated with an IPv4 address.</p></li><li><p><code>network-interface.attachment.attachment-id</code> - The ID of the interface attachment.</p></li><li><p><code>network-interface.attachment.instance-id</code> - The ID of the instance to which the network interface is attached.</p></li><li><p><code>network-interface.attachment.instance-owner-id</code> - The owner ID of the instance to which the network interface is attached.</p></li><li><p><code>network-interface.attachment.device-index</code> - The device index to which the network interface is attached.</p></li><li><p><code>network-interface.attachment.status</code> - The status of the attachment (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p></li><li><p><code>network-interface.attachment.attach-time</code> - The time that the network interface was attached to an instance.</p></li><li><p><code>network-interface.attachment.delete-on-termination</code> - Specifies whether the attachment is deleted when an instance is terminated.</p></li><li><p><code>network-interface.availability-zone</code> - The Availability Zone for the network interface.</p></li><li><p><code>network-interface.description</code> - The description of the network interface.</p></li><li><p><code>network-interface.group-id</code> - The ID of a security group associated with the network interface.</p></li><li><p><code>network-interface.group-name</code> - The name of a security group associated with the network interface.</p></li><li><p><code>network-interface.ipv6-addresses.ipv6-address</code> - The IPv6 address associated with the network interface.</p></li><li><p><code>network-interface.mac-address</code> - The MAC address of the network interface.</p></li><li><p><code>network-interface.network-interface-id</code> - The ID of the network interface.</p></li><li><p><code>network-interface.owner-id</code> - The ID of the owner of the network interface.</p></li><li><p><code>network-interface.private-dns-name</code> - The private DNS name of the network interface.</p></li><li><p><code>network-interface.requester-id</code> - The requester ID for the network interface.</p></li><li><p><code>network-interface.requester-managed</code> - Indicates whether the network interface is being managed by AWS.</p></li><li><p><code>network-interface.status</code> - The status of the network interface (<code>available</code>) | <code>in-use</code>).</p></li><li><p><code>network-interface.source-dest-check</code> - Whether the network interface performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the network interface to perform network address translation (NAT) in your VPC.</p></li><li><p><code>network-interface.subnet-id</code> - The ID of the subnet for the network interface.</p></li><li><p><code>network-interface.vpc-id</code> - The ID of the VPC for the network interface.</p></li><li><p><code>owner-id</code> - The AWS account ID of the instance owner.</p></li><li><p><code>placement-group-name</code> - The name of the placement group for the instance.</p></li><li><p><code>placement-partition-number</code> - The partition in which the instance is located.</p></li><li><p><code>platform</code> - The platform. Use <code>windows</code> if you have Windows instances; otherwise, leave blank.</p></li><li><p><code>private-dns-name</code> - The private IPv4 DNS name of the instance.</p></li><li><p><code>private-ip-address</code> - The private IPv4 address of the instance.</p></li><li><p><code>product-code</code> - The product code associated with the AMI used to launch the instance.</p></li><li><p><code>product-code.type</code> - The type of product code (<code>devpay</code> | <code>marketplace</code>).</p></li><li><p><code>ramdisk-id</code> - The RAM disk ID.</p></li><li><p><code>reason</code> - The reason for the current state of the instance (for example, shows "User Initiated [date]" when you stop or terminate the instance). Similar to the state-reason-code filter.</p></li><li><p><code>requester-id</code> - The ID of the entity that launched the instance on your behalf (for example, AWS Management Console, Auto Scaling, and so on).</p></li><li><p><code>reservation-id</code> - The ID of the instance's reservation. A reservation ID is created any time you launch an instance. A reservation ID has a one-to-one relationship with an instance launch request, but can be associated with more than one instance if you launch multiple instances using the same launch request. For example, if you launch one instance, you get one reservation ID. If you launch ten instances using the same launch request, you also get one reservation ID.</p></li><li><p><code>root-device-name</code> - The device name of the root device volume (for example, <code>/dev/sda1</code>).</p></li><li><p><code>root-device-type</code> - The type of the root device volume (<code>ebs</code> | <code>instance-store</code>).</p></li><li><p><code>source-dest-check</code> - Indicates whether the instance performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the instance to perform network address translation (NAT) in your VPC. </p></li><li><p><code>spot-instance-request-id</code> - The ID of the Spot Instance request.</p></li><li><p><code>state-reason-code</code> - The reason code for the state change.</p></li><li><p><code>state-reason-message</code> - A message that describes the state change.</p></li><li><p><code>subnet-id</code> - The ID of the subnet for the instance.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources that have a tag with a specific key, regardless of the tag value.</p></li><li><p><code>tenancy</code> - The tenancy of an instance (<code>dedicated</code> | <code>default</code> | <code>host</code>).</p></li><li><p><code>virtualization-type</code> - The virtualization type of the instance (<code>paravirtual</code> | <code>hvm</code>).</p></li><li><p><code>vpc-id</code> - The ID of the VPC that the instance is running in.</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>affinity</code> - The affinity setting for an instance running on a Dedicated Host (<code>default</code> | <code>host</code>).</p></li><li><p><code>architecture</code> - The instance architecture (<code>i386</code> | <code>x86_64</code> | <code>arm64</code>).</p></li><li><p><code>availability-zone</code> - The Availability Zone of the instance.</p></li><li><p><code>block-device-mapping.attach-time</code> - The attach time for an EBS volume mapped to the instance, for example, <code>2010-09-15T17:15:20.000Z</code>.</p></li><li><p><code>block-device-mapping.delete-on-termination</code> - A Boolean that indicates whether the EBS volume is deleted on instance termination.</p></li><li><p><code>block-device-mapping.device-name</code> - The device name specified in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p></li><li><p><code>block-device-mapping.status</code> - The status for the EBS volume (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p></li><li><p><code>block-device-mapping.volume-id</code> - The volume ID of the EBS volume.</p></li><li><p><code>client-token</code> - The idempotency token you provided when you launched the instance.</p></li><li><p><code>dns-name</code> - The public DNS name of the instance.</p></li><li><p><code>group-id</code> - The ID of the security group for the instance. EC2-Classic only.</p></li><li><p><code>group-name</code> - The name of the security group for the instance. EC2-Classic only.</p></li><li><p><code>hibernation-options.configured</code> - A Boolean that indicates whether the instance is enabled for hibernation. A value of <code>true</code> means that the instance is enabled for hibernation. </p></li><li><p><code>host-id</code> - The ID of the Dedicated Host on which the instance is running, if applicable.</p></li><li><p><code>hypervisor</code> - The hypervisor type of the instance (<code>ovm</code> | <code>xen</code>). The value <code>xen</code> is used for both Xen and Nitro hypervisors.</p></li><li><p><code>iam-instance-profile.arn</code> - The instance profile associated with the instance. Specified as an ARN.</p></li><li><p><code>image-id</code> - The ID of the image used to launch the instance.</p></li><li><p><code>instance-id</code> - The ID of the instance.</p></li><li><p><code>instance-lifecycle</code> - Indicates whether this is a Spot Instance or a Scheduled Instance (<code>spot</code> | <code>scheduled</code>).</p></li><li><p><code>instance-state-code</code> - The state of the instance, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are: 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p></li><li><p><code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p></li><li><p><code>instance-type</code> - The type of instance (for example, <code>t2.micro</code>).</p></li><li><p><code>instance.group-id</code> - The ID of the security group for the instance. </p></li><li><p><code>instance.group-name</code> - The name of the security group for the instance. </p></li><li><p><code>ip-address</code> - The public IPv4 address of the instance.</p></li><li><p><code>kernel-id</code> - The kernel ID.</p></li><li><p><code>key-name</code> - The name of the key pair used when the instance was launched.</p></li><li><p><code>launch-index</code> - When launching multiple instances, this is the index for the instance in the launch group (for example, 0, 1, 2, and so on). </p></li><li><p><code>launch-time</code> - The time when the instance was launched.</p></li><li><p><code>metadata-options.http-tokens</code> - The metadata request authorization state (<code>optional</code> | <code>required</code>)</p></li><li><p><code>metadata-options.http-put-response-hop-limit</code> - The http metadata request put response hop limit (integer, possible values <code>1</code> to <code>64</code>)</p></li><li><p><code>metadata-options.http-endpoint</code> - Enable or disable metadata access on http endpoint (<code>enabled</code> | <code>disabled</code>)</p></li><li><p><code>monitoring-state</code> - Indicates whether detailed monitoring is enabled (<code>disabled</code> | <code>enabled</code>).</p></li><li><p><code>network-interface.addresses.private-ip-address</code> - The private IPv4 address associated with the network interface.</p></li><li><p><code>network-interface.addresses.primary</code> - Specifies whether the IPv4 address of the network interface is the primary private IPv4 address.</p></li><li><p><code>network-interface.addresses.association.public-ip</code> - The ID of the association of an Elastic IP address (IPv4) with a network interface.</p></li><li><p><code>network-interface.addresses.association.ip-owner-id</code> - The owner ID of the private IPv4 address associated with the network interface.</p></li><li><p><code>network-interface.association.public-ip</code> - The address of the Elastic IP address (IPv4) bound to the network interface.</p></li><li><p><code>network-interface.association.ip-owner-id</code> - The owner of the Elastic IP address (IPv4) associated with the network interface.</p></li><li><p><code>network-interface.association.allocation-id</code> - The allocation ID returned when you allocated the Elastic IP address (IPv4) for your network interface.</p></li><li><p><code>network-interface.association.association-id</code> - The association ID returned when the network interface was associated with an IPv4 address.</p></li><li><p><code>network-interface.attachment.attachment-id</code> - The ID of the interface attachment.</p></li><li><p><code>network-interface.attachment.instance-id</code> - The ID of the instance to which the network interface is attached.</p></li><li><p><code>network-interface.attachment.instance-owner-id</code> - The owner ID of the instance to which the network interface is attached.</p></li><li><p><code>network-interface.attachment.device-index</code> - The device index to which the network interface is attached.</p></li><li><p><code>network-interface.attachment.status</code> - The status of the attachment (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p></li><li><p><code>network-interface.attachment.attach-time</code> - The time that the network interface was attached to an instance.</p></li><li><p><code>network-interface.attachment.delete-on-termination</code> - Specifies whether the attachment is deleted when an instance is terminated.</p></li><li><p><code>network-interface.availability-zone</code> - The Availability Zone for the network interface.</p></li><li><p><code>network-interface.description</code> - The description of the network interface.</p></li><li><p><code>network-interface.group-id</code> - The ID of a security group associated with the network interface.</p></li><li><p><code>network-interface.group-name</code> - The name of a security group associated with the network interface.</p></li><li><p><code>network-interface.ipv6-addresses.ipv6-address</code> - The IPv6 address associated with the network interface.</p></li><li><p><code>network-interface.mac-address</code> - The MAC address of the network interface.</p></li><li><p><code>network-interface.network-interface-id</code> - The ID of the network interface.</p></li><li><p><code>network-interface.owner-id</code> - The ID of the owner of the network interface.</p></li><li><p><code>network-interface.private-dns-name</code> - The private DNS name of the network interface.</p></li><li><p><code>network-interface.requester-id</code> - The requester ID for the network interface.</p></li><li><p><code>network-interface.requester-managed</code> - Indicates whether the network interface is being managed by AWS.</p></li><li><p><code>network-interface.status</code> - The status of the network interface (<code>available</code>) | <code>in-use</code>).</p></li><li><p><code>network-interface.source-dest-check</code> - Whether the network interface performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the network interface to perform network address translation (NAT) in your VPC.</p></li><li><p><code>network-interface.subnet-id</code> - The ID of the subnet for the network interface.</p></li><li><p><code>network-interface.vpc-id</code> - The ID of the VPC for the network interface.</p></li><li><p><code>owner-id</code> - The AWS account ID of the instance owner.</p></li><li><p><code>placement-group-name</code> - The name of the placement group for the instance.</p></li><li><p><code>placement-partition-number</code> - The partition in which the instance is located.</p></li><li><p><code>platform</code> - The platform. To list only Windows instances, use <code>windows</code>.</p></li><li><p><code>private-dns-name</code> - The private IPv4 DNS name of the instance.</p></li><li><p><code>private-ip-address</code> - The private IPv4 address of the instance.</p></li><li><p><code>product-code</code> - The product code associated with the AMI used to launch the instance.</p></li><li><p><code>product-code.type</code> - The type of product code (<code>devpay</code> | <code>marketplace</code>).</p></li><li><p><code>ramdisk-id</code> - The RAM disk ID.</p></li><li><p><code>reason</code> - The reason for the current state of the instance (for example, shows "User Initiated [date]" when you stop or terminate the instance). Similar to the state-reason-code filter.</p></li><li><p><code>requester-id</code> - The ID of the entity that launched the instance on your behalf (for example, AWS Management Console, Auto Scaling, and so on).</p></li><li><p><code>reservation-id</code> - The ID of the instance's reservation. A reservation ID is created any time you launch an instance. A reservation ID has a one-to-one relationship with an instance launch request, but can be associated with more than one instance if you launch multiple instances using the same launch request. For example, if you launch one instance, you get one reservation ID. If you launch ten instances using the same launch request, you also get one reservation ID.</p></li><li><p><code>root-device-name</code> - The device name of the root device volume (for example, <code>/dev/sda1</code>).</p></li><li><p><code>root-device-type</code> - The type of the root device volume (<code>ebs</code> | <code>instance-store</code>).</p></li><li><p><code>source-dest-check</code> - Indicates whether the instance performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the instance to perform network address translation (NAT) in your VPC. </p></li><li><p><code>spot-instance-request-id</code> - The ID of the Spot Instance request.</p></li><li><p><code>state-reason-code</code> - The reason code for the state change.</p></li><li><p><code>state-reason-message</code> - A message that describes the state change.</p></li><li><p><code>subnet-id</code> - The ID of the subnet for the instance.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources that have a tag with a specific key, regardless of the tag value.</p></li><li><p><code>tenancy</code> - The tenancy of an instance (<code>dedicated</code> | <code>default</code> | <code>host</code>).</p></li><li><p><code>virtualization-type</code> - The virtualization type of the instance (<code>paravirtual</code> | <code>hvm</code>).</p></li><li><p><code>vpc-id</code> - The ID of the VPC that the instance is running in.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>One or more instance IDs.</p><p>Default: Describes all your instances.</p>
+ <p>The instance IDs.</p><p>Default: Describes all your instances.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable instanceIds;
 
@@ -10411,7 +12784,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
- <p>Zero or more reservations.</p>
+ <p>Information about the reservations.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Reservation *> * _Nullable reservations;
 
@@ -10471,6 +12844,57 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 /**
  
  */
+@interface AWSEC2DescribeIpv6PoolsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters.</p><ul><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>The IDs of the IPv6 address pools.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable poolIds;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeIpv6PoolsResult : AWSModel
+
+
+/**
+ <p>Information about the IPv6 address pools.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Ipv6Pool *> * _Nullable ipv6Pools;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
 @interface AWSEC2DescribeKeyPairsRequest : AWSRequest
 
 
@@ -10480,14 +12904,19 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>fingerprint</code> - The fingerprint of the key pair.</p></li><li><p><code>key-name</code> - The name of the key pair.</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>key-pair-id</code> - The ID of the key pair.</p></li><li><p><code>fingerprint</code> - The fingerprint of the key pair.</p></li><li><p><code>key-name</code> - The name of the key pair.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>One or more key pair names.</p><p>Default: Describes all your key pairs.</p>
+ <p>The key pair names.</p><p>Default: Describes all your key pairs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable keyNames;
+
+/**
+ <p>The IDs of the key pairs.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable keyPairIds;
 
 @end
 
@@ -10498,7 +12927,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Information about one or more key pairs.</p>
+ <p>Information about the key pairs.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2KeyPairInfo *> * _Nullable keyPairs;
 
@@ -10634,6 +13063,312 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 /**
  
  */
+@interface AWSEC2DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The IDs of the associations.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable localGatewayRouteTableVirtualInterfaceGroupAssociationIds;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsResult : AWSModel
+
+
+/**
+ <p>Information about the associations.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2LocalGatewayRouteTableVirtualInterfaceGroupAssociation *> * _Nullable localGatewayRouteTableVirtualInterfaceGroupAssociations;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeLocalGatewayRouteTableVpcAssociationsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The IDs of the associations.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable localGatewayRouteTableVpcAssociationIds;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeLocalGatewayRouteTableVpcAssociationsResult : AWSModel
+
+
+/**
+ <p>Information about the associations.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2LocalGatewayRouteTableVpcAssociation *> * _Nullable localGatewayRouteTableVpcAssociations;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeLocalGatewayRouteTablesRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The IDs of the local gateway route tables.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable localGatewayRouteTableIds;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeLocalGatewayRouteTablesResult : AWSModel
+
+
+/**
+ <p>Information about the local gateway route tables.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2LocalGatewayRouteTable *> * _Nullable localGatewayRouteTables;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeLocalGatewayVirtualInterfaceGroupsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The IDs of the virtual interface groups.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable localGatewayVirtualInterfaceGroupIds;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeLocalGatewayVirtualInterfaceGroupsResult : AWSModel
+
+
+/**
+ <p>The virtual interface groups.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2LocalGatewayVirtualInterfaceGroup *> * _Nullable localGatewayVirtualInterfaceGroups;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeLocalGatewayVirtualInterfacesRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The IDs of the virtual interfaces.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable localGatewayVirtualInterfaceIds;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeLocalGatewayVirtualInterfacesResult : AWSModel
+
+
+/**
+ <p>Information about the virtual interfaces.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2LocalGatewayVirtualInterface *> * _Nullable localGatewayVirtualInterfaces;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeLocalGatewaysRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The IDs of the local gateways.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable localGatewayIds;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeLocalGatewaysResult : AWSModel
+
+
+/**
+ <p>Information about the local gateways.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2LocalGateway *> * _Nullable localGateways;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
 @interface AWSEC2DescribeMovingAddressesRequest : AWSRequest
 
 
@@ -10687,6 +13422,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @interface AWSEC2DescribeNatGatewaysRequest : AWSRequest
 
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
  <p>One or more filters.</p><ul><li><p><code>nat-gateway-id</code> - The ID of the NAT gateway.</p></li><li><p><code>state</code> - The state of the NAT gateway (<code>pending</code> | <code>failed</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>).</p></li><li><p><code>subnet-id</code> - The ID of the subnet in which the NAT gateway resides.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>vpc-id</code> - The ID of the VPC in which the NAT gateway resides.</p></li></ul>
@@ -10894,12 +13634,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>addresses.private-ip-address</code> - The private IPv4 addresses associated with the network interface.</p></li><li><p><code>addresses.primary</code> - Whether the private IPv4 address is the primary IP address associated with the network interface. </p></li><li><p><code>addresses.association.public-ip</code> - The association ID returned when the network interface was associated with the Elastic IP address (IPv4).</p></li><li><p><code>addresses.association.owner-id</code> - The owner ID of the addresses associated with the network interface.</p></li><li><p><code>association.association-id</code> - The association ID returned when the network interface was associated with an IPv4 address.</p></li><li><p><code>association.allocation-id</code> - The allocation ID returned when you allocated the Elastic IP address (IPv4) for your network interface.</p></li><li><p><code>association.ip-owner-id</code> - The owner of the Elastic IP address (IPv4) associated with the network interface.</p></li><li><p><code>association.public-ip</code> - The address of the Elastic IP address (IPv4) bound to the network interface.</p></li><li><p><code>association.public-dns-name</code> - The public DNS name for the network interface (IPv4).</p></li><li><p><code>attachment.attachment-id</code> - The ID of the interface attachment.</p></li><li><p><code>attachment.attach.time</code> - The time that the network interface was attached to an instance.</p></li><li><p><code>attachment.delete-on-termination</code> - Indicates whether the attachment is deleted when an instance is terminated.</p></li><li><p><code>attachment.device-index</code> - The device index to which the network interface is attached.</p></li><li><p><code>attachment.instance-id</code> - The ID of the instance to which the network interface is attached.</p></li><li><p><code>attachment.instance-owner-id</code> - The owner ID of the instance to which the network interface is attached.</p></li><li><p><code>attachment.nat-gateway-id</code> - The ID of the NAT gateway to which the network interface is attached.</p></li><li><p><code>attachment.status</code> - The status of the attachment (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p></li><li><p><code>availability-zone</code> - The Availability Zone of the network interface.</p></li><li><p><code>description</code> - The description of the network interface.</p></li><li><p><code>group-id</code> - The ID of a security group associated with the network interface.</p></li><li><p><code>group-name</code> - The name of a security group associated with the network interface.</p></li><li><p><code>ipv6-addresses.ipv6-address</code> - An IPv6 address associated with the network interface.</p></li><li><p><code>mac-address</code> - The MAC address of the network interface.</p></li><li><p><code>network-interface-id</code> - The ID of the network interface.</p></li><li><p><code>owner-id</code> - The AWS account ID of the network interface owner.</p></li><li><p><code>private-ip-address</code> - The private IPv4 address or addresses of the network interface.</p></li><li><p><code>private-dns-name</code> - The private DNS name of the network interface (IPv4).</p></li><li><p><code>requester-id</code> - The ID of the entity that launched the instance on your behalf (for example, AWS Management Console, Auto Scaling, and so on).</p></li><li><p><code>requester-managed</code> - Indicates whether the network interface is being managed by an AWS service (for example, AWS Management Console, Auto Scaling, and so on).</p></li><li><p><code>source-desk-check</code> - Indicates whether the network interface performs source/destination checking. A value of <code>true</code> means checking is enabled, and <code>false</code> means checking is disabled. The value must be <code>false</code> for the network interface to perform network address translation (NAT) in your VPC. </p></li><li><p><code>status</code> - The status of the network interface. If the network interface is not attached to an instance, the status is <code>available</code>; if a network interface is attached to an instance the status is <code>in-use</code>.</p></li><li><p><code>subnet-id</code> - The ID of the subnet for the network interface.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>vpc-id</code> - The ID of the VPC for the network interface.</p></li></ul>
+ <p>One or more filters.</p><ul><li><p><code>addresses.private-ip-address</code> - The private IPv4 addresses associated with the network interface.</p></li><li><p><code>addresses.primary</code> - Whether the private IPv4 address is the primary IP address associated with the network interface. </p></li><li><p><code>addresses.association.public-ip</code> - The association ID returned when the network interface was associated with the Elastic IP address (IPv4).</p></li><li><p><code>addresses.association.owner-id</code> - The owner ID of the addresses associated with the network interface.</p></li><li><p><code>association.association-id</code> - The association ID returned when the network interface was associated with an IPv4 address.</p></li><li><p><code>association.allocation-id</code> - The allocation ID returned when you allocated the Elastic IP address (IPv4) for your network interface.</p></li><li><p><code>association.ip-owner-id</code> - The owner of the Elastic IP address (IPv4) associated with the network interface.</p></li><li><p><code>association.public-ip</code> - The address of the Elastic IP address (IPv4) bound to the network interface.</p></li><li><p><code>association.public-dns-name</code> - The public DNS name for the network interface (IPv4).</p></li><li><p><code>attachment.attachment-id</code> - The ID of the interface attachment.</p></li><li><p><code>attachment.attach-time</code> - The time that the network interface was attached to an instance.</p></li><li><p><code>attachment.delete-on-termination</code> - Indicates whether the attachment is deleted when an instance is terminated.</p></li><li><p><code>attachment.device-index</code> - The device index to which the network interface is attached.</p></li><li><p><code>attachment.instance-id</code> - The ID of the instance to which the network interface is attached.</p></li><li><p><code>attachment.instance-owner-id</code> - The owner ID of the instance to which the network interface is attached.</p></li><li><p><code>attachment.nat-gateway-id</code> - The ID of the NAT gateway to which the network interface is attached.</p></li><li><p><code>attachment.status</code> - The status of the attachment (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p></li><li><p><code>availability-zone</code> - The Availability Zone of the network interface.</p></li><li><p><code>description</code> - The description of the network interface.</p></li><li><p><code>group-id</code> - The ID of a security group associated with the network interface.</p></li><li><p><code>group-name</code> - The name of a security group associated with the network interface.</p></li><li><p><code>ipv6-addresses.ipv6-address</code> - An IPv6 address associated with the network interface.</p></li><li><p><code>mac-address</code> - The MAC address of the network interface.</p></li><li><p><code>network-interface-id</code> - The ID of the network interface.</p></li><li><p><code>owner-id</code> - The AWS account ID of the network interface owner.</p></li><li><p><code>private-ip-address</code> - The private IPv4 address or addresses of the network interface.</p></li><li><p><code>private-dns-name</code> - The private DNS name of the network interface (IPv4).</p></li><li><p><code>requester-id</code> - The ID of the entity that launched the instance on your behalf (for example, AWS Management Console, Auto Scaling, and so on).</p></li><li><p><code>requester-managed</code> - Indicates whether the network interface is being managed by an AWS service (for example, AWS Management Console, Auto Scaling, and so on).</p></li><li><p><code>source-dest-check</code> - Indicates whether the network interface performs source/destination checking. A value of <code>true</code> means checking is enabled, and <code>false</code> means checking is disabled. The value must be <code>false</code> for the network interface to perform network address translation (NAT) in your VPC. </p></li><li><p><code>status</code> - The status of the network interface. If the network interface is not attached to an instance, the status is <code>available</code>; if a network interface is attached to an instance the status is <code>in-use</code>.</p></li><li><p><code>subnet-id</code> - The ID of the subnet for the network interface.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>vpc-id</code> - The ID of the VPC for the network interface.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p>
+ <p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results. You cannot specify this parameter and the network interface IDs parameter in the same request.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable maxResults;
 
@@ -10945,12 +13685,17 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>group-name</code> - The name of the placement group.</p></li><li><p><code>state</code> - The state of the placement group (<code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>).</p></li><li><p><code>strategy</code> - The strategy of the placement group (<code>cluster</code> | <code>spread</code> | <code>partition</code>).</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>group-name</code> - The name of the placement group.</p></li><li><p><code>state</code> - The state of the placement group (<code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>).</p></li><li><p><code>strategy</code> - The strategy of the placement group (<code>cluster</code> | <code>spread</code> | <code>partition</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources that have a tag with a specific key, regardless of the tag value.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>One or more placement group names.</p><p>Default: Describes all your placement groups, or only those otherwise specified.</p>
+ <p>The IDs of the placement groups.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable groupIds;
+
+/**
+ <p>The names of the placement groups.</p><p>Default: Describes all your placement groups, or only those otherwise specified.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable groupNames;
 
@@ -10963,7 +13708,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>One or more placement groups.</p>
+ <p>Information about the placement groups.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2PlacementGroup *> * _Nullable placementGroups;
 
@@ -11073,6 +13818,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
+ <p>One or more filters.</p><ul><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
  <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable maxResults;
@@ -11114,17 +13864,22 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
+ <p>Indicates whether to display all Regions, including Regions that are disabled for your account.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable allRegions;
+
+/**
  <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>endpoint</code> - The endpoint of the region (for example, <code>ec2.us-east-1.amazonaws.com</code>).</p></li><li><p><code>region-name</code> - The name of the region (for example, <code>us-east-1</code>).</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>endpoint</code> - The endpoint of the Region (for example, <code>ec2.us-east-1.amazonaws.com</code>).</p></li><li><p><code>opt-in-status</code> - The opt-in status of the Region (<code>opt-in-not-required</code> | <code>opted-in</code> | <code>not-opted-in</code>).</p></li><li><p><code>region-name</code> - The name of the Region (for example, <code>us-east-1</code>).</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>The names of one or more regions.</p>
+ <p>The names of the Regions. You can specify any Regions, whether they are enabled and disabled for your account.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable regionNames;
 
@@ -11137,7 +13892,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Information about one or more regions.</p>
+ <p>Information about the Regions.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Region *> * _Nullable regions;
 
@@ -11431,7 +14186,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>availability-zone</code> - The Availability Zone (for example, <code>us-west-2a</code>).</p></li><li><p><code>instance-type</code> - The instance type (for example, <code>c4.large</code>).</p></li><li><p><code>network-platform</code> - The network platform (<code>EC2-Classic</code> or <code>EC2-VPC</code>).</p></li><li><p><code>platform</code> - The platform (<code>Linux/UNIX</code> or <code>Windows</code>).</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>availability-zone</code> - The Availability Zone (for example, <code>us-west-2a</code>).</p></li><li><p><code>instance-type</code> - The instance type (for example, <code>c4.large</code>).</p></li><li><p><code>network-platform</code> - The network platform (<code>EC2-Classic</code> or <code>EC2-VPC</code>).</p></li><li><p><code>platform</code> - The platform (<code>Linux/UNIX</code> or <code>Windows</code>).</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -11497,7 +14252,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>availability-zone</code> - The Availability Zone (for example, <code>us-west-2a</code>).</p></li><li><p><code>instance-type</code> - The instance type (for example, <code>c4.large</code>).</p></li><li><p><code>network-platform</code> - The network platform (<code>EC2-Classic</code> or <code>EC2-VPC</code>).</p></li><li><p><code>platform</code> - The platform (<code>Linux/UNIX</code> or <code>Windows</code>).</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>availability-zone</code> - The Availability Zone (for example, <code>us-west-2a</code>).</p></li><li><p><code>instance-type</code> - The instance type (for example, <code>c4.large</code>).</p></li><li><p><code>network-platform</code> - The network platform (<code>EC2-Classic</code> or <code>EC2-VPC</code>).</p></li><li><p><code>platform</code> - The platform (<code>Linux/UNIX</code> or <code>Windows</code>).</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -11512,7 +14267,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
- <p>One or more Scheduled Instance IDs.</p>
+ <p>The Scheduled Instance IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable scheduledInstanceIds;
 
@@ -11553,7 +14308,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more security group IDs in your account.</p>
+ <p>The IDs of the security groups in your account.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable groupId;
 
@@ -11584,17 +14339,17 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters. If using multiple filters for rules, the results include security groups for which any combination of rules - not necessarily a single rule - match all filters.</p><ul><li><p><code>description</code> - The description of the security group.</p></li><li><p><code>egress.ip-permission.cidr</code> - An IPv4 CIDR block for an outbound security group rule.</p></li><li><p><code>egress.ip-permission.from-port</code> - For an outbound rule, the start of port range for the TCP and UDP protocols, or an ICMP type number.</p></li><li><p><code>egress.ip-permission.group-id</code> - The ID of a security group that has been referenced in an outbound security group rule.</p></li><li><p><code>egress.ip-permission.group-name</code> - The name of a security group that has been referenced in an outbound security group rule.</p></li><li><p><code>egress.ip-permission.ipv6-cidr</code> - An IPv6 CIDR block for an outbound security group rule.</p></li><li><p><code>egress.ip-permission.prefix-list-id</code> - The ID (prefix) of the AWS service to which a security group rule allows outbound access.</p></li><li><p><code>egress.ip-permission.protocol</code> - The IP protocol for an outbound security group rule (<code>tcp</code> | <code>udp</code> | <code>icmp</code> or a protocol number).</p></li><li><p><code>egress.ip-permission.to-port</code> - For an outbound rule, the end of port range for the TCP and UDP protocols, or an ICMP code.</p></li><li><p><code>egress.ip-permission.user-id</code> - The ID of an AWS account that has been referenced in an outbound security group rule.</p></li><li><p><code>group-id</code> - The ID of the security group. </p></li><li><p><code>group-name</code> - The name of the security group.</p></li><li><p><code>ip-permission.cidr</code> - An IPv4 CIDR block for an inbound security group rule.</p></li><li><p><code>ip-permission.from-port</code> - For an inbound rule, the start of port range for the TCP and UDP protocols, or an ICMP type number.</p></li><li><p><code>ip-permission.group-id</code> - The ID of a security group that has been referenced in an inbound security group rule.</p></li><li><p><code>ip-permission.group-name</code> - The name of a security group that has been referenced in an inbound security group rule.</p></li><li><p><code>ip-permission.ipv6-cidr</code> - An IPv6 CIDR block for an inbound security group rule.</p></li><li><p><code>ip-permission.prefix-list-id</code> - The ID (prefix) of the AWS service from which a security group rule allows inbound access.</p></li><li><p><code>ip-permission.protocol</code> - The IP protocol for an inbound security group rule (<code>tcp</code> | <code>udp</code> | <code>icmp</code> or a protocol number).</p></li><li><p><code>ip-permission.to-port</code> - For an inbound rule, the end of port range for the TCP and UDP protocols, or an ICMP code.</p></li><li><p><code>ip-permission.user-id</code> - The ID of an AWS account that has been referenced in an inbound security group rule.</p></li><li><p><code>owner-id</code> - The AWS account ID of the owner of the security group.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>vpc-id</code> - The ID of the VPC specified when the security group was created.</p></li></ul>
+ <p>The filters. If using multiple filters for rules, the results include security groups for which any combination of rules - not necessarily a single rule - match all filters.</p><ul><li><p><code>description</code> - The description of the security group.</p></li><li><p><code>egress.ip-permission.cidr</code> - An IPv4 CIDR block for an outbound security group rule.</p></li><li><p><code>egress.ip-permission.from-port</code> - For an outbound rule, the start of port range for the TCP and UDP protocols, or an ICMP type number.</p></li><li><p><code>egress.ip-permission.group-id</code> - The ID of a security group that has been referenced in an outbound security group rule.</p></li><li><p><code>egress.ip-permission.group-name</code> - The name of a security group that has been referenced in an outbound security group rule.</p></li><li><p><code>egress.ip-permission.ipv6-cidr</code> - An IPv6 CIDR block for an outbound security group rule.</p></li><li><p><code>egress.ip-permission.prefix-list-id</code> - The ID (prefix) of the AWS service to which a security group rule allows outbound access.</p></li><li><p><code>egress.ip-permission.protocol</code> - The IP protocol for an outbound security group rule (<code>tcp</code> | <code>udp</code> | <code>icmp</code> or a protocol number).</p></li><li><p><code>egress.ip-permission.to-port</code> - For an outbound rule, the end of port range for the TCP and UDP protocols, or an ICMP code.</p></li><li><p><code>egress.ip-permission.user-id</code> - The ID of an AWS account that has been referenced in an outbound security group rule.</p></li><li><p><code>group-id</code> - The ID of the security group. </p></li><li><p><code>group-name</code> - The name of the security group.</p></li><li><p><code>ip-permission.cidr</code> - An IPv4 CIDR block for an inbound security group rule.</p></li><li><p><code>ip-permission.from-port</code> - For an inbound rule, the start of port range for the TCP and UDP protocols, or an ICMP type number.</p></li><li><p><code>ip-permission.group-id</code> - The ID of a security group that has been referenced in an inbound security group rule.</p></li><li><p><code>ip-permission.group-name</code> - The name of a security group that has been referenced in an inbound security group rule.</p></li><li><p><code>ip-permission.ipv6-cidr</code> - An IPv6 CIDR block for an inbound security group rule.</p></li><li><p><code>ip-permission.prefix-list-id</code> - The ID (prefix) of the AWS service from which a security group rule allows inbound access.</p></li><li><p><code>ip-permission.protocol</code> - The IP protocol for an inbound security group rule (<code>tcp</code> | <code>udp</code> | <code>icmp</code> or a protocol number).</p></li><li><p><code>ip-permission.to-port</code> - For an inbound rule, the end of port range for the TCP and UDP protocols, or an ICMP code.</p></li><li><p><code>ip-permission.user-id</code> - The ID of an AWS account that has been referenced in an inbound security group rule.</p></li><li><p><code>owner-id</code> - The AWS account ID of the owner of the security group.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>vpc-id</code> - The ID of the VPC specified when the security group was created.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>One or more security group IDs. Required for security groups in a nondefault VPC.</p><p>Default: Describes all your security groups.</p>
+ <p>The IDs of the security groups. Required for security groups in a nondefault VPC.</p><p>Default: Describes all your security groups.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable groupIds;
 
 /**
- <p>[EC2-Classic and default VPC only] One or more security group names. You can specify either the security group name or the security group ID. For security groups in a nondefault VPC, use the <code>group-name</code> filter to describe security groups by name.</p><p>Default: Describes all your security groups.</p>
+ <p>[EC2-Classic and default VPC only] The names of the security groups. You can specify either the security group name or the security group ID. For security groups in a nondefault VPC, use the <code>group-name</code> filter to describe security groups by name.</p><p>Default: Describes all your security groups.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable groupNames;
 
@@ -11622,15 +14377,14 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
- <p>Information about one or more security groups.</p>
+ <p>Information about the security groups.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2SecurityGroup *> * _Nullable securityGroups;
 
 @end
 
 /**
- <p>Contains the parameters for DescribeSnapshotAttribute.</p>
- Required parameters: [Attribute, SnapshotId]
+ 
  */
 @interface AWSEC2DescribeSnapshotAttributeRequest : AWSRequest
 
@@ -11653,7 +14407,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the output of DescribeSnapshotAttribute.</p>
+ 
  */
 @interface AWSEC2DescribeSnapshotAttributeResult : AWSModel
 
@@ -11676,7 +14430,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for DescribeSnapshots.</p>
+ 
  */
 @interface AWSEC2DescribeSnapshotsRequest : AWSRequest
 
@@ -11687,7 +14441,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>description</code> - A description of the snapshot.</p></li><li><p><code>owner-alias</code> - Value from an Amazon-maintained list (<code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>) of snapshot owners. Not to be confused with the user-configured AWS account alias, which is set from the IAM console.</p></li><li><p><code>owner-id</code> - The ID of the AWS account that owns the snapshot.</p></li><li><p><code>progress</code> - The progress of the snapshot, as a percentage (for example, 80%).</p></li><li><p><code>snapshot-id</code> - The snapshot ID.</p></li><li><p><code>start-time</code> - The time stamp when the snapshot was initiated.</p></li><li><p><code>status</code> - The status of the snapshot (<code>pending</code> | <code>completed</code> | <code>error</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>volume-id</code> - The ID of the volume the snapshot is for.</p></li><li><p><code>volume-size</code> - The size of the volume, in GiB.</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>description</code> - A description of the snapshot.</p></li><li><p><code>encrypted</code> - Indicates whether the snapshot is encrypted (<code>true</code> | <code>false</code>)</p></li><li><p><code>owner-alias</code> - Value from an Amazon-maintained list (<code>amazon</code> | <code>self</code> | <code>all</code> | <code>aws-marketplace</code> | <code>microsoft</code>) of snapshot owners. Not to be confused with the user-configured AWS account alias, which is set from the IAM console.</p></li><li><p><code>owner-id</code> - The ID of the AWS account that owns the snapshot.</p></li><li><p><code>progress</code> - The progress of the snapshot, as a percentage (for example, 80%).</p></li><li><p><code>snapshot-id</code> - The snapshot ID.</p></li><li><p><code>start-time</code> - The time stamp when the snapshot was initiated.</p></li><li><p><code>status</code> - The status of the snapshot (<code>pending</code> | <code>completed</code> | <code>error</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>volume-id</code> - The ID of the volume the snapshot is for.</p></li><li><p><code>volume-size</code> - The size of the volume, in GiB.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -11702,24 +14456,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
- <p>Describes the snapshots owned by one or more owners.</p>
+ <p>Describes the snapshots owned by these owners.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable ownerIds;
 
 /**
- <p>One or more AWS accounts IDs that can create volumes from the snapshot.</p>
+ <p>The IDs of the AWS accounts that can create volumes from the snapshot.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable restorableByUserIds;
 
 /**
- <p>One or more snapshot IDs.</p><p>Default: Describes the snapshots for which you have create volume permissions.</p>
+ <p>The snapshot IDs.</p><p>Default: Describes the snapshots for which you have create volume permissions.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable snapshotIds;
 
 @end
 
 /**
- <p>Contains the output of DescribeSnapshots.</p>
+ 
  */
 @interface AWSEC2DescribeSnapshotsResult : AWSModel
 
@@ -12117,6 +14871,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
  <p>One or more subnet IDs.</p><p>Default: Describes all your subnets.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable subnetIds;
@@ -12128,6 +14892,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @interface AWSEC2DescribeSubnetsResult : AWSModel
 
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
  <p>Information about one or more subnets.</p>
@@ -12148,7 +14917,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>key</code> - The tag key.</p></li><li><p><code>resource-id</code> - The ID of the resource.</p></li><li><p><code>resource-type</code> - The resource type (<code>customer-gateway</code> | <code>dedicated-host</code> | <code>dhcp-options</code> | <code>elastic-ip</code> | <code>fleet</code> | <code>fpga-image</code> | <code>image</code> | <code>instance</code> | <code>host-reservation</code> | <code>internet-gateway</code> | <code>launch-template</code> | <code>natgateway</code> | <code>network-acl</code> | <code>network-interface</code> | <code>reserved-instances</code> | <code>route-table</code> | <code>security-group</code> | <code>snapshot</code> | <code>spot-instances-request</code> | <code>subnet</code> | <code>volume</code> | <code>vpc</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of the tag. For example, specify "tag:Owner" for the filter name and "TeamA" for the filter value to find resources with the tag "Owner=TeamA".</p></li><li><p><code>value</code> - The tag value.</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>key</code> - The tag key.</p></li><li><p><code>resource-id</code> - The ID of the resource.</p></li><li><p><code>resource-type</code> - The resource type (<code>customer-gateway</code> | <code>dedicated-host</code> | <code>dhcp-options</code> | <code>elastic-ip</code> | <code>fleet</code> | <code>fpga-image</code> | <code>host-reservation</code> | <code>image</code> | <code>instance</code> | <code>internet-gateway</code> | <code>key-pair</code> | <code>launch-template</code> | <code>natgateway</code> | <code>network-acl</code> | <code>network-interface</code> | <code>placement-group</code> | <code>reserved-instances</code> | <code>route-table</code> | <code>security-group</code> | <code>snapshot</code> | <code>spot-instances-request</code> | <code>subnet</code> | <code>volume</code> | <code>vpc</code> | <code>vpc-endpoint</code> | <code>vpc-endpoint-service</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of the tag. For example, specify "tag:Owner" for the filter name and "TeamA" for the filter value to find resources with the tag "Owner=TeamA".</p></li><li><p><code>value</code> - The tag value.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -12179,6 +14948,159 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The tags.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2TagDescription *> * _Nullable tags;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeTrafficMirrorFiltersRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters. The possible values are:</p><ul><li><p><code>description</code>: The Traffic Mirror filter description.</p></li><li><p><code>traffic-mirror-filter-id</code>: The ID of the Traffic Mirror filter.</p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>The ID of the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable trafficMirrorFilterIds;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeTrafficMirrorFiltersResult : AWSModel
+
+
+/**
+ <p>The token to use to retrieve the next page of results. The value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>Information about one or more Traffic Mirror filters.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TrafficMirrorFilter *> * _Nullable trafficMirrorFilters;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeTrafficMirrorSessionsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters. The possible values are:</p><ul><li><p><code>description</code>: The Traffic Mirror session description.</p></li><li><p><code>network-interface-id</code>: The ID of the Traffic Mirror session network interface.</p></li><li><p><code>owner-id</code>: The ID of the account that owns the Traffic Mirror session.</p></li><li><p><code>packet-length</code>: The assigned number of packets to mirror. </p></li><li><p><code>session-number</code>: The assigned session number. </p></li><li><p><code>traffic-mirror-filter-id</code>: The ID of the Traffic Mirror filter.</p></li><li><p><code>traffic-mirror-session-id</code>: The ID of the Traffic Mirror session.</p></li><li><p><code>traffic-mirror-target-id</code>: The ID of the Traffic Mirror target.</p></li><li><p><code>virtual-network-id</code>: The virtual network ID of the Traffic Mirror session.</p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>The ID of the Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable trafficMirrorSessionIds;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeTrafficMirrorSessionsResult : AWSModel
+
+
+/**
+ <p>The token to use to retrieve the next page of results. The value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>Describes one or more Traffic Mirror sessions. By default, all Traffic Mirror sessions are described. Alternatively, you can filter the results.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TrafficMirrorSession *> * _Nullable trafficMirrorSessions;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeTrafficMirrorTargetsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters. The possible values are:</p><ul><li><p><code>description</code>: The Traffic Mirror target description.</p></li><li><p><code>network-interface-id</code>: The ID of the Traffic Mirror session network interface.</p></li><li><p><code>network-load-balancer-arn</code>: The Amazon Resource Name (ARN) of the Network Load Balancer that is associated with the session.</p></li><li><p><code>owner-id</code>: The ID of the account that owns the Traffic Mirror session.</p></li><li><p><code>traffic-mirror-target-id</code>: The ID of the Traffic Mirror target.</p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>The ID of the Traffic Mirror targets.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable trafficMirrorTargetIds;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeTrafficMirrorTargetsResult : AWSModel
+
+
+/**
+ <p>The token to use to retrieve the next page of results. The value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>Information about one or more Traffic Mirror targets.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TrafficMirrorTarget *> * _Nullable trafficMirrorTargets;
 
 @end
 
@@ -12230,6 +15152,108 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>Information about the attachments.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2TransitGatewayAttachment *> * _Nullable transitGatewayAttachments;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeTransitGatewayMulticastDomainsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters. The possible values are:</p><ul><li><p><code>state</code> - The state of the transit gateway multicast domain. Valid values are <code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>.</p></li><li><p><code>transit-gateway-id</code> - The ID of the transit gateway.</p></li><li><p><code>transit-gateway-multicast-domain-id</code> - The ID of the transit gateway multicast domain.</p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable transitGatewayMulticastDomainIds;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeTransitGatewayMulticastDomainsResult : AWSModel
+
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>Information about the transit gateway multicast domains.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TransitGatewayMulticastDomain *> * _Nullable transitGatewayMulticastDomains;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeTransitGatewayPeeringAttachmentsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters. The possible values are:</p><ul><li><p><code>transit-gateway-attachment-id</code> - The ID of the transit gateway attachment.</p></li><li><p><code>local-owner-id</code> - The ID of your AWS account.</p></li><li><p><code>remote-owner-id</code> - The ID of the AWS account in the remote Region that owns the transit gateway.</p></li><li><p><code>state</code> - The state of the peering attachment (<code>available</code> | <code>deleted</code> | <code>deleting</code> | <code>failed</code> | <code>modifying</code> | <code>pendingAcceptance</code> | <code>pending</code> | <code>rollingBack</code> | <code>rejected</code> | <code>rejecting</code>).</p></li><li><p><code>transit-gateway-id</code> - The ID of the transit gateway.</p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>One or more IDs of the transit gateway peering attachments.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable transitGatewayAttachmentIds;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DescribeTransitGatewayPeeringAttachmentsResult : AWSModel
+
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>The transit gateway peering attachments.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TransitGatewayPeeringAttachment *> * _Nullable transitGatewayPeeringAttachments;
 
 @end
 
@@ -12387,8 +15411,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for DescribeVolumeAttribute.</p>
- Required parameters: [Attribute, VolumeId]
+ 
  */
 @interface AWSEC2DescribeVolumeAttributeRequest : AWSRequest
 
@@ -12411,7 +15434,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the output of DescribeVolumeAttribute.</p>
+ 
  */
 @interface AWSEC2DescribeVolumeAttributeResult : AWSModel
 
@@ -12434,7 +15457,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for DescribeVolumeStatus.</p>
+ 
  */
 @interface AWSEC2DescribeVolumeStatusRequest : AWSRequest
 
@@ -12445,7 +15468,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>action.code</code> - The action code for the event (for example, <code>enable-volume-io</code>).</p></li><li><p><code>action.description</code> - A description of the action.</p></li><li><p><code>action.event-id</code> - The event ID associated with the action.</p></li><li><p><code>availability-zone</code> - The Availability Zone of the instance.</p></li><li><p><code>event.description</code> - A description of the event.</p></li><li><p><code>event.event-id</code> - The event ID.</p></li><li><p><code>event.event-type</code> - The event type (for <code>io-enabled</code>: <code>passed</code> | <code>failed</code>; for <code>io-performance</code>: <code>io-performance:degraded</code> | <code>io-performance:severely-degraded</code> | <code>io-performance:stalled</code>).</p></li><li><p><code>event.not-after</code> - The latest end time for the event.</p></li><li><p><code>event.not-before</code> - The earliest start time for the event.</p></li><li><p><code>volume-status.details-name</code> - The cause for <code>volume-status.status</code> (<code>io-enabled</code> | <code>io-performance</code>).</p></li><li><p><code>volume-status.details-status</code> - The status of <code>volume-status.details-name</code> (for <code>io-enabled</code>: <code>passed</code> | <code>failed</code>; for <code>io-performance</code>: <code>normal</code> | <code>degraded</code> | <code>severely-degraded</code> | <code>stalled</code>).</p></li><li><p><code>volume-status.status</code> - The status of the volume (<code>ok</code> | <code>impaired</code> | <code>warning</code> | <code>insufficient-data</code>).</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>action.code</code> - The action code for the event (for example, <code>enable-volume-io</code>).</p></li><li><p><code>action.description</code> - A description of the action.</p></li><li><p><code>action.event-id</code> - The event ID associated with the action.</p></li><li><p><code>availability-zone</code> - The Availability Zone of the instance.</p></li><li><p><code>event.description</code> - A description of the event.</p></li><li><p><code>event.event-id</code> - The event ID.</p></li><li><p><code>event.event-type</code> - The event type (for <code>io-enabled</code>: <code>passed</code> | <code>failed</code>; for <code>io-performance</code>: <code>io-performance:degraded</code> | <code>io-performance:severely-degraded</code> | <code>io-performance:stalled</code>).</p></li><li><p><code>event.not-after</code> - The latest end time for the event.</p></li><li><p><code>event.not-before</code> - The earliest start time for the event.</p></li><li><p><code>volume-status.details-name</code> - The cause for <code>volume-status.status</code> (<code>io-enabled</code> | <code>io-performance</code>).</p></li><li><p><code>volume-status.details-status</code> - The status of <code>volume-status.details-name</code> (for <code>io-enabled</code>: <code>passed</code> | <code>failed</code>; for <code>io-performance</code>: <code>normal</code> | <code>degraded</code> | <code>severely-degraded</code> | <code>stalled</code>).</p></li><li><p><code>volume-status.status</code> - The status of the volume (<code>ok</code> | <code>impaired</code> | <code>warning</code> | <code>insufficient-data</code>).</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -12460,14 +15483,14 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
- <p>One or more volume IDs.</p><p>Default: Describes all your volumes.</p>
+ <p>The IDs of the volumes.</p><p>Default: Describes all your volumes.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable volumeIds;
 
 @end
 
 /**
- <p>Contains the output of DescribeVolumeStatus.</p>
+ 
  */
 @interface AWSEC2DescribeVolumeStatusResult : AWSModel
 
@@ -12478,7 +15501,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
- <p>A list of volumes.</p>
+ <p>Information about the status of the volumes.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2VolumeStatusItem *> * _Nullable volumeStatuses;
 
@@ -12496,7 +15519,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters. Supported filters: <code>volume-id</code>, <code>modification-state</code>, <code>target-size</code>, <code>target-iops</code>, <code>target-volume-type</code>, <code>original-size</code>, <code>original-iops</code>, <code>original-volume-type</code>, <code>start-time</code>. </p>
+ <p>The filters. Supported filters: <code>volume-id</code> | <code>modification-state</code> | <code>target-size</code> | <code>target-iops</code> | <code>target-volume-type</code> | <code>original-size</code> | <code>original-iops</code> | <code>original-volume-type</code> | <code>start-time</code> | <code>originalMultiAttachEnabled</code> | <code>targetMultiAttachEnabled</code>. </p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -12511,7 +15534,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
- <p>One or more volume IDs for which in-progress modifications will be described.</p>
+ <p>The IDs of the volumes for which in-progress modifications will be described.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable volumeIds;
 
@@ -12529,14 +15552,14 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
- <p>A list of returned <a>VolumeModification</a> objects.</p>
+ <p>Information about the volume modifications.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2VolumeModification *> * _Nullable volumesModifications;
 
 @end
 
 /**
- <p>Contains the parameters for DescribeVolumes.</p>
+ 
  */
 @interface AWSEC2DescribeVolumesRequest : AWSRequest
 
@@ -12547,7 +15570,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>attachment.attach-time</code> - The time stamp when the attachment initiated.</p></li><li><p><code>attachment.delete-on-termination</code> - Whether the volume is deleted on instance termination.</p></li><li><p><code>attachment.device</code> - The device name specified in the block device mapping (for example, <code>/dev/sda1</code>).</p></li><li><p><code>attachment.instance-id</code> - The ID of the instance the volume is attached to.</p></li><li><p><code>attachment.status</code> - The attachment state (<code>attaching</code> | <code>attached</code> | <code>detaching</code>).</p></li><li><p><code>availability-zone</code> - The Availability Zone in which the volume was created.</p></li><li><p><code>create-time</code> - The time stamp when the volume was created.</p></li><li><p><code>encrypted</code> - The encryption status of the volume.</p></li><li><p><code>size</code> - The size of the volume, in GiB.</p></li><li><p><code>snapshot-id</code> - The snapshot from which the volume was created.</p></li><li><p><code>status</code> - The status of the volume (<code>creating</code> | <code>available</code> | <code>in-use</code> | <code>deleting</code> | <code>deleted</code> | <code>error</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>volume-id</code> - The volume ID.</p></li><li><p><code>volume-type</code> - The Amazon EBS volume type. This can be <code>gp2</code> for General Purpose SSD, <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or <code>standard</code> for Magnetic volumes.</p></li></ul>
+ <p>The filters.</p><ul><li><p><code>attachment.attach-time</code> - The time stamp when the attachment initiated.</p></li><li><p><code>attachment.delete-on-termination</code> - Whether the volume is deleted on instance termination.</p></li><li><p><code>attachment.device</code> - The device name specified in the block device mapping (for example, <code>/dev/sda1</code>).</p></li><li><p><code>attachment.instance-id</code> - The ID of the instance the volume is attached to.</p></li><li><p><code>attachment.status</code> - The attachment state (<code>attaching</code> | <code>attached</code> | <code>detaching</code>).</p></li><li><p><code>availability-zone</code> - The Availability Zone in which the volume was created.</p></li><li><p><code>create-time</code> - The time stamp when the volume was created.</p></li><li><p><code>encrypted</code> - Indicates whether the volume is encrypted (<code>true</code> | <code>false</code>)</p></li><li><p><code>multi-attach-enabled</code> - Indicates whether the volume is enabled for Multi-Attach (<code>true</code> | <code>false</code>)</p></li><li><p><code>fast-restored</code> - Indicates whether the volume was created from a snapshot that is enabled for fast snapshot restore (<code>true</code> | <code>false</code>).</p></li><li><p><code>size</code> - The size of the volume, in GiB.</p></li><li><p><code>snapshot-id</code> - The snapshot from which the volume was created.</p></li><li><p><code>status</code> - The status of the volume (<code>creating</code> | <code>available</code> | <code>in-use</code> | <code>deleting</code> | <code>deleted</code> | <code>error</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>volume-id</code> - The volume ID.</p></li><li><p><code>volume-type</code> - The Amazon EBS volume type. This can be <code>gp2</code> for General Purpose SSD, <code>io1</code> for Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or <code>standard</code> for Magnetic volumes.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -12562,14 +15585,14 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
- <p>One or more volume IDs.</p>
+ <p>The volume IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable volumeIds;
 
 @end
 
 /**
- <p>Contains the output of DescribeVolumes.</p>
+ 
  */
 @interface AWSEC2DescribeVolumesResult : AWSModel
 
@@ -12726,7 +15749,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>connection-notification-arn</code> - The ARN of SNS topic for the notification.</p></li><li><p><code>connection-notification-id</code> - The ID of the notification.</p></li><li><p><code>connection-notification-state</code> - The state of the notification (<code>Enabled</code> | <code>Disabled</code>).</p></li><li><p><code>connection-notification-type</code> - The type of notification (<code>Topic</code>).</p></li><li><p><code>service-id</code> - The ID of the endpoint service.</p></li><li><p><code>vpc-endpoint-id</code> - The ID of the VPC endpoint.</p></li></ul>
+ <p>One or more filters.</p><ul><li><p><code>connection-notification-arn</code> - The ARN of the SNS topic for the notification.</p></li><li><p><code>connection-notification-id</code> - The ID of the notification.</p></li><li><p><code>connection-notification-state</code> - The state of the notification (<code>Enabled</code> | <code>Disabled</code>).</p></li><li><p><code>connection-notification-type</code> - The type of notification (<code>Topic</code>).</p></li><li><p><code>service-id</code> - The ID of the endpoint service.</p></li><li><p><code>vpc-endpoint-id</code> - The ID of the VPC endpoint.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -12777,7 +15800,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>The maximum number of results to return for the request in a single page. The remaining results of the initial request can be seen by sending another request with the returned <code>NextToken</code> value. This value can be between 5 and 1000; if <code>MaxResults</code> is given a value larger than 1000, only 1000 results are returned.</p>
+ <p>The maximum number of results to return for the request in a single page. The remaining results of the initial request can be seen by sending another request with the returned <code>NextToken</code> value. This value can be between 5 and 1,000; if <code>MaxResults</code> is given a value larger than 1,000, only 1,000 results are returned.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable maxResults;
 
@@ -12818,12 +15841,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>service-name</code> - The name of the service.</p></li><li><p><code>service-id</code> - The ID of the service.</p></li><li><p><code>service-state</code> - The state of the service (<code>Pending</code> | <code>Available</code> | <code>Deleting</code> | <code>Deleted</code> | <code>Failed</code>). </p></li></ul>
+ <p>One or more filters.</p><ul><li><p><code>service-name</code> - The name of the service.</p></li><li><p><code>service-id</code> - The ID of the service.</p></li><li><p><code>service-state</code> - The state of the service (<code>Pending</code> | <code>Available</code> | <code>Deleting</code> | <code>Deleted</code> | <code>Failed</code>). </p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>The maximum number of results to return for the request in a single page. The remaining results of the initial request can be seen by sending another request with the returned <code>NextToken</code> value. This value can be between 5 and 1000; if <code>MaxResults</code> is given a value larger than 1000, only 1000 results are returned.</p>
+ <p>The maximum number of results to return for the request in a single page. The remaining results of the initial request can be seen by sending another request with the returned <code>NextToken</code> value. This value can be between 5 and 1,000; if <code>MaxResults</code> is given a value larger than 1,000, only 1,000 results are returned.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable maxResults;
 
@@ -12874,7 +15897,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>The maximum number of results to return for the request in a single page. The remaining results of the initial request can be seen by sending another request with the returned <code>NextToken</code> value. This value can be between 5 and 1000; if <code>MaxResults</code> is given a value larger than 1000, only 1000 results are returned.</p>
+ <p>The maximum number of results to return for the request in a single page. The remaining results of the initial request can be seen by sending another request with the returned <code>NextToken</code> value. This value can be between 5 and 1,000; if <code>MaxResults</code> is given a value larger than 1,000, only 1,000 results are returned.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable maxResults;
 
@@ -12920,12 +15943,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>service-name</code>: The name of the service.</p></li></ul>
+ <p>One or more filters.</p><ul><li><p><code>service-name</code> - The name of the service.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p><p>Constraint: If the value is greater than 1000, we return only 1000 items.</p>
+ <p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p><p>Constraint: If the value is greater than 1,000, we return only 1,000 items.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable maxResults;
 
@@ -12976,12 +15999,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>service-name</code>: The name of the service.</p></li><li><p><code>vpc-id</code>: The ID of the VPC in which the endpoint resides.</p></li><li><p><code>vpc-endpoint-id</code>: The ID of the endpoint.</p></li><li><p><code>vpc-endpoint-state</code>: The state of the endpoint. (<code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>)</p></li></ul>
+ <p>One or more filters.</p><ul><li><p><code>service-name</code> - The name of the service.</p></li><li><p><code>vpc-id</code> - The ID of the VPC in which the endpoint resides.</p></li><li><p><code>vpc-endpoint-id</code> - The ID of the endpoint.</p></li><li><p><code>vpc-endpoint-state</code> - The state of the endpoint (<code>pendingAcceptance</code> | <code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code> | <code>rejected</code> | <code>failed</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
 /**
- <p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p><p>Constraint: If the value is greater than 1000, we return only 1000 items.</p>
+ <p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p><p>Constraint: If the value is greater than 1,000, we return only 1,000 items.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable maxResults;
 
@@ -13078,7 +16101,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>cidr</code> - The primary IPv4 CIDR block of the VPC. The CIDR block you specify must exactly match the VPC's CIDR block for information to be returned for the VPC. Must contain the slash followed by one or two digits (for example, <code>/28</code>).</p></li><li><p><code>cidr-block-association.cidr-block</code> - An IPv4 CIDR block associated with the VPC.</p></li><li><p><code>cidr-block-association.association-id</code> - The association ID for an IPv4 CIDR block associated with the VPC.</p></li><li><p><code>cidr-block-association.state</code> - The state of an IPv4 CIDR block associated with the VPC.</p></li><li><p><code>dhcp-options-id</code> - The ID of a set of DHCP options.</p></li><li><p><code>ipv6-cidr-block-association.ipv6-cidr-block</code> - An IPv6 CIDR block associated with the VPC.</p></li><li><p><code>ipv6-cidr-block-association.association-id</code> - The association ID for an IPv6 CIDR block associated with the VPC.</p></li><li><p><code>ipv6-cidr-block-association.state</code> - The state of an IPv6 CIDR block associated with the VPC.</p></li><li><p><code>isDefault</code> - Indicates whether the VPC is the default VPC.</p></li><li><p><code>owner-id</code> - The ID of the AWS account that owns the VPC.</p></li><li><p><code>state</code> - The state of the VPC (<code>pending</code> | <code>available</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>vpc-id</code> - The ID of the VPC.</p></li></ul>
+ <p>One or more filters.</p><ul><li><p><code>cidr</code> - The primary IPv4 CIDR block of the VPC. The CIDR block you specify must exactly match the VPC's CIDR block for information to be returned for the VPC. Must contain the slash followed by one or two digits (for example, <code>/28</code>).</p></li><li><p><code>cidr-block-association.cidr-block</code> - An IPv4 CIDR block associated with the VPC.</p></li><li><p><code>cidr-block-association.association-id</code> - The association ID for an IPv4 CIDR block associated with the VPC.</p></li><li><p><code>cidr-block-association.state</code> - The state of an IPv4 CIDR block associated with the VPC.</p></li><li><p><code>dhcp-options-id</code> - The ID of a set of DHCP options.</p></li><li><p><code>ipv6-cidr-block-association.ipv6-cidr-block</code> - An IPv6 CIDR block associated with the VPC.</p></li><li><p><code>ipv6-cidr-block-association.ipv6-pool</code> - The ID of the IPv6 address pool from which the IPv6 CIDR block is allocated.</p></li><li><p><code>ipv6-cidr-block-association.association-id</code> - The association ID for an IPv6 CIDR block associated with the VPC.</p></li><li><p><code>ipv6-cidr-block-association.state</code> - The state of an IPv6 CIDR block associated with the VPC.</p></li><li><p><code>isDefault</code> - Indicates whether the VPC is the default VPC.</p></li><li><p><code>owner-id</code> - The ID of the AWS account that owns the VPC.</p></li><li><p><code>state</code> - The state of the VPC (<code>pending</code> | <code>available</code>).</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>vpc-id</code> - The ID of the VPC.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -13129,7 +16152,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters.</p><ul><li><p><code>customer-gateway-configuration</code> - The configuration information for the customer gateway.</p></li><li><p><code>customer-gateway-id</code> - The ID of a customer gateway associated with the VPN connection.</p></li><li><p><code>state</code> - The state of the VPN connection (<code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>).</p></li><li><p><code>option.static-routes-only</code> - Indicates whether the connection has static routes only. Used for devices that do not support Border Gateway Protocol (BGP).</p></li><li><p><code>route.destination-cidr-block</code> - The destination CIDR block. This corresponds to the subnet used in a customer data center.</p></li><li><p><code>bgp-asn</code> - The BGP Autonomous System Number (ASN) associated with a BGP device.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>type</code> - The type of VPN connection. Currently the only supported type is <code>ipsec.1</code>.</p></li><li><p><code>vpn-connection-id</code> - The ID of the VPN connection.</p></li><li><p><code>vpn-gateway-id</code> - The ID of a virtual private gateway associated with the VPN connection.</p></li></ul>
+ <p>One or more filters.</p><ul><li><p><code>customer-gateway-configuration</code> - The configuration information for the customer gateway.</p></li><li><p><code>customer-gateway-id</code> - The ID of a customer gateway associated with the VPN connection.</p></li><li><p><code>state</code> - The state of the VPN connection (<code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>).</p></li><li><p><code>option.static-routes-only</code> - Indicates whether the connection has static routes only. Used for devices that do not support Border Gateway Protocol (BGP).</p></li><li><p><code>route.destination-cidr-block</code> - The destination CIDR block. This corresponds to the subnet used in a customer data center.</p></li><li><p><code>bgp-asn</code> - The BGP Autonomous System Number (ASN) associated with a BGP device.</p></li><li><p><code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p></li><li><p><code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p></li><li><p><code>type</code> - The type of VPN connection. Currently the only supported type is <code>ipsec.1</code>.</p></li><li><p><code>vpn-connection-id</code> - The ID of the VPN connection.</p></li><li><p><code>vpn-gateway-id</code> - The ID of a virtual private gateway associated with the VPN connection.</p></li><li><p><code>transit-gateway-id</code> - The ID of a transit gateway associated with the VPN connection.</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -13266,15 +16289,14 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>Specifies whether to force a detachment.</p>
+ <p>Specifies whether to force a detachment.</p><note><ul><li><p>Use the <code>Force</code> parameter only as a last resort to detach a network interface from a failed instance. </p></li><li><p>If you use the <code>Force</code> parameter to detach a network interface, you might not be able to attach a different network interface to the same index on the instance without first stopping and starting the instance.</p></li><li><p>If you force the detachment of a network interface, the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">instance metadata</a> might not get updated. This means that the attributes associated with the detached network interface might still be visible. The instance metadata will get updated when you stop and start the instance.</p></li></ul></note>
  */
 @property (nonatomic, strong) NSNumber * _Nullable force;
 
 @end
 
 /**
- <p>Contains the parameters for DetachVolume.</p>
- Required parameters: [VolumeId]
+ 
  */
 @interface AWSEC2DetachVolumeRequest : AWSRequest
 
@@ -13295,7 +16317,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable force;
 
 /**
- <p>The ID of the instance.</p>
+ <p>The ID of the instance. If you are detaching a Multi-Attach enabled volume, you must specify an instance ID.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable instanceId;
 
@@ -13405,6 +16427,190 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 /**
  
  */
+@interface AWSEC2DisableEbsEncryptionByDefaultRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DisableEbsEncryptionByDefaultResult : AWSModel
+
+
+/**
+ <p>The updated status of encryption by default.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable ebsEncryptionByDefault;
+
+@end
+
+/**
+ <p>Contains information about the errors that occurred when disabling fast snapshot restores.</p>
+ */
+@interface AWSEC2DisableFastSnapshotRestoreErrorItem : AWSModel
+
+
+/**
+ <p>The errors.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2DisableFastSnapshotRestoreStateErrorItem *> * _Nullable fastSnapshotRestoreStateErrors;
+
+/**
+ <p>The ID of the snapshot.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable snapshotId;
+
+@end
+
+/**
+ <p>Describes an error that occurred when disabling fast snapshot restores.</p>
+ */
+@interface AWSEC2DisableFastSnapshotRestoreStateError : AWSModel
+
+
+/**
+ <p>The error code.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable code;
+
+/**
+ <p>The error message.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable message;
+
+@end
+
+/**
+ <p>Contains information about an error that occurred when disabling fast snapshot restores.</p>
+ */
+@interface AWSEC2DisableFastSnapshotRestoreStateErrorItem : AWSModel
+
+
+/**
+ <p>The Availability Zone.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable availabilityZone;
+
+/**
+ <p>The error.</p>
+ */
+@property (nonatomic, strong) AWSEC2DisableFastSnapshotRestoreStateError * _Nullable error;
+
+@end
+
+/**
+ <p>Describes fast snapshot restores that were successfully disabled.</p>
+ */
+@interface AWSEC2DisableFastSnapshotRestoreSuccessItem : AWSModel
+
+
+/**
+ <p>The Availability Zone.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable availabilityZone;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>disabled</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable disabledTime;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>disabling</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable disablingTime;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>enabled</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable enabledTime;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>enabling</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable enablingTime;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>optimizing</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable optimizingTime;
+
+/**
+ <p>The alias of the snapshot owner.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerAlias;
+
+/**
+ <p>The ID of the AWS account that owns the snapshot.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerId;
+
+/**
+ <p>The ID of the snapshot.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable snapshotId;
+
+/**
+ <p>The state of fast snapshot restores for the snapshot.</p>
+ */
+@property (nonatomic, assign) AWSEC2FastSnapshotRestoreStateCode state;
+
+/**
+ <p>The reason for the state transition. The possible values are as follows:</p><ul><li><p><code>Client.UserInitiated</code> - The state successfully transitioned to <code>enabling</code> or <code>disabling</code>.</p></li><li><p><code>Client.UserInitiated - Lifecycle state transition</code> - The state successfully transitioned to <code>optimizing</code>, <code>enabled</code>, or <code>disabled</code>.</p></li></ul>
+ */
+@property (nonatomic, strong) NSString * _Nullable stateTransitionReason;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DisableFastSnapshotRestoresRequest : AWSRequest
+
+
+/**
+ <p>One or more Availability Zones. For example, <code>us-east-2a</code>.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable availabilityZones;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The IDs of one or more snapshots. For example, <code>snap-1234567890abcdef0</code>.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable sourceSnapshotIds;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DisableFastSnapshotRestoresResult : AWSModel
+
+
+/**
+ <p>Information about the snapshots for which fast snapshot restores were successfully disabled.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2DisableFastSnapshotRestoreSuccessItem *> * _Nullable successful;
+
+/**
+ <p>Information about the snapshots for which fast snapshot restores could not be disabled.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2DisableFastSnapshotRestoreErrorItem *> * _Nullable unsuccessful;
+
+@end
+
+/**
+ 
+ */
 @interface AWSEC2DisableTransitGatewayRouteTablePropagationRequest : AWSRequest
 
 
@@ -13444,6 +16650,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @interface AWSEC2DisableVgwRoutePropagationRequest : AWSRequest
 
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
  <p>The ID of the virtual private gateway.</p>
@@ -13656,6 +16867,47 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 /**
  
  */
+@interface AWSEC2DisassociateTransitGatewayMulticastDomainRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The IDs of the subnets;</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable subnetIds;
+
+/**
+ <p>The ID of the attachment.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayAttachmentId;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2DisassociateTransitGatewayMulticastDomainResult : AWSModel
+
+
+/**
+ <p>Information about the association.</p>
+ */
+@property (nonatomic, strong) AWSEC2TransitGatewayMulticastDomainAssociations * _Nullable associations;
+
+@end
+
+/**
+ 
+ */
 @interface AWSEC2DisassociateTransitGatewayRouteTableRequest : AWSRequest
 
 
@@ -13819,6 +17071,29 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>Describes the disk.</p>
+ */
+@interface AWSEC2DiskInfo : AWSModel
+
+
+/**
+ <p>The number of disks with this configuration.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable count;
+
+/**
+ <p>The size of the disk in GB.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable sizeInGB;
+
+/**
+ <p>The type of disk.</p>
+ */
+@property (nonatomic, assign) AWSEC2DiskType types;
+
+@end
+
+/**
  <p>Describes a DNS entry.</p>
  */
 @interface AWSEC2DnsEntry : AWSModel
@@ -13861,22 +17136,22 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Indicates whether the EBS volume is deleted on instance termination.</p>
+ <p>Indicates whether the EBS volume is deleted on instance termination. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#preserving-volumes-on-termination">Preserving Amazon EBS Volumes on Instance Termination</a> in the Amazon Elastic Compute Cloud User Guide.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable deleteOnTermination;
 
 /**
- <p>Indicates whether the EBS volume is encrypted. Encrypted volumes can only be attached to instances that support Amazon EBS encryption.</p><p>If you are creating a volume from a snapshot, you cannot specify an encryption value. This is because only blank volumes can be encrypted on creation. If you are creating a snapshot from an existing EBS volume, you cannot specify an encryption value that differs from that of the EBS volume. We recommend that you omit the encryption value from the block device mappings when creating an image from an instance.</p>
+ <p>Indicates whether the encryption state of an EBS volume is changed while being restored from a backing snapshot. The effect of setting the encryption state to <code>true</code> depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-parameters">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>In no case can you remove encryption from an encrypted volume.</p><p>Encrypted volumes can only be attached to instances that support Amazon EBS encryption. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances">Supported Instance Types</a>.</p><p>This parameter is not returned by .</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable encrypted;
 
 /**
- <p>The number of I/O operations per second (IOPS) that the volume supports. For <code>io1</code> volumes, this represents the number of IOPS that are provisioned for the volume. For <code>gp2</code> volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>Constraints: Range is 100-16,000 IOPS for <code>gp2</code> volumes and 100 to 64,000IOPS for <code>io1</code> volumes, in most Regions. The maximum IOPS for <code>io1</code> of 64,000 is guaranteed only on <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances">Nitro-based instances</a>. Other instance families guarantee performance up to 32,000 IOPS.</p><p>Condition: This parameter is required for requests to create <code>io1</code> volumes; it is not used in requests to create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code> volumes.</p>
+ <p>The number of I/O operations per second (IOPS) that the volume supports. For <code>io1</code> volumes, this represents the number of IOPS that are provisioned for the volume. For <code>gp2</code> volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>Constraints: Range is 100-16,000 IOPS for <code>gp2</code> volumes and 100 to 64,000IOPS for <code>io1</code> volumes in most Regions. Maximum <code>io1</code> IOPS of 64,000 is guaranteed only on <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances">Nitro-based instances</a>. Other instance families guarantee performance up to 32,000 IOPS. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>Condition: This parameter is required for requests to create <code>io1</code> volumes; it is not used in requests to create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code> volumes.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable iops;
 
 /**
- <p>Identifier (key ID, key alias, ID ARN, or alias ARN) for a user-managed CMK under which the EBS volume is encrypted.</p><p>This parameter is only supported on <code>BlockDeviceMapping</code> objects called by <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html">RunInstances</a>, <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotFleet.html">RequestSpotFleet</a>, and <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotInstances.html">RequestSpotInstances</a>.</p>
+ <p>Identifier (key ID, key alias, ID ARN, or alias ARN) for a customer managed CMK under which the EBS volume is encrypted.</p><p>This parameter is only supported on <code>BlockDeviceMapping</code> objects called by <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html">RunInstances</a>, <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotFleet.html">RequestSpotFleet</a>, and <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotInstances.html">RequestSpotInstances</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable kmsKeyId;
 
@@ -13886,14 +17161,32 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable snapshotId;
 
 /**
- <p>The size of the volume, in GiB.</p><p>Constraints: 1-16384 for General Purpose SSD (<code>gp2</code>), 4-16384 for Provisioned IOPS SSD (<code>io1</code>), 500-16384 for Throughput Optimized HDD (<code>st1</code>), 500-16384 for Cold HDD (<code>sc1</code>), and 1-1024 for Magnetic (<code>standard</code>) volumes. If you specify a snapshot, the volume size must be equal to or larger than the snapshot size.</p><p>Default: If you're creating the volume from a snapshot and don't specify a volume size, the default is the snapshot size.</p>
+ <p>The size of the volume, in GiB.</p><p>Default: If you're creating the volume from a snapshot and don't specify a volume size, the default is the snapshot size.</p><p>Constraints: 1-16384 for General Purpose SSD (<code>gp2</code>), 4-16384 for Provisioned IOPS SSD (<code>io1</code>), 500-16384 for Throughput Optimized HDD (<code>st1</code>), 500-16384 for Cold HDD (<code>sc1</code>), and 1-1024 for Magnetic (<code>standard</code>) volumes. If you specify a snapshot, the volume size must be equal to or larger than the snapshot size.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable volumeSize;
 
 /**
- <p>The volume type: <code>gp2</code>, <code>io1</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code>.</p><p>Default: <code>standard</code></p>
+ <p>The volume type. If you set the type to <code>io1</code>, you must also specify the <b>Iops</b> parameter. If you set the type to <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code>, you must omit the <b>Iops</b> parameter.</p><p>Default: <code>gp2</code></p>
  */
 @property (nonatomic, assign) AWSEC2VolumeType volumeType;
+
+@end
+
+/**
+ <p>Describes the Amazon EBS features supported by the instance type.</p>
+ */
+@interface AWSEC2EbsInfo : AWSModel
+
+
+/**
+ <p>Indicates that the instance type is Amazon EBS-optimized. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html">Amazon EBS-Optimized Instances</a> in <i>Amazon EC2 User Guide for Linux Instances</i>.</p>
+ */
+@property (nonatomic, assign) AWSEC2EbsOptimizedSupport ebsOptimizedSupport;
+
+/**
+ <p>Indicates whether Amazon EBS encryption is supported.</p>
+ */
+@property (nonatomic, assign) AWSEC2EbsEncryptionSupport encryptionSupport;
 
 @end
 
@@ -13959,6 +17252,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, strong) NSString * _Nullable egressOnlyInternetGatewayId;
 
+/**
+ <p>The tags assigned to the egress-only internet gateway.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
 @end
 
 /**
@@ -14010,7 +17308,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The type of Elastic Graphics accelerator.</p>
+ <p>The type of Elastic Graphics accelerator. For more information about the values to specify for <code>Type</code>, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics.html#elastic-graphics-basics">Elastic Graphics Basics</a>, specifically the Elastic Graphics accelerator column, in the <i>Amazon Elastic Compute Cloud User Guide for Windows Instances</i>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable types;
 
@@ -14065,6 +17363,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, strong) NSString * _Nullable instanceId;
 
+/**
+ <p>The tags assigned to the Elastic Graphics accelerator.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
 @end
 
 /**
@@ -14075,7 +17378,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p> The type of elastic inference accelerator. The possible values are eia1.small, eia1.medium, and eia1.large. </p>
+ <p> The number of elastic inference accelerators to attach to the instance. </p><p>Default: 1</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable count;
+
+/**
+ <p> The type of elastic inference accelerator. The possible values are <code>eia1.medium</code>, <code>eia1.large</code>, and <code>eia1.xlarge</code>. </p>
  */
 @property (nonatomic, strong) NSString * _Nullable types;
 
@@ -14106,6 +17414,190 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p> The time at which the elastic inference accelerator is associated with an instance. </p>
  */
 @property (nonatomic, strong) NSDate * _Nullable elasticInferenceAcceleratorAssociationTime;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2EnableEbsEncryptionByDefaultRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2EnableEbsEncryptionByDefaultResult : AWSModel
+
+
+/**
+ <p>The updated status of encryption by default.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable ebsEncryptionByDefault;
+
+@end
+
+/**
+ <p>Contains information about the errors that occurred when enabling fast snapshot restores.</p>
+ */
+@interface AWSEC2EnableFastSnapshotRestoreErrorItem : AWSModel
+
+
+/**
+ <p>The errors.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2EnableFastSnapshotRestoreStateErrorItem *> * _Nullable fastSnapshotRestoreStateErrors;
+
+/**
+ <p>The ID of the snapshot.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable snapshotId;
+
+@end
+
+/**
+ <p>Describes an error that occurred when enabling fast snapshot restores.</p>
+ */
+@interface AWSEC2EnableFastSnapshotRestoreStateError : AWSModel
+
+
+/**
+ <p>The error code.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable code;
+
+/**
+ <p>The error message.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable message;
+
+@end
+
+/**
+ <p>Contains information about an error that occurred when enabling fast snapshot restores.</p>
+ */
+@interface AWSEC2EnableFastSnapshotRestoreStateErrorItem : AWSModel
+
+
+/**
+ <p>The Availability Zone.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable availabilityZone;
+
+/**
+ <p>The error.</p>
+ */
+@property (nonatomic, strong) AWSEC2EnableFastSnapshotRestoreStateError * _Nullable error;
+
+@end
+
+/**
+ <p>Describes fast snapshot restores that were successfully enabled.</p>
+ */
+@interface AWSEC2EnableFastSnapshotRestoreSuccessItem : AWSModel
+
+
+/**
+ <p>The Availability Zone.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable availabilityZone;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>disabled</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable disabledTime;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>disabling</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable disablingTime;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>enabled</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable enabledTime;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>enabling</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable enablingTime;
+
+/**
+ <p>The time at which fast snapshot restores entered the <code>optimizing</code> state.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable optimizingTime;
+
+/**
+ <p>The alias of the snapshot owner.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerAlias;
+
+/**
+ <p>The ID of the AWS account that owns the snapshot.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerId;
+
+/**
+ <p>The ID of the snapshot.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable snapshotId;
+
+/**
+ <p>The state of fast snapshot restores.</p>
+ */
+@property (nonatomic, assign) AWSEC2FastSnapshotRestoreStateCode state;
+
+/**
+ <p>The reason for the state transition. The possible values are as follows:</p><ul><li><p><code>Client.UserInitiated</code> - The state successfully transitioned to <code>enabling</code> or <code>disabling</code>.</p></li><li><p><code>Client.UserInitiated - Lifecycle state transition</code> - The state successfully transitioned to <code>optimizing</code>, <code>enabled</code>, or <code>disabled</code>.</p></li></ul>
+ */
+@property (nonatomic, strong) NSString * _Nullable stateTransitionReason;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2EnableFastSnapshotRestoresRequest : AWSRequest
+
+
+/**
+ <p>One or more Availability Zones. For example, <code>us-east-2a</code>.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable availabilityZones;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The IDs of one or more snapshots. For example, <code>snap-1234567890abcdef0</code>. You can specify a snapshot that was shared with you from another AWS account.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable sourceSnapshotIds;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2EnableFastSnapshotRestoresResult : AWSModel
+
+
+/**
+ <p>Information about the snapshots for which fast snapshot restores were successfully enabled.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2EnableFastSnapshotRestoreSuccessItem *> * _Nullable successful;
+
+/**
+ <p>Information about the snapshots for which fast snapshot restores could not be enabled.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2EnableFastSnapshotRestoreErrorItem *> * _Nullable unsuccessful;
 
 @end
 
@@ -14153,20 +17645,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The ID of the virtual private gateway.</p>
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the virtual private gateway that is attached to a VPC. The virtual private gateway must be attached to the same VPC that the routing tables are associated with. </p>
  */
 @property (nonatomic, strong) NSString * _Nullable gatewayId;
 
 /**
- <p>The ID of the route table.</p>
+ <p>The ID of the route table. The routing table must be associated with the same VPC that the virtual private gateway is attached to. </p>
  */
 @property (nonatomic, strong) NSString * _Nullable routeTableId;
 
 @end
 
 /**
- <p>Contains the parameters for EnableVolumeIO.</p>
- Required parameters: [VolumeId]
+ 
  */
 @interface AWSEC2EnableVolumeIORequest : AWSRequest
 
@@ -14241,7 +17737,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Describes a Spot Fleet event.</p>
+ <p>Describes an EC2 Fleet or Spot Fleet event.</p>
  */
 @interface AWSEC2EventInformation : AWSModel
 
@@ -14252,7 +17748,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable eventDescription;
 
 /**
- <p>The event.</p><p>The following are the <code>error</code> events:</p><ul><li><p><code>iamFleetRoleInvalid</code> - The Spot Fleet did not have the required permissions either to launch or terminate an instance.</p></li><li><p><code>spotFleetRequestConfigurationInvalid</code> - The configuration is not valid. For more information, see the description of the event.</p></li><li><p><code>spotInstanceCountLimitExceeded</code> - You've reached the limit on the number of Spot Instances that you can launch.</p></li></ul><p>The following are the <code>fleetRequestChange</code> events:</p><ul><li><p><code>active</code> - The Spot Fleet has been validated and Amazon EC2 is attempting to maintain the target number of running Spot Instances.</p></li><li><p><code>cancelled</code> - The Spot Fleet is canceled and has no running Spot Instances. The Spot Fleet will be deleted two days after its instances were terminated.</p></li><li><p><code>cancelled_running</code> - The Spot Fleet is canceled and does not launch additional Spot Instances. Existing Spot Instances continue to run until they are interrupted or terminated.</p></li><li><p><code>cancelled_terminating</code> - The Spot Fleet is canceled and its Spot Instances are terminating.</p></li><li><p><code>expired</code> - The Spot Fleet request has expired. A subsequent event indicates that the instances were terminated, if the request was created with <code>TerminateInstancesWithExpiration</code> set.</p></li><li><p><code>modify_in_progress</code> - A request to modify the Spot Fleet request was accepted and is in progress.</p></li><li><p><code>modify_successful</code> - The Spot Fleet request was modified.</p></li><li><p><code>price_update</code> - The price for a launch configuration was adjusted because it was too high. This change is permanent.</p></li><li><p><code>submitted</code> - The Spot Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of Spot Instances.</p></li></ul><p>The following are the <code>instanceChange</code> events:</p><ul><li><p><code>launched</code> - A request was fulfilled and a new instance was launched.</p></li><li><p><code>terminated</code> - An instance was terminated by the user.</p></li></ul><p>The following are the <code>Information</code> events:</p><ul><li><p><code>launchSpecTemporarilyBlacklisted</code> - The configuration is not valid and several attempts to launch instances have failed. For more information, see the description of the event.</p></li><li><p><code>launchSpecUnusable</code> - The price in a launch specification is not valid because it is below the Spot price or the Spot price is above the On-Demand price.</p></li><li><p><code>fleetProgressHalted</code> - The price in every launch specification is not valid. A launch specification might become valid if the Spot price changes.</p></li></ul>
+ <p>The event.</p><p>The following are the <code>error</code> events:</p><ul><li><p><code>iamFleetRoleInvalid</code> - The EC2 Fleet or Spot Fleet did not have the required permissions either to launch or terminate an instance.</p></li><li><p><code>spotFleetRequestConfigurationInvalid</code> - The configuration is not valid. For more information, see the description of the event.</p></li><li><p><code>spotInstanceCountLimitExceeded</code> - You've reached the limit on the number of Spot Instances that you can launch.</p></li></ul><p>The following are the <code>fleetRequestChange</code> events:</p><ul><li><p><code>active</code> - The EC2 Fleet or Spot Fleet request has been validated and Amazon EC2 is attempting to maintain the target number of running Spot Instances.</p></li><li><p><code>cancelled</code> - The EC2 Fleet or Spot Fleet request is canceled and has no running Spot Instances. The EC2 Fleet or Spot Fleet will be deleted two days after its instances were terminated.</p></li><li><p><code>cancelled_running</code> - The EC2 Fleet or Spot Fleet request is canceled and does not launch additional Spot Instances. Existing Spot Instances continue to run until they are interrupted or terminated.</p></li><li><p><code>cancelled_terminating</code> - The EC2 Fleet or Spot Fleet request is canceled and its Spot Instances are terminating.</p></li><li><p><code>expired</code> - The EC2 Fleet or Spot Fleet request has expired. A subsequent event indicates that the instances were terminated, if the request was created with <code>TerminateInstancesWithExpiration</code> set.</p></li><li><p><code>modify_in_progress</code> - A request to modify the EC2 Fleet or Spot Fleet request was accepted and is in progress.</p></li><li><p><code>modify_successful</code> - The EC2 Fleet or Spot Fleet request was modified.</p></li><li><p><code>price_update</code> - The price for a launch configuration was adjusted because it was too high. This change is permanent.</p></li><li><p><code>submitted</code> - The EC2 Fleet or Spot Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of Spot Instances.</p></li></ul><p>The following are the <code>instanceChange</code> events:</p><ul><li><p><code>launched</code> - A request was fulfilled and a new instance was launched.</p></li><li><p><code>terminated</code> - An instance was terminated by the user.</p></li></ul><p>The following are the <code>Information</code> events:</p><ul><li><p><code>launchSpecTemporarilyBlacklisted</code> - The configuration is not valid and several attempts to launch instances have failed. For more information, see the description of the event.</p></li><li><p><code>launchSpecUnusable</code> - The price in a launch specification is not valid because it is below the Spot price or the Spot price is above the On-Demand price.</p></li><li><p><code>fleetProgressHalted</code> - The price in every launch specification is not valid. A launch specification might become valid if the Spot price changes.</p></li></ul>
  */
 @property (nonatomic, strong) NSString * _Nullable eventSubType;
 
@@ -14331,6 +17827,145 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ 
+ */
+@interface AWSEC2ExportImageRequest : AWSRequest
+
+
+/**
+ <p>Token to enable idempotency for export image requests.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable clientToken;
+
+/**
+ <p>A description of the image being exported. The maximum length is 255 bytes.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>The disk image format.</p>
+ */
+@property (nonatomic, assign) AWSEC2DiskImageFormat diskImageFormat;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the image.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable imageId;
+
+/**
+ <p>The name of the role that grants VM Import/Export permission to export images to your S3 bucket. If this parameter is not specified, the default role is named 'vmimport'.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable roleName;
+
+/**
+ <p>Information about the destination S3 bucket. The bucket must exist and grant WRITE and READ_ACP permissions to the AWS account vm-import-export@amazon.com.</p>
+ */
+@property (nonatomic, strong) AWSEC2ExportTaskS3LocationRequest * _Nullable s3ExportLocation;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ExportImageResult : AWSModel
+
+
+/**
+ <p>A description of the image being exported.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>The disk image format for the exported image.</p>
+ */
+@property (nonatomic, assign) AWSEC2DiskImageFormat diskImageFormat;
+
+/**
+ <p>The ID of the export image task.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable exportImageTaskId;
+
+/**
+ <p>The ID of the image.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable imageId;
+
+/**
+ <p>The percent complete of the export image task.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable progress;
+
+/**
+ <p>The name of the role that grants VM Import/Export permission to export images to your S3 bucket.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable roleName;
+
+/**
+ <p>Information about the destination S3 bucket.</p>
+ */
+@property (nonatomic, strong) AWSEC2ExportTaskS3Location * _Nullable s3ExportLocation;
+
+/**
+ <p>The status of the export image task. The possible values are <code>active</code>, <code>completed</code>, <code>deleting</code>, and <code>deleted</code>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable status;
+
+/**
+ <p>The status message for the export image task.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable statusMessage;
+
+@end
+
+/**
+ <p>Describes an export image task.</p>
+ */
+@interface AWSEC2ExportImageTask : AWSModel
+
+
+/**
+ <p>A description of the image being exported.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>The ID of the export image task.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable exportImageTaskId;
+
+/**
+ <p>The ID of the image.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable imageId;
+
+/**
+ <p>The percent complete of the export image task.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable progress;
+
+/**
+ <p>Information about the destination S3 bucket.</p>
+ */
+@property (nonatomic, strong) AWSEC2ExportTaskS3Location * _Nullable s3ExportLocation;
+
+/**
+ <p>The status of the export image task. The possible values are <code>active</code>, <code>completed</code>, <code>deleting</code>, and <code>deleted</code>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable status;
+
+/**
+ <p>The status message for the export image task.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable statusMessage;
+
+@end
+
+/**
  <p>Describes an instance export task.</p>
  */
 @interface AWSEC2ExportTask : AWSModel
@@ -14365,6 +18000,48 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The status message related to the export task.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable statusMessage;
+
+/**
+ <p>The tags for the export task.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+@end
+
+/**
+ <p>Describes the destination for an export image task.</p>
+ */
+@interface AWSEC2ExportTaskS3Location : AWSModel
+
+
+/**
+ <p>The destination S3 bucket.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable s3Bucket;
+
+/**
+ <p>The prefix (logical hierarchy) in the bucket.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable s3Prefix;
+
+@end
+
+/**
+ <p>Describes the destination for an export image task.</p>
+ Required parameters: [S3Bucket]
+ */
+@interface AWSEC2ExportTaskS3LocationRequest : AWSModel
+
+
+/**
+ <p>The destination S3 bucket.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable s3Bucket;
+
+/**
+ <p>The prefix (logical hierarchy) in the bucket.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable s3Prefix;
 
 @end
 
@@ -14436,7 +18113,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters. The possible values are:</p><ul><li><p><code>attachment.transit-gateway-attachment-id</code>- The id of the transit gateway attachment.</p></li><li><p><code>attachment.resource-id</code> - The resource id of the transit gateway attachment.</p></li><li><p><code>route-search.exact-match</code> - The exact match of the specified filter.</p></li><li><p><code>route-search.longest-prefix-match</code> - The longest prefix that matches the route.</p></li><li><p><code>route-search.subnet-of-match</code> - The routes with a subnet that match the specified CIDR filter.</p></li><li><p><code>route-search.supernet-of-match</code> - The routes with a CIDR that encompass the CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31 routes in your route table and you specify supernet-of-match as 10.0.1.0/30, then the result returns 10.0.1.0/29.</p></li><li><p><code>state</code> - The state of the attachment (<code>available</code> | <code>deleted</code> | <code>deleting</code> | <code>failed</code> | <code>modifying</code> | <code>pendingAcceptance</code> | <code>pending</code> | <code>rollingBack</code> | <code>rejected</code> | <code>rejecting</code>).</p></li><li><p><code>transit-gateway-route-destination-cidr-block</code> - The CIDR range.</p></li><li><p><code>type</code> - The type of roue (<code>active</code> | <code>blackhole</code>).</p></li></ul>
+ <p>One or more filters. The possible values are:</p><ul><li><p><code>attachment.transit-gateway-attachment-id</code> - The id of the transit gateway attachment.</p></li><li><p><code>attachment.resource-id</code> - The resource id of the transit gateway attachment.</p></li><li><p><code>route-search.exact-match</code> - The exact match of the specified filter.</p></li><li><p><code>route-search.longest-prefix-match</code> - The longest prefix that matches the route.</p></li><li><p><code>route-search.subnet-of-match</code> - The routes with a subnet that match the specified CIDR filter.</p></li><li><p><code>route-search.supernet-of-match</code> - The routes with a CIDR that encompass the CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31 routes in your route table and you specify supernet-of-match as 10.0.1.0/30, then the result returns 10.0.1.0/29.</p></li><li><p><code>state</code> - The state of the attachment (<code>available</code> | <code>deleted</code> | <code>deleting</code> | <code>failed</code> | <code>modifying</code> | <code>pendingAcceptance</code> | <code>pending</code> | <code>rollingBack</code> | <code>rejected</code> | <code>rejecting</code>).</p></li><li><p><code>transit-gateway-route-destination-cidr-block</code> - The CIDR range.</p></li><li><p><code>type</code> - The type of route (<code>active</code> | <code>blackhole</code>).</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -14466,6 +18143,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>Describes a Reserved Instance whose queued purchase was not deleted.</p>
+ */
+@interface AWSEC2FailedQueuedPurchaseDeletion : AWSModel
+
+
+/**
+ <p>The error.</p>
+ */
+@property (nonatomic, strong) AWSEC2DeleteQueuedReservedInstancesError * _Nullable error;
+
+/**
+ <p>The ID of the Reserved Instance.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable reservedInstancesId;
+
+@end
+
+/**
  <p>A filter name and value pair that is used to return a more specific list of results from a describe operation. Filters can be used to match a set of resources by specific criteria, such as tags, attributes, or IDs. The filters supported by a describe operation are documented with the describe operation. For example:</p><ul><li><p><a>DescribeAvailabilityZones</a></p></li><li><p><a>DescribeImages</a></p></li><li><p><a>DescribeInstances</a></p></li><li><p><a>DescribeKeyPairs</a></p></li><li><p><a>DescribeSecurityGroups</a></p></li><li><p><a>DescribeSnapshots</a></p></li><li><p><a>DescribeSubnets</a></p></li><li><p><a>DescribeTags</a></p></li><li><p><a>DescribeVolumes</a></p></li><li><p><a>DescribeVpcs</a></p></li></ul>
  */
 @interface AWSEC2Filter : AWSModel
@@ -14477,7 +18172,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable name;
 
 /**
- <p>One or more filter values. Filter values are case-sensitive.</p>
+ <p>The filter values. Filter values are case-sensitive.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable values;
 
@@ -14495,7 +18190,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2FleetActivityStatus activityStatus;
 
 /**
- <p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring Idempotency</a>.</p><p>Constraints: Maximum 64 ASCII characters</p>
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring Idempotency</a>.</p><p>Constraints: Maximum 64 ASCII characters</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
@@ -14575,7 +18270,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable terminateInstancesWithExpiration;
 
 /**
- <p>The type of request. Indicates whether the EC2 Fleet only <code>requests</code> the target capacity, or also attempts to <code>maintain</code> it. If you request a certain target capacity, EC2 Fleet only places the required requests; it does not attempt to replenish instances if capacity is diminished, and does not submit requests in alternative capacity pools if capacity is unavailable. To maintain a certain target capacity, EC2 Fleet places the required requests to meet this target capacity. It also automatically replenishes any interrupted Spot Instances. Default: <code>maintain</code>.</p>
+ <p>The type of request. Indicates whether the EC2 Fleet only <code>requests</code> the target capacity, or also attempts to <code>maintain</code> it. If you request a certain target capacity, EC2 Fleet only places the required requests; it does not attempt to replenish instances if capacity is diminished, and it does not submit requests in alternative capacity pools if capacity is unavailable. To maintain a certain target capacity, EC2 Fleet places the required requests to meet this target capacity. It also automatically replenishes any interrupted Spot Instances. Default: <code>maintain</code>.</p>
  */
 @property (nonatomic, assign) AWSEC2FleetType types;
 
@@ -14702,7 +18397,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable priority;
 
 /**
- <p>The ID of the subnet in which to launch the instances.</p>
+ <p>The IDs of the subnets in which to launch the instances. Separate multiple subnet IDs using commas (for example, <code>subnet-1234abcdeexample1, subnet-0987cdef6example2</code>). A request of type <code>instant</code> can have only one subnet ID.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable subnetId;
 
@@ -14753,7 +18448,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable launchTemplateName;
 
 /**
- <p>The version number of the launch template. </p>
+ <p>The version number of the launch template. Note: This is a required parameter and will be updated soon. </p>
  */
 @property (nonatomic, strong) NSString * _Nullable version;
 
@@ -14806,9 +18501,19 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2LogDestinationType logDestinationType;
 
 /**
+ <p>The format of the flow log record.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable logFormat;
+
+/**
  <p>The name of the flow log group.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable logGroupName;
+
+/**
+ <p>The maximum interval of time, in seconds, during which a flow of packets is captured and aggregated into a flow log record.</p><p>When a network interface is attached to a <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances">Nitro-based instance</a>, the aggregation interval is always 60 seconds (1 minute) or less, regardless of the specified value.</p><p>Valid Values: <code>60</code> | <code>600</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxAggregationInterval;
 
 /**
  <p>The ID of the resource on which the flow log was created.</p>
@@ -14816,9 +18521,55 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable resourceId;
 
 /**
+ <p>The tags for the flow log.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+/**
  <p>The type of traffic captured for the flow log.</p>
  */
 @property (nonatomic, assign) AWSEC2TrafficType trafficType;
+
+@end
+
+/**
+ <p>Describes the FPGA accelerator for the instance type.</p>
+ */
+@interface AWSEC2FpgaDeviceInfo : AWSModel
+
+
+/**
+ <p>The count of FPGA accelerators for the instance type.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable count;
+
+/**
+ <p>The manufacturer of the FPGA accelerator.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable manufacturer;
+
+/**
+ <p>Describes the memory for the FPGA accelerator for the instance type.</p>
+ */
+@property (nonatomic, strong) AWSEC2FpgaDeviceMemoryInfo * _Nullable memoryInfo;
+
+/**
+ <p>The name of the FPGA accelerator.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable name;
+
+@end
+
+/**
+ <p>Describes the memory for the FPGA accelerator for the instance type.</p>
+ */
+@interface AWSEC2FpgaDeviceMemoryInfo : AWSModel
+
+
+/**
+ <p>The size (in MiB) for the memory available to the FPGA accelerator.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable sizeInMiB;
 
 @end
 
@@ -14922,7 +18673,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable fpgaImageId;
 
 /**
- <p>One or more load permissions.</p>
+ <p>The load permissions.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2LoadPermission *> * _Nullable loadPermissions;
 
@@ -14932,7 +18683,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable name;
 
 /**
- <p>One or more product codes.</p>
+ <p>The product codes.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2ProductCode *> * _Nullable productCodes;
 
@@ -14953,6 +18704,197 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>If the state is <code>failed</code>, this is the error message.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable message;
+
+@end
+
+/**
+ <p>Describes the FPGAs for the instance type.</p>
+ */
+@interface AWSEC2FpgaInfo : AWSModel
+
+
+/**
+ <p>Describes the FPGAs for the instance type.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2FpgaDeviceInfo *> * _Nullable fpgas;
+
+/**
+ <p>The total memory of all FPGA accelerators for the instance type.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable totalFpgaMemoryInMiB;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2GetAssociatedIpv6PoolCidrsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>The ID of the IPv6 address pool.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable poolId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2GetAssociatedIpv6PoolCidrsResult : AWSModel
+
+
+/**
+ <p>Information about the IPv6 CIDR block associations.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Ipv6CidrAssociation *> * _Nullable ipv6CidrAssociations;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2GetCapacityReservationUsageRequest : AWSRequest
+
+
+/**
+ <p>The ID of the Capacity Reservation.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable capacityReservationId;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the returned nextToken value.</p><p>Valid range: Minimum value of 1. Maximum value of 1000.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token to retrieve the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2GetCapacityReservationUsageResult : AWSModel
+
+
+/**
+ <p>The remaining capacity. Indicates the number of instances that can be launched in the Capacity Reservation.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable availableInstanceCount;
+
+/**
+ <p>The ID of the Capacity Reservation.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable capacityReservationId;
+
+/**
+ <p>The type of instance for which the Capacity Reservation reserves capacity.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable instanceType;
+
+/**
+ <p>Information about the Capacity Reservation usage.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2InstanceUsage *> * _Nullable instanceUsages;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>The current state of the Capacity Reservation. A Capacity Reservation can be in one of the following states:</p><ul><li><p><code>active</code> - The Capacity Reservation is active and the capacity is available for your use.</p></li><li><p><code>expired</code> - The Capacity Reservation expired automatically at the date and time specified in your request. The reserved capacity is no longer available for your use.</p></li><li><p><code>cancelled</code> - The Capacity Reservation was manually cancelled. The reserved capacity is no longer available for your use.</p></li><li><p><code>pending</code> - The Capacity Reservation request was successful but the capacity provisioning is still pending.</p></li><li><p><code>failed</code> - The Capacity Reservation request has failed. A request might fail due to invalid request parameters, capacity constraints, or instance limit constraints. Failed requests are retained for 60 minutes.</p></li></ul>
+ */
+@property (nonatomic, assign) AWSEC2CapacityReservationState state;
+
+/**
+ <p>The number of instances for which the Capacity Reservation reserves capacity.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable totalInstanceCount;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2GetCoipPoolUsageRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The filters. The following are the possible values:</p><ul><li><p><code>coip-address-usage.allocation-id</code></p></li></ul><ul><li><p><code>coip-address-usage.aws-account-id</code></p></li></ul><ul><li><p><code>coip-address-usage.aws-service</code></p></li></ul><ul><li><p><code>coip-address-usage.co-ip</code></p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>The ID of the address pool.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable poolId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2GetCoipPoolUsageResult : AWSModel
+
+
+/**
+ <p>Information about the address usage.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2CoipAddressUsage *> * _Nullable coipAddressUsages;
+
+/**
+ <p>The ID of the customer-owned address pool.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable coipPoolId;
+
+/**
+ <p>The ID of the local gateway route table.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayRouteTableId;
 
 @end
 
@@ -15040,6 +18982,89 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of the instance.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable instanceId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2GetDefaultCreditSpecificationRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The instance family.</p>
+ */
+@property (nonatomic, assign) AWSEC2UnlimitedSupportedInstanceFamily instanceFamily;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2GetDefaultCreditSpecificationResult : AWSModel
+
+
+/**
+ <p>The default credit option for CPU usage of the instance family.</p>
+ */
+@property (nonatomic, strong) AWSEC2InstanceFamilyCreditSpecification * _Nullable instanceFamilyCreditSpecification;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2GetEbsDefaultKmsKeyIdRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2GetEbsDefaultKmsKeyIdResult : AWSModel
+
+
+/**
+ <p>The Amazon Resource Name (ARN) of the default CMK for encryption by default.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable kmsKeyId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2GetEbsEncryptionByDefaultRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2GetEbsEncryptionByDefaultResult : AWSModel
+
+
+/**
+ <p>Indicates whether encryption by default is enabled.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable ebsEncryptionByDefault;
 
 @end
 
@@ -15292,6 +19317,57 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 /**
  
  */
+@interface AWSEC2GetTransitGatewayMulticastDomainAssociationsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters. The possible values are:</p><ul><li><p><code>resource-id</code> - The ID of the resource.</p></li><li><p><code>resource-type</code> - The type of resource. The valid value is: <code>vpc</code>.</p></li><li><p><code>state</code> - The state of the subnet association. Valid values are <code>associated</code> | <code>associating</code> | <code>disassociated</code> | <code>disassociating</code>.</p></li><li><p><code>subnet-id</code> - The ID of the subnet.</p></li><li><p><code>transit-gateway-attachment-id</code> - The id of the transit gateway attachment.</p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2GetTransitGatewayMulticastDomainAssociationsResult : AWSModel
+
+
+/**
+ <p>Information about the multicast domain associations.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TransitGatewayMulticastDomainAssociation *> * _Nullable multicastDomainAssociations;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
 @interface AWSEC2GetTransitGatewayRouteTableAssociationsRequest : AWSRequest
 
 
@@ -15392,6 +19468,65 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>Describes the GPU accelerators for the instance type.</p>
+ */
+@interface AWSEC2GpuDeviceInfo : AWSModel
+
+
+/**
+ <p>The number of GPUs for the instance type.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable count;
+
+/**
+ <p>The manufacturer of the GPU accelerator.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable manufacturer;
+
+/**
+ <p>Describes the memory available to the GPU accelerator.</p>
+ */
+@property (nonatomic, strong) AWSEC2GpuDeviceMemoryInfo * _Nullable memoryInfo;
+
+/**
+ <p>The name of the GPU accelerator.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable name;
+
+@end
+
+/**
+ <p>Describes the memory available to the GPU accelerator.</p>
+ */
+@interface AWSEC2GpuDeviceMemoryInfo : AWSModel
+
+
+/**
+ <p>The size (in MiB) for the memory available to the GPU accelerator.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable sizeInMiB;
+
+@end
+
+/**
+ <p>Describes the GPU accelerators for the instance type.</p>
+ */
+@interface AWSEC2GpuInfo : AWSModel
+
+
+/**
+ <p>Describes the GPU accelerators for the instance type.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2GpuDeviceInfo *> * _Nullable gpus;
+
+/**
+ <p>The total size of the memory for the GPU accelerators for the instance type.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable totalGpuMemoryInMiB;
+
+@end
+
+/**
  <p>Describes a security group.</p>
  */
 @interface AWSEC2GroupIdentifier : AWSModel
@@ -15410,7 +19545,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Indicates whether your instance is configured for hibernation. This parameter is valid only if the instance meets the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites">hibernation prerequisites</a>. Hibernation is currently supported only for Amazon Linux. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ <p>Indicates whether your instance is configured for hibernation. This parameter is valid only if the instance meets the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites">hibernation prerequisites</a>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  */
 @interface AWSEC2HibernationOptions : AWSModel
 
@@ -15423,7 +19558,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Indicates whether your instance is configured for hibernation. This parameter is valid only if the instance meets the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites">hibernation prerequisites</a>. Hibernation is currently supported only for Amazon Linux. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ <p>Indicates whether your instance is configured for hibernation. This parameter is valid only if the instance meets the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites">hibernation prerequisites</a>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  */
 @interface AWSEC2HibernationOptionsRequest : AWSModel
 
@@ -15493,6 +19628,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSDate * _Nullable allocationTime;
 
 /**
+ <p>Indicates whether the Dedicated Host supports multiple instance types of the same instance family, or a specific instance type only. <code>one</code> indicates that the Dedicated Host supports multiple instance types in the instance family. <code>off</code> indicates that the Dedicated Host supports a single instance type only.</p>
+ */
+@property (nonatomic, assign) AWSEC2AllowsMultipleInstanceTypes allowsMultipleInstanceTypes;
+
+/**
  <p>Whether auto-placement is on or off.</p>
  */
 @property (nonatomic, assign) AWSEC2AutoPlacement autoPlacement;
@@ -15503,12 +19643,17 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable availabilityZone;
 
 /**
- <p>The number of new instances that can be launched onto the Dedicated Host.</p>
+ <p>The ID of the Availability Zone in which the Dedicated Host is allocated.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable availabilityZoneId;
+
+/**
+ <p>Information about the instances running on the Dedicated Host.</p>
  */
 @property (nonatomic, strong) AWSEC2AvailableCapacity * _Nullable availableCapacity;
 
 /**
- <p>Unique, case-sensitive identifier that you provide to ensure idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. </p>
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
@@ -15523,6 +19668,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) AWSEC2HostProperties * _Nullable hostProperties;
 
 /**
+ <p>Indicates whether host recovery is enabled or disabled for the Dedicated Host.</p>
+ */
+@property (nonatomic, assign) AWSEC2HostRecovery hostRecovery;
+
+/**
  <p>The reservation ID of the Dedicated Host. This returns a <code>null</code> response if the Dedicated Host doesn't have an associated reservation.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable hostReservationId;
@@ -15531,6 +19681,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The IDs and instance type that are currently running on the Dedicated Host.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2HostInstance *> * _Nullable instances;
+
+/**
+ <p>Indicates whether the Dedicated Host is in a host resource group. If <b>memberOfServiceLinkedResourceGroup</b> is <code>true</code>, the host is in a host resource group; otherwise, it is not.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable memberOfServiceLinkedResourceGroup;
+
+/**
+ <p>The ID of the AWS account that owns the Dedicated Host.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerId;
 
 /**
  <p>The time that the Dedicated Host was released.</p>
@@ -15556,14 +19716,19 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>the IDs of instances that are running on the Dedicated Host.</p>
+ <p>The ID of instance that is running on the Dedicated Host.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable instanceId;
 
 /**
- <p>The instance type size (for example, <code>m3.medium</code>) of the running instance.</p>
+ <p>The instance type (for example, <code>m3.medium</code>) of the running instance.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable instanceType;
+
+/**
+ <p>The ID of the AWS account that owns the instance.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerId;
 
 @end
 
@@ -15611,7 +19776,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Describes properties of a Dedicated Host.</p>
+ <p>Describes the properties of a Dedicated Host.</p>
  */
 @interface AWSEC2HostProperties : AWSModel
 
@@ -15622,7 +19787,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable cores;
 
 /**
- <p>The instance type size that the Dedicated Host supports (for example, <code>m3.medium</code>).</p>
+ <p>The instance family supported by the Dedicated Host. For example, <code>m5</code>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable instanceFamily;
+
+/**
+ <p>The instance type supported by the Dedicated Host. For example, <code>m5.large</code>. If the host supports multiple instance types, no <b>instanceType</b> is returned.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable instanceType;
 
@@ -15632,7 +19802,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable sockets;
 
 /**
- <p>The number of vCPUs on the Dedicated Host.</p>
+ <p>The total number of vCPUs on the Dedicated Host.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable totalVCpus;
 
@@ -15713,6 +19883,32 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The upfront price of the reservation.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable upfrontPrice;
+
+@end
+
+/**
+ <p>The internet key exchange (IKE) version permitted for the VPN tunnel.</p>
+ */
+@interface AWSEC2IKEVersionsListValue : AWSModel
+
+
+/**
+ <p>The IKE version.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable value;
+
+@end
+
+/**
+ <p>The IKE version that is permitted for the VPN tunnel.</p>
+ */
+@interface AWSEC2IKEVersionsRequestListValue : AWSModel
+
+
+/**
+ <p>The IKE version.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable value;
 
 @end
 
@@ -15898,9 +20094,14 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable ownerId;
 
 /**
- <p>The value is <code>Windows</code> for Windows AMIs; otherwise blank.</p>
+ <p>This value is set to <code>windows</code> for Windows AMIs; otherwise, it is blank.</p>
  */
 @property (nonatomic, assign) AWSEC2PlatformValues platform;
+
+/**
+ <p>The platform details associated with the billing code of the AMI. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-billing-info.html">Obtaining Billing Information</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable platformDetails;
 
 /**
  <p>Any product codes associated with the AMI.</p>
@@ -15948,6 +20149,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
 
 /**
+ <p>The operation of the Amazon EC2 instance and the billing code that is associated with the AMI. <code>usageOperation</code> corresponds to the <a href="https://docs.aws.amazon.com/cur/latest/userguide/Lineitem-columns.html#Lineitem-details-O-Operation">lineitem/Operation</a> column on your AWS Cost and Usage Report and in the <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html">AWS Price List API</a>. For the list of <code>UsageOperation</code> codes, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-billing-info.html#billing-info">Platform Details and Usage Operation Billing Codes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable usageOperation;
+
+/**
  <p>The type of virtualization of the AMI.</p>
  */
 @property (nonatomic, assign) AWSEC2VirtualizationType virtualizationType;
@@ -15961,7 +20167,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>One or more block device mapping entries.</p>
+ <p>The block device mapping entries.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2BlockDeviceMapping *> * _Nullable blockDeviceMappings;
 
@@ -15981,12 +20187,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) AWSEC2AttributeValue * _Nullable kernelId;
 
 /**
- <p>One or more launch permissions.</p>
+ <p>The launch permissions.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2LaunchPermission *> * _Nullable launchPermissions;
 
 /**
- <p>One or more product codes.</p>
+ <p>The product codes.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2ProductCode *> * _Nullable productCodes;
 
@@ -16077,13 +20283,39 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for ImportImage.</p>
+ <p>The request information of license configurations.</p>
+ */
+@interface AWSEC2ImportImageLicenseConfigurationRequest : AWSModel
+
+
+/**
+ <p>The ARN of a license configuration.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable licenseConfigurationArn;
+
+@end
+
+/**
+ <p> The response information for license configurations.</p>
+ */
+@interface AWSEC2ImportImageLicenseConfigurationResponse : AWSModel
+
+
+/**
+ <p>The ARN of a license configuration.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable licenseConfigurationArn;
+
+@end
+
+/**
+ 
  */
 @interface AWSEC2ImportImageRequest : AWSRequest
 
 
 /**
- <p>The architecture of the virtual machine.</p><p>Valid values: <code>i386</code> | <code>x86_64</code></p>
+ <p>The architecture of the virtual machine.</p><p>Valid values: <code>i386</code> | <code>x86_64</code> | <code>arm64</code></p>
  */
 @property (nonatomic, strong) NSString * _Nullable architecture;
 
@@ -16123,12 +20355,17 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable hypervisor;
 
 /**
- <p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted AMI. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p><p>The CMK identifier may be provided in any of the following formats: </p><ul><li><p>Key ID</p></li><li><p>Key alias, in the form <code>alias/<i>ExampleAlias</i></code></p></li><li><p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p></li><li><p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p></li></ul><p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p><p>The specified CMK must exist in the region that the AMI is being copied to. </p>
+ <p>An identifier for the symmetric AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted AMI. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p><p>The CMK identifier may be provided in any of the following formats: </p><ul><li><p>Key ID</p></li><li><p>Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p></li><li><p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p></li><li><p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p></li></ul><p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p><p>The specified CMK must exist in the Region that the AMI is being copied to.</p><p>Amazon EBS does not support asymmetric CMKs.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable kmsKeyId;
 
 /**
- <p>The license type to be used for the Amazon Machine Image (AMI) after importing.</p><p><b>Note:</b> You may only use BYOL if you have existing licenses with rights to use these licenses in a third party cloud like AWS. For more information, see <a href="https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html#prerequisites-image">Prerequisites</a> in the VM Import/Export User Guide.</p><p>Valid values include:</p><ul><li><p><code>Auto</code> - Detects the source-system operating system (OS) and applies the appropriate license.</p></li><li><p><code>AWS</code> - Replaces the source-system license with an AWS license, if appropriate.</p></li><li><p><code>BYOL</code> - Retains the source-system license, if appropriate.</p></li></ul><p>Default value: <code>Auto</code></p>
+ <p>The ARNs of the license configurations.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2ImportImageLicenseConfigurationRequest *> * _Nullable licenseSpecifications;
+
+/**
+ <p>The license type to be used for the Amazon Machine Image (AMI) after importing.</p><p>By default, we detect the source-system operating system (OS) and apply the appropriate license. Specify <code>AWS</code> to replace the source-system license with an AWS license, if appropriate. Specify <code>BYOL</code> to retain the source-system license, if appropriate.</p><p>To use <code>BYOL</code>, you must have existing licenses with rights to use these licenses in a third party cloud, such as AWS. For more information, see <a href="https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html#prerequisites-image">Prerequisites</a> in the VM Import/Export User Guide.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable licenseType;
 
@@ -16145,7 +20382,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the output for ImportImage.</p>
+ 
  */
 @interface AWSEC2ImportImageResult : AWSModel
 
@@ -16181,9 +20418,14 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable importTaskId;
 
 /**
- <p>The identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) that was used to create the encrypted AMI.</p>
+ <p>The identifier for the symmetric AWS Key Management Service (AWS KMS) customer master key (CMK) that was used to create the encrypted AMI.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable kmsKeyId;
+
+/**
+ <p>The ARNs of the license configurations.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2ImportImageLicenseConfigurationResponse *> * _Nullable licenseSpecifications;
 
 /**
  <p>The license type of the virtual machine.</p>
@@ -16224,7 +20466,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The architecture of the virtual machine.</p><p>Valid values: <code>i386</code> | <code>x86_64</code></p>
+ <p>The architecture of the virtual machine.</p><p>Valid values: <code>i386</code> | <code>x86_64</code> | <code>arm64</code></p>
  */
 @property (nonatomic, strong) NSString * _Nullable architecture;
 
@@ -16259,6 +20501,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable kmsKeyId;
 
 /**
+ <p>The ARNs of the license configurations that are associated with the import image task.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2ImportImageLicenseConfigurationResponse *> * _Nullable licenseSpecifications;
+
+/**
  <p>The license type of the virtual machine.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable licenseType;
@@ -16288,6 +20535,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, strong) NSString * _Nullable statusMessage;
 
+/**
+ <p>The tags for the import image task.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
 @end
 
 /**
@@ -16307,12 +20559,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2ArchitectureValues architecture;
 
 /**
- <p>One or more security group IDs.</p>
+ <p>The security group IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable groupIds;
 
 /**
- <p>One or more security group names.</p>
+ <p>The security group names.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable groupNames;
 
@@ -16354,8 +20606,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for ImportInstance.</p>
- Required parameters: [Platform]
+ 
  */
 @interface AWSEC2ImportInstanceRequest : AWSRequest
 
@@ -16388,7 +20639,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the output for ImportInstance.</p>
+ 
  */
 @interface AWSEC2ImportInstanceResult : AWSModel
 
@@ -16422,7 +20673,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2PlatformValues platform;
 
 /**
- <p>One or more volumes.</p>
+ <p>The volumes.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2ImportInstanceVolumeDetailItem *> * _Nullable volumes;
 
@@ -16492,6 +20743,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, strong) NSData * _Nullable publicKeyMaterial;
 
+/**
+ <p>The tags to apply to the imported key pair.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
 @end
 
 /**
@@ -16510,10 +20766,20 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, strong) NSString * _Nullable keyName;
 
+/**
+ <p>The ID of the resulting key pair.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable keyPairId;
+
+/**
+ <p>The tags applied to the imported key pair.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
 @end
 
 /**
- <p>Contains the parameters for ImportSnapshot.</p>
+ 
  */
 @interface AWSEC2ImportSnapshotRequest : AWSRequest
 
@@ -16549,7 +20815,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable encrypted;
 
 /**
- <p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted snapshot. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p><p>The CMK identifier may be provided in any of the following formats: </p><ul><li><p>Key ID</p></li><li><p>Key alias, in the form <code>alias/<i>ExampleAlias</i></code></p></li><li><p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p></li><li><p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p></li></ul><p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p><p>The specified CMK must exist in the region that the snapshot is being copied to. </p>
+ <p>An identifier for the symmetric AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted snapshot. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p><p>The CMK identifier may be provided in any of the following formats: </p><ul><li><p>Key ID</p></li><li><p>Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p></li><li><p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p></li><li><p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p></li></ul><p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p><p>The specified CMK must exist in the Region that the snapshot is being copied to.</p><p>Amazon EBS does not support asymmetric CMKs.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable kmsKeyId;
 
@@ -16561,7 +20827,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the output for ImportSnapshot.</p>
+ 
  */
 @interface AWSEC2ImportSnapshotResult : AWSModel
 
@@ -16604,11 +20870,15 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, strong) AWSEC2SnapshotTaskDetail * _Nullable snapshotTaskDetail;
 
+/**
+ <p>The tags for the import snapshot task.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
 @end
 
 /**
- <p>Contains the parameters for ImportVolume.</p>
- Required parameters: [AvailabilityZone, Image, Volume]
+ 
  */
 @interface AWSEC2ImportVolumeRequest : AWSRequest
 
@@ -16641,7 +20911,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the output for ImportVolume.</p>
+ 
  */
 @interface AWSEC2ImportVolumeResult : AWSModel
 
@@ -16683,6 +20953,42 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The volume.</p>
  */
 @property (nonatomic, strong) AWSEC2DiskImageVolumeDescription * _Nullable volume;
+
+@end
+
+/**
+ <p>Describes the Inference accelerators for the instance type.</p>
+ */
+@interface AWSEC2InferenceAcceleratorInfo : AWSModel
+
+
+/**
+ <p>Describes the Inference accelerators for the instance type.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2InferenceDeviceInfo *> * _Nullable accelerators;
+
+@end
+
+/**
+ <p>Describes the Inference accelerators for the instance type.</p>
+ */
+@interface AWSEC2InferenceDeviceInfo : AWSModel
+
+
+/**
+ <p>The number of Inference accelerators for the instance type.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable count;
+
+/**
+ <p>The manufacturer of the Inference accelerator.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable manufacturer;
+
+/**
+ <p>The name of the Inference accelerator.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable name;
 
 @end
 
@@ -16738,7 +21044,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2ElasticGpuAssociation *> * _Nullable elasticGpuAssociations;
 
 /**
- <p> The elastic inference accelerator associated with the instance. </p>
+ <p> The elastic inference accelerator associated with the instance.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2ElasticInferenceAcceleratorAssociation *> * _Nullable elasticInferenceAcceleratorAssociations;
 
@@ -16753,7 +21059,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) AWSEC2HibernationOptions * _Nullable hibernationOptions;
 
 /**
- <p>The hypervisor type of the instance.</p>
+ <p>The hypervisor type of the instance. The value <code>xen</code> is used for both Xen and Nitro hypervisors.</p>
  */
 @property (nonatomic, assign) AWSEC2HypervisorType hypervisor;
 
@@ -16803,14 +21109,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2LicenseConfiguration *> * _Nullable licenses;
 
 /**
+ <p>The metadata options for the instance.</p>
+ */
+@property (nonatomic, strong) AWSEC2InstanceMetadataOptionsResponse * _Nullable metadataOptions;
+
+/**
  <p>The monitoring for the instance.</p>
  */
 @property (nonatomic, strong) AWSEC2Monitoring * _Nullable monitoring;
 
 /**
- <p>[EC2-VPC] One or more network interfaces for the instance.</p>
+ <p>[EC2-VPC] The network interfaces for the instance.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2InstanceNetworkInterface *> * _Nullable networkInterfaces;
+
+/**
+ <p>The Amazon Resource Name (ARN) of the Outpost.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable outpostArn;
 
 /**
  <p>The location where the instance launched, if applicable.</p>
@@ -16863,7 +21179,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2DeviceType rootDeviceType;
 
 /**
- <p>One or more security groups for the instance.</p>
+ <p>The security groups for the instance.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2GroupIdentifier *> * _Nullable securityGroups;
 
@@ -17049,23 +21365,23 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Information about the instance type that the Dedicated Host supports.</p>
+ <p>Information about the number of instances that can be launched onto the Dedicated Host.</p>
  */
 @interface AWSEC2InstanceCapacity : AWSModel
 
 
 /**
- <p>The number of instances that can still be launched onto the Dedicated Host.</p>
+ <p>The number of instances that can be launched onto the Dedicated Host based on the host's available capacity.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable availableCapacity;
 
 /**
- <p>The instance type size supported by the Dedicated Host.</p>
+ <p>The instance type supported by the Dedicated Host.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable instanceType;
 
 /**
- <p>The total number of instances that can be launched onto the Dedicated Host.</p>
+ <p>The total number of instances that can be launched onto the Dedicated Host if there are no instances running on it.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable totalCapacity;
 
@@ -17090,7 +21406,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Describes the credit option for CPU usage of a T2 or T3 instance. </p>
+ <p>Describes the credit option for CPU usage of a burstable performance instance. </p>
  */
 @interface AWSEC2InstanceCreditSpecification : AWSModel
 
@@ -17108,7 +21424,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Describes the credit option for CPU usage of a T2 or T3 instance.</p>
+ <p>Describes the credit option for CPU usage of a burstable performance instance.</p>
  */
 @interface AWSEC2InstanceCreditSpecificationRequest : AWSModel
 
@@ -17140,6 +21456,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The target virtualization environment.</p>
  */
 @property (nonatomic, assign) AWSEC2ExportEnvironment targetEnvironment;
+
+@end
+
+/**
+ <p>Describes the default credit option for CPU usage of a burstable performance instance family.</p>
+ */
+@interface AWSEC2InstanceFamilyCreditSpecification : AWSModel
+
+
+/**
+ <p>The default credit option for CPU usage of the instance family. Valid values are <code>standard</code> and <code>unlimited</code>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable cpuCredits;
+
+/**
+ <p>The instance family.</p>
+ */
+@property (nonatomic, assign) AWSEC2UnlimitedSupportedInstanceFamily instanceFamily;
 
 @end
 
@@ -17188,6 +21522,57 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>The metadata options for the instance.</p>
+ */
+@interface AWSEC2InstanceMetadataOptionsRequest : AWSModel
+
+
+/**
+ <p>This parameter enables or disables the HTTP metadata endpoint on your instances. If the parameter is not specified, the default state is <code>enabled</code>.</p><note><p>If you specify a value of <code>disabled</code>, you will not be able to access your instance metadata.</p></note>
+ */
+@property (nonatomic, assign) AWSEC2InstanceMetadataEndpointState httpEndpoint;
+
+/**
+ <p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel.</p><p>Default: 1</p><p>Possible values: Integers from 1 to 64</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable httpPutResponseHopLimit;
+
+/**
+ <p>The state of token usage for your instance metadata requests. If the parameter is not specified in the request, the default state is <code>optional</code>.</p><p>If the state is <code>optional</code>, you can choose to retrieve instance metadata with or without a signed token header on your request. If you retrieve the IAM role credentials without a token, the version 1.0 role credentials are returned. If you retrieve the IAM role credentials using a valid signed token, the version 2.0 role credentials are returned.</p><p>If the state is <code>required</code>, you must send a signed token header with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns the version 2.0 credentials; the version 1.0 credentials are not available.</p>
+ */
+@property (nonatomic, assign) AWSEC2HttpTokensState httpTokens;
+
+@end
+
+/**
+ <p>The metadata options for the instance.</p>
+ */
+@interface AWSEC2InstanceMetadataOptionsResponse : AWSModel
+
+
+/**
+ <p>This parameter enables or disables the HTTP metadata endpoint on your instances. If the parameter is not specified, the default state is <code>enabled</code>.</p><note><p>If you specify a value of <code>disabled</code>, you will not be able to access your instance metadata.</p></note>
+ */
+@property (nonatomic, assign) AWSEC2InstanceMetadataEndpointState httpEndpoint;
+
+/**
+ <p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel.</p><p>Default: 1</p><p>Possible values: Integers from 1 to 64</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable httpPutResponseHopLimit;
+
+/**
+ <p>The state of token usage for your instance metadata requests. If the parameter is not specified in the request, the default state is <code>optional</code>.</p><p>If the state is <code>optional</code>, you can choose to retrieve instance metadata with or without a signed token header on your request. If you retrieve the IAM role credentials without a token, the version 1.0 role credentials are returned. If you retrieve the IAM role credentials using a valid signed token, the version 2.0 role credentials are returned.</p><p>If the state is <code>required</code>, you must send a signed token header with any instance metadata retrieval requests. In this state, retrieving the IAM role credential always returns the version 2.0 credentials; the version 1.0 credentials are not available.</p>
+ */
+@property (nonatomic, assign) AWSEC2HttpTokensState httpTokens;
+
+/**
+ <p>The state of the metadata option changes.</p><p><code>pending</code> - The metadata options are being updated and the instance is not ready to process metadata traffic with the new selection.</p><p><code>applied</code> - The metadata options have been successfully applied on the instance.</p>
+ */
+@property (nonatomic, assign) AWSEC2InstanceMetadataOptionsState state;
+
+@end
+
+/**
  <p>Describes the monitoring of an instance.</p>
  */
 @interface AWSEC2InstanceMonitoring : AWSModel
@@ -17230,6 +21615,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>One or more security groups.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2GroupIdentifier *> * _Nullable groups;
+
+/**
+ <p>Describes the type of network interface.</p><p>Valid values: <code>interface</code> | <code>efa</code></p>
+ */
+@property (nonatomic, strong) NSString * _Nullable interfaceType;
 
 /**
  <p>One or more IPv6 addresses associated with the network interface.</p>
@@ -17366,7 +21756,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable detail;
 
 /**
- <p>The index of the device on the instance for the network interface attachment. If you are specifying a network interface in a <a>RunInstances</a> request, you must provide the device index.</p>
+ <p>The position of the network interface in the attachment order. A primary network interface has a device index of 0.</p><p>If you specify a network interface when launching an instance, you must specify the device index.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable deviceIndex;
 
@@ -17374,6 +21764,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The IDs of the security groups for the network interface. Applies only if creating a network interface when launching an instance.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable groups;
+
+/**
+ <p>The type of network interface. To create an Elastic Fabric Adapter (EFA), specify <code>efa</code>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html">Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>If you are not creating an EFA, specify <code>interface</code> or omit this parameter.</p><p>Valid values: <code>interface</code> | <code>efa</code></p>
+ */
+@property (nonatomic, strong) NSString * _Nullable interfaceType;
 
 /**
  <p>A number of IPv6 addresses to assign to the network interface. Amazon EC2 chooses the IPv6 addresses from the range of the subnet. You cannot specify this option and the option to assign specific IPv6 addresses in the same request. You can specify this option if you've specified a minimum number of instances to launch.</p>
@@ -17386,27 +21781,27 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2InstanceIpv6Address *> * _Nullable ipv6Addresses;
 
 /**
- <p>The ID of the network interface.</p>
+ <p>The ID of the network interface.</p><p>If you are creating a Spot Fleet, omit this parameter because you can’t specify a network interface ID in a launch specification.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable networkInterfaceId;
 
 /**
- <p>The private IPv4 address of the network interface. Applies only if creating a network interface when launching an instance. You cannot specify this option if you're launching more than one instance in a <a>RunInstances</a> request.</p>
+ <p>The private IPv4 address of the network interface. Applies only if creating a network interface when launching an instance. You cannot specify this option if you're launching more than one instance in a <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html">RunInstances</a> request.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable privateIpAddress;
 
 /**
- <p>One or more private IPv4 addresses to assign to the network interface. Only one private IPv4 address can be designated as primary. You cannot specify this option if you're launching more than one instance in a <a>RunInstances</a> request.</p>
+ <p>One or more private IPv4 addresses to assign to the network interface. Only one private IPv4 address can be designated as primary. You cannot specify this option if you're launching more than one instance in a <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html">RunInstances</a> request.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2PrivateIpAddressSpecification *> * _Nullable privateIpAddresses;
 
 /**
- <p>The number of secondary private IPv4 addresses. You can't specify this option and specify more than one private IP address using the private IP addresses option. You cannot specify this option if you're launching more than one instance in a <a>RunInstances</a> request.</p>
+ <p>The number of secondary private IPv4 addresses. You can't specify this option and specify more than one private IP address using the private IP addresses option. You cannot specify this option if you're launching more than one instance in a <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html">RunInstances</a> request.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable secondaryPrivateIpAddressCount;
 
 /**
- <p>The ID of the subnet associated with the network string. Applies only if creating a network interface when launching an instance.</p>
+ <p>The ID of the subnet associated with the network interface. Applies only if creating a network interface when launching an instance.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable subnetId;
 
@@ -17437,6 +21832,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The private IPv4 address of the network interface.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable privateIpAddress;
+
+@end
+
+/**
+ <p>The instance details to specify which volumes should be snapshotted.</p>
+ */
+@interface AWSEC2InstanceSpecification : AWSModel
+
+
+/**
+ <p>Excludes the root volume from being snapshotted.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable excludeBootVolume;
+
+/**
+ <p>The instance to specify which volumes should be snapshotted.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable instanceId;
 
 @end
 
@@ -17511,6 +21924,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>Reports impaired functionality that stems from issues internal to the instance, such as impaired reachability.</p>
  */
 @property (nonatomic, strong) AWSEC2InstanceStatusSummary * _Nullable instanceStatus;
+
+/**
+ <p>The Amazon Resource Name (ARN) of the Outpost.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable outpostArn;
 
 /**
  <p>Reports impaired functionality that stems from issues related to the systems that support an instance, such as hardware failures and network connectivity problems.</p>
@@ -17599,6 +22017,201 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>Describes the disks that are available for the instance type.</p>
+ */
+@interface AWSEC2InstanceStorageInfo : AWSModel
+
+
+/**
+ <p>Array describing the disks that are available for the instance type.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2DiskInfo *> * _Nullable disks;
+
+/**
+ <p>The total size of the disks, in GB.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable totalSizeInGB;
+
+@end
+
+/**
+ <p>Describes the registered tag keys for the current Region.</p>
+ */
+@interface AWSEC2InstanceTagNotificationAttribute : AWSModel
+
+
+/**
+ <p>Indicates wheter all tag keys in the current Region are registered to appear in scheduled event notifications. <code>true</code> indicates that all tag keys in the current Region are registered.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable includeAllTagsOfInstance;
+
+/**
+ <p>The registered tag keys.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable instanceTagKeys;
+
+@end
+
+/**
+ <p>Describes the instance type.</p>
+ */
+@interface AWSEC2InstanceTypeInfo : AWSModel
+
+
+/**
+ <p>Indicates whether auto recovery is supported.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable autoRecoverySupported;
+
+/**
+ <p>Indicates whether the instance is bare metal.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable bareMetal;
+
+/**
+ <p>Indicates whether the instance type is a burstable performance instance type.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable burstablePerformanceSupported;
+
+/**
+ <p>Indicates whether the instance type is a current generation.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable currentGeneration;
+
+/**
+ <p>Indicates whether Dedicated Hosts are supported on the instance type.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dedicatedHostsSupported;
+
+/**
+ <p>Describes the Amazon EBS settings for the instance type.</p>
+ */
+@property (nonatomic, strong) AWSEC2EbsInfo * _Nullable ebsInfo;
+
+/**
+ <p>Describes the FPGA accelerator settings for the instance type.</p>
+ */
+@property (nonatomic, strong) AWSEC2FpgaInfo * _Nullable fpgaInfo;
+
+/**
+ <p>Indicates whether the instance type is eligible for the free tier.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable freeTierEligible;
+
+/**
+ <p>Describes the GPU accelerator settings for the instance type.</p>
+ */
+@property (nonatomic, strong) AWSEC2GpuInfo * _Nullable gpuInfo;
+
+/**
+ <p>Indicates whether On-Demand hibernation is supported.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable hibernationSupported;
+
+/**
+ <p>Indicates the hypervisor used for the instance type.</p>
+ */
+@property (nonatomic, assign) AWSEC2InstanceTypeHypervisor hypervisor;
+
+/**
+ <p>Describes the Inference accelerator settings for the instance type.</p>
+ */
+@property (nonatomic, strong) AWSEC2InferenceAcceleratorInfo * _Nullable inferenceAcceleratorInfo;
+
+/**
+ <p>Describes the disks for the instance type.</p>
+ */
+@property (nonatomic, strong) AWSEC2InstanceStorageInfo * _Nullable instanceStorageInfo;
+
+/**
+ <p>Indicates whether instance storage is supported.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable instanceStorageSupported;
+
+/**
+ <p>The instance type. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@property (nonatomic, assign) AWSEC2InstanceType instanceType;
+
+/**
+ <p>Describes the memory for the instance type.</p>
+ */
+@property (nonatomic, strong) AWSEC2MemoryInfo * _Nullable memoryInfo;
+
+/**
+ <p>Describes the network settings for the instance type.</p>
+ */
+@property (nonatomic, strong) AWSEC2NetworkInfo * _Nullable networkInfo;
+
+/**
+ <p>Describes the placement group settings for the instance type.</p>
+ */
+@property (nonatomic, strong) AWSEC2PlacementGroupInfo * _Nullable placementGroupInfo;
+
+/**
+ <p>Describes the processor.</p>
+ */
+@property (nonatomic, strong) AWSEC2ProcessorInfo * _Nullable processorInfo;
+
+/**
+ <p>Indicates the supported root device types.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable supportedRootDeviceTypes;
+
+/**
+ <p>Indicates whether the instance type is offered for spot or On-Demand.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable supportedUsageClasses;
+
+/**
+ <p>Describes the vCPU configurations for the instance type.</p>
+ */
+@property (nonatomic, strong) AWSEC2VCpuInfo * _Nullable VCpuInfo;
+
+@end
+
+/**
+ <p>The instance types offered.</p>
+ */
+@interface AWSEC2InstanceTypeOffering : AWSModel
+
+
+/**
+ <p>The instance type. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@property (nonatomic, assign) AWSEC2InstanceType instanceType;
+
+/**
+ <p>The identifier for the location. This depends on the location type. For example, if the location type is <code>region</code>, the location is the Region code (for example, <code>us-east-2</code>.)</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable location;
+
+/**
+ <p>The location type.</p>
+ */
+@property (nonatomic, assign) AWSEC2LocationType locationType;
+
+@end
+
+/**
+ <p>Information about the Capacity Reservation usage.</p>
+ */
+@interface AWSEC2InstanceUsage : AWSModel
+
+
+/**
+ <p>The ID of the AWS account that is making use of the Capacity Reservation.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable accountId;
+
+/**
+ <p>The number of instances the AWS account currently has in the Capacity Reservation.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable usedInstanceCount;
+
+@end
+
+/**
  <p>Describes an internet gateway.</p>
  */
 @interface AWSEC2InternetGateway : AWSModel
@@ -17656,32 +22269,32 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable fromPort;
 
 /**
- <p>The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>) or number (see <a href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol Numbers</a>). </p><p>[EC2-VPC only] Use <code>-1</code> to specify all protocols. When authorizing security group rules, specifying <code>-1</code> or a protocol number other than <code>tcp</code>, <code>udp</code>, <code>icmp</code>, or <code>58</code> (ICMPv6) allows traffic on all ports, regardless of any port range you specify. For <code>tcp</code>, <code>udp</code>, and <code>icmp</code>, you must specify a port range. For <code>58</code> (ICMPv6), you can optionally specify a port range; if you don't, traffic for all types and codes is allowed when authorizing rules. </p>
+ <p>The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>) or number (see <a href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol Numbers</a>).</p><p>[VPC only] Use <code>-1</code> to specify all protocols. When authorizing security group rules, specifying <code>-1</code> or a protocol number other than <code>tcp</code>, <code>udp</code>, <code>icmp</code>, or <code>icmpv6</code> allows traffic on all ports, regardless of any port range you specify. For <code>tcp</code>, <code>udp</code>, and <code>icmp</code>, you must specify a port range. For <code>icmpv6</code>, the port range is optional; if you omit the port range, traffic for all types and codes is allowed.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable ipProtocol;
 
 /**
- <p>One or more IPv4 ranges.</p>
+ <p>The IPv4 ranges.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2IpRange *> * _Nullable ipRanges;
 
 /**
- <p>[EC2-VPC only] One or more IPv6 ranges.</p>
+ <p>[VPC only] The IPv6 ranges.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Ipv6Range *> * _Nullable ipv6Ranges;
 
 /**
- <p>[EC2-VPC only] One or more prefix list IDs for an AWS service. With <a>AuthorizeSecurityGroupEgress</a>, this is the AWS service that you want to access through a VPC endpoint from instances associated with the security group.</p>
+ <p>[VPC only] The prefix list IDs for an AWS service. With outbound rules, this is the AWS service to access through a VPC endpoint from instances associated with the security group.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2PrefixListId *> * _Nullable prefixListIds;
 
 /**
- <p>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of <code>-1</code> indicates all ICMP/ICMPv6 codes for the specified ICMP type. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>
+ <p>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of <code>-1</code> indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable toPort;
 
 /**
- <p>One or more security group and AWS account ID pairs.</p>
+ <p>The security group and AWS account ID pairs.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2UserIdGroupPair *> * _Nullable userIdGroupPairs;
 
@@ -17699,9 +22312,27 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable cidrIp;
 
 /**
- <p>A description for the security group rule that references this IPv4 address range.</p><p>Constraints: Up to 255 characters in length. Allowed characters are a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</p>
+ <p>A description for the security group rule that references this IPv4 address range.</p><p>Constraints: Up to 255 characters in length. Allowed characters are a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>
  */
 @property (nonatomic, strong) NSString * _Nullable detail;
+
+@end
+
+/**
+ <p>Describes an IPv6 CIDR block association.</p>
+ */
+@interface AWSEC2Ipv6CidrAssociation : AWSModel
+
+
+/**
+ <p>The resource that's associated with the IPv6 CIDR block.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable associatedResource;
+
+/**
+ <p>The IPv6 CIDR block.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ipv6Cidr;
 
 @end
 
@@ -17719,6 +22350,34 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>Describes an IPv6 address pool.</p>
+ */
+@interface AWSEC2Ipv6Pool : AWSModel
+
+
+/**
+ <p>The description for the address pool.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>The CIDR blocks for the address pool.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2PoolCidrBlock *> * _Nullable poolCidrBlocks;
+
+/**
+ <p>The ID of the address pool.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable poolId;
+
+/**
+ <p>Any tags for the address pool.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+@end
+
+/**
  <p>[EC2-VPC only] Describes an IPv6 range.</p>
  */
 @interface AWSEC2Ipv6Range : AWSModel
@@ -17730,7 +22389,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable cidrIpv6;
 
 /**
- <p>A description for the security group rule that references this IPv6 address range.</p><p>Constraints: Up to 255 characters in length. Allowed characters are a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</p>
+ <p>A description for the security group rule that references this IPv6 address range.</p><p>Constraints: Up to 255 characters in length. Allowed characters are a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>
  */
 @property (nonatomic, strong) NSString * _Nullable detail;
 
@@ -17757,6 +22416,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, strong) NSString * _Nullable keyName;
 
+/**
+ <p>The ID of the key pair.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable keyPairId;
+
+/**
+ <p>Any tags applied to the key pair.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
 @end
 
 /**
@@ -17774,6 +22443,34 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The name of the key pair.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable keyName;
+
+/**
+ <p>The ID of the key pair.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable keyPairId;
+
+/**
+ <p>Any tags applied to the key pair.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+@end
+
+/**
+ <p>The last error that occurred for a VPC endpoint.</p>
+ */
+@interface AWSEC2LastError : AWSModel
+
+
+/**
+ <p>The error code for the VPC endpoint error.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable code;
+
+/**
+ <p>The error message for the VPC endpoint error.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable message;
 
 @end
 
@@ -18097,7 +22794,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable coreCount;
 
 /**
- <p>The number of threads per CPU core. To disable Intel Hyper-Threading Technology for the instance, specify a value of 1. Otherwise, specify the default value of 2.</p>
+ <p>The number of threads per CPU core. To disable multithreading for the instance, specify a value of 1. Otherwise, specify the default value of 2.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable threadsPerCore;
 
@@ -18163,12 +22860,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable encrypted;
 
 /**
- <p>The number of I/O operations per second (IOPS) that the volume supports. For io1, this represents the number of IOPS that are provisioned for the volume. For gp2, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting. For more information about General Purpose SSD baseline performance, I/O credits, and bursting, see Amazon EBS Volume Types in the Amazon Elastic Compute Cloud User Guide.</p><p>Condition: This parameter is required for requests to create io1 volumes; it is not used in requests to create gp2, st1, sc1, or standard volumes.</p>
+ <p>The number of I/O operations per second (IOPS) that the volume supports. For io1, this represents the number of IOPS that are provisioned for the volume. For gp2, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting. For more information about General Purpose SSD baseline performance, I/O credits, and bursting, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>Condition: This parameter is required for requests to create io1 volumes; it is not used in requests to create gp2, st1, sc1, or standard volumes.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable iops;
 
 /**
- <p>The ARN of the AWS Key Management Service (AWS KMS) CMK used for encryption.</p>
+ <p>The ARN of the symmetric AWS Key Management Service (AWS KMS) CMK used for encryption.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable kmsKeyId;
 
@@ -18197,6 +22894,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
+ <p> The number of elastic inference accelerators to attach to the instance. </p><p>Default: 1</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable count;
+
+/**
  <p> The type of elastic inference accelerator. The possible values are eia1.medium, eia1.large, and eia1.xlarge. </p>
  */
 @property (nonatomic, strong) NSString * _Nullable types;
@@ -18208,6 +22910,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @interface AWSEC2LaunchTemplateElasticInferenceAcceleratorResponse : AWSModel
 
+
+/**
+ <p> The number of elastic inference accelerators to attach to the instance. </p><p>Default: 1</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable count;
 
 /**
  <p> The type of elastic inference accelerator. The possible values are eia1.medium, eia1.large, and eia1.xlarge. </p>
@@ -18230,7 +22937,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Indicates whether the instance is configured for hibernation. This parameter is valid only if the instance meets the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites">hibernation prerequisites</a>. Hibernation is currently supported only for Amazon Linux.</p>
+ <p>Indicates whether the instance is configured for hibernation. This parameter is valid only if the instance meets the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites">hibernation prerequisites</a>.</p>
  */
 @interface AWSEC2LaunchTemplateHibernationOptionsRequest : AWSModel
 
@@ -18315,6 +23022,57 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>The metadata options for the instance. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance Metadata and User Data</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@interface AWSEC2LaunchTemplateInstanceMetadataOptions : AWSModel
+
+
+/**
+ <p>This parameter enables or disables the HTTP metadata endpoint on your instances. If the parameter is not specified, the default state is <code>enabled</code>.</p><note><p>If you specify a value of <code>disabled</code>, you will not be able to access your instance metadata. </p></note>
+ */
+@property (nonatomic, assign) AWSEC2LaunchTemplateInstanceMetadataEndpointState httpEndpoint;
+
+/**
+ <p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel.</p><p>Default: 1</p><p>Possible values: Integers from 1 to 64</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable httpPutResponseHopLimit;
+
+/**
+ <p>The state of token usage for your instance metadata requests. If the parameter is not specified in the request, the default state is <code>optional</code>.</p><p>If the state is <code>optional</code>, you can choose to retrieve instance metadata with or without a signed token header on your request. If you retrieve the IAM role credentials without a token, the version 1.0 role credentials are returned. If you retrieve the IAM role credentials using a valid signed token, the version 2.0 role credentials are returned.</p><p>If the state is <code>required</code>, you must send a signed token header with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns the version 2.0 credentials; the version 1.0 credentials are not available.</p>
+ */
+@property (nonatomic, assign) AWSEC2LaunchTemplateHttpTokensState httpTokens;
+
+/**
+ <p>The state of the metadata option changes.</p><p><code>pending</code> - The metadata options are being updated and the instance is not ready to process metadata traffic with the new selection.</p><p><code>applied</code> - The metadata options have been successfully applied on the instance.</p>
+ */
+@property (nonatomic, assign) AWSEC2LaunchTemplateInstanceMetadataOptionsState state;
+
+@end
+
+/**
+ <p>The metadata options for the instance. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance Metadata and User Data</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@interface AWSEC2LaunchTemplateInstanceMetadataOptionsRequest : AWSModel
+
+
+/**
+ <p>This parameter enables or disables the HTTP metadata endpoint on your instances. If the parameter is not specified, the default state is <code>enabled</code>.</p><note><p>If you specify a value of <code>disabled</code>, you will not be able to access your instance metadata. </p></note>
+ */
+@property (nonatomic, assign) AWSEC2LaunchTemplateInstanceMetadataEndpointState httpEndpoint;
+
+/**
+ <p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel.</p><p>Default: 1</p><p>Possible values: Integers from 1 to 64</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable httpPutResponseHopLimit;
+
+/**
+ <p>The state of token usage for your instance metadata requests. If the parameter is not specified in the request, the default state is <code>optional</code>.</p><p>If the state is <code>optional</code>, you can choose to retrieve instance metadata with or without a signed token header on your request. If you retrieve the IAM role credentials without a token, the version 1.0 role credentials are returned. If you retrieve the IAM role credentials using a valid signed token, the version 2.0 role credentials are returned.</p><p>If the state is <code>required</code>, you must send a signed token header with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns the version 2.0 credentials; the version 1.0 credentials are not available.</p>
+ */
+@property (nonatomic, assign) AWSEC2LaunchTemplateHttpTokensState httpTokens;
+
+@end
+
+/**
  <p>Describes a network interface.</p>
  */
 @interface AWSEC2LaunchTemplateInstanceNetworkInterfaceSpecification : AWSModel
@@ -18344,6 +23102,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The IDs of one or more security groups.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable groups;
+
+/**
+ <p>The type of network interface.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable interfaceType;
 
 /**
  <p>The number of IPv6 addresses for the network interface.</p>
@@ -18412,6 +23175,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The IDs of one or more security groups.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable groups;
+
+/**
+ <p>The type of network interface. To create an Elastic Fabric Adapter (EFA), specify <code>efa</code>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html">Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>If you are not creating an EFA, specify <code>interface</code> or omit this parameter.</p><p>Valid values: <code>interface</code> | <code>efa</code></p>
+ */
+@property (nonatomic, strong) NSString * _Nullable interfaceType;
 
 /**
  <p>The number of IPv6 addresses to assign to a network interface. Amazon EC2 automatically selects the IPv6 addresses from the subnet range. You can't use this option if specifying specific IPv6 addresses.</p>
@@ -18541,6 +23309,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable hostId;
 
 /**
+ <p>The ARN of the host resource group in which to launch the instances. </p>
+ */
+@property (nonatomic, strong) NSString * _Nullable hostResourceGroupArn;
+
+/**
+ <p>The number of the partition the instance should launch in. Valid only if the placement group strategy is set to <code>partition</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable partitionNumber;
+
+/**
  <p>Reserved for future use.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable spreadDomain;
@@ -18577,6 +23355,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of the Dedicated Host for the instance.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable hostId;
+
+/**
+ <p>The ARN of the host resource group in which to launch the instances. If you specify a host resource group ARN, omit the <b>Tenancy</b> parameter or set it to <code>host</code>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable hostResourceGroupArn;
+
+/**
+ <p>The number of the partition the instance should launch in. Valid only if the placement group strategy is set to <code>partition</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable partitionNumber;
 
 /**
  <p>Reserved for future use.</p>
@@ -18704,7 +23492,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The type of resource to tag. Currently, the resource types that support tagging on creation are <code>instance</code> and <code>volume</code>. To tag a resource after it has been created, see <a>CreateTags</a>.</p>
+ <p>The type of resource to tag. Currently, the resource types that support tagging on creation are <code>instance</code> and <code>volume</code>. To tag a resource after it has been created, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html">CreateTags</a>.</p>
  */
 @property (nonatomic, assign) AWSEC2ResourceType resourceType;
 
@@ -18888,6 +23676,306 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>Describes a local gateway.</p>
+ */
+@interface AWSEC2LocalGateway : AWSModel
+
+
+/**
+ <p>The ID of the local gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayId;
+
+/**
+ <p>The Amazon Resource Name (ARN) of the Outpost.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable outpostArn;
+
+/**
+ <p>The ID of the AWS account ID that owns the local gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerId;
+
+/**
+ <p>The state of the local gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable state;
+
+/**
+ <p>The tags assigned to the local gateway.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+@end
+
+/**
+ <p>Describes a route for a local gateway route table.</p>
+ */
+@interface AWSEC2LocalGatewayRoute : AWSModel
+
+
+/**
+ <p>The CIDR block used for destination matches.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable destinationCidrBlock;
+
+/**
+ <p>The ID of the local gateway route table.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayRouteTableId;
+
+/**
+ <p>The ID of the virtual interface group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayVirtualInterfaceGroupId;
+
+/**
+ <p>The state of the route.</p>
+ */
+@property (nonatomic, assign) AWSEC2LocalGatewayRouteState state;
+
+/**
+ <p>The route type.</p>
+ */
+@property (nonatomic, assign) AWSEC2LocalGatewayRouteType types;
+
+@end
+
+/**
+ <p>Describes a local gateway route table.</p>
+ */
+@interface AWSEC2LocalGatewayRouteTable : AWSModel
+
+
+/**
+ <p>The ID of the local gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayId;
+
+/**
+ <p>The ID of the local gateway route table.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayRouteTableId;
+
+/**
+ <p>The Amazon Resource Name (ARN) of the Outpost.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable outpostArn;
+
+/**
+ <p>The state of the local gateway route table.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable state;
+
+/**
+ <p>The tags assigned to the local gateway route table.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+@end
+
+/**
+ <p>Describes an association between a local gateway route table and a virtual interface group.</p>
+ */
+@interface AWSEC2LocalGatewayRouteTableVirtualInterfaceGroupAssociation : AWSModel
+
+
+/**
+ <p>The ID of the local gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayId;
+
+/**
+ <p>The ID of the local gateway route table.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayRouteTableId;
+
+/**
+ <p>The ID of the association.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayRouteTableVirtualInterfaceGroupAssociationId;
+
+/**
+ <p>The ID of the virtual interface group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayVirtualInterfaceGroupId;
+
+/**
+ <p>The state of the association.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable state;
+
+/**
+ <p>The tags assigned to the association.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+@end
+
+/**
+ <p>Describes an association between a local gateway route table and a VPC.</p>
+ */
+@interface AWSEC2LocalGatewayRouteTableVpcAssociation : AWSModel
+
+
+/**
+ <p>The ID of the local gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayId;
+
+/**
+ <p>The ID of the local gateway route table.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayRouteTableId;
+
+/**
+ <p>The ID of the association.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayRouteTableVpcAssociationId;
+
+/**
+ <p>The state of the association.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable state;
+
+/**
+ <p>The tags assigned to the association.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+/**
+ <p>The ID of the VPC.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable vpcId;
+
+@end
+
+/**
+ <p>Describes a local gateway virtual interface.</p>
+ */
+@interface AWSEC2LocalGatewayVirtualInterface : AWSModel
+
+
+/**
+ <p>The local address.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localAddress;
+
+/**
+ <p>The Border Gateway Protocol (BGP) Autonomous System Number (ASN) of the local gateway.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable localBgpAsn;
+
+/**
+ <p>The ID of the local gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayId;
+
+/**
+ <p>The ID of the virtual interface.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayVirtualInterfaceId;
+
+/**
+ <p>The peer address.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable peerAddress;
+
+/**
+ <p>The peer BGP ASN.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable peerBgpAsn;
+
+/**
+ <p>The tags assigned to the virtual interface.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+/**
+ <p>The ID of the VLAN.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable vlan;
+
+@end
+
+/**
+ <p>Describes a local gateway virtual interface group.</p>
+ */
+@interface AWSEC2LocalGatewayVirtualInterfaceGroup : AWSModel
+
+
+/**
+ <p>The ID of the local gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayId;
+
+/**
+ <p>The ID of the virtual interface group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayVirtualInterfaceGroupId;
+
+/**
+ <p>The IDs of the virtual interfaces.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable localGatewayVirtualInterfaceIds;
+
+/**
+ <p>The tags assigned to the virtual interface group.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+@end
+
+/**
+ <p>Describes the memory for the instance type.</p>
+ */
+@interface AWSEC2MemoryInfo : AWSModel
+
+
+/**
+ <p>Size of the memory, in MiB.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable sizeInMiB;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyAvailabilityZoneGroupRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The name of the Availability Zone Group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable groupName;
+
+/**
+ <p>Indicates whether to enable or disable membership. The valid values are <code>opted-in</code>. You must contact <a href="https://console.aws.amazon.com/support/home#/case/create%3FissueType=customer-service%26serviceCode=general-info%26getting-started%26categoryCode=using-aws%26services">AWS Support</a> to disable an Availability Zone group.</p>
+ */
+@property (nonatomic, assign) AWSEC2ModifyAvailabilityZoneOptInStatus optInStatus;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyAvailabilityZoneGroupResult : AWSModel
+
+
+/**
+ <p>Is <code>true</code> if the request succeeds, and an error otherwise.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable returned;
+
+@end
+
+/**
  
  */
 @interface AWSEC2ModifyCapacityReservationRequest : AWSRequest
@@ -18927,7 +24015,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Information about the Capacity Reservation.</p>
+ <p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable returned;
 
@@ -18965,9 +24053,29 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
+ <p>The IDs of one or more security groups to apply to the target network.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable securityGroupIds;
+
+/**
  <p>The ARN of the server certificate to be used. The server certificate must be provisioned in AWS Certificate Manager (ACM).</p>
  */
 @property (nonatomic, strong) NSString * _Nullable serverCertificateArn;
+
+/**
+ <p>Indicates whether the VPN is split-tunnel.</p><p>For information about split-tunnel VPN endpoints, see <a href="https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/split-tunnel-vpn.html">Split-Tunnel AWS Client VPN Endpoint</a> in the <i>AWS Client VPN Administrator Guide</i>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable splitTunnel;
+
+/**
+ <p>The ID of the VPC to associate with the Client VPN endpoint.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable vpcId;
+
+/**
+ <p>The port number to assign to the Client VPN endpoint for TCP and UDP traffic.</p><p>Valid Values: <code>443</code> | <code>1194</code></p><p>Default Value: <code>443</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable vpnPort;
 
 @end
 
@@ -18981,6 +24089,73 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable returned;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyDefaultCreditSpecificationRequest : AWSRequest
+
+
+/**
+ <p>The credit option for CPU usage of the instance family.</p><p>Valid Values: <code>standard</code> | <code>unlimited</code></p>
+ */
+@property (nonatomic, strong) NSString * _Nullable cpuCredits;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The instance family.</p>
+ */
+@property (nonatomic, assign) AWSEC2UnlimitedSupportedInstanceFamily instanceFamily;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyDefaultCreditSpecificationResult : AWSModel
+
+
+/**
+ <p>The default credit option for CPU usage of the instance family.</p>
+ */
+@property (nonatomic, strong) AWSEC2InstanceFamilyCreditSpecification * _Nullable instanceFamilyCreditSpecification;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyEbsDefaultKmsKeyIdRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used. If <code>KmsKeyId</code> is specified, the encrypted state must be <code>true</code>.</p><p>You can specify the CMK using any of the following:</p><ul><li><p>Key ID. For example, key/1234abcd-12ab-34cd-56ef-1234567890ab.</p></li><li><p>Key alias. For example, alias/ExampleAlias.</p></li><li><p>Key ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p></li><li><p>Alias ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p></li></ul><p>AWS authenticates the CMK asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid, the action can appear to complete, but eventually fails.</p><p>Amazon EBS does not support asymmetric CMKs.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable kmsKeyId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyEbsDefaultKmsKeyIdResult : AWSModel
+
+
+/**
+ <p>The Amazon Resource Name (ARN) of the default CMK for encryption by default.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable kmsKeyId;
 
 @end
 
@@ -19067,17 +24242,17 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2OperationType operationType;
 
 /**
- <p>One or more product codes. After you add a product code to an AFI, it can't be removed. This parameter is valid only when modifying the <code>productCodes</code> attribute.</p>
+ <p>The product codes. After you add a product code to an AFI, it can't be removed. This parameter is valid only when modifying the <code>productCodes</code> attribute.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable productCodes;
 
 /**
- <p>One or more user groups. This parameter is valid only when modifying the <code>loadPermission</code> attribute.</p>
+ <p>The user groups. This parameter is valid only when modifying the <code>loadPermission</code> attribute.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable userGroups;
 
 /**
- <p>One or more AWS account IDs. This parameter is valid only when modifying the <code>loadPermission</code> attribute.</p>
+ <p>The AWS account IDs. This parameter is valid only when modifying the <code>loadPermission</code> attribute.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable userIds;
 
@@ -19111,6 +24286,21 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The IDs of the Dedicated Hosts to modify.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable hostIds;
+
+/**
+ <p>Indicates whether to enable or disable host recovery for the Dedicated Host. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-recovery.html"> Host Recovery</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@property (nonatomic, assign) AWSEC2HostRecovery hostRecovery;
+
+/**
+ <p>Specifies the instance family to be supported by the Dedicated Host. Specify this parameter to modify a Dedicated Host to support multiple instance types within its current instance family.</p><p>If you want to modify a Dedicated Host to support a specific instance type only, omit this parameter and specify <b>InstanceType</b> instead. You cannot specify <b>InstanceFamily</b> and <b>InstanceType</b> in the same request.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable instanceFamily;
+
+/**
+ <p>Specifies the instance type to be supported by the Dedicated Host. Specify this parameter to modify a Dedicated Host to support only a specific instance type.</p><p>If you want to modify a Dedicated Host to support multiple instance types in its current instance family, omit this parameter and specify <b>InstanceFamily</b> instead. You cannot specify <b>InstanceType</b> and <b>InstanceFamily</b> in the same request.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable instanceType;
 
 @end
 
@@ -19211,17 +24401,17 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2OperationType operationType;
 
 /**
- <p>One or more DevPay product codes. After you add a product code to an AMI, it can't be removed.</p>
+ <p>The DevPay product codes. After you add a product code to an AMI, it can't be removed.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable productCodes;
 
 /**
- <p>One or more user groups. This parameter can be used only when the <code>Attribute</code> parameter is <code>launchPermission</code>.</p>
+ <p>The user groups. This parameter can be used only when the <code>Attribute</code> parameter is <code>launchPermission</code>.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable userGroups;
 
 /**
- <p>One or more AWS account IDs. This parameter can be used only when the <code>Attribute</code> parameter is <code>launchPermission</code>.</p>
+ <p>The AWS account IDs. This parameter can be used only when the <code>Attribute</code> parameter is <code>launchPermission</code>.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable userIds;
 
@@ -19404,7 +24594,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation.</code></p>
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
@@ -19441,6 +24631,57 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 /**
  
  */
+@interface AWSEC2ModifyInstanceMetadataOptionsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>This parameter enables or disables the HTTP metadata endpoint on your instances. If the parameter is not specified, the existing state is maintained.</p><note><p>If you specify a value of <code>disabled</code>, you will not be able to access your instance metadata.</p></note>
+ */
+@property (nonatomic, assign) AWSEC2InstanceMetadataEndpointState httpEndpoint;
+
+/**
+ <p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. If no parameter is specified, the existing state is maintained.</p><p>Possible values: Integers from 1 to 64</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable httpPutResponseHopLimit;
+
+/**
+ <p>The state of token usage for your instance metadata requests. If the parameter is not specified in the request, the default state is <code>optional</code>.</p><p>If the state is <code>optional</code>, you can choose to retrieve instance metadata with or without a signed token header on your request. If you retrieve the IAM role credentials without a token, the version 1.0 role credentials are returned. If you retrieve the IAM role credentials using a valid signed token, the version 2.0 role credentials are returned.</p><p>If the state is <code>required</code>, you must send a signed token header with any instance metadata retrieval requests. In this state, retrieving the IAM role credential always returns the version 2.0 credentials; the version 1.0 credentials are not available.</p>
+ */
+@property (nonatomic, assign) AWSEC2HttpTokensState httpTokens;
+
+/**
+ <p>The ID of the instance.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable instanceId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyInstanceMetadataOptionsResult : AWSModel
+
+
+/**
+ <p>The ID of the instance.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable instanceId;
+
+/**
+ <p>The metadata options for the instance.</p>
+ */
+@property (nonatomic, strong) AWSEC2InstanceMetadataOptionsResponse * _Nullable instanceMetadataOptions;
+
+@end
+
+/**
+ 
+ */
 @interface AWSEC2ModifyInstancePlacementRequest : AWSRequest
 
 
@@ -19458,6 +24699,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of the Dedicated Host with which to associate the instance.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable hostId;
+
+/**
+ <p>The ARN of the host resource group in which to place the instance.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable hostResourceGroupArn;
 
 /**
  <p>The ID of the instance that you are modifying.</p>
@@ -19612,8 +24858,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for ModifySnapshotAttribute.</p>
- Required parameters: [SnapshotId]
+ 
  */
 @interface AWSEC2ModifySnapshotAttributeRequest : AWSRequest
 
@@ -19668,6 +24913,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2ExcessCapacityTerminationPolicy excessCapacityTerminationPolicy;
 
 /**
+ <p>The number of On-Demand Instances in the fleet.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable onDemandTargetCapacity;
+
+/**
  <p>The ID of the Spot Fleet request.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable spotFleetRequestId;
@@ -19704,7 +24954,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) AWSEC2AttributeBooleanValue * _Nullable assignIpv6AddressOnCreation;
 
 /**
- <p>Specify <code>true</code> to indicate that network interfaces created in the specified subnet should be assigned a public IPv4 address. This includes a network interface that's created when launching an instance into the subnet (the instance therefore receives a public IPv4 address).</p>
+ <p>Specify <code>true</code> to indicate that ENIs attached to instances created in the specified subnet should be assigned a public IPv4 address.</p>
  */
 @property (nonatomic, strong) AWSEC2AttributeBooleanValue * _Nullable mapPublicIpOnLaunch;
 
@@ -19712,6 +24962,194 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of the subnet.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable subnetId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyTrafficMirrorFilterNetworkServicesRequest : AWSRequest
+
+
+/**
+ <p>The network service, for example Amazon DNS, that you want to mirror.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable addNetworkServices;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The network service, for example Amazon DNS, that you no longer want to mirror.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable removeNetworkServices;
+
+/**
+ <p>The ID of the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorFilterId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyTrafficMirrorFilterNetworkServicesResult : AWSModel
+
+
+/**
+ <p>The Traffic Mirror filter that the network service is associated with.</p>
+ */
+@property (nonatomic, strong) AWSEC2TrafficMirrorFilter * _Nullable trafficMirrorFilter;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyTrafficMirrorFilterRuleRequest : AWSRequest
+
+
+/**
+ <p>The description to assign to the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>The destination CIDR block to assign to the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable destinationCidrBlock;
+
+/**
+ <p>The destination ports that are associated with the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) AWSEC2TrafficMirrorPortRangeRequest * _Nullable destinationPortRange;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The protocol, for example TCP, to assign to the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable protocols;
+
+/**
+ <p>The properties that you want to remove from the Traffic Mirror filter rule.</p><p>When you remove a property from a Traffic Mirror filter rule, the property is set to the default.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable removeFields;
+
+/**
+ <p>The action to assign to the rule.</p>
+ */
+@property (nonatomic, assign) AWSEC2TrafficMirrorRuleAction ruleAction;
+
+/**
+ <p>The number of the Traffic Mirror rule. This number must be unique for each Traffic Mirror rule in a given direction. The rules are processed in ascending order by rule number.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable ruleNumber;
+
+/**
+ <p>The source CIDR block to assign to the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable sourceCidrBlock;
+
+/**
+ <p>The port range to assign to the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) AWSEC2TrafficMirrorPortRangeRequest * _Nullable sourcePortRange;
+
+/**
+ <p>The type of traffic (<code>ingress</code> | <code>egress</code>) to assign to the rule.</p>
+ */
+@property (nonatomic, assign) AWSEC2TrafficDirection trafficDirection;
+
+/**
+ <p>The ID of the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorFilterRuleId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyTrafficMirrorFilterRuleResult : AWSModel
+
+
+/**
+ <p>Modifies a Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) AWSEC2TrafficMirrorFilterRule * _Nullable trafficMirrorFilterRule;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyTrafficMirrorSessionRequest : AWSRequest
+
+
+/**
+ <p>The description to assign to the Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The number of bytes in each packet to mirror. These are bytes after the VXLAN header. To mirror a subset, set this to the length (in bytes) to mirror. For example, if you set this value to 100, then the first 100 bytes that meet the filter criteria are copied to the target. Do not specify this parameter when you want to mirror the entire packet.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable packetLength;
+
+/**
+ <p>The properties that you want to remove from the Traffic Mirror session.</p><p>When you remove a property from a Traffic Mirror session, the property is set to the default.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable removeFields;
+
+/**
+ <p>The session number determines the order in which sessions are evaluated when an interface is used by multiple sessions. The first session with a matching filter is the one that mirrors the packets.</p><p>Valid values are 1-32766.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable sessionNumber;
+
+/**
+ <p>The ID of the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorFilterId;
+
+/**
+ <p>The ID of the Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorSessionId;
+
+/**
+ <p>The Traffic Mirror target. The target must be in the same VPC as the source, or have a VPC peering connection with the source.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorTargetId;
+
+/**
+ <p>The virtual network ID of the Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable virtualNetworkId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyTrafficMirrorSessionResult : AWSModel
+
+
+/**
+ <p>Information about the Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) AWSEC2TrafficMirrorSession * _Nullable trafficMirrorSession;
 
 @end
 
@@ -19732,7 +25170,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>The new VPC attachment options.</p>
+ <p>The new VPC attachment options.</p><note><p>You cannot modify the IPv6 options.</p></note>
  */
 @property (nonatomic, strong) AWSEC2ModifyTransitGatewayVpcAttachmentRequestOptions * _Nullable options;
 
@@ -19780,8 +25218,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for ModifyVolumeAttribute.</p>
- Required parameters: [VolumeId]
+ 
  */
 @interface AWSEC2ModifyVolumeAttributeRequest : AWSRequest
 
@@ -19941,12 +25378,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>A policy to attach to the endpoint that controls access to the service. The policy must be in valid JSON format. If this parameter is not specified, we attach a default policy that allows full access to the service.</p>
+ <p>A policy to attach to the endpoint that controls access to the service. The policy must be in valid JSON format.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable policyDocument;
 
 /**
- <p>(Interface endpoint) Indicate whether a private hosted zone is associated with the VPC.</p>
+ <p>(Interface endpoint) Indicates whether a private hosted zone is associated with the VPC.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable privateDnsEnabled;
 
@@ -19997,7 +25434,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Indicate whether requests to create an endpoint to your service must be accepted.</p>
+ <p>Indicates whether requests to create an endpoint to your service must be accepted.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable acceptanceRequired;
 
@@ -20012,9 +25449,19 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
+ <p>The private DNS name to assign to the endpoint service.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable privateDnsName;
+
+/**
  <p>The Amazon Resource Names (ARNs) of Network Load Balancers to remove from your service configuration.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable removeNetworkLoadBalancerArns;
+
+/**
+ <p>Removes the private DNS name of the endpoint service.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable removePrivateDnsName;
 
 /**
  <p>The ID of the service.</p>
@@ -20162,6 +25609,212 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 /**
  
  */
+@interface AWSEC2ModifyVpnConnectionRequest : AWSRequest
+
+
+/**
+ <p>The ID of the customer gateway at your end of the VPN connection.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable customerGatewayId;
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the transit gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayId;
+
+/**
+ <p>The ID of the VPN connection.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable vpnConnectionId;
+
+/**
+ <p>The ID of the virtual private gateway at the AWS side of the VPN connection.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable vpnGatewayId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyVpnConnectionResult : AWSModel
+
+
+/**
+ <p>Describes a VPN connection.</p>
+ */
+@property (nonatomic, strong) AWSEC2VpnConnection * _Nullable vpnConnection;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyVpnTunnelCertificateRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the AWS Site-to-Site VPN connection.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable vpnConnectionId;
+
+/**
+ <p>The external IP address of the VPN tunnel.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable vpnTunnelOutsideIpAddress;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyVpnTunnelCertificateResult : AWSModel
+
+
+/**
+ <p>Describes a VPN connection.</p>
+ */
+@property (nonatomic, strong) AWSEC2VpnConnection * _Nullable vpnConnection;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyVpnTunnelOptionsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The tunnel options to modify.</p>
+ */
+@property (nonatomic, strong) AWSEC2ModifyVpnTunnelOptionsSpecification * _Nullable tunnelOptions;
+
+/**
+ <p>The ID of the AWS Site-to-Site VPN connection.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable vpnConnectionId;
+
+/**
+ <p>The external IP address of the VPN tunnel.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable vpnTunnelOutsideIpAddress;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ModifyVpnTunnelOptionsResult : AWSModel
+
+
+/**
+ <p>Describes a VPN connection.</p>
+ */
+@property (nonatomic, strong) AWSEC2VpnConnection * _Nullable vpnConnection;
+
+@end
+
+/**
+ <p>The AWS Site-to-Site VPN tunnel options to modify.</p>
+ */
+@interface AWSEC2ModifyVpnTunnelOptionsSpecification : AWSModel
+
+
+/**
+ <p>The number of seconds after which a DPD timeout occurs.</p><p>Constraints: A value between 0 and 30.</p><p>Default: <code>30</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable DPDTimeoutSeconds;
+
+/**
+ <p>The IKE versions that are permitted for the VPN tunnel.</p><p>Valid values: <code>ikev1</code> | <code>ikev2</code></p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2IKEVersionsRequestListValue *> * _Nullable IKEVersions;
+
+/**
+ <p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p><p>Valid values: <code>2</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>22</code> | <code>23</code> | <code>24</code></p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase1DHGroupNumbersRequestListValue *> * _Nullable phase1DHGroupNumbers;
+
+/**
+ <p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p><p>Valid values: <code>AES128</code> | <code>AES256</code></p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase1EncryptionAlgorithmsRequestListValue *> * _Nullable phase1EncryptionAlgorithms;
+
+/**
+ <p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p><p>Valid values: <code>SHA1</code> | <code>SHA2-256</code></p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase1IntegrityAlgorithmsRequestListValue *> * _Nullable phase1IntegrityAlgorithms;
+
+/**
+ <p>The lifetime for phase 1 of the IKE negotiation, in seconds.</p><p>Constraints: A value between 900 and 28,800.</p><p>Default: <code>28800</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable phase1LifetimeSeconds;
+
+/**
+ <p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p><p>Valid values: <code>2</code> | <code>5</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>22</code> | <code>23</code> | <code>24</code></p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase2DHGroupNumbersRequestListValue *> * _Nullable phase2DHGroupNumbers;
+
+/**
+ <p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p><p>Valid values: <code>AES128</code> | <code>AES256</code></p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase2EncryptionAlgorithmsRequestListValue *> * _Nullable phase2EncryptionAlgorithms;
+
+/**
+ <p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p><p>Valid values: <code>SHA1</code> | <code>SHA2-256</code></p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase2IntegrityAlgorithmsRequestListValue *> * _Nullable phase2IntegrityAlgorithms;
+
+/**
+ <p>The lifetime for phase 2 of the IKE negotiation, in seconds.</p><p>Constraints: A value between 900 and 3,600. The value must be less than the value for <code>Phase1LifetimeSeconds</code>.</p><p>Default: <code>3600</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable phase2LifetimeSeconds;
+
+/**
+ <p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and the customer gateway.</p><p>Constraints: Allowed characters are alphanumeric characters, periods (.), and underscores (_). Must be between 8 and 64 characters in length and cannot start with zero (0).</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable preSharedKey;
+
+/**
+ <p>The percentage of the rekey window (determined by <code>RekeyMarginTimeSeconds</code>) during which the rekey time is randomly selected.</p><p>Constraints: A value between 0 and 100.</p><p>Default: <code>100</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable rekeyFuzzPercentage;
+
+/**
+ <p>The margin time, in seconds, before the phase 2 lifetime expires, during which the AWS side of the VPN connection performs an IKE rekey. The exact time of the rekey is randomly selected based on the value for <code>RekeyFuzzPercentage</code>.</p><p>Constraints: A value between 60 and half of <code>Phase2LifetimeSeconds</code>.</p><p>Default: <code>540</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable rekeyMarginTimeSeconds;
+
+/**
+ <p>The number of packets in an IKE replay window.</p><p>Constraints: A value between 64 and 2048.</p><p>Default: <code>1024</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable replayWindowSize;
+
+/**
+ <p>The range of inside IP addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. </p><p>Constraints: A size /30 CIDR block from the <code>169.254.0.0/16</code> range. The following CIDR blocks are reserved and cannot be used:</p><ul><li><p><code>169.254.0.0/30</code></p></li><li><p><code>169.254.1.0/30</code></p></li><li><p><code>169.254.2.0/30</code></p></li><li><p><code>169.254.3.0/30</code></p></li><li><p><code>169.254.4.0/30</code></p></li><li><p><code>169.254.5.0/30</code></p></li><li><p><code>169.254.169.252/30</code></p></li></ul>
+ */
+@property (nonatomic, strong) NSString * _Nullable tunnelInsideCidr;
+
+@end
+
+/**
+ 
+ */
 @interface AWSEC2MonitorInstancesRequest : AWSRequest
 
 
@@ -20171,7 +25824,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more instance IDs.</p>
+ <p>The IDs of the instances.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable instanceIds;
 
@@ -20294,7 +25947,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable natGatewayId;
 
 /**
- <p>Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html">documented limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support Center</a>.</p>
+ <p>Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">documented limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support Center</a>.</p>
  */
 @property (nonatomic, strong) AWSEC2ProvisionedBandwidth * _Nullable provisionedBandwidth;
 
@@ -20463,6 +26116,44 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>Describes the networking features of the instance type.</p>
+ */
+@interface AWSEC2NetworkInfo : AWSModel
+
+
+/**
+ <p>Indicates whether Elastic Network Adapter (ENA) is supported.</p>
+ */
+@property (nonatomic, assign) AWSEC2EnaSupport enaSupport;
+
+/**
+ <p>The maximum number of IPv4 addresses per network interface.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable ipv4AddressesPerInterface;
+
+/**
+ <p>The maximum number of IPv6 addresses per network interface.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable ipv6AddressesPerInterface;
+
+/**
+ <p>Indicates whether IPv6 is supported.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable ipv6Supported;
+
+/**
+ <p>The maximum number of network interfaces for the instance type.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maximumNetworkInterfaces;
+
+/**
+ <p>Describes the network performance.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkPerformance;
+
+@end
+
+/**
  <p>Describes a network interface.</p>
  */
 @interface AWSEC2NetworkInterface : AWSModel
@@ -20494,7 +26185,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2GroupIdentifier *> * _Nullable groups;
 
 /**
- <p>The type of interface.</p>
+ <p>The type of network interface.</p>
  */
 @property (nonatomic, assign) AWSEC2NetworkInterfaceType interfaceType;
 
@@ -20512,6 +26203,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of the network interface.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable networkInterfaceId;
+
+/**
+ <p>The Amazon Resource Name (ARN) of the Outpost.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable outpostArn;
 
 /**
  <p>The AWS account ID of the owner of the network interface.</p>
@@ -20780,7 +26476,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>The allocation strategy of On-Demand Instances in an EC2 Fleet.</p>
+ <p>Describes the configuration of On-Demand Instances in an EC2 Fleet.</p>
  */
 @interface AWSEC2OnDemandOptions : AWSModel
 
@@ -20791,24 +26487,34 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2FleetOnDemandAllocationStrategy allocationStrategy;
 
 /**
+ <p>The strategy for using unused Capacity Reservations for fulfilling On-Demand capacity. Supported only for fleets of type <code>instant</code>.</p>
+ */
+@property (nonatomic, strong) AWSEC2CapacityReservationOptions * _Nullable capacityReservationOptions;
+
+/**
+ <p>The maximum amount per hour for On-Demand Instances that you're willing to pay.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable maxTotalPrice;
+
+/**
  <p>The minimum target capacity for On-Demand Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable minTargetCapacity;
 
 /**
- <p>Indicates that the fleet launches all On-Demand Instances into a single Availability Zone.</p>
+ <p>Indicates that the fleet launches all On-Demand Instances into a single Availability Zone. Supported only for fleets of type <code>instant</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable singleAvailabilityZone;
 
 /**
- <p>Indicates that the fleet uses a single instance type to launch all On-Demand Instances in the fleet.</p>
+ <p>Indicates that the fleet uses a single instance type to launch all On-Demand Instances in the fleet. Supported only for fleets of type <code>instant</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable singleInstanceType;
 
 @end
 
 /**
- <p>The allocation strategy of On-Demand Instances in an EC2 Fleet.</p>
+ <p>Describes the configuration of On-Demand Instances in an EC2 Fleet.</p>
  */
 @interface AWSEC2OnDemandOptionsRequest : AWSModel
 
@@ -20819,17 +26525,27 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2FleetOnDemandAllocationStrategy allocationStrategy;
 
 /**
+ <p>The strategy for using unused Capacity Reservations for fulfilling On-Demand capacity. Supported only for fleets of type <code>instant</code>.</p>
+ */
+@property (nonatomic, strong) AWSEC2CapacityReservationOptionsRequest * _Nullable capacityReservationOptions;
+
+/**
+ <p>The maximum amount per hour for On-Demand Instances that you're willing to pay.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable maxTotalPrice;
+
+/**
  <p>The minimum target capacity for On-Demand Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable minTargetCapacity;
 
 /**
- <p>Indicates that the fleet launches all On-Demand Instances into a single Availability Zone.</p>
+ <p>Indicates that the fleet launches all On-Demand Instances into a single Availability Zone. Supported only for fleets of type <code>instant</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable singleAvailabilityZone;
 
 /**
- <p>Indicates that the fleet uses a single instance type to launch all On-Demand Instances in the fleet.</p>
+ <p>Indicates that the fleet uses a single instance type to launch all On-Demand Instances in the fleet. Supported only for fleets of type <code>instant</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable singleInstanceType;
 
@@ -20860,6 +26576,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of the vendor.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable vendorId;
+
+@end
+
+/**
+ <p>The status of the transit gateway peering attachment.</p>
+ */
+@interface AWSEC2PeeringAttachmentStatus : AWSModel
+
+
+/**
+ <p>The status code.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable code;
+
+/**
+ <p>The status message, if applicable.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable message;
 
 @end
 
@@ -20910,18 +26644,197 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>Information about the transit gateway in the peering attachment.</p>
+ */
+@interface AWSEC2PeeringTgwInfo : AWSModel
+
+
+/**
+ <p>The AWS account ID of the owner of the transit gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerId;
+
+/**
+ <p>The Region of the transit gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable region;
+
+/**
+ <p>The ID of the transit gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayId;
+
+@end
+
+/**
+ <p>The Diffie-Hellmann group number for phase 1 IKE negotiations.</p>
+ */
+@interface AWSEC2Phase1DHGroupNumbersListValue : AWSModel
+
+
+/**
+ <p>The Diffie-Hellmann group number.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable value;
+
+@end
+
+/**
+ <p>Specifies a Diffie-Hellman group number for the VPN tunnel for phase 1 IKE negotiations.</p>
+ */
+@interface AWSEC2Phase1DHGroupNumbersRequestListValue : AWSModel
+
+
+/**
+ <p>The Diffie-Hellmann group number.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable value;
+
+@end
+
+/**
+ <p>The encryption algorithm for phase 1 IKE negotiations.</p>
+ */
+@interface AWSEC2Phase1EncryptionAlgorithmsListValue : AWSModel
+
+
+/**
+ <p>The value for the encryption algorithm.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable value;
+
+@end
+
+/**
+ <p>Specifies the encryption algorithm for the VPN tunnel for phase 1 IKE negotiations.</p>
+ */
+@interface AWSEC2Phase1EncryptionAlgorithmsRequestListValue : AWSModel
+
+
+/**
+ <p>The value for the encryption algorithm.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable value;
+
+@end
+
+/**
+ <p>The integrity algorithm for phase 1 IKE negotiations.</p>
+ */
+@interface AWSEC2Phase1IntegrityAlgorithmsListValue : AWSModel
+
+
+/**
+ <p>The value for the integrity algorithm.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable value;
+
+@end
+
+/**
+ <p>Specifies the integrity algorithm for the VPN tunnel for phase 1 IKE negotiations.</p>
+ */
+@interface AWSEC2Phase1IntegrityAlgorithmsRequestListValue : AWSModel
+
+
+/**
+ <p>The value for the integrity algorithm.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable value;
+
+@end
+
+/**
+ <p>The Diffie-Hellmann group number for phase 2 IKE negotiations.</p>
+ */
+@interface AWSEC2Phase2DHGroupNumbersListValue : AWSModel
+
+
+/**
+ <p>The Diffie-Hellmann group number.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable value;
+
+@end
+
+/**
+ <p>Specifies a Diffie-Hellman group number for the VPN tunnel for phase 2 IKE negotiations.</p>
+ */
+@interface AWSEC2Phase2DHGroupNumbersRequestListValue : AWSModel
+
+
+/**
+ <p>The Diffie-Hellmann group number.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable value;
+
+@end
+
+/**
+ <p>The encryption algorithm for phase 2 IKE negotiations.</p>
+ */
+@interface AWSEC2Phase2EncryptionAlgorithmsListValue : AWSModel
+
+
+/**
+ <p>The encryption algorithm.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable value;
+
+@end
+
+/**
+ <p>Specifies the encryption algorithm for the VPN tunnel for phase 2 IKE negotiations.</p>
+ */
+@interface AWSEC2Phase2EncryptionAlgorithmsRequestListValue : AWSModel
+
+
+/**
+ <p>The encryption algorithm.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable value;
+
+@end
+
+/**
+ <p>The integrity algorithm for phase 2 IKE negotiations.</p>
+ */
+@interface AWSEC2Phase2IntegrityAlgorithmsListValue : AWSModel
+
+
+/**
+ <p>The integrity algorithm.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable value;
+
+@end
+
+/**
+ <p>Specifies the integrity algorithm for the VPN tunnel for phase 2 IKE negotiations.</p>
+ */
+@interface AWSEC2Phase2IntegrityAlgorithmsRequestListValue : AWSModel
+
+
+/**
+ <p>The integrity algorithm.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable value;
+
+@end
+
+/**
  <p>Describes the placement of an instance.</p>
  */
 @interface AWSEC2Placement : AWSModel
 
 
 /**
- <p>The affinity setting for the instance on the Dedicated Host. This parameter is not supported for the <a>ImportInstance</a> command.</p>
+ <p>The affinity setting for the instance on the Dedicated Host. This parameter is not supported for the <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportInstance.html">ImportInstance</a> command.</p><p>This parameter is not supported by <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet">CreateFleet</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable affinity;
 
 /**
- <p>The Availability Zone of the instance.</p>
+ <p>The Availability Zone of the instance.</p><p>If not specified, an Availability Zone will be automatically chosen for you based on the load balancing criteria for the Region.</p><p>This parameter is not supported by <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet">CreateFleet</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable availabilityZone;
 
@@ -20931,22 +26844,27 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable groupName;
 
 /**
- <p>The ID of the Dedicated Host on which the instance resides. This parameter is not supported for the <a>ImportInstance</a> command.</p>
+ <p>The ID of the Dedicated Host on which the instance resides. This parameter is not supported for the <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportInstance.html">ImportInstance</a> command.</p><p>This parameter is not supported by <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet">CreateFleet</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable hostId;
 
 /**
- <p>The number of the partition the instance is in. Valid only if the placement group strategy is set to <code>partition</code>.</p>
+ <p>The ARN of the host resource group in which to launch the instances. If you specify a host resource group ARN, omit the <b>Tenancy</b> parameter or set it to <code>host</code>.</p><p>This parameter is not supported by <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet">CreateFleet</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable hostResourceGroupArn;
+
+/**
+ <p>The number of the partition the instance is in. Valid only if the placement group strategy is set to <code>partition</code>.</p><p>This parameter is not supported by <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet">CreateFleet</a>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable partitionNumber;
 
 /**
- <p>Reserved for future use.</p>
+ <p>Reserved for future use.</p><p>This parameter is not supported by <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet">CreateFleet</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable spreadDomain;
 
 /**
- <p>The tenancy of the instance (if the instance is running in a VPC). An instance with a tenancy of <code>dedicated</code> runs on single-tenant hardware. The <code>host</code> tenancy is not supported for the <a>ImportInstance</a> command.</p>
+ <p>The tenancy of the instance (if the instance is running in a VPC). An instance with a tenancy of <code>dedicated</code> runs on single-tenant hardware. The <code>host</code> tenancy is not supported for the <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportInstance.html">ImportInstance</a> command.</p><p>This parameter is not supported by <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet">CreateFleet</a>.</p>
  */
 @property (nonatomic, assign) AWSEC2Tenancy tenancy;
 
@@ -20957,6 +26875,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @interface AWSEC2PlacementGroup : AWSModel
 
+
+/**
+ <p>The ID of the placement group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable groupId;
 
 /**
  <p>The name of the placement group.</p>
@@ -20978,6 +26901,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, assign) AWSEC2PlacementStrategy strategy;
 
+/**
+ <p>Any tags applied to the placement group.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+@end
+
+/**
+ <p>Describes the placement group support of the instance type.</p>
+ */
+@interface AWSEC2PlacementGroupInfo : AWSModel
+
+
+/**
+ <p>A list of supported placement groups types.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable supportedStrategies;
+
 @end
 
 /**
@@ -20987,9 +26928,22 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The name of the placement group the instance is in.</p>
+ <p>The name of the placement group that the instance is in.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable groupName;
+
+@end
+
+/**
+ <p>Describes a CIDR block for an address pool.</p>
+ */
+@interface AWSEC2PoolCidrBlock : AWSModel
+
+
+/**
+ <p>The CIDR block.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable cidr;
 
 @end
 
@@ -21140,6 +27094,34 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>Information about the private DNS name for the service endpoint. For more information about these parameters, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/ndpoint-services-dns-validation.html">VPC Endpoint Service Private DNS Name Verification</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>
+ */
+@interface AWSEC2PrivateDnsNameConfiguration : AWSModel
+
+
+/**
+ <p>The name of the record subdomain the service provider needs to create. The service provider adds the <code>value</code> text to the <code>name</code>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable name;
+
+/**
+ <p>The verification state of the VPC endpoint service.</p><p>&gt;Consumers of the endpoint service can use the private name only when the state is <code>verified</code>.</p>
+ */
+@property (nonatomic, assign) AWSEC2DnsNameState state;
+
+/**
+ <p>The endpoint service verification type, for example TXT.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable types;
+
+/**
+ <p>The value the service provider adds to the private DNS name domain record before verification.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable value;
+
+@end
+
+/**
  <p>Describes a secondary private IPv4 address for a network interface.</p>
  */
 @interface AWSEC2PrivateIpAddressSpecification : AWSModel
@@ -21154,6 +27136,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The private IPv4 addresses.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable privateIpAddress;
+
+@end
+
+/**
+ <p>Describes the processor used by the instance type.</p>
+ */
+@interface AWSEC2ProcessorInfo : AWSModel
+
+
+/**
+ <p>A list of architectures supported by the instance type.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable supportedArchitectures;
+
+/**
+ <p>The speed of the processor, in GHz.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable sustainedClockSpeedInGhz;
 
 @end
 
@@ -21195,7 +27195,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The public IPv4 address range, in CIDR notation. The most specific prefix that you can specify is /24. The address range cannot overlap with another address range that you've brought to this or another region.</p>
+ <p>The public IPv4 or IPv6 address range, in CIDR notation. The most specific IPv4 prefix that you can specify is /24. The most specific IPv6 prefix you can specify is /56. The address range cannot overlap with another address range that you've brought to this or another Region.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable cidr;
 
@@ -21214,6 +27214,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
+/**
+ <p>(IPv6 only) Indicate whether the address range will be publicly advertised to the internet.</p><p>Default: true</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable publiclyAdvertisable;
+
 @end
 
 /**
@@ -21223,47 +27228,47 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Information about the address pool.</p>
+ <p>Information about the address range.</p>
  */
 @property (nonatomic, strong) AWSEC2ByoipCidr * _Nullable byoipCidr;
 
 @end
 
 /**
- <p>Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html">documented limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support Center</a>.</p>
+ <p>Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">documented limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support Center</a>.</p>
  */
 @interface AWSEC2ProvisionedBandwidth : AWSModel
 
 
 /**
- <p>Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html">documented limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support Center</a>.</p>
+ <p>Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">documented limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support Center</a>.</p>
  */
 @property (nonatomic, strong) NSDate * _Nullable provisionTime;
 
 /**
- <p>Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html">documented limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support Center</a>.</p>
+ <p>Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">documented limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support Center</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable provisioned;
 
 /**
- <p>Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html">documented limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support Center</a>.</p>
+ <p>Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">documented limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support Center</a>.</p>
  */
 @property (nonatomic, strong) NSDate * _Nullable requestTime;
 
 /**
- <p>Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html">documented limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support Center</a>.</p>
+ <p>Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">documented limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support Center</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable requested;
 
 /**
- <p>Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html">documented limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support Center</a>.</p>
+ <p>Reserved. If you need to sustain traffic greater than the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">documented limits</a>, contact us through the <a href="https://console.aws.amazon.com/support/home?">Support Center</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable status;
 
 @end
 
 /**
- <p>Describes an address pool.</p>
+ <p>Describes an IPv4 address pool.</p>
  */
 @interface AWSEC2PublicIpv4Pool : AWSModel
 
@@ -21279,9 +27284,14 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2PublicIpv4PoolRange *> * _Nullable poolAddressRanges;
 
 /**
- <p>The ID of the IPv4 address pool.</p>
+ <p>The ID of the address pool.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable poolId;
+
+/**
+ <p>Any tags for the address pool.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
 
 /**
  <p>The total number of addresses.</p>
@@ -21378,7 +27388,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
@@ -21411,7 +27421,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">How to Ensure Idempotency</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
@@ -21479,6 +27489,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) AWSEC2ReservedInstanceLimitPrice * _Nullable limitPrice;
 
 /**
+ <p>The time at which to purchase the Reserved Instance, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable purchaseTime;
+
+/**
  <p>The ID of the Reserved Instance offering to purchase.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable reservedInstancesOfferingId;
@@ -21516,7 +27531,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more purchase requests.</p>
+ <p>The purchase requests.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2PurchaseRequest *> * _Nullable purchaseRequests;
 
@@ -21547,7 +27562,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more instance IDs.</p>
+ <p>The instance IDs.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable instanceIds;
 
@@ -21572,18 +27587,23 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Describes a region.</p>
+ <p>Describes a Region.</p>
  */
 @interface AWSEC2Region : AWSModel
 
 
 /**
- <p>The region service endpoint.</p>
+ <p>The Region service endpoint.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable endpoint;
 
 /**
- <p>The name of the region.</p>
+ <p>The Region opt-in status. The possible values are <code>opt-in-not-required</code>, <code>opted-in</code>, and <code>not-opted-in</code>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable optInStatus;
+
+/**
+ <p>The name of the Region.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable regionName;
 
@@ -21607,7 +27627,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable billingProducts;
 
 /**
- <p>One or more block device mapping entries.</p>
+ <p>The block device mapping entries.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2BlockDeviceMapping *> * _Nullable blockDeviceMappings;
 
@@ -21627,7 +27647,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable enaSupport;
 
 /**
- <p>The full path to your AMI manifest in Amazon S3 storage.</p>
+ <p>The full path to your AMI manifest in Amazon S3 storage. The specified bucket must have the <code>aws-exec-read</code> canned access control list (ACL) to ensure that it can be accessed by Amazon EC2. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl">Canned ACLs</a> in the <i>Amazon S3 Service Developer Guide</i>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable imageLocation;
 
@@ -21673,6 +27693,168 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of the newly registered AMI.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable imageId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2RegisterInstanceEventNotificationAttributesRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>Information about the tag keys to register.</p>
+ */
+@property (nonatomic, strong) AWSEC2RegisterInstanceTagAttributeRequest * _Nullable instanceTagAttribute;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2RegisterInstanceEventNotificationAttributesResult : AWSModel
+
+
+/**
+ <p>The resulting set of tag keys.</p>
+ */
+@property (nonatomic, strong) AWSEC2InstanceTagNotificationAttribute * _Nullable instanceTagAttribute;
+
+@end
+
+/**
+ <p>Information about the tag keys to register for the current Region. You can either specify individual tag keys or register all tag keys in the current Region. You must specify either <code>IncludeAllTagsOfInstance</code> or <code>InstanceTagKeys</code> in the request</p>
+ */
+@interface AWSEC2RegisterInstanceTagAttributeRequest : AWSModel
+
+
+/**
+ <p>Indicates whether to register all tag keys in the current Region. Specify <code>true</code> to register all tag keys.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable includeAllTagsOfInstance;
+
+/**
+ <p>The tag keys to register.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable instanceTagKeys;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2RegisterTransitGatewayMulticastGroupMembersRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The IP address assigned to the transit gateway multicast group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable groupIpAddress;
+
+/**
+ <p>The group members' network interface IDs to register with the transit gateway multicast group.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable networkInterfaceIds;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2RegisterTransitGatewayMulticastGroupMembersResult : AWSModel
+
+
+/**
+ <p>Information about the registered transit gateway multicast group members.</p>
+ */
+@property (nonatomic, strong) AWSEC2TransitGatewayMulticastRegisteredGroupMembers * _Nullable registeredMulticastGroupMembers;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2RegisterTransitGatewayMulticastGroupSourcesRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The IP address assigned to the transit gateway multicast group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable groupIpAddress;
+
+/**
+ <p>The group sources' network interface IDs to register with the transit gateway multicast group.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable networkInterfaceIds;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2RegisterTransitGatewayMulticastGroupSourcesResult : AWSModel
+
+
+/**
+ <p>Information about the transit gateway multicast group sources.</p>
+ */
+@property (nonatomic, strong) AWSEC2TransitGatewayMulticastRegisteredGroupSources * _Nullable registeredMulticastGroupSources;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2RejectTransitGatewayPeeringAttachmentRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the transit gateway peering attachment.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayAttachmentId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2RejectTransitGatewayPeeringAttachmentResult : AWSModel
+
+
+/**
+ <p>The transit gateway peering attachment.</p>
+ */
+@property (nonatomic, strong) AWSEC2TransitGatewayPeeringAttachment * _Nullable transitGatewayPeeringAttachment;
 
 @end
 
@@ -21789,6 +27971,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The location that the IP address is released from.</p><p>If you provide an incorrect network border group, you will receive an <code>InvalidAddress.NotFound</code> error. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html">Error Codes</a>.</p><note><p>You cannot use a network border group with EC2 Classic. If you attempt this operation on EC2 classic, you will receive an <code>InvalidParameterCombination</code> error. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html">Error Codes</a>.</p></note>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkBorderGroup;
 
 /**
  <p>[EC2-Classic] The Elastic IP address. Required for EC2-Classic.</p>
@@ -21990,6 +28177,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable instanceId;
 
 /**
+ <p>The ID of the local gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayId;
+
+/**
+ <p>Specifies whether to reset the local route to its default target (<code>local</code>).</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable localTarget;
+
+/**
  <p>[IPv4 traffic only] The ID of a NAT gateway.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable natGatewayId;
@@ -22044,6 +28241,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @interface AWSEC2ReplaceRouteTableAssociationResult : AWSModel
 
+
+/**
+ <p>The state of the association.</p>
+ */
+@property (nonatomic, strong) AWSEC2RouteTableAssociationState * _Nullable associationState;
 
 /**
  <p>The ID of the new association.</p>
@@ -22120,12 +28322,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSDate * _Nullable endTime;
 
 /**
- <p>One or more instances.</p>
+ <p>The instances.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable instances;
 
 /**
- <p>One or more reason codes that describe the health state of your instance.</p><ul><li><p><code>instance-stuck-in-state</code>: My instance is stuck in a state.</p></li><li><p><code>unresponsive</code>: My instance is unresponsive.</p></li><li><p><code>not-accepting-credentials</code>: My instance is not accepting my credentials.</p></li><li><p><code>password-not-available</code>: A password is not available for my instance.</p></li><li><p><code>performance-network</code>: My instance is experiencing performance problems that I believe are network related.</p></li><li><p><code>performance-instance-store</code>: My instance is experiencing performance problems that I believe are related to the instance stores.</p></li><li><p><code>performance-ebs-volume</code>: My instance is experiencing performance problems that I believe are related to an EBS volume.</p></li><li><p><code>performance-other</code>: My instance is experiencing performance problems.</p></li><li><p><code>other</code>: [explain using the description parameter]</p></li></ul>
+ <p>The reason codes that describe the health state of your instance.</p><ul><li><p><code>instance-stuck-in-state</code>: My instance is stuck in a state.</p></li><li><p><code>unresponsive</code>: My instance is unresponsive.</p></li><li><p><code>not-accepting-credentials</code>: My instance is not accepting my credentials.</p></li><li><p><code>password-not-available</code>: A password is not available for my instance.</p></li><li><p><code>performance-network</code>: My instance is experiencing performance problems that I believe are network related.</p></li><li><p><code>performance-instance-store</code>: My instance is experiencing performance problems that I believe are related to the instance stores.</p></li><li><p><code>performance-ebs-volume</code>: My instance is experiencing performance problems that I believe are related to an EBS volume.</p></li><li><p><code>performance-other</code>: My instance is experiencing performance problems.</p></li><li><p><code>other</code>: [explain using the description parameter]</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable reasonCodes;
 
@@ -22148,7 +28350,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The block device mapping.</p><important><p>Supplying both a snapshot ID and an encryption value as arguments for block-device mapping results in an error. This is because only blank volumes can be encrypted on start, and these are not created from a snapshot. If a snapshot is the basis for the volume, it contains data by definition and its encryption status cannot be changed using this action.</p></important>
+ <p>The block device mapping.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2LaunchTemplateBlockDeviceMappingRequest *> * _Nullable blockDeviceMappings;
 
@@ -22168,7 +28370,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) AWSEC2CreditSpecificationRequest * _Nullable creditSpecification;
 
 /**
- <p>If set to <code>true</code>, you can't terminate the instance using the Amazon EC2 console, CLI, or API. To change this attribute to <code>false</code> after launch, use <a>ModifyInstanceAttribute</a>.</p>
+ <p>If you set this parameter to <code>true</code>, you can't terminate the instance using the Amazon EC2 console, CLI, or API; otherwise, you can. To change this attribute after launch, use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceAttribute.html">ModifyInstanceAttribute</a>. Alternatively, if you set <code>InstanceInitiatedShutdownBehavior</code> to <code>terminate</code>, you can terminate the instance by running the shutdown command from the instance.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable disableApiTermination;
 
@@ -22188,7 +28390,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2LaunchTemplateElasticInferenceAccelerator *> * _Nullable elasticInferenceAccelerators;
 
 /**
- <p>Indicates whether an instance is enabled for hibernation. This parameter is valid only if the instance meets the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites">hibernation prerequisites</a>. Hibernation is currently supported only for Amazon Linux. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ <p>Indicates whether an instance is enabled for hibernation. This parameter is valid only if the instance meets the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites">hibernation prerequisites</a>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  */
 @property (nonatomic, strong) AWSEC2LaunchTemplateHibernationOptionsRequest * _Nullable hibernationOptions;
 
@@ -22198,7 +28400,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) AWSEC2LaunchTemplateIamInstanceProfileSpecificationRequest * _Nullable iamInstanceProfile;
 
 /**
- <p>The ID of the AMI, which you can get by using <a>DescribeImages</a>.</p>
+ <p>The ID of the AMI.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable imageId;
 
@@ -22223,7 +28425,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable kernelId;
 
 /**
- <p>The name of the key pair. You can create a key pair using <a>CreateKeyPair</a> or <a>ImportKeyPair</a>.</p><important><p>If you do not specify a key pair, you can't connect to the instance unless you choose an AMI that is configured to allow users another way to log in.</p></important>
+ <p>The name of the key pair. You can create a key pair using <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html">CreateKeyPair</a> or <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportKeyPair.html">ImportKeyPair</a>.</p><important><p>If you do not specify a key pair, you can't connect to the instance unless you choose an AMI that is configured to allow users another way to log in.</p></important>
  */
 @property (nonatomic, strong) NSString * _Nullable keyName;
 
@@ -22233,12 +28435,17 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2LaunchTemplateLicenseConfigurationRequest *> * _Nullable licenseSpecifications;
 
 /**
+ <p>The metadata options for the instance. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance Metadata and User Data</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@property (nonatomic, strong) AWSEC2LaunchTemplateInstanceMetadataOptionsRequest * _Nullable metadataOptions;
+
+/**
  <p>The monitoring for the instance.</p>
  */
 @property (nonatomic, strong) AWSEC2LaunchTemplatesMonitoringRequest * _Nullable monitoring;
 
 /**
- <p>One or more network interfaces.</p>
+ <p>One or more network interfaces. If you specify a network interface, you must specify any security groups and subnets as part of the network interface.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2LaunchTemplateInstanceNetworkInterfaceSpecificationRequest *> * _Nullable networkInterfaces;
 
@@ -22253,7 +28460,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable ramDiskId;
 
 /**
- <p>One or more security group IDs. You can create a security group using <a>CreateSecurityGroup</a>. You cannot specify both a security group ID and security name in the same request.</p>
+ <p>One or more security group IDs. You can create a security group using <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSecurityGroup.html">CreateSecurityGroup</a>. You cannot specify both a security group ID and security name in the same request.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable securityGroupIds;
 
@@ -22263,7 +28470,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable securityGroups;
 
 /**
- <p>The tags to apply to the resources during launch. You can only tag instances and volumes on launch. The specified tags are applied to all instances or volumes that are created during launch. To tag a resource after it has been created, see <a>CreateTags</a>.</p>
+ <p>The tags to apply to the resources during launch. You can only tag instances and volumes on launch. The specified tags are applied to all instances or volumes that are created during launch. To tag a resource after it has been created, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html">CreateTags</a>.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2LaunchTemplateTagSpecificationRequest *> * _Nullable tagSpecifications;
 
@@ -22363,7 +28570,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2SpotInstanceType types;
 
 /**
- <p>The start date of the request. If this is a one-time request, the request becomes active at this date and time and remains active until all instances launch, the request expires, or the request is canceled. If the request is persistent, the request becomes active at this date and time and remains active until it expires or is canceled.</p>
+ <p>The start date of the request. If this is a one-time request, the request becomes active at this date and time and remains active until all instances launch, the request expires, or the request is canceled. If the request is persistent, the request becomes active at this date and time and remains active until it expires or is canceled.</p><p>The specified start date and time cannot be equal to the current date and time. You must specify a start date and time that occurs after the current date and time.</p>
  */
 @property (nonatomic, strong) NSDate * _Nullable validFrom;
 
@@ -22464,12 +28671,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable securityGroups;
 
 /**
- <p>The ID of the subnet in which to launch the instance.</p>
+ <p>The IDs of the subnets in which to launch the instance. To specify multiple subnets, separate them using commas; for example, "subnet-1234abcdeexample1, subnet-0987cdef6example2".</p>
  */
 @property (nonatomic, strong) NSString * _Nullable subnetId;
 
 /**
- <p>The Base64-encoded user data for the instance.</p>
+ <p>The Base64-encoded user data for the instance. User data is limited to 16 KB.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable userData;
 
@@ -22482,12 +28689,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>[EC2-Classic only] One or more security groups.</p>
+ <p>[EC2-Classic only] The security groups.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2GroupIdentifier *> * _Nullable groups;
 
 /**
- <p>One or more instances.</p>
+ <p>The instances.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Instance *> * _Nullable instances;
 
@@ -22692,7 +28899,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable platform;
 
 /**
- <p>Whether the Reserved Instance is applied to instances in a region or instances in a specific Availability Zone.</p>
+ <p>Whether the Reserved Instance is applied to instances in a Region or instances in a specific Availability Zone.</p>
  */
 @property (nonatomic, assign) AWSEC2scope scope;
 
@@ -22912,7 +29119,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable reservedInstancesOfferingId;
 
 /**
- <p>Whether the Reserved Instance is applied to instances in a region or an Availability Zone.</p>
+ <p>Whether the Reserved Instance is applied to instances in a Region or an Availability Zone.</p>
  */
 @property (nonatomic, assign) AWSEC2scope scope;
 
@@ -22920,6 +29127,32 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The usage price of the Reserved Instance, per hour.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable usagePrice;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ResetEbsDefaultKmsKeyIdRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2ResetEbsDefaultKmsKeyIdResult : AWSModel
+
+
+/**
+ <p>The Amazon Resource Name (ARN) of the default CMK for EBS encryption by default.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable kmsKeyId;
 
 @end
 
@@ -23031,8 +29264,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Contains the parameters for ResetSnapshotAttribute.</p>
- Required parameters: [Attribute, SnapshotId]
+ 
  */
 @interface AWSEC2ResetSnapshotAttributeRequest : AWSRequest
 
@@ -23162,6 +29394,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The license configurations.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2LaunchTemplateLicenseConfiguration *> * _Nullable licenseSpecifications;
+
+/**
+ <p>The metadata options for the instance. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance Metadata and User Data</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+ */
+@property (nonatomic, strong) AWSEC2LaunchTemplateInstanceMetadataOptions * _Nullable metadataOptions;
 
 /**
  <p>The monitoring for the instance.</p>
@@ -23314,7 +29551,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable groupId;
 
 /**
- <p>One or more sets of IP permissions. You can't specify a destination security group and a CIDR IP address range in the same set of permissions.</p>
+ <p>The sets of IP permissions. You can't specify a destination security group and a CIDR IP address range in the same set of permissions.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2IpPermission *> * _Nullable ipPermissions;
 
@@ -23372,7 +29609,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable groupName;
 
 /**
- <p>One or more sets of IP permissions. You can't specify a source security group and a CIDR IP address range in the same set of permissions.</p>
+ <p>The sets of IP permissions. You can't specify a source security group and a CIDR IP address range in the same set of permissions.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2IpPermission *> * _Nullable ipPermissions;
 
@@ -23440,6 +29677,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable instanceOwnerId;
 
 /**
+ <p>The ID of the local gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayId;
+
+/**
  <p>The ID of a NAT gateway.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable natGatewayId;
@@ -23478,7 +29720,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The associations between the route table and one or more subnets.</p>
+ <p>The associations between the route table and one or more subnets or a gateway.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2RouteTableAssociation *> * _Nullable associations;
 
@@ -23515,10 +29757,20 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Describes an association between a route table and a subnet.</p>
+ <p>Describes an association between a route table and a subnet or gateway.</p>
  */
 @interface AWSEC2RouteTableAssociation : AWSModel
 
+
+/**
+ <p>The state of the association.</p>
+ */
+@property (nonatomic, strong) AWSEC2RouteTableAssociationState * _Nullable associationState;
+
+/**
+ <p>The ID of the internet gateway or virtual private gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable gatewayId;
 
 /**
  <p>Indicates whether this is the main route table.</p>
@@ -23526,7 +29778,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable main;
 
 /**
- <p>The ID of the association between a route table and a subnet.</p>
+ <p>The ID of the association.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable routeTableAssociationId;
 
@@ -23539,6 +29791,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of the subnet. A subnet ID is not returned for an implicit association.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable subnetId;
+
+@end
+
+/**
+ <p>Describes the state of an association between a route table and a subnet or gateway.</p>
+ */
+@interface AWSEC2RouteTableAssociationState : AWSModel
+
+
+/**
+ <p>The state of the association.</p>
+ */
+@property (nonatomic, assign) AWSEC2RouteTableAssociationStateCode state;
+
+/**
+ <p>The status message, if applicable.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable statusMessage;
 
 @end
 
@@ -23568,7 +29838,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable additionalInfo;
 
 /**
- <p>One or more block device mapping entries. You can't specify both a snapshot ID and an encryption value. This is because only blank volumes can be encrypted on creation. If a snapshot is the basis for a volume, it is not blank and its encryption status is used for the volume encryption status.</p>
+ <p>The block device mapping entries.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2BlockDeviceMapping *> * _Nullable blockDeviceMappings;
 
@@ -23578,7 +29848,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) AWSEC2CapacityReservationSpecification * _Nullable capacityReservationSpecification;
 
 /**
- <p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring Idempotency</a>.</p><p>Constraints: Maximum 64 ASCII characters</p>
+ <p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token, a randomly generated token is used for the request to ensure idempotency.</p><p>For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring Idempotency</a>.</p><p>Constraints: Maximum 64 ASCII characters</p>
  */
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
@@ -23588,12 +29858,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) AWSEC2CpuOptionsRequest * _Nullable cpuOptions;
 
 /**
- <p>The credit option for CPU usage of the instance. Valid values are <code>standard</code> and <code>unlimited</code>. To change this attribute after launch, use <a>ModifyInstanceCreditSpecification</a>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html">Burstable Performance Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>Default: <code>standard</code> (T2 instances) or <code>unlimited</code> (T3 instances)</p>
+ <p>The credit option for CPU usage of the burstable performance instance. Valid values are <code>standard</code> and <code>unlimited</code>. To change this attribute after launch, use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceCreditSpecification.html"> ModifyInstanceCreditSpecification</a>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html">Burstable Performance Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>Default: <code>standard</code> (T2 instances) or <code>unlimited</code> (T3/T3a instances)</p>
  */
 @property (nonatomic, strong) AWSEC2CreditSpecificationRequest * _Nullable creditSpecification;
 
 /**
- <p>If you set this parameter to <code>true</code>, you can't terminate the instance using the Amazon EC2 console, CLI, or API; otherwise, you can. To change this attribute to <code>false</code> after launch, use <a>ModifyInstanceAttribute</a>. Alternatively, if you set <code>InstanceInitiatedShutdownBehavior</code> to <code>terminate</code>, you can terminate the instance by running the shutdown command from the instance.</p><p>Default: <code>false</code></p>
+ <p>If you set this parameter to <code>true</code>, you can't terminate the instance using the Amazon EC2 console, CLI, or API; otherwise, you can. To change this attribute after launch, use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceAttribute.html">ModifyInstanceAttribute</a>. Alternatively, if you set <code>InstanceInitiatedShutdownBehavior</code> to <code>terminate</code>, you can terminate the instance by running the shutdown command from the instance.</p><p>Default: <code>false</code></p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable disableApiTermination;
 
@@ -23608,12 +29878,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable ebsOptimized;
 
 /**
- <p>An elastic GPU to associate with the instance.</p>
+ <p>An elastic GPU to associate with the instance. An Elastic GPU is a GPU resource that you can attach to your Windows instance to accelerate the graphics performance of your applications. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics.html"> Amazon EC2 Elastic GPUs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2ElasticGpuSpecification *> * _Nullable elasticGpuSpecification;
 
 /**
- <p> An elastic inference accelerator. </p>
+ <p>An elastic inference accelerator to associate with the instance. Elastic inference accelerators are a resource you can attach to your Amazon EC2 instances to accelerate your Deep Learning (DL) inference workloads.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2ElasticInferenceAccelerator *> * _Nullable elasticInferenceAccelerators;
 
@@ -23628,7 +29898,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) AWSEC2IamInstanceProfileSpecification * _Nullable iamInstanceProfile;
 
 /**
- <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>. An AMI is required to launch an instance and must be specified here or in a launch template.</p>
+ <p>The ID of the AMI. An AMI ID is required to launch an instance and must be specified here or in a launch template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable imageId;
 
@@ -23648,12 +29918,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2InstanceType instanceType;
 
 /**
- <p>[EC2-VPC] A number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet. You cannot specify this option and the option to assign specific IPv6 addresses in the same request. You can specify this option if you've specified a minimum number of instances to launch.</p><p>You cannot specify this option and the network interfaces option in the same request.</p>
+ <p>[EC2-VPC] The number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet. You cannot specify this option and the option to assign specific IPv6 addresses in the same request. You can specify this option if you've specified a minimum number of instances to launch.</p><p>You cannot specify this option and the network interfaces option in the same request.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable ipv6AddressCount;
 
 /**
- <p>[EC2-VPC] Specify one or more IPv6 addresses from the range of the subnet to associate with the primary network interface. You cannot specify this option and the option to assign a number of IPv6 addresses in the same request. You cannot specify this option if you've specified a minimum number of instances to launch.</p><p>You cannot specify this option and the network interfaces option in the same request.</p>
+ <p>[EC2-VPC] The IPv6 addresses from the range of the subnet to associate with the primary network interface. You cannot specify this option and the option to assign a number of IPv6 addresses in the same request. You cannot specify this option if you've specified a minimum number of instances to launch.</p><p>You cannot specify this option and the network interfaces option in the same request.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2InstanceIpv6Address *> * _Nullable ipv6Addresses;
 
@@ -23663,7 +29933,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable kernelId;
 
 /**
- <p>The name of the key pair. You can create a key pair using <a>CreateKeyPair</a> or <a>ImportKeyPair</a>.</p><important><p>If you do not specify a key pair, you can't connect to the instance unless you choose an AMI that is configured to allow users another way to log in.</p></important>
+ <p>The name of the key pair. You can create a key pair using <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html">CreateKeyPair</a> or <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportKeyPair.html">ImportKeyPair</a>.</p><important><p>If you do not specify a key pair, you can't connect to the instance unless you choose an AMI that is configured to allow users another way to log in.</p></important>
  */
 @property (nonatomic, strong) NSString * _Nullable keyName;
 
@@ -23683,17 +29953,22 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable maxCount;
 
 /**
+ <p>The metadata options for the instance. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance Metadata and User Data</a>.</p>
+ */
+@property (nonatomic, strong) AWSEC2InstanceMetadataOptionsRequest * _Nullable metadataOptions;
+
+/**
  <p>The minimum number of instances to launch. If you specify a minimum that is more instances than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches no instances.</p><p>Constraints: Between 1 and the maximum number you're allowed for the specified instance type. For more information about the default limits, and how to request an increase, see <a href="http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2">How many instances can I run in Amazon EC2</a> in the Amazon EC2 General FAQ.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable minCount;
 
 /**
- <p>The monitoring for the instance.</p>
+ <p>Specifies whether detailed monitoring is enabled for the instance.</p>
  */
 @property (nonatomic, strong) AWSEC2RunInstancesMonitoringEnabled * _Nullable monitoring;
 
 /**
- <p>One or more network interfaces.</p><p>You cannot specify this option and the network interfaces option in the same request.</p>
+ <p>The network interfaces to associate with the instance. If you specify a network interface, you must specify any security groups and subnets as part of the network interface.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2InstanceNetworkInterfaceSpecification *> * _Nullable networkInterfaces;
 
@@ -23708,32 +29983,32 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable privateIpAddress;
 
 /**
- <p>The ID of the RAM disk.</p><important><p>We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html"> PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p></important>
+ <p>The ID of the RAM disk to select. Some kernels require additional drivers at launch. Check the kernel requirements for information about whether you need to specify a RAM disk. To find kernel requirements, go to the AWS Resource Center and search for the kernel ID.</p><important><p>We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html"> PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p></important>
  */
 @property (nonatomic, strong) NSString * _Nullable ramdiskId;
 
 /**
- <p>One or more security group IDs. You can create a security group using <a>CreateSecurityGroup</a>.</p><p>Default: Amazon EC2 uses the default security group.</p><p>You cannot specify this option and the network interfaces option in the same request.</p>
+ <p>The IDs of the security groups. You can create a security group using <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSecurityGroup.html">CreateSecurityGroup</a>.</p><p>If you specify a network interface, you must specify any security groups as part of the network interface.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable securityGroupIds;
 
 /**
- <p>[EC2-Classic, default VPC] One or more security group names. For a nondefault VPC, you must use security group IDs instead.</p><p>You cannot specify this option and the network interfaces option in the same request.</p><p>Default: Amazon EC2 uses the default security group.</p>
+ <p>[EC2-Classic, default VPC] The names of the security groups. For a nondefault VPC, you must use security group IDs instead.</p><p>If you specify a network interface, you must specify any security groups as part of the network interface.</p><p>Default: Amazon EC2 uses the default security group.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable securityGroups;
 
 /**
- <p>[EC2-VPC] The ID of the subnet to launch the instance into.</p><p>You cannot specify this option and the network interfaces option in the same request.</p>
+ <p>[EC2-VPC] The ID of the subnet to launch the instance into.</p><p>If you specify a network interface, you must specify any subnets as part of the network interface.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable subnetId;
 
 /**
- <p>The tags to apply to the resources during launch. You can only tag instances and volumes on launch. The specified tags are applied to all instances or volumes that are created during launch. To tag a resource after it has been created, see <a>CreateTags</a>.</p>
+ <p>The tags to apply to the resources during launch. You can only tag instances and volumes on launch. The specified tags are applied to all instances or volumes that are created during launch. To tag a resource after it has been created, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html">CreateTags</a>.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
 
 /**
- <p>The user data to make available to the instance. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html">Running Commands on Your Linux Instance at Launch</a> (Linux) and <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data">Adding User Data</a> (Windows). If you are using a command line tool, base64-encoding is performed for you, and you can load the text from a file. Otherwise, you must provide base64-encoded text.</p>
+ <p>The user data to make available to the instance. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html">Running Commands on Your Linux Instance at Launch</a> (Linux) and <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data">Adding User Data</a> (Windows). If you are using a command line tool, base64-encoding is performed for you, and you can load the text from a file. Otherwise, you must provide base64-encoded text. User data is limited to 16 KB.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable userData;
 
@@ -24101,7 +30376,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable volumeSize;
 
 /**
- <p>The volume type. <code>gp2</code> for General Purpose SSD, <code>io1</code> for Provisioned IOPS SSD, Throughput Optimized HDD for <code>st1</code>, Cold HDD for <code>sc1</code>, or <code>standard</code> for Magnetic.</p><p>Default: <code>standard</code></p>
+ <p>The volume type. <code>gp2</code> for General Purpose SSD, <code>io1</code> for Provisioned IOPS SSD, Throughput Optimized HDD for <code>st1</code>, Cold HDD for <code>sc1</code>, or <code>standard</code> for Magnetic.</p><p>Default: <code>gp2</code></p>
  */
 @property (nonatomic, strong) NSString * _Nullable volumeType;
 
@@ -24146,7 +30421,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>One or more block device mapping entries.</p>
+ <p>The block device mapping entries.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2ScheduledInstancesBlockDeviceMapping *> * _Nullable blockDeviceMappings;
 
@@ -24186,7 +30461,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) AWSEC2ScheduledInstancesMonitoring * _Nullable monitoring;
 
 /**
- <p>One or more network interfaces.</p>
+ <p>The network interfaces.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2ScheduledInstancesNetworkInterface *> * _Nullable networkInterfaces;
 
@@ -24201,7 +30476,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable ramdiskId;
 
 /**
- <p>The IDs of one or more security groups.</p>
+ <p>The IDs of the security groups.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable securityGroupIds;
 
@@ -24257,7 +30532,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable deviceIndex;
 
 /**
- <p>The IDs of one or more security groups.</p>
+ <p>The IDs of the security groups.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable groups;
 
@@ -24267,7 +30542,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable ipv6AddressCount;
 
 /**
- <p>One or more specific IPv6 addresses from the subnet range.</p>
+ <p>The specific IPv6 addresses from the subnet range.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2ScheduledInstancesIpv6Address *> * _Nullable ipv6Addresses;
 
@@ -24337,6 +30612,108 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 /**
  
  */
+@interface AWSEC2SearchLocalGatewayRoutesRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The ID of the local gateway route table.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable localGatewayRouteTableId;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2SearchLocalGatewayRoutesResult : AWSModel
+
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>Information about the routes.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2LocalGatewayRoute *> * _Nullable routes;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2SearchTransitGatewayMulticastGroupsRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>One or more filters. The possible values are:</p><ul><li><p><code>group-ip-address</code> - The IP address of the transit gateway multicast group.</p></li><li><p><code>is-group-member</code> - The resource is a group member. Valid values are <code>true</code> | <code>false</code>.</p></li><li><p><code>is-group-source</code> - The resource is a group source. Valid values are <code>true</code> | <code>false</code>.</p></li><li><p><code>member-type</code> - The member type. Valid values are <code>igmp</code> | <code>static</code>.</p></li><li><p><code>resource-id</code> - The ID of the resource.</p></li><li><p><code>resource-type</code> - The type of resource. Valid values are <code>vpc</code> | <code>vpn</code> | <code>direct-connect-gateway</code> | <code>tgw-peering</code>.</p></li><li><p><code>source-type</code> - The source type. Valid values are <code>igmp</code> | <code>static</code>.</p></li><li><p><code>state</code> - The state of the subnet association. Valid values are <code>associated</code> | <code>associated</code> | <code>disassociated</code> | <code>disassociating</code>.</p></li><li><p><code>subnet-id</code> - The ID of the subnet.</p></li><li><p><code>transit-gateway-attachment-id</code> - The id of the transit gateway attachment.</p></li></ul>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
+
+/**
+ <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>The token for the next page of results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2SearchTransitGatewayMulticastGroupsResult : AWSModel
+
+
+/**
+ <p>Information about the transit gateway multicast group.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TransitGatewayMulticastGroup *> * _Nullable multicastGroups;
+
+/**
+ <p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
 @interface AWSEC2SearchTransitGatewayRoutesRequest : AWSRequest
 
 
@@ -24346,7 +30723,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more filters. The possible values are:</p><ul><li><p><code>attachment.transit-gateway-attachment-id</code>- The id of the transit gateway attachment.</p></li><li><p><code>attachment.resource-id</code> - The resource id of the transit gateway attachment.</p></li><li><p><code>attachment.resource-type</code> - The attachment resource type (<code>vpc</code> | <code>vpn</code>).</p></li><li><p><code>route-search.exact-match</code> - The exact match of the specified filter.</p></li><li><p><code>route-search.longest-prefix-match</code> - The longest prefix that matches the route.</p></li><li><p><code>route-search.subnet-of-match</code> - The routes with a subnet that match the specified CIDR filter.</p></li><li><p><code>route-search.supernet-of-match</code> - The routes with a CIDR that encompass the CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31 routes in your route table and you specify supernet-of-match as 10.0.1.0/30, then the result returns 10.0.1.0/29.</p></li><li><p><code>state</code> - The state of the attachment (<code>available</code> | <code>deleted</code> | <code>deleting</code> | <code>failed</code> | <code>modifying</code> | <code>pendingAcceptance</code> | <code>pending</code> | <code>rollingBack</code> | <code>rejected</code> | <code>rejecting</code>).</p></li><li><p><code>type</code> - The type of roue (<code>active</code> | <code>blackhole</code>).</p></li></ul>
+ <p>One or more filters. The possible values are:</p><ul><li><p><code>attachment.transit-gateway-attachment-id</code>- The id of the transit gateway attachment.</p></li><li><p><code>attachment.resource-id</code> - The resource id of the transit gateway attachment.</p></li><li><p><code>attachment.resource-type</code> - The attachment resource type (<code>vpc</code> | <code>vpn</code>).</p></li><li><p><code>route-search.exact-match</code> - The exact match of the specified filter.</p></li><li><p><code>route-search.longest-prefix-match</code> - The longest prefix that matches the route.</p></li><li><p><code>route-search.subnet-of-match</code> - The routes with a subnet that match the specified CIDR filter.</p></li><li><p><code>route-search.supernet-of-match</code> - The routes with a CIDR that encompass the CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31 routes in your route table and you specify supernet-of-match as 10.0.1.0/30, then the result returns 10.0.1.0/29.</p></li><li><p><code>state</code> - The state of the route (<code>active</code> | <code>blackhole</code>).</p></li><li><p><code>type</code> - The type of route (<code>propagated</code> | <code>static</code>).</p></li></ul>
  */
 @property (nonatomic, strong) NSArray<AWSEC2Filter *> * _Nullable filters;
 
@@ -24402,12 +30779,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable groupName;
 
 /**
- <p>One or more inbound rules associated with the security group.</p>
+ <p>The inbound rules associated with the security group.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2IpPermission *> * _Nullable ipPermissions;
 
 /**
- <p>[EC2-VPC] One or more outbound rules associated with the security group.</p>
+ <p>[VPC only] The outbound rules associated with the security group.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2IpPermission *> * _Nullable ipPermissionsEgress;
 
@@ -24422,7 +30799,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
 
 /**
- <p>[EC2-VPC] The ID of the VPC for the security group.</p>
+ <p>[VPC only] The ID of the VPC for the security group.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable vpcId;
 
@@ -24470,6 +30847,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ 
+ */
+@interface AWSEC2SendDiagnosticInterruptRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the instance.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable instanceId;
+
+@end
+
+/**
  <p>Describes a service configuration for a VPC endpoint service.</p>
  */
 @interface AWSEC2ServiceConfiguration : AWSModel
@@ -24481,7 +30876,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable acceptanceRequired;
 
 /**
- <p>In the Availability Zones in which the service is available.</p>
+ <p>The Availability Zones in which the service is available.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable availabilityZones;
 
@@ -24489,6 +30884,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The DNS names for the service.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable baseEndpointDnsNames;
+
+/**
+ <p>Indicates whether the service manages its VPC endpoints. Management of the service VPC endpoints using the VPC endpoint API is restricted.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable managesVpcEndpoints;
 
 /**
  <p>The Amazon Resource Names (ARNs) of the Network Load Balancers for the service.</p>
@@ -24499,6 +30899,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The private DNS name for the service.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable privateDnsName;
+
+/**
+ <p>Information about the endpoint service private DNS name configuration.</p>
+ */
+@property (nonatomic, strong) AWSEC2PrivateDnsNameConfiguration * _Nullable privateDnsNameConfiguration;
 
 /**
  <p>The ID of the service.</p>
@@ -24519,6 +30924,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The type of service.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2ServiceTypeDetail *> * _Nullable serviceType;
+
+/**
+ <p>Any tags assigned to the service.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
 
 @end
 
@@ -24544,6 +30954,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable baseEndpointDnsNames;
 
 /**
+ <p>Indicates whether the service manages its VPC endpoints. Management of the service VPC endpoints using the VPC endpoint API is restricted.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable managesVpcEndpoints;
+
+/**
  <p>The AWS account ID of the service owner.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable owner;
@@ -24554,6 +30969,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable privateDnsName;
 
 /**
+ <p>The verification state of the VPC endpoint service.</p><p>Consumers of the endpoint service cannot use the private name when the state is not <code>verified</code>.</p>
+ */
+@property (nonatomic, assign) AWSEC2DnsNameState privateDnsNameVerificationState;
+
+/**
+ <p>The ID of the endpoint service.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable serviceId;
+
+/**
  <p>The Amazon Resource Name (ARN) of the service.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable serviceName;
@@ -24562,6 +30987,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The type of service.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2ServiceTypeDetail *> * _Nullable serviceType;
+
+/**
+ <p>Any tags assigned to the service.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
 
 /**
  <p>Indicates whether the service supports endpoint policies.</p>
@@ -24627,7 +31057,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The data encryption key identifier for the snapshot. This value is a unique identifier that corresponds to the data encryption key that was used to encrypt the original volume or snapshot copy. Because data encryption keys are inherited by volumes created from snapshots, and vice versa, if snapshots share the same data encryption key identifier, then they belong to the same volume/snapshot lineage. This parameter is only returned by the <a>DescribeSnapshots</a> API operation.</p>
+ <p>The data encryption key identifier for the snapshot. This value is a unique identifier that corresponds to the data encryption key that was used to encrypt the original volume or snapshot copy. Because data encryption keys are inherited by volumes created from snapshots, and vice versa, if snapshots share the same data encryption key identifier, then they belong to the same volume/snapshot lineage. This parameter is only returned by <a>DescribeSnapshots</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable dataEncryptionKeyId;
 
@@ -24642,12 +31072,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable encrypted;
 
 /**
- <p>The full ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) that was used to protect the volume encryption key for the parent volume.</p>
+ <p>The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) customer master key (CMK) that was used to protect the volume encryption key for the parent volume.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable kmsKeyId;
 
 /**
- <p> Value from an Amazon-maintained list (<code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>) of snapshot owners. Not to be confused with the user-configured AWS account alias, which is set from the IAM console. </p>
+ <p> Value from an Amazon-maintained list (<code>amazon</code> | <code>self</code> | <code>all</code> | <code>aws-marketplace</code> | <code>microsoft</code>) of snapshot owners. Not to be confused with the user-configured AWS account alias, which is set from the IAM console. </p>
  */
 @property (nonatomic, strong) NSString * _Nullable ownerAlias;
 
@@ -24677,7 +31107,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2SnapshotState state;
 
 /**
- <p>Encrypted Amazon EBS snapshots are copied asynchronously. If a snapshot copy operation fails (for example, if the proper AWS Key Management Service (AWS KMS) permissions are not obtained) this field displays error state details to help you diagnose why the error occurred. This parameter is only returned by the <a>DescribeSnapshots</a> API operation.</p>
+ <p>Encrypted Amazon EBS snapshots are copied asynchronously. If a snapshot copy operation fails (for example, if the proper AWS Key Management Service (AWS KMS) permissions are not obtained) this field displays error state details to help you diagnose why the error occurred. This parameter is only returned by <a>DescribeSnapshots</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable stateMessage;
 
@@ -24785,6 +31215,64 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>Information about a snapshot.</p>
+ */
+@interface AWSEC2SnapshotInfo : AWSModel
+
+
+/**
+ <p>Description specified by the CreateSnapshotRequest that has been applied to all snapshots.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>Indicates whether the snapshot is encrypted.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable encrypted;
+
+/**
+ <p>Account id used when creating this snapshot.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerId;
+
+/**
+ <p>Progress this snapshot has made towards completing.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable progress;
+
+/**
+ <p>Snapshot id that can be used to describe this snapshot.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable snapshotId;
+
+/**
+ <p>Time this snapshot was started. This is the same for all snapshots initiated by the same request.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable startTime;
+
+/**
+ <p>Current state of the snapshot.</p>
+ */
+@property (nonatomic, assign) AWSEC2SnapshotState state;
+
+/**
+ <p>Tags associated with this snapshot.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+/**
+ <p>Source volume from which this snapshot was created.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable volumeId;
+
+/**
+ <p>Size of the volume from which this snapshot was created.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable volumeSize;
+
+@end
+
+/**
  <p>Details about the import snapshot task.</p>
  */
 @interface AWSEC2SnapshotTaskDetail : AWSModel
@@ -24881,7 +31369,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Describes the launch specification for one or more Spot Instances.</p>
+ <p>Describes the launch specification for one or more Spot Instances. If you include On-Demand capacity in your fleet request, you can't use <code>SpotFleetLaunchSpecification</code>; you must use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_LaunchTemplateConfig.html">LaunchTemplateConfig</a>.</p>
  */
 @interface AWSEC2SpotFleetLaunchSpecification : AWSModel
 
@@ -24892,7 +31380,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable addressingType;
 
 /**
- <p>One or more block device mapping entries. You can't specify both a snapshot ID and an encryption value. This is because only blank volumes can be encrypted on creation. If a snapshot is the basis for a volume, it is not blank and its encryption status is used for the volume encryption status.</p>
+ <p>One or more block devices that are mapped to the Spot Instances. You can't specify both a snapshot ID and an encryption value. This is because only blank volumes can be encrypted on creation. If a snapshot is the basis for a volume, it is not blank and its encryption status is used for the volume encryption status.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2BlockDeviceMapping *> * _Nullable blockDeviceMappings;
 
@@ -24942,7 +31430,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) AWSEC2SpotPlacement * _Nullable placement;
 
 /**
- <p>The ID of the RAM disk.</p>
+ <p>The ID of the RAM disk. Some kernels require additional drivers at launch. Check the kernel requirements for information about whether you need to specify a RAM disk. To find kernel requirements, refer to the AWS Resource Center and search for the kernel ID.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable ramdiskId;
 
@@ -24957,7 +31445,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable spotPrice;
 
 /**
- <p>The ID of the subnet in which to launch the instances. To specify multiple subnets, separate them using commas; for example, "subnet-a61dafcf, subnet-65ea5f08".</p>
+ <p>The IDs of the subnets in which to launch the instances. To specify multiple subnets, separate them using commas; for example, "subnet-1234abcdeexample1, subnet-0987cdef6example2".</p>
  */
 @property (nonatomic, strong) NSString * _Nullable subnetId;
 
@@ -24967,12 +31455,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2SpotFleetTagSpecification *> * _Nullable tagSpecifications;
 
 /**
- <p>The Base64-encoded user data to make available to the instances.</p>
+ <p>The Base64-encoded user data that instances use when starting up.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable userData;
 
 /**
- <p>The number of units provided by the specified instance type. These are the same units that you chose to set the target capacity in terms (instances or a performance characteristic such as vCPUs, memory, or I/O).</p><p>If the target capacity divided by this value is not a whole number, we round the number of instances to the next whole number. If this value is not specified, the default is 1.</p>
+ <p>The number of units provided by the specified instance type. These are the same units that you chose to set the target capacity in terms of instances, or a performance characteristic such as vCPUs, memory, or I/O.</p><p>If the target capacity divided by this value is not a whole number, Amazon EC2 rounds the number of instances to the next whole number. If this value is not specified, the default is 1.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable weightedCapacity;
 
@@ -25022,6 +31510,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @property (nonatomic, assign) AWSEC2BatchState spotFleetRequestState;
 
+/**
+ <p>The tags for a Spot Fleet resource.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
 @end
 
 /**
@@ -25032,7 +31525,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Indicates how to allocate the target capacity across the Spot pools specified by the Spot Fleet request. The default is <code>lowestPrice</code>.</p>
+ <p>Indicates how to allocate the target Spot Instance capacity across the Spot Instance pools specified by the Spot Fleet request.</p><p>If the allocation strategy is <code>lowestPrice</code>, Spot Fleet launches instances from the Spot Instance pools with the lowest price. This is the default allocation strategy.</p><p>If the allocation strategy is <code>diversified</code>, Spot Fleet launches instances from all the Spot Instance pools that you specify.</p><p>If the allocation strategy is <code>capacityOptimized</code>, Spot Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.</p>
  */
 @property (nonatomic, assign) AWSEC2AllocationStrategy allocationStrategy;
 
@@ -25042,7 +31535,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable clientToken;
 
 /**
- <p>Indicates whether running Spot Instances should be terminated if the target capacity of the Spot Fleet request is decreased below the current size of the Spot Fleet.</p>
+ <p>Indicates whether running Spot Instances should be terminated if you decrease the target capacity of the Spot Fleet request below the current size of the Spot Fleet.</p>
  */
 @property (nonatomic, assign) AWSEC2ExcessCapacityTerminationPolicy excessCapacityTerminationPolicy;
 
@@ -25052,7 +31545,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable fulfilledCapacity;
 
 /**
- <p>Grants the Spot Fleet permission to terminate Spot Instances on your behalf when you cancel its Spot Fleet request using <a>CancelSpotFleetRequests</a> or when the Spot Fleet request expires, if you set <code>terminateInstancesWithExpiration</code>.</p>
+ <p>The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that grants the Spot Fleet the permission to request, launch, terminate, and tag instances on your behalf. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-requests.html#spot-fleet-prerequisites">Spot Fleet Prerequisites</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>. Spot Fleet can terminate Spot Instances on your behalf when you cancel its Spot Fleet request using <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CancelSpotFleetRequests">CancelSpotFleetRequests</a> or when the Spot Fleet request expires, if you set <code>TerminateInstancesWithExpiration</code>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable iamFleetRole;
 
@@ -25067,12 +31560,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable instancePoolsToUseCount;
 
 /**
- <p>The launch specifications for the Spot Fleet request.</p>
+ <p>The launch specifications for the Spot Fleet request. If you specify <code>LaunchSpecifications</code>, you can't specify <code>LaunchTemplateConfigs</code>. If you include On-Demand capacity in your request, you must use <code>LaunchTemplateConfigs</code>.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2SpotFleetLaunchSpecification *> * _Nullable launchSpecifications;
 
 /**
- <p>The launch template and overrides.</p>
+ <p>The launch template and overrides. If you specify <code>LaunchTemplateConfigs</code>, you can't specify <code>LaunchSpecifications</code>. If you include On-Demand capacity in your request, you must use <code>LaunchTemplateConfigs</code>.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2LaunchTemplateConfig *> * _Nullable launchTemplateConfigs;
 
@@ -25092,6 +31585,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable onDemandFulfilledCapacity;
 
 /**
+ <p>The maximum amount per hour for On-Demand Instances that you're willing to pay. You can use the <code>onDemandMaxTotalPrice</code> parameter, the <code>spotMaxTotalPrice</code> parameter, or both parameters to ensure that your fleet cost does not exceed your budget. If you set a maximum price per hour for the On-Demand Instances and Spot Instances in your request, Spot Fleet will launch instances until it reaches the maximum amount you're willing to pay. When the maximum amount you're willing to pay is reached, the fleet stops launching instances even if it hasn’t met the target capacity.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable onDemandMaxTotalPrice;
+
+/**
  <p>The number of On-Demand units to request. You can choose to set the target capacity in terms of instances or a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O. If the request type is <code>maintain</code>, you can specify a target capacity of 0 and add capacity later.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable onDemandTargetCapacity;
@@ -25102,17 +31600,27 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable replaceUnhealthyInstances;
 
 /**
+ <p>The maximum amount per hour for Spot Instances that you're willing to pay. You can use the <code>spotdMaxTotalPrice</code> parameter, the <code>onDemandMaxTotalPrice</code> parameter, or both parameters to ensure that your fleet cost does not exceed your budget. If you set a maximum price per hour for the On-Demand Instances and Spot Instances in your request, Spot Fleet will launch instances until it reaches the maximum amount you're willing to pay. When the maximum amount you're willing to pay is reached, the fleet stops launching instances even if it hasn’t met the target capacity.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable spotMaxTotalPrice;
+
+/**
  <p>The maximum price per unit hour that you are willing to pay for a Spot Instance. The default is the On-Demand price.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable spotPrice;
 
 /**
- <p>The number of units to request. You can choose to set the target capacity in terms of instances or a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O. If the request type is <code>maintain</code>, you can specify a target capacity of 0 and add capacity later.</p>
+ <p>The key-value pair for tagging the Spot Fleet request on creation. The value for <code>ResourceType</code> must be <code>spot-fleet-request</code>, otherwise the Spot Fleet request fails. To tag instances at launch, specify the tags in the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#create-launch-template">launch template</a> (valid only if you use <code>LaunchTemplateConfigs</code>) or in the <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_SpotFleetTagSpecification.html"><code>SpotFleetTagSpecification</code></a> (valid only if you use <code>LaunchSpecifications</code>). For information about tagging after launch, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-resources">Tagging Your Resources</a>.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TagSpecification *> * _Nullable tagSpecifications;
+
+/**
+ <p>The number of units to request for the Spot Fleet. You can choose to set the target capacity in terms of instances or a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O. If the request type is <code>maintain</code>, you can specify a target capacity of 0 and add capacity later.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable targetCapacity;
 
 /**
- <p>Indicates whether running Spot Instances should be terminated when the Spot Fleet request expires.</p>
+ <p>Indicates whether running Spot Instances are terminated when the Spot Fleet request expires.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable terminateInstancesWithExpiration;
 
@@ -25122,12 +31630,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2FleetType types;
 
 /**
- <p>The start date and time of the request, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). The default is to start fulfilling the request immediately.</p>
+ <p>The start date and time of the request, in UTC format (<i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). By default, Amazon EC2 starts fulfilling the request immediately.</p>
  */
 @property (nonatomic, strong) NSDate * _Nullable validFrom;
 
 /**
- <p>The end date and time of the request, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). At this point, no new Spot Instance requests are placed or able to fulfill the request. If no value is specified, the Spot Fleet request remains until you cancel it.</p>
+ <p>The end date and time of the request, in UTC format (<i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). After the end date and time, no new Spot Instance requests are placed or able to fulfill the request. If no value is specified, the Spot Fleet request remains until you cancel it.</p>
  */
 @property (nonatomic, strong) NSDate * _Nullable validUntil;
 
@@ -25140,7 +31648,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The type of resource. Currently, the only resource type that is supported is <code>instance</code>.</p>
+ <p>The type of resource. Currently, the only resource type that is supported is <code>instance</code>. To tag the Spot Fleet request on creation, use the <code>TagSpecifications</code> parameter in <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_SpotFleetRequestConfigData.html"><code>SpotFleetRequestConfigData</code></a>.</p>
  */
 @property (nonatomic, assign) AWSEC2ResourceType resourceType;
 
@@ -25317,7 +31825,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable maxPrice;
 
 /**
- <p>The Spot Instance request type. For <a>RunInstances</a>, persistent Spot Instance requests are only supported when <b>InstanceInterruptionBehavior</b> is set to either <code>hibernate</code> or <code>stop</code>.</p>
+ <p>The Spot Instance request type. For <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances">RunInstances</a>, persistent Spot Instance requests are only supported when <b>InstanceInterruptionBehavior</b> is set to either <code>hibernate</code> or <code>stop</code>.</p>
  */
 @property (nonatomic, assign) AWSEC2SpotInstanceType spotInstanceType;
 
@@ -25335,7 +31843,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Indicates how to allocate the target capacity across the Spot pools specified by the Spot Fleet request. The default is <code>lowest-price</code>.</p>
+ <p>Indicates how to allocate the target Spot Instance capacity across the Spot Instance pools specified by the EC2 Fleet.</p><p>If the allocation strategy is <code>lowest-price</code>, EC2 Fleet launches instances from the Spot Instance pools with the lowest price. This is the default allocation strategy.</p><p>If the allocation strategy is <code>diversified</code>, EC2 Fleet launches instances from all of the Spot Instance pools that you specify.</p><p>If the allocation strategy is <code>capacity-optimized</code>, EC2 Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.</p>
  */
 @property (nonatomic, assign) AWSEC2SpotAllocationStrategy allocationStrategy;
 
@@ -25345,9 +31853,14 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2SpotInstanceInterruptionBehavior instanceInterruptionBehavior;
 
 /**
- <p>The number of Spot pools across which to allocate your target Spot capacity. Valid only when <b>AllocationStrategy</b> is set to <code>lowestPrice</code>. EC2 Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify.</p>
+ <p>The number of Spot pools across which to allocate your target Spot capacity. Valid only when <b>AllocationStrategy</b> is set to <code>lowest-price</code>. EC2 Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable instancePoolsToUseCount;
+
+/**
+ <p>The maximum amount per hour for Spot Instances that you're willing to pay.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable maxTotalPrice;
 
 /**
  <p>The minimum target capacity for Spot Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>
@@ -25355,12 +31868,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable minTargetCapacity;
 
 /**
- <p>Indicates that the fleet launches all Spot Instances into a single Availability Zone.</p>
+ <p>Indicates that the fleet launches all Spot Instances into a single Availability Zone. Supported only for fleets of type <code>instant</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable singleAvailabilityZone;
 
 /**
- <p>Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet.</p>
+ <p>Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet. Supported only for fleets of type <code>instant</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable singleInstanceType;
 
@@ -25373,7 +31886,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Indicates how to allocate the target capacity across the Spot pools specified by the Spot Fleet request. The default is <code>lowestPrice</code>.</p>
+ <p>Indicates how to allocate the target Spot Instance capacity across the Spot Instance pools specified by the EC2 Fleet.</p><p>If the allocation strategy is <code>lowest-price</code>, EC2 Fleet launches instances from the Spot Instance pools with the lowest price. This is the default allocation strategy.</p><p>If the allocation strategy is <code>diversified</code>, EC2 Fleet launches instances from all of the Spot Instance pools that you specify.</p><p>If the allocation strategy is <code>capacity-optimized</code>, EC2 Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.</p>
  */
 @property (nonatomic, assign) AWSEC2SpotAllocationStrategy allocationStrategy;
 
@@ -25388,17 +31901,22 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable instancePoolsToUseCount;
 
 /**
+ <p>The maximum amount per hour for Spot Instances that you're willing to pay.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable maxTotalPrice;
+
+/**
  <p>The minimum target capacity for Spot Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable minTargetCapacity;
 
 /**
- <p>Indicates that the fleet launches all Spot Instances into a single Availability Zone.</p>
+ <p>Indicates that the fleet launches all Spot Instances into a single Availability Zone. Supported only for fleets of type <code>instant</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable singleAvailabilityZone;
 
 /**
- <p>Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet.</p>
+ <p>Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet. Supported only for fleets of type <code>instant</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable singleInstanceType;
 
@@ -25477,12 +31995,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSString * _Nullable ipProtocol;
 
 /**
- <p>One or more IP ranges. Not applicable for stale security group rules.</p>
+ <p>The IP ranges. Not applicable for stale security group rules.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable ipRanges;
 
 /**
- <p>One or more prefix list IDs for an AWS service. Not applicable for stale security group rules.</p>
+ <p>The prefix list IDs for an AWS service. Not applicable for stale security group rules.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable prefixListIds;
 
@@ -25492,7 +32010,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable toPort;
 
 /**
- <p>One or more security group pairs. Returns the ID of the referenced security group and VPC, and the ID and status of the VPC peering connection.</p>
+ <p>The security group pairs. Returns the ID of the referenced security group and VPC, and the ID and status of the VPC peering connection.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2UserIdGroupPair *> * _Nullable userIdGroupPairs;
 
@@ -25553,7 +32071,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more instance IDs.</p>
+ <p>The IDs of the instances.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable instanceIds;
 
@@ -25566,9 +32084,40 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Information about one or more started instances.</p>
+ <p>Information about the started instances.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2InstanceStateChange *> * _Nullable startingInstances;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2StartVpcEndpointServicePrivateDnsVerificationRequest : AWSRequest
+
+
+/**
+ <p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dryRun;
+
+/**
+ <p>The ID of the endpoint service.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable serviceId;
+
+@end
+
+/**
+ 
+ */
+@interface AWSEC2StartVpcEndpointServicePrivateDnsVerificationResult : AWSModel
+
+
+/**
+ <p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable returnValue;
 
 @end
 
@@ -25612,7 +32161,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable hibernate;
 
 /**
- <p>One or more instance IDs.</p>
+ <p>The IDs of the instances.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable instanceIds;
 
@@ -25625,7 +32174,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Information about one or more stopped instances.</p>
+ <p>Information about the stopped instances.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2InstanceStateChange *> * _Nullable stoppingInstances;
 
@@ -25709,6 +32258,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable mapPublicIpOnLaunch;
 
 /**
+ <p>The Amazon Resource Name (ARN) of the Outpost.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable outpostArn;
+
+/**
  <p>The ID of the AWS account that owns the subnet.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable ownerId;
@@ -25737,6 +32291,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of the VPC the subnet is in.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable vpcId;
+
+@end
+
+/**
+ <p>Describes the subnet association with the transit gateway multicast domain.</p>
+ */
+@interface AWSEC2SubnetAssociation : AWSModel
+
+
+/**
+ <p>The state of the subnet association.</p>
+ */
+@property (nonatomic, assign) AWSEC2TransitGatewayMulitcastDomainAssociationState state;
+
+/**
+ <p>The ID of the subnet.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable subnetId;
 
 @end
 
@@ -25782,7 +32354,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Describes the T2 or T3 instance whose credit option for CPU usage was successfully modified.</p>
+ <p>Describes the burstable performance instance whose credit option for CPU usage was successfully modified.</p>
  */
 @interface AWSEC2SuccessfulInstanceCreditSpecificationItem : AWSModel
 
@@ -25791,6 +32363,19 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The ID of the instance.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable instanceId;
+
+@end
+
+/**
+ <p>Describes a Reserved Instance whose queued purchase was successfully deleted.</p>
+ */
+@interface AWSEC2SuccessfulQueuedPurchaseDeletion : AWSModel
+
+
+/**
+ <p>The ID of the Reserved Instance.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable reservedInstancesId;
 
 @end
 
@@ -25847,7 +32432,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The type of resource to tag. Currently, the resource types that support tagging on creation are <code>fleet</code>, <code>dedicated-host</code>, <code>instance</code>, <code>snapshot</code>, and <code>volume</code>. To tag a resource after it has been created, see <a>CreateTags</a>.</p>
+ <p>The type of resource to tag. Currently, the resource types that support tagging on creation are: <code>capacity-reservation</code> | <code>client-vpn-endpoint</code> | <code>dedicated-host</code> | <code>fleet</code> | <code>fpga-image</code> | <code>instance</code> | <code>key-pair</code> | <code>launch-template</code> | | <code>natgateway</code> | <code>spot-fleet-request</code> | <code>placement-group</code> | <code>snapshot</code> | <code>traffic-mirror-filter</code> | <code>traffic-mirror-session</code> | <code>traffic-mirror-target</code> | <code>transit-gateway</code> | <code>transit-gateway-attachment</code> | <code>transit-gateway-route-table</code> | <code>vpc-endpoint</code> (for interface VPC endpoints)| <code>vpc-endpoint-service</code> (for gateway VPC endpoints) | <code>volume</code> | <code>vpc-flow-log</code>.</p><p>To tag a resource after it has been created, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html">CreateTags</a>.</p>
  */
 @property (nonatomic, assign) AWSEC2ResourceType resourceType;
 
@@ -25859,7 +32444,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>The number of units to request. You can choose to set the target capacity in terms of instances or a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O. If the request type is <code>maintain</code>, you can specify a target capacity of 0 and add capacity later.</p>
+ <p>The number of units to request. You can choose to set the target capacity in terms of instances or a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O. If the request type is <code>maintain</code>, you can specify a target capacity of 0 and add capacity later.</p><p>You can use the On-Demand Instance <code>MaxTotalPrice</code> parameter, the Spot Instance <code>MaxTotalPrice</code>, or both to ensure that your fleet cost does not exceed your budget. If you set a maximum price per hour for the On-Demand Instances and Spot Instances in your request, EC2 Fleet will launch instances until it reaches the maximum amount that you're willing to pay. When the maximum amount you're willing to pay is reached, the fleet stops launching instances even if it hasn’t met the target capacity. The <code>MaxTotalPrice</code> parameters are located in <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_OnDemandOptions.html">OnDemandOptions</a> and <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_SpotOptions">SpotOptions</a></p>
  */
 @interface AWSEC2TargetCapacitySpecification : AWSModel
 
@@ -25870,12 +32455,12 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2DefaultTargetCapacityType defaultTargetCapacityType;
 
 /**
- <p>The number of On-Demand units to request.</p>
+ <p>The number of On-Demand units to request. If you specify a target capacity for Spot units, you cannot specify a target capacity for On-Demand units.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable onDemandTargetCapacity;
 
 /**
- <p>The maximum number of Spot units to launch.</p>
+ <p>The maximum number of Spot units to launch. If you specify a target capacity for On-Demand units, you cannot specify a target capacity for Spot units.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable spotTargetCapacity;
 
@@ -25887,7 +32472,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>The number of units to request. You can choose to set the target capacity in terms of instances or a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O. If the request type is <code>maintain</code>, you can specify a target capacity of 0 and add capacity later.</p>
+ <p>The number of units to request. You can choose to set the target capacity as the number of instances. Or you can set the target capacity to a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O. If the request type is <code>maintain</code>, you can specify a target capacity of 0 and add capacity later.</p><p>You can use the On-Demand Instance <code>MaxTotalPrice</code> parameter, the Spot Instance <code>MaxTotalPrice</code> parameter, or both parameters to ensure that your fleet cost does not exceed your budget. If you set a maximum price per hour for the On-Demand Instances and Spot Instances in your request, EC2 Fleet will launch instances until it reaches the maximum amount that you're willing to pay. When the maximum amount you're willing to pay is reached, the fleet stops launching instances even if it hasn’t met the target capacity. The <code>MaxTotalPrice</code> parameters are located in <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_OnDemandOptionsRequest">OnDemandOptionsRequest</a> and <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_SpotOptionsRequest">SpotOptionsRequest</a>.</p>
  Required parameters: [TotalTargetCapacity]
  */
 @interface AWSEC2TargetCapacitySpecificationRequest : AWSModel
@@ -26120,7 +32705,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more instance IDs.</p><p>Constraints: Up to 1000 instance IDs. We recommend breaking up this request into smaller batches.</p>
+ <p>The IDs of the instances.</p><p>Constraints: Up to 1000 instance IDs. We recommend breaking up this request into smaller batches.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable instanceIds;
 
@@ -26133,9 +32718,247 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>Information about one or more terminated instances.</p>
+ <p>Information about the terminated instances.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2InstanceStateChange *> * _Nullable terminatingInstances;
+
+@end
+
+/**
+ <p>Describes the Traffic Mirror filter.</p>
+ */
+@interface AWSEC2TrafficMirrorFilter : AWSModel
+
+
+/**
+ <p>The description of the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>Information about the egress rules that are associated with the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TrafficMirrorFilterRule *> * _Nullable egressFilterRules;
+
+/**
+ <p>Information about the ingress rules that are associated with the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TrafficMirrorFilterRule *> * _Nullable ingressFilterRules;
+
+/**
+ <p>The network service traffic that is associated with the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable networkServices;
+
+/**
+ <p>The tags assigned to the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+/**
+ <p>The ID of the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorFilterId;
+
+@end
+
+/**
+ <p>Describes the Traffic Mirror rule.</p>
+ */
+@interface AWSEC2TrafficMirrorFilterRule : AWSModel
+
+
+/**
+ <p>The description of the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>The destination CIDR block assigned to the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable destinationCidrBlock;
+
+/**
+ <p>The destination port range assigned to the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) AWSEC2TrafficMirrorPortRange * _Nullable destinationPortRange;
+
+/**
+ <p>The protocol assigned to the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable protocols;
+
+/**
+ <p>The action assigned to the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, assign) AWSEC2TrafficMirrorRuleAction ruleAction;
+
+/**
+ <p>The rule number of the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable ruleNumber;
+
+/**
+ <p>The source CIDR block assigned to the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable sourceCidrBlock;
+
+/**
+ <p>The source port range assigned to the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) AWSEC2TrafficMirrorPortRange * _Nullable sourcePortRange;
+
+/**
+ <p>The traffic direction assigned to the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, assign) AWSEC2TrafficDirection trafficDirection;
+
+/**
+ <p>The ID of the Traffic Mirror filter that the rule is associated with.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorFilterId;
+
+/**
+ <p>The ID of the Traffic Mirror rule.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorFilterRuleId;
+
+@end
+
+/**
+ <p>Describes the Traffic Mirror port range.</p>
+ */
+@interface AWSEC2TrafficMirrorPortRange : AWSModel
+
+
+/**
+ <p>The start of the Traffic Mirror port range. This applies to the TCP and UDP protocols.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable fromPort;
+
+/**
+ <p>The end of the Traffic Mirror port range. This applies to the TCP and UDP protocols.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable toPort;
+
+@end
+
+/**
+ <p>Information about the Traffic Mirror filter rule port range.</p>
+ */
+@interface AWSEC2TrafficMirrorPortRangeRequest : AWSModel
+
+
+/**
+ <p>The first port in the Traffic Mirror port range. This applies to the TCP and UDP protocols.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable fromPort;
+
+/**
+ <p>The last port in the Traffic Mirror port range. This applies to the TCP and UDP protocols.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable toPort;
+
+@end
+
+/**
+ <p>Describes a Traffic Mirror session.</p>
+ */
+@interface AWSEC2TrafficMirrorSession : AWSModel
+
+
+/**
+ <p>The description of the Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>The ID of the Traffic Mirror session's network interface.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkInterfaceId;
+
+/**
+ <p>The ID of the account that owns the Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerId;
+
+/**
+ <p>The number of bytes in each packet to mirror. These are the bytes after the VXLAN header. To mirror a subset, set this to the length (in bytes) to mirror. For example, if you set this value to 100, then the first 100 bytes that meet the filter criteria are copied to the target. Do not specify this parameter when you want to mirror the entire packet</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable packetLength;
+
+/**
+ <p>The session number determines the order in which sessions are evaluated when an interface is used by multiple sessions. The first session with a matching filter is the one that mirrors the packets.</p><p>Valid values are 1-32766.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable sessionNumber;
+
+/**
+ <p>The tags assigned to the Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+/**
+ <p>The ID of the Traffic Mirror filter.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorFilterId;
+
+/**
+ <p>The ID for the Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorSessionId;
+
+/**
+ <p>The ID of the Traffic Mirror target.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorTargetId;
+
+/**
+ <p>The virtual network ID associated with the Traffic Mirror session.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable virtualNetworkId;
+
+@end
+
+/**
+ <p>Describes a Traffic Mirror target.</p>
+ */
+@interface AWSEC2TrafficMirrorTarget : AWSModel
+
+
+/**
+ <p>Information about the Traffic Mirror target.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable detail;
+
+/**
+ <p>The network interface ID that is attached to the target.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkInterfaceId;
+
+/**
+ <p>The Amazon Resource Name (ARN) of the Network Load Balancer.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkLoadBalancerArn;
+
+/**
+ <p>The ID of the account that owns the Traffic Mirror target.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerId;
+
+/**
+ <p>The tags assigned to the Traffic Mirror target.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+/**
+ <p>The ID of the Traffic Mirror target.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trafficMirrorTargetId;
+
+/**
+ <p>The type of Traffic Mirror target.</p>
+ */
+@property (nonatomic, assign) AWSEC2TrafficMirrorTargetType types;
 
 @end
 
@@ -26315,6 +33138,250 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>Describes the deregistered transit gateway multicast group members.</p>
+ */
+@interface AWSEC2TransitGatewayMulticastDeregisteredGroupMembers : AWSModel
+
+
+/**
+ <p>The network interface IDs of the deregistered members.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable deregisteredNetworkInterfaceIds;
+
+/**
+ <p>The IP address assigned to the transit gateway multicast group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable groupIpAddress;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
+ <p>Describes the deregistered transit gateway multicast group sources.</p>
+ */
+@interface AWSEC2TransitGatewayMulticastDeregisteredGroupSources : AWSModel
+
+
+/**
+ <p>The network interface IDs of the non-registered members.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable deregisteredNetworkInterfaceIds;
+
+/**
+ <p>The IP address assigned to the transit gateway multicast group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable groupIpAddress;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
+ <p>Describes the transit gateway multicast domain.</p>
+ */
+@interface AWSEC2TransitGatewayMulticastDomain : AWSModel
+
+
+/**
+ <p>The time the transit gateway multicast domain was created.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable creationTime;
+
+/**
+ <p>The state of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, assign) AWSEC2TransitGatewayMulticastDomainState state;
+
+/**
+ <p>The tags for the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+/**
+ <p>The ID of the transit gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayId;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
+ <p>Describes the resources associated with the transit gateway multicast domain.</p>
+ */
+@interface AWSEC2TransitGatewayMulticastDomainAssociation : AWSModel
+
+
+/**
+ <p>The ID of the resource.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable resourceId;
+
+/**
+ <p>The type of resource, for example a VPC attachment.</p>
+ */
+@property (nonatomic, assign) AWSEC2TransitGatewayAttachmentResourceType resourceType;
+
+/**
+ <p>The subnet associated with the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) AWSEC2SubnetAssociation * _Nullable subnet;
+
+/**
+ <p>The ID of the transit gateway attachment.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayAttachmentId;
+
+@end
+
+/**
+ <p>Describes the multicast domain associations.</p>
+ */
+@interface AWSEC2TransitGatewayMulticastDomainAssociations : AWSModel
+
+
+/**
+ <p>The ID of the resource.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable resourceId;
+
+/**
+ <p>The type of resource, for example a VPC attachment.</p>
+ */
+@property (nonatomic, assign) AWSEC2TransitGatewayAttachmentResourceType resourceType;
+
+/**
+ <p>The subnets associated with the multicast domain.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2SubnetAssociation *> * _Nullable subnets;
+
+/**
+ <p>The ID of the transit gateway attachment.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayAttachmentId;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
+ <p>Describes the transit gateway multicast group resources.</p>
+ */
+@interface AWSEC2TransitGatewayMulticastGroup : AWSModel
+
+
+/**
+ <p>The IP address assigned to the transit gateway multicast group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable groupIpAddress;
+
+/**
+ <p>Indicates that the resource is a transit gateway multicast group member.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable groupMember;
+
+/**
+ <p>Indicates that the resource is a transit gateway multicast group member.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable groupSource;
+
+/**
+ <p>The member type (for example, <code>static</code>).</p>
+ */
+@property (nonatomic, assign) AWSEC2MembershipType memberType;
+
+/**
+ <p>The ID of the transit gateway attachment.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkInterfaceId;
+
+/**
+ <p>The ID of the resource.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable resourceId;
+
+/**
+ <p>The type of resource, for example a VPC attachment.</p>
+ */
+@property (nonatomic, assign) AWSEC2TransitGatewayAttachmentResourceType resourceType;
+
+/**
+ <p>The source type.</p>
+ */
+@property (nonatomic, assign) AWSEC2MembershipType sourceType;
+
+/**
+ <p>The ID of the subnet.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable subnetId;
+
+/**
+ <p>The ID of the transit gateway attachment.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayAttachmentId;
+
+@end
+
+/**
+ <p>Describes the registered transit gateway multicast group members.</p>
+ */
+@interface AWSEC2TransitGatewayMulticastRegisteredGroupMembers : AWSModel
+
+
+/**
+ <p>The IP address assigned to the transit gateway multicast group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable groupIpAddress;
+
+/**
+ <p>The ID of the registered network interfaces.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable registeredNetworkInterfaceIds;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
+ <p>Describes the members registered with the transit gateway multicast group.</p>
+ */
+@interface AWSEC2TransitGatewayMulticastRegisteredGroupSources : AWSModel
+
+
+/**
+ <p>The IP address assigned to the transit gateway multicast group.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable groupIpAddress;
+
+/**
+ <p>The IDs of the network interfaces members registered with the transit gateway multicast group.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable registeredNetworkInterfaceIds;
+
+/**
+ <p>The ID of the transit gateway multicast domain.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayMulticastDomainId;
+
+@end
+
+/**
  <p>Describes the options for a transit gateway.</p>
  */
 @interface AWSEC2TransitGatewayOptions : AWSModel
@@ -26351,6 +33418,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2DnsSupportValue dnsSupport;
 
 /**
+ <p>Indicates whether multicast is enabled on the transit gateway</p>
+ */
+@property (nonatomic, assign) AWSEC2MulticastSupportValue multicastSupport;
+
+/**
  <p>The ID of the default propagation route table.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable propagationDefaultRouteTableId;
@@ -26359,6 +33431,49 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>Indicates whether Equal Cost Multipath Protocol support is enabled.</p>
  */
 @property (nonatomic, assign) AWSEC2VpnEcmpSupportValue vpnEcmpSupport;
+
+@end
+
+/**
+ <p>Describes the transit gateway peering attachment.</p>
+ */
+@interface AWSEC2TransitGatewayPeeringAttachment : AWSModel
+
+
+/**
+ <p>Information about the accepter transit gateway.</p>
+ */
+@property (nonatomic, strong) AWSEC2PeeringTgwInfo * _Nullable accepterTgwInfo;
+
+/**
+ <p>The time the transit gateway peering attachment was created.</p>
+ */
+@property (nonatomic, strong) NSDate * _Nullable creationTime;
+
+/**
+ <p>Information about the requester transit gateway.</p>
+ */
+@property (nonatomic, strong) AWSEC2PeeringTgwInfo * _Nullable requesterTgwInfo;
+
+/**
+ <p>The state of the transit gateway peering attachment.</p>
+ */
+@property (nonatomic, assign) AWSEC2TransitGatewayAttachmentState state;
+
+/**
+ <p>The status of the transit gateway peering attachment.</p>
+ */
+@property (nonatomic, strong) AWSEC2PeeringAttachmentStatus * _Nullable status;
+
+/**
+ <p>The tags for the transit gateway peering attachment.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
+
+/**
+ <p>The ID of the transit gateway peering attachment.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable transitGatewayAttachmentId;
 
 @end
 
@@ -26425,6 +33540,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>Enable or disable DNS support.</p>
  */
 @property (nonatomic, assign) AWSEC2DnsSupportValue dnsSupport;
+
+/**
+ <p>Indicates whether multicast is enabled on the transit gateway</p>
+ */
+@property (nonatomic, assign) AWSEC2MulticastSupportValue multicastSupport;
 
 /**
  <p>Enable or disable Equal Cost Multipath Protocol support.</p>
@@ -26648,9 +33768,97 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, assign) AWSEC2DnsSupportValue dnsSupport;
 
 /**
- <p>Indicates whether IPv6 support is enabled.</p>
+ <p>Indicates whether IPv6 support is disabled.</p>
  */
 @property (nonatomic, assign) AWSEC2Ipv6SupportValue ipv6Support;
+
+@end
+
+/**
+ <p>The VPN tunnel options.</p>
+ */
+@interface AWSEC2TunnelOption : AWSModel
+
+
+/**
+ <p>The number of seconds after which a DPD timeout occurs.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable dpdTimeoutSeconds;
+
+/**
+ <p>The IKE versions that are permitted for the VPN tunnel.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2IKEVersionsListValue *> * _Nullable ikeVersions;
+
+/**
+ <p>The external IP address of the VPN tunnel.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable outsideIpAddress;
+
+/**
+ <p>The permitted Diffie-Hellman group numbers for the VPN tunnel for phase 1 IKE negotiations.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase1DHGroupNumbersListValue *> * _Nullable phase1DHGroupNumbers;
+
+/**
+ <p>The permitted encryption algorithms for the VPN tunnel for phase 1 IKE negotiations.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase1EncryptionAlgorithmsListValue *> * _Nullable phase1EncryptionAlgorithms;
+
+/**
+ <p>The permitted integrity algorithms for the VPN tunnel for phase 1 IKE negotiations.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase1IntegrityAlgorithmsListValue *> * _Nullable phase1IntegrityAlgorithms;
+
+/**
+ <p>The lifetime for phase 1 of the IKE negotiation, in seconds.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable phase1LifetimeSeconds;
+
+/**
+ <p>The permitted Diffie-Hellman group numbers for the VPN tunnel for phase 2 IKE negotiations.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase2DHGroupNumbersListValue *> * _Nullable phase2DHGroupNumbers;
+
+/**
+ <p>The permitted encryption algorithms for the VPN tunnel for phase 2 IKE negotiations.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase2EncryptionAlgorithmsListValue *> * _Nullable phase2EncryptionAlgorithms;
+
+/**
+ <p>The permitted integrity algorithms for the VPN tunnel for phase 2 IKE negotiations.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase2IntegrityAlgorithmsListValue *> * _Nullable phase2IntegrityAlgorithms;
+
+/**
+ <p>The lifetime for phase 2 of the IKE negotiation, in seconds.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable phase2LifetimeSeconds;
+
+/**
+ <p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and the customer gateway.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable preSharedKey;
+
+/**
+ <p>The percentage of the rekey window determined by <code>RekeyMarginTimeSeconds</code> during which the rekey time is randomly selected.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable rekeyFuzzPercentage;
+
+/**
+ <p>The margin time, in seconds, before the phase 2 lifetime expires, during which the AWS side of the VPN connection performs an IKE rekey.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable rekeyMarginTimeSeconds;
+
+/**
+ <p>The number of packets in an IKE replay window.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable replayWindowSize;
+
+/**
+ <p>The range of inside IP addresses for the tunnel.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable tunnelInsideCidr;
 
 @end
 
@@ -26721,7 +33929,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable dryRun;
 
 /**
- <p>One or more instance IDs.</p>
+ <p>The IDs of the instances.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable instanceIds;
 
@@ -26741,13 +33949,13 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Describes the T2 or T3 instance whose credit option for CPU usage was not modified.</p>
+ <p>Describes the burstable performance instance whose credit option for CPU usage was not modified.</p>
  */
 @interface AWSEC2UnsuccessfulInstanceCreditSpecificationItem : AWSModel
 
 
 /**
- <p>The applicable error for the T2 or T3 instance whose credit option for CPU usage was not modified.</p>
+ <p>The applicable error for the burstable performance instance whose credit option for CPU usage was not modified.</p>
  */
 @property (nonatomic, strong) AWSEC2UnsuccessfulInstanceCreditSpecificationItemError * _Nullable error;
 
@@ -26759,7 +33967,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>Information about the error for the T2 or T3 instance whose credit option for CPU usage was not modified.</p>
+ <p>Information about the error for the burstable performance instance whose credit option for CPU usage was not modified.</p>
  */
 @interface AWSEC2UnsuccessfulInstanceCreditSpecificationItemError : AWSModel
 
@@ -26987,6 +34195,39 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>Describes the vCPU configurations for the instance type.</p>
+ */
+@interface AWSEC2VCpuInfo : AWSModel
+
+
+/**
+ <p>The default number of cores for the instance type.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable defaultCores;
+
+/**
+ <p>The default number of threads per core for the instance type.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable defaultThreadsPerCore;
+
+/**
+ <p>The default number of vCPUs for the instance type.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable defaultVCpus;
+
+/**
+ <p>List of the valid number of cores that can be configured for the instance type.</p>
+ */
+@property (nonatomic, strong) NSArray<NSNumber *> * _Nullable validCores;
+
+/**
+ <p>List of the valid number of threads per core that can be configured for the instance type. </p>
+ */
+@property (nonatomic, strong) NSArray<NSNumber *> * _Nullable validThreadsPerCore;
+
+@end
+
+/**
  <p>Describes telemetry for a VPN tunnel.</p>
  */
 @interface AWSEC2VgwTelemetry : AWSModel
@@ -26996,6 +34237,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The number of accepted routes.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable acceptedRouteCount;
+
+/**
+ <p>The Amazon Resource Name (ARN) of the VPN tunnel endpoint certificate.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable certificateArn;
 
 /**
  <p>The date and time of the last change in status.</p>
@@ -27041,9 +34287,14 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSDate * _Nullable createTime;
 
 /**
- <p>Indicates whether the volume will be encrypted.</p>
+ <p>Indicates whether the volume is encrypted.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable encrypted;
+
+/**
+ <p>Indicates whether the volume was created using fast snapshot restore.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable fastRestored;
 
 /**
  <p>The number of I/O operations per second (IOPS) that the volume supports. For Provisioned IOPS SSD volumes, this represents the number of IOPS that are provisioned for the volume. For General Purpose SSD volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p><p>Constraints: Range is 100-16,000 IOPS for <code>gp2</code> volumes and 100 to 64,000IOPS for <code>io1</code> volumes, in most Regions. The maximum IOPS for <code>io1</code> of 64,000 is guaranteed only on <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances">Nitro-based instances</a>. Other instance families guarantee performance up to 32,000 IOPS.</p><p>Condition: This parameter is required for requests to create <code>io1</code> volumes; it is not used in requests to create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code> volumes.</p>
@@ -27051,9 +34302,19 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSNumber * _Nullable iops;
 
 /**
- <p>The full ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) that was used to protect the volume encryption key for the volume.</p>
+ <p>The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) customer master key (CMK) that was used to protect the volume encryption key for the volume.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable kmsKeyId;
+
+/**
+ <p>Indicates whether Amazon EBS Multi-Attach is enabled.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable multiAttachEnabled;
+
+/**
+ <p>The Amazon Resource Name (ARN) of the Outpost.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable outpostArn;
 
 /**
  <p>The size of the volume, in GiBs.</p>
@@ -27236,6 +34497,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
+ <p>Information about the instances to which the volume is attached.</p>
+ */
+@interface AWSEC2VolumeStatusAttachmentStatus : AWSModel
+
+
+/**
+ <p>The ID of the attached instance.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable instanceId;
+
+/**
+ <p>The maximum IOPS supported by the attached instance.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ioPerformance;
+
+@end
+
+/**
  <p>Describes a volume status.</p>
  */
 @interface AWSEC2VolumeStatusDetails : AWSModel
@@ -27273,6 +34552,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>The type of this event.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable eventType;
+
+/**
+ <p>The ID of the instance associated with the event.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable instanceId;
 
 /**
  <p>The latest end time of the event.</p>
@@ -27316,6 +34600,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2VolumeStatusAction *> * _Nullable actions;
 
 /**
+ <p>Information about the instances to which the volume is attached.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2VolumeStatusAttachmentStatus *> * _Nullable attachmentStatuses;
+
+/**
  <p>The Availability Zone of the volume.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable availabilityZone;
@@ -27324,6 +34613,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>A list of events associated with the volume.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2VolumeStatusEvent *> * _Nullable events;
+
+/**
+ <p>The Amazon Resource Name (ARN) of the Outpost.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable outpostArn;
 
 /**
  <p>The volume ID.</p>
@@ -27484,7 +34778,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The date and time the VPC endpoint was created.</p>
+ <p>The date and time that the VPC endpoint was created.</p>
  */
 @property (nonatomic, strong) NSDate * _Nullable creationTimestamp;
 
@@ -27494,14 +34788,24 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) NSArray<AWSEC2DnsEntry *> * _Nullable dnsEntries;
 
 /**
- <p>(Interface endpoint) Information about the security groups associated with the network interface.</p>
+ <p>(Interface endpoint) Information about the security groups that are associated with the network interface.</p>
  */
 @property (nonatomic, strong) NSArray<AWSEC2SecurityGroupIdentifier *> * _Nullable groups;
+
+/**
+ <p>The last error that occurred for VPC endpoint.</p>
+ */
+@property (nonatomic, strong) AWSEC2LastError * _Nullable lastError;
 
 /**
  <p>(Interface endpoint) One or more network interfaces for the endpoint.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable networkInterfaceIds;
+
+/**
+ <p>The ID of the AWS account that owns the VPC endpoint.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ownerId;
 
 /**
  <p>The policy document associated with the endpoint, if applicable.</p>
@@ -27512,6 +34816,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>(Interface endpoint) Indicates whether the VPC is associated with a private hosted zone.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable privateDnsEnabled;
+
+/**
+ <p>Indicates whether the VPC endpoint is being managed by its service.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable requesterManaged;
 
 /**
  <p>(Gateway endpoint) One or more route tables associated with the endpoint.</p>
@@ -27532,6 +34841,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>(Interface endpoint) One or more subnets in which the endpoint is located.</p>
  */
 @property (nonatomic, strong) NSArray<NSString *> * _Nullable subnetIds;
+
+/**
+ <p>Any tags assigned to the VPC endpoint.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Tag *> * _Nullable tags;
 
 /**
  <p>The ID of the VPC endpoint.</p>
@@ -27557,9 +34871,19 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The date and time the VPC endpoint was created.</p>
+ <p>The date and time that the VPC endpoint was created.</p>
  */
 @property (nonatomic, strong) NSDate * _Nullable creationTimestamp;
+
+/**
+ <p>The DNS entries for the VPC endpoint.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2DnsEntry *> * _Nullable dnsEntries;
+
+/**
+ <p>The Amazon Resource Names (ARNs) of the network load balancers for the service.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable networkLoadBalancerArns;
 
 /**
  <p>The ID of the service to which the endpoint is connected.</p>
@@ -27603,6 +34927,16 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  <p>Information about the state of the CIDR block.</p>
  */
 @property (nonatomic, strong) AWSEC2VpcCidrBlockState * _Nullable ipv6CidrBlockState;
+
+/**
+ <p>The ID of the IPv6 address pool from which the IPv6 CIDR block is allocated.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable ipv6Pool;
+
+/**
+ <p>The name of the location from which we advertise the IPV6 CIDR block.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable networkBorderGroup;
 
 @end
 
@@ -27717,7 +35051,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @property (nonatomic, strong) AWSEC2VpcPeeringConnectionOptionsDescription * _Nullable peeringOptions;
 
 /**
- <p>The region in which the VPC is located.</p>
+ <p>The Region in which the VPC is located.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable region;
 
@@ -27803,9 +35137,19 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
+ <p>Indicates whether acceleration is enabled for the VPN connection.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable enableAcceleration;
+
+/**
  <p>Indicates whether the VPN connection uses static routes only. Static routes must be used for devices that don't support BGP.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable staticRoutesOnly;
+
+/**
+ <p>Indicates the VPN tunnel options.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2TunnelOption *> * _Nullable tunnelOptions;
 
 @end
 
@@ -27814,6 +35158,11 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
  */
 @interface AWSEC2VpnConnectionOptionsSpecification : AWSModel
 
+
+/**
+ <p>Indicate whether to enable acceleration for the VPN connection.</p><p>Default: <code>false</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable enableAcceleration;
 
 /**
  <p>Indicate whether the VPN connection uses static routes only. If you are creating a VPN connection for a device that does not support BGP, you must specify <code>true</code>. Use <a>CreateVpnConnectionRoute</a> to create a static route.</p><p>Default: <code>false</code></p>
@@ -27894,15 +35243,80 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 @end
 
 /**
- <p>The tunnel options for a VPN connection.</p>
+ <p>The tunnel options for a single VPN tunnel.</p>
  */
 @interface AWSEC2VpnTunnelOptionsSpecification : AWSModel
 
 
 /**
- <p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway.</p><p>Constraints: Allowed characters are alphanumeric characters and ._. Must be between 8 and 64 characters in length and cannot start with zero (0).</p>
+ <p>The number of seconds after which a DPD timeout occurs.</p><p>Constraints: A value between 0 and 30.</p><p>Default: <code>30</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable DPDTimeoutSeconds;
+
+/**
+ <p>The IKE versions that are permitted for the VPN tunnel.</p><p>Valid values: <code>ikev1</code> | <code>ikev2</code></p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2IKEVersionsRequestListValue *> * _Nullable IKEVersions;
+
+/**
+ <p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p><p>Valid values: <code>2</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>22</code> | <code>23</code> | <code>24</code></p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase1DHGroupNumbersRequestListValue *> * _Nullable phase1DHGroupNumbers;
+
+/**
+ <p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p><p>Valid values: <code>AES128</code> | <code>AES256</code></p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase1EncryptionAlgorithmsRequestListValue *> * _Nullable phase1EncryptionAlgorithms;
+
+/**
+ <p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p><p>Valid values: <code>SHA1</code> | <code>SHA2-256</code></p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase1IntegrityAlgorithmsRequestListValue *> * _Nullable phase1IntegrityAlgorithms;
+
+/**
+ <p>The lifetime for phase 1 of the IKE negotiation, in seconds.</p><p>Constraints: A value between 900 and 28,800.</p><p>Default: <code>28800</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable phase1LifetimeSeconds;
+
+/**
+ <p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p><p>Valid values: <code>2</code> | <code>5</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>22</code> | <code>23</code> | <code>24</code></p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase2DHGroupNumbersRequestListValue *> * _Nullable phase2DHGroupNumbers;
+
+/**
+ <p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p><p>Valid values: <code>AES128</code> | <code>AES256</code></p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase2EncryptionAlgorithmsRequestListValue *> * _Nullable phase2EncryptionAlgorithms;
+
+/**
+ <p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p><p>Valid values: <code>SHA1</code> | <code>SHA2-256</code></p>
+ */
+@property (nonatomic, strong) NSArray<AWSEC2Phase2IntegrityAlgorithmsRequestListValue *> * _Nullable phase2IntegrityAlgorithms;
+
+/**
+ <p>The lifetime for phase 2 of the IKE negotiation, in seconds.</p><p>Constraints: A value between 900 and 3,600. The value must be less than the value for <code>Phase1LifetimeSeconds</code>.</p><p>Default: <code>3600</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable phase2LifetimeSeconds;
+
+/**
+ <p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway.</p><p>Constraints: Allowed characters are alphanumeric characters, periods (.), and underscores (_). Must be between 8 and 64 characters in length and cannot start with zero (0).</p>
  */
 @property (nonatomic, strong) NSString * _Nullable preSharedKey;
+
+/**
+ <p>The percentage of the rekey window (determined by <code>RekeyMarginTimeSeconds</code>) during which the rekey time is randomly selected.</p><p>Constraints: A value between 0 and 100.</p><p>Default: <code>100</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable rekeyFuzzPercentage;
+
+/**
+ <p>The margin time, in seconds, before the phase 2 lifetime expires, during which the AWS side of the VPN connection performs an IKE rekey. The exact time of the rekey is randomly selected based on the value for <code>RekeyFuzzPercentage</code>.</p><p>Constraints: A value between 60 and half of <code>Phase2LifetimeSeconds</code>.</p><p>Default: <code>540</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable rekeyMarginTimeSeconds;
+
+/**
+ <p>The number of packets in an IKE replay window.</p><p>Constraints: A value between 64 and 2048.</p><p>Default: <code>1024</code></p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable replayWindowSize;
 
 /**
  <p>The range of inside IP addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. </p><p>Constraints: A size /30 CIDR block from the <code>169.254.0.0/16</code> range. The following CIDR blocks are reserved and cannot be used:</p><ul><li><p><code>169.254.0.0/30</code></p></li><li><p><code>169.254.1.0/30</code></p></li><li><p><code>169.254.2.0/30</code></p></li><li><p><code>169.254.3.0/30</code></p></li><li><p><code>169.254.4.0/30</code></p></li><li><p><code>169.254.5.0/30</code></p></li><li><p><code>169.254.169.252/30</code></p></li></ul>
@@ -27918,7 +35332,7 @@ typedef NS_ENUM(NSInteger, AWSEC2scope) {
 
 
 /**
- <p>The public IPv4 address range, in CIDR notation.</p>
+ <p>The address range, in CIDR notation.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable cidr;
 
